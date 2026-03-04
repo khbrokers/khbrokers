@@ -16,10 +16,10 @@ export function HeroSection() {
             {heroConfig.subtitle}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row [&>*]:animate-fade-in-up [&>*]:[animation-delay:200ms] [&>*]:[animation-fill-mode:both]">
-            <Button asChild href="/signup" variant="primary" size="lg">
+            <Button href="/signup" variant="primary" size="lg">
               {data.ctaPrimary}
             </Button>
-            <Button asChild href="/demo" variant="secondary" size="lg">
+            <Button href="/demo" variant="secondary" size="lg">
               {data.ctaSecondary}
             </Button>
           </div>
