@@ -1,0 +1,135 @@
+/**
+ * Centralized animation keyframes
+ * Import in layout or globals.css
+ */
+
+/* Butter-smooth easing for premium feel */
+:root {
+  --ease-butter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-butter-slow: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slide-in-from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in var(--animate-duration-normal, 300ms) var(--animate-ease-out, ease-out) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up var(--animate-duration-slow, 500ms) var(--animate-ease-out, ease-out) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right var(--animate-duration-normal, 300ms) var(--animate-ease-out, ease-out) forwards;
+}
+
+.animate-slide-in-from-top {
+  animation: slide-in-from-top 0.7s var(--ease-butter, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+/* Lazy-loaded: apply when .animate-on-view-intersecting is added */
+/* Unified speed: 1s duration, 120ms stagger step for all sections */
+.animate-on-view {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 1s var(--ease-butter),
+    transform 1s var(--ease-butter);
+}
+
+.animate-on-view.animate-on-view-intersecting {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-on-view-fade {
+  opacity: 0;
+  transition: opacity 1s var(--ease-butter);
+}
+
+.animate-on-view-fade.animate-on-view-intersecting {
+  opacity: 1;
+}
+
+/* Slide up from bottom - for hero/brand elements */
+.animate-slide-up-from-bottom {
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 1.2s var(--ease-butter),
+    transform 1.2s var(--ease-butter);
+}
+
+.animate-slide-up-from-bottom.animate-on-view-intersecting {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children - each animates in sequence (Framer Motion style) */
+.animate-stagger .stagger-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 1s var(--ease-butter),
+    transform 1s var(--ease-butter);
+}
+
+.animate-stagger.animate-on-view-intersecting .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(1) { transition-delay: 0ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(2) { transition-delay: 120ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(3) { transition-delay: 240ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(4) { transition-delay: 360ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(5) { transition-delay: 480ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(6) { transition-delay: 600ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(7) { transition-delay: 720ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(8) { transition-delay: 840ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(9) { transition-delay: 960ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(10) { transition-delay: 1080ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(11) { transition-delay: 1200ms; }
+.animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(12) { transition-delay: 1320ms; }
