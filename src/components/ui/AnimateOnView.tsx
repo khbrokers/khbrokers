@@ -10,6 +10,8 @@ interface AnimateOnViewProps {
   threshold?: number;
   /** Disconnect observer after first intersection for performance */
   once?: boolean;
+  /** Stagger delay in ms - each card animates in sequence when multiple in view */
+  delayMs?: number;
 }
 
 /**
@@ -24,6 +26,7 @@ export function AnimateOnView({
   rootMargin = "0px 0px 0px 0px",
   threshold = 0.15,
   once = true,
+  delayMs = 0,
 }: AnimateOnViewProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -60,6 +63,7 @@ export function AnimateOnView({
     <div
       ref={ref}
       className={`${animationClass} ${isIntersecting ? intersectingClass : ""} ${className}`.trim()}
+      style={delayMs > 0 ? { transitionDelay: `${delayMs}ms` } : undefined}
     >
       {children}
     </div>

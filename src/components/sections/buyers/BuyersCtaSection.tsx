@@ -64,7 +64,7 @@ export function BuyersCtaSection() {
               <div className="stagger-child mt-2 flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
                 <Link
                   href={cta.primary.href}
-                  className="rounded-full border-2 text-[16px] md:text-[18px] border-[#b696df] bg-[#A363F4] px-[20px] py-[10px] md:px-[30px] md:py-[20px] text-sm font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9]"
+                  className="rounded-full border-2 text-[16px] md:text-[18px] border-[#b696df] bg-[#a36af6] px-[20px] py-[10px] md:px-[30px] md:py-[20px] text-sm font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9]"
                 >
                   {cta.primary.label}
                 </Link>

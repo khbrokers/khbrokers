@@ -95,7 +95,7 @@ export function BuyersVideoSection() {
                   className="flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg sm:h-14 sm:w-14 md:h-16 md:w-16"
                   style={{
                     background:
-                      "linear-gradient(to bottom, rgba(163, 99, 244, 0.2) 0%, #A363F4 100%)",
+                      "linear-gradient(to bottom, rgba(163, 106, 246, 0.2) 0%, #a36af6 100%)",
                   }}
                 >
                   <FaPlay className="ml-1 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />

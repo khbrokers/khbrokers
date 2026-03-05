@@ -13,30 +13,36 @@ export function BuyersNeverSection() {
       <div className="mx-auto max-w-5xl">
         <LazyBlock>
         <header className="mb-12 space-y-5 text-center md:mb-16 max-w-5xl mx-auto flex flex-col items-center justify-center gap-[10px] md:gap-[20px]">
-          <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[36px] md:text-[58px] lg:text-[68px] p-0 m-0">
-            {heading.before}
-            <span className="font-serif font-medium italic text-[#A363F4]">
+        <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
+        {heading.before}
+            <span className="font-serif font-medium italic text-[#a36af6]">
               {heading.highlight}
             </span>
             <br />
             {heading.after}
           </h2>
-          <p className="font-regular text-[14px] md:text-[18px] leading-[1.1] tracking-[-0.5px] text-zinc-900/60">
+          <p className="font-regular text-[14px] md:text-[18px] leading-[1.1] tracking-[-0.5px] text-zinc-900/60 w-[80%] md:w-[90%]">
             {subheading}
           </p>
         </header>
         </LazyBlock>
 
-        <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
         <div className="grid gap-4 sm:gap-6 md:grid-cols-2 md:gap-8">
           {items.map((item, idx) => {
             const isThirdCard = idx === 2;
 
             if (isThirdCard) {
               return (
-                <article
+                <AnimateOnView
                   key={idx}
-                  className="stagger-child flex flex-col overflow-hidden rounded-2xl bg-[#F2E7FF] shadow-sm md:col-span-2 md:flex-row"
+                  animation="fade-up"
+                  rootMargin="0px 0px -60px 0px"
+                  threshold={0.05}
+                  delayMs={idx * 80}
+                  className="md:col-span-2"
+                >
+                <article
+                  className="flex flex-col overflow-hidden rounded-2xl bg-[#F2E7FF] shadow-sm md:flex-row"
                 >
                   <div className="flex flex-1 flex-col justify-center gap-2 px-4 py-4 sm:gap-[10px] sm:px-5 sm:py-5 md:order-1 md:px-[30px] md:py-[20px]">
                     <h3 className="text-[20px] md:text-[22px] font-medium leading-[1.2] tracking-[-0.5px] text-zinc-900">
@@ -56,13 +62,20 @@ export function BuyersNeverSection() {
                     />
                   </div>
                 </article>
+                </AnimateOnView>
               );
             }
 
             return (
-              <article
+              <AnimateOnView
                 key={idx}
-                className="stagger-child flex flex-col overflow-hidden rounded-2xl bg-[#F2E7FF] shadow-sm"
+                animation="fade-up"
+                rootMargin="0px 0px -60px 0px"
+                threshold={0.05}
+                delayMs={idx * 80}
+              >
+              <article
+                className="flex flex-col overflow-hidden rounded-2xl bg-[#F2E7FF] shadow-sm"
               >
                 <div className="relative mb-4 aspect-[4/3] w-full overflow-hidden rounded-lg bg-[#EDE9FE]/50 sm:mb-6 sm:rounded-xl md:mb-8">
                   <Image
@@ -82,10 +95,10 @@ export function BuyersNeverSection() {
                   </p>
                 </div>
               </article>
+              </AnimateOnView>
             );
           })}
         </div>
-        </AnimateOnView>
       </div>
     </section>
   );

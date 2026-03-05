@@ -17,7 +17,7 @@ export function BuyersBrokenSection() {
           <header className="mb-12 space-y-[20px] text-center md:mb-16 max-w-5xl mx-auto">
             <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
               {heading.before}
-              <span className="font-serif font-medium italic text-[#A363F4]">
+              <span className="font-serif font-medium italic text-[#a36af6]">
                 {heading.highlight}
               </span>
             </h2>
@@ -27,9 +27,8 @@ export function BuyersBrokenSection() {
           </header>
         </LazyBlock>
 
-        <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 border-grid-border divide-y divide-grid-border md:grid-cols-3 md:divide-x md:divide-y">
-            {items.map((item, idx) => {
+        <div className="mx-auto grid max-w-5xl grid-cols-1 border-grid-border divide-y divide-grid-border md:grid-cols-3 md:divide-x md:divide-y">
+          {items.map((item, idx) => {
             const { gradient } = item;
             const defaultBg = gradient?.default;
             const hoverBg = gradient?.hover;
@@ -46,44 +45,50 @@ export function BuyersBrokenSection() {
             const overlayGradient = defaultBg || hoverBg;
 
             return (
-              <div
+              <AnimateOnView
                 key={idx}
-                className="stagger-child group relative flex flex-col overflow-hidden p-5 sm:p-6 md:p-8"
-                onMouseEnter={() => setHoveredIdx(idx)}
-                onMouseLeave={() => setHoveredIdx(null)}
+                animation="fade-up"
+                rootMargin="0px 0px -40px 0px"
+                threshold={0.05}
+                delayMs={idx * 100}
               >
-                {hasGradient && overlayGradient !== "transparent" && (
-                  <div
-                    className="pointer-events-none absolute inset-0 transition-opacity duration-300 ease-in-out"
-                    style={{
-                      background: overlayGradient,
-                      opacity: overlayOpacity,
-                    }}
-                    aria-hidden
-                  />
-                )}
-                <div className="relative z-10">
-                  <div className="relative h-10 w-10 shrink-0 md:h-11 md:w-11">
-                  <Image
-                    src={item.icon}
-                    alt=""
-                    width={44}
-                    height={44}
-                    className="object-contain"
-                  />
+                <div
+                  className="group relative flex flex-col overflow-hidden p-5 sm:p-6 md:p-8"
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                >
+                  {hasGradient && overlayGradient !== "transparent" && (
+                    <div
+                      className="pointer-events-none absolute inset-0 transition-opacity duration-300 ease-in-out"
+                      style={{
+                        background: overlayGradient,
+                        opacity: overlayOpacity,
+                      }}
+                      aria-hidden
+                    />
+                  )}
+                  <div className="relative z-10">
+                    <div className="relative h-10 w-10 shrink-0 md:h-11 md:w-11">
+                      <Image
+                        src={item.icon}
+                        alt=""
+                        width={44}
+                        height={44}
+                        className="object-contain"
+                      />
+                    </div>
+                    <h3 className="mt-4 font-medium text-[20px] md:text-[22px] tracking-[-0.5px] text-zinc-900">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 leading-[1.1] font-regular text-[14px] md:text-[18px] tracking-[-0.5px] text-zinc-900/60">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-                  <h3 className="mt-4 font-medium text-[20px] md:text-[22px] tracking-[-0.5px] text-zinc-900">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 leading-[1.1] font-regular text-[14px] md:text-[18px] tracking-[-0.5px] text-zinc-900/60">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
+              </AnimateOnView>
             );
           })}
-          </div>
-        </AnimateOnView>
+        </div>
       </div>
     </section>
   );

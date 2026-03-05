@@ -59,7 +59,7 @@ export function BuyersTypewriterSection() {
   let globalCharCount = 0;
 
   return (
-    <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24 min-h-[70vh] sm:min-h-[120vh] md:min-h-[150vh]">
+    <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24">
       <AnimateOnView animation="stagger" rootMargin="0px 0px -100px 0px">
       <div ref={contentRef} className="mx-auto max-w-5xl space-y-6 md:space-y-8">
         {paragraphs.map((para, paraIdx) => {

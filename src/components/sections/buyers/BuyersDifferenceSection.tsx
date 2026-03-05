@@ -69,7 +69,7 @@ export function BuyersDifferenceSection() {
               className="pointer-events-none absolute inset-0 z-0"
               style={{
                 backgroundImage:
-                  "linear-gradient(to top, rgba(163, 99, 244, 0) 0%, rgba(163, 99, 244, 0.2) 100%)",
+                  "linear-gradient(to top, rgba(163, 106, 246, 0) 0%, rgba(163, 106, 246, 0.2) 100%)",
                 backgroundSize: "33.334% 100%",
                 backgroundPosition: "right 0 top 0",
                 backgroundRepeat: "no-repeat",
@@ -79,14 +79,14 @@ export function BuyersDifferenceSection() {
             <table className="relative z-10 w-full table-fixed border-collapse">
               <thead>
                 <tr>
-                  <th className="border-b border-[#A363F4]/20 bg-white p-4 text-left text-[14px] font-semibold text-zinc-900 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]">
+                  <th className="border-b border-[#a36af6]/20 bg-white p-4 text-left text-[14px] font-semibold text-zinc-900 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]">
                     {table.columns[0]}
                   </th>
-                  <th className="border-b border-x border-[#A363F4]/20 bg-white p-4 text-center text-[14px] font-semibold text-zinc-900 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]">
+                  <th className="border-b border-x border-[#a36af6]/20 bg-white p-4 text-center text-[14px] font-semibold text-zinc-900 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]">
                     {table.columns[1]}
                   </th>
                   <th
-                    className="border-b border-[#A363F4]/20 p-4 text-center text-[14px] font-semibold text-zinc-900 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]"
+                    className="border-b border-[#a36af6]/20 p-4 text-center text-[14px] font-semibold text-zinc-900 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]"
                     style={{ background: "transparent" }}
                   >
                     <div className="flex items-center justify-center">
@@ -104,14 +104,14 @@ export function BuyersDifferenceSection() {
               <tbody>
                 {table.rows.map((row, idx) => (
                   <tr key={idx} className="stagger-child">
-                    <td className="border-b border-[#A363F4]/20 bg-white p-4 text-[14px] font-semibold text-zinc-900 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]">
+                    <td className="border-b border-[#a36af6]/20 bg-white p-4 text-[14px] font-semibold text-zinc-900 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]">
                       {row.area}
                     </td>
-                    <td className="border-b border-x border-[#A363F4]/20 bg-white p-4 text-center text-[14px] font-medium text-zinc-900/50 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]">
+                    <td className="border-b border-x border-[#a36af6]/20 bg-white p-4 text-center text-[14px] font-medium text-zinc-900/50 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]">
                       {row.other}
                     </td>
                     <td
-                      className="border-b border-[#A363F4]/20 p-4 text-center text-[14px] font-medium text-zinc-900/50 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]"
+                      className="border-b border-[#a36af6]/20 p-4 text-center text-[14px] font-medium text-zinc-900/50 sm:p-5 sm:text-[16px] md:p-[30px] md:text-[20px] lg:text-[22px]"
                       style={{ background: "transparent" }}
                     >
                       {row.kh}
@@ -128,7 +128,7 @@ export function BuyersDifferenceSection() {
         <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
           <Link
             href={cta.primary.href}
-            className="inline-flex w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#A363F4] px-[24px] py-[12px] text-[16px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] md:px-[30px] md:py-[20px] md:text-[18px]"
+            className="inline-flex w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-[24px] py-[12px] text-[16px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] md:px-[30px] md:py-[20px] md:text-[18px]"
           >
             {cta.primary.label}
           </Link>

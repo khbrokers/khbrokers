@@ -40,7 +40,7 @@ export const buyersBrokenConfig = {
         "E-commerce isn't a broken asset class — the risk comes from buying the wrong business.",
       gradient: {
         default: undefined,
-        hover: "linear-gradient(to top, rgba(163, 99, 244, 0.15) 0%, transparent 100%)",
+        hover: "linear-gradient(to top, rgba(163, 106, 246, 0.15) 0%, transparent 100%)",
       },
     },
     {
@@ -50,7 +50,7 @@ export const buyersBrokenConfig = {
         "Losses happen due to poor selection, incomplete information, and inflated seller narratives — not because the businesses can't work.",
       gradient: {
         default: undefined,
-        hover: "linear-gradient(to top, rgba(163, 99, 244, 0.15) 0%, transparent 100%)",
+        hover: "linear-gradient(to top, rgba(163, 106, 246, 0.15) 0%, transparent 100%)",
       },
     },
     {
@@ -60,7 +60,7 @@ export const buyersBrokenConfig = {
         "Marketplaces and traditional brokers leave buyers to interpret risk on their own, without operator-level context.",
       gradient: {
         default: undefined,
-        hover: "linear-gradient(to top, rgba(163, 99, 244, 0.15) 0%, transparent 100%)",
+        hover: "linear-gradient(to top, rgba(163, 106, 246, 0.15) 0%, transparent 100%)",
       },
     },
     {
@@ -70,7 +70,7 @@ export const buyersBrokenConfig = {
         "Sellers naturally highlight upside. Risk, fragility, and limitations are rarely presented with the same clarity.",
       gradient: {
         default: undefined,
-        hover: "linear-gradient(to bottom, rgba(163, 99, 244, 0.15) 0%, transparent 100%)",
+        hover: "linear-gradient(to bottom, rgba(163, 106, 246, 0.15) 0%, transparent 100%)",
       },
     },
     {
@@ -79,7 +79,7 @@ export const buyersBrokenConfig = {
       description:
         "KH Brokers applies operator-led judgment, aggressive filtering, and end-to-end control before any deal reaches buyers.",
       gradient: {
-        default: "linear-gradient(to bottom, rgba(163, 99, 244, 0.15) 0%, transparent 100%)",
+        default: "linear-gradient(to bottom, rgba(163, 106, 246, 0.15) 0%, transparent 100%)",
         hover: "transparent",
       },
     },
@@ -90,7 +90,7 @@ export const buyersBrokenConfig = {
         "Only businesses we would be comfortable owning ourselves ever make it through our process.",
       gradient: {
         default: undefined,
-        hover: "linear-gradient(to bottom, rgba(163, 99, 244, 0.15) 0%, transparent 100%)",
+        hover: "linear-gradient(to bottom, rgba(163, 106, 246, 0.15) 0%, transparent 100%)",
       },
     },
   ],
@@ -307,6 +307,7 @@ export const buyersBookCallConfig = {
   callTitle: "Introductory call",
   calLink: "https://cal.com/khbrokers/welcome", // Cal.com booking page URL
   calEmbedSlug: "khbrokers/welcome",
+  calPrimaryColor: "#a36af6", // Project primary purple - also set in Cal.com Settings > Appearance > Custom Brand Colors
 };
 
 export const buyersFaqConfig = {
@@ -377,25 +378,26 @@ export const buyersTestimonialsConfig = {
   videoPlaceholders: 3,
   testimonials: [
     {
-      quote:
+         quote:
         "The sales are so high payments processors are trying to figure out what's going on",
+
+        name: "Jordan",
+      avatar: null,
+      badge: " $3M+ Since Acquisition",
+    },
+    {
+      quote:
+        "KH Brokers were recommending business at lower prices that were a better fit for me which was a very big green flag",
       name: "Rohan",
       avatar: null,
-      badge: "Acquired Business",
+      badge: "$1M+ Since Acquisition",
     },
     {
       quote:
-        "The sales are so high payments processors are trying to figure out what's going on",
-      name: "Jordan",
-      avatar: null,
-      badge: "$3M+ Since Acquisition",
-    },
-    {
-      quote:
-        "The process was smooth and professional from start to finish.",
+        "The profitably has exceed my expectation, I thought It would be less than what we are making now.",
       name: "Jonah",
       avatar: null,
-      badge: "First-Time Buyer",
+      badge: "$500k+ Since Acquisition",
     },
   ],
 };

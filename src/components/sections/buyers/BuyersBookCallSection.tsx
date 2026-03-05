@@ -5,7 +5,7 @@ import { LazyBlock } from "@/components/ui/LazyBlock";
 import { CalInlineEmbed } from "@/components/ui/CalInlineEmbed";
 
 export function BuyersBookCallSection() {
-  const { heading, subheading, callTitle, calEmbedSlug, calLink } = buyersBookCallConfig;
+  const { heading, subheading, calEmbedSlug, calPrimaryColor } = buyersBookCallConfig;
 
   return (
     <section className="bg-white px-4 py-12 sm:py-16 md:py-24">
@@ -15,7 +15,7 @@ export function BuyersBookCallSection() {
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[44px] lg:text-[52px]">
               {heading.before}
               <br/>
-              <span className="font-serif font-medium italic text-[#A363F4]">
+              <span className="font-serif font-medium italic text-[#a36af6]">
                 {heading.highlight}
               </span>
             </h2>
@@ -37,8 +37,8 @@ export function BuyersBookCallSection() {
               <div className="relative w-full flex-1 overflow-hidden rounded-lg">
                 <CalInlineEmbed
                   calLink={calEmbedSlug}
-                  iframeFallbackUrl={calLink}
-                  className="rounded-lg h-[600px] sm:h-[650px] md:h-[700px]"
+                  primaryColor={calPrimaryColor}
+                  className="rounded-lg"
                 /> 
               </div>
            </div>

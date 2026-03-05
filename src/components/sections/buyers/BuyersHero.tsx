@@ -89,7 +89,7 @@ export function BuyersHero() {
         <div className="stagger-child mt-6 flex flex-row flex-wrap items-center justify-center gap-2 sm:mt-10 sm:gap-4">
           <Link
             href={cta.primary.href}
-            className="rounded-full border-2 border-[#f7efff80] bg-[#A363F4] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] sm:px-[20px] sm:py-[10px] sm:text-[16px] md:px-[30px] md:py-[20px] md:text-[18px]"
+            className="rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] sm:px-[20px] sm:py-[10px] sm:text-[16px] md:px-[30px] md:py-[20px] md:text-[18px]"
           >
             {cta.primary.label}
           </Link>
@@ -105,7 +105,7 @@ export function BuyersHero() {
 
         {/* As Featured in */}
         <div className="stagger-child mt-6 flex flex-col items-center gap-4 md:gap-4 sm:mt-12 sm:gap-4">
-          <p className="text-center text-[12px] font-medium text-zinc-500 sm:text-[16px] md:text-[18px]">
+          <p className="text-center text-[12px] font-medium text-zinc-500 sm:text-[16px] md:text-[16px]">
             {asFeaturedIn}
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-[25px] sm:gap-6 md:gap-12">
@@ -116,7 +116,7 @@ export function BuyersHero() {
                 alt=""
                 width={120}
                 height={32}
-                className="h-4 w-auto opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all sm:h-5 md:h-6"
+                className="h-[18px] w-auto opacity-80 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
               />
             ))}
           </div>

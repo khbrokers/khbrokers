@@ -8,8 +8,8 @@ import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const CARD_STYLE = {
   background:
-    "linear-gradient(to bottom, rgba(163, 99, 244, 0.2) 0%, rgba(163, 99, 244, 0) 100%)",
-  border: "1px solid rgba(163, 99, 244, 0.4)",
+    "linear-gradient(to bottom, rgba(163, 106, 246, 0.2) 0%, rgba(163, 106, 246, 0) 100%)",
+  border: "1px solid rgba(163, 106, 246, 0.4)",
   boxShadow: "inset 0 0 12px white",
 };
 

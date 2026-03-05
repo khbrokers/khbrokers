@@ -60,7 +60,7 @@ export function Footer() {
                 key={item.icon}
                 href={item.href}
                 aria-label={item.label}
-                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[10px] bg-[#A363F4]/22 text-[#A363F4] shadow-sm transition-opacity hover:opacity-90"
+                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[10px] bg-[#a36af6]/22 text-[#a36af6] shadow-sm transition-opacity hover:opacity-90"
               >
                 {item.icon === "facebook" ? (
                   <FaFacebookF className="h-4 w-4" />

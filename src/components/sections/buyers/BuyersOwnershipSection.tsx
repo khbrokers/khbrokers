@@ -45,25 +45,28 @@ export function BuyersOwnershipSection() {
           </div>
           </LazyBlock>
 
-          <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
           <div className="grid grid-cols-1 min-h-[1200px] gap-4 sm:grid-cols-2 sm:grid-rows-2 sm:gap-6 sm:min-h-[900px] md:gap-8 md:min-h-[1100px]">
             {cards.map((card, idx) => {
               const isThirdCard = idx === 2;
               const gradientStyle = {
                 background:
-                  "linear-gradient(to bottom, #C89CFF 0%, rgba(163, 99, 244, 0) 100%)",
+                  "linear-gradient(to bottom, #C89CFF 0%, rgba(163, 106, 246, 0) 100%)",
               };
               const numberStyle = {
                 background:
-                  "linear-gradient(to bottom, rgba(163, 99, 244, 0) 0%, rgba(163, 99, 244, 0.3) 100%)",
+                  "linear-gradient(to bottom, rgba(163, 106, 246, 0) 0%, rgba(163, 106, 246, 0.3) 100%)",
                 WebkitBackgroundClip: "text" as const,
                 backgroundClip: "text" as const,
                 color: "transparent",
               };
               return (
-                <div
+                <AnimateOnView
                   key={idx}
-                  className={`stagger-child flex h-full ${isThirdCard ? "sm:col-span-2" : ""}`}
+                  animation="fade-up"
+                  rootMargin="0px 0px -60px 0px"
+                  threshold={0.05}
+                  delayMs={idx * 80}
+                  className={`flex h-full ${isThirdCard ? "sm:col-span-2" : ""}`}
                 >
                   <div
                     className="group flex h-full w-full flex-col rounded-[20px] p-[2px] transition-colors"
@@ -74,7 +77,7 @@ export function BuyersOwnershipSection() {
                         className="pointer-events-none absolute inset-0 rounded-[18px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                         style={{
                           background:
-                            "linear-gradient(to bottom, #C89CFF 0%, rgba(163, 99, 244, 0) 100%)",
+                            "linear-gradient(to bottom, #C89CFF 0%, rgba(163, 106, 246, 0) 100%)",
                         }}
                         aria-hidden
                       />
@@ -118,11 +121,10 @@ export function BuyersOwnershipSection() {
                       </div>
                     </article>
                   </div>
-                </div>
+                </AnimateOnView>
               );
             })}
           </div>
-          </AnimateOnView>
         </div>
       </div>
     </section>
