@@ -6,7 +6,7 @@ import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PARAGRAPH_CLASS =
-  "text-[22px] font-semibold leading-[1.1] tracking-[-3px] text-zinc-900/40 sm:text-[32px] md:text-[40px] lg:text-[48px]";
+  "text-[22px] font-semibold leading-[1.1] tracking-[-1px] text-zinc-900/40 sm:tracking-[-3px] sm:text-[32px] md:text-[40px] lg:text-[48px]";
 
 function getParagraphTexts(): { text: string; emphasis?: boolean }[][] {
   const first = buyersTypewriterConfig.paragraphs[0];
@@ -59,7 +59,7 @@ export function BuyersTypewriterSection() {
   let globalCharCount = 0;
 
   return (
-    <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24" style={{ minHeight: "150vh" }}>
+    <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24 min-h-[70vh] sm:min-h-[120vh] md:min-h-[150vh]">
       <AnimateOnView animation="stagger" rootMargin="0px 0px -100px 0px">
       <div ref={contentRef} className="mx-auto max-w-5xl space-y-6 md:space-y-8">
         {paragraphs.map((para, paraIdx) => {

@@ -49,7 +49,7 @@ export function BuyersOverpaySection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.35fr_0.65fr] md:gap-16 lg:gap-20">
           <LazyBlock>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-3px] text-zinc-900 sm:text-[36px] md:text-[58px] lg:text-[68px] p-0 m-0">
               {heading.before}
               <span className="font-serif font-medium italic text-[#6824BF]">
@@ -61,7 +61,7 @@ export function BuyersOverpaySection() {
             </p>
 
             {/* Switchable buttons */}
-            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:gap-4 md:mt-12">
+            <div className="mt-6 flex w-full flex-row gap-2 sm:mt-10 sm:flex-col sm:gap-4 md:mt-12">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
@@ -69,26 +69,25 @@ export function BuyersOverpaySection() {
                     key={tab.id}
                     type="button"
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full rounded-2xl px-6 py-5 text-left transition-colors md:px-8 md:py-6 ${
+                    className={`w-1/2 shrink-0 rounded-2xl px-4 py-3 text-left transition-colors sm:w-full sm:px-6 sm:py-5 md:px-8 md:py-6 ${
                       isActive
-                        ? "border-0 text-white"
-                        : "border-l-[6px] border-l-[#DBDBDB] border-zinc-200 bg-white text-zinc-900 hover:border-zinc-300"
+                        ? "border-l-4 border-l-[#714CA0] text-white sm:border-l-[6px]"
+                        : "border-l-[4px] border-l-[#DBDBDB] border-zinc-200 bg-white text-zinc-900 hover:border-zinc-300 sm:border-l-[6px]"
                     }`}
                     style={
                       isActive
                         ? {
                             background:
                               "linear-gradient(to right, rgba(104, 36, 191, 0.6) 0%, rgba(104, 36, 191, 0.1) 100%)",
-                            borderLeft: "6px solid #714CA0",
                           }
                         : undefined
                     }
                   >
-                    <span className="block text-[18px] font-medium md:text-[20px]">
+                    <span className="block text-[14px] font-medium sm:text-[18px] md:text-[20px]">
                       {tab.label}
                     </span>
                     <span
-                      className={`mt-1 block text-[18px] font-normal md:text-[20px] ${isActive ? "text-white/90" : "text-zinc-900/60"
+                      className={`mt-0.5 block text-[12px] font-normal sm:mt-1 sm:text-[18px] md:text-[20px] ${isActive ? "text-white/90" : "text-zinc-900/60"
                         }`}
                     >
                       {tab.sublabel}

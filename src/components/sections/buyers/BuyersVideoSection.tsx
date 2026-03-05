@@ -49,7 +49,7 @@ export function BuyersVideoSection() {
   }, [isPopupOpen]);
 
   return (
-    <div className="relative z-10 px-4 pb-16 pt-6 sm:pb-20 sm:pt-8 md:pb-24">
+    <div className="relative z-10 px-4 pb-12 pt-6 sm:pb-20 sm:pt-8 md:pb-24">
       <Script
         src="https://fast.wistia.com/player.js"
         strategy="lazyOnload"
@@ -69,7 +69,7 @@ export function BuyersVideoSection() {
           }}
         >
           <div
-            className="relative mx-auto max-w-[360px] aspect-video w-full overflow-hidden rounded-[14px] sm:rounded-2xl md:rounded-[2rem]"
+            className="relative aspect-video w-full overflow-hidden rounded-[14px] sm:rounded-2xl md:rounded-[2rem]"
             onClick={handlePlay}
             onKeyDown={(e) => e.key === "Enter" && handlePlay()}
             role="button"
@@ -80,8 +80,8 @@ export function BuyersVideoSection() {
               src="/assets/videocover.png"
               alt="Video thumbnail"
               fill
-              className="object-cover object-center scale-110 transition-transform group-hover:scale-[1.12]"
-              sizes="(max-width: 360px) 100vw, 360px"
+              className="object-cover object-center transition-transform group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 1024px"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div

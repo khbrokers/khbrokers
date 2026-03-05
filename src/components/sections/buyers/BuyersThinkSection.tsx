@@ -30,7 +30,7 @@ export function BuyersThinkSection() {
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.45fr_0.55fr] md:gap-16">
           <LazyBlock>
           {/* Left column */}
-          <div className="flex flex-col items-start justify-start space-y-6 md:space-y-8">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8">
             <p className="text-[20px] md:text-[22px] font-medium leading-[1.1] tracking-[-0.5px] text-zinc-900">
               {leftColumn.statement}
             </p>
@@ -60,7 +60,7 @@ export function BuyersThinkSection() {
             {rightColumn.items.map((item, idx) => (
               <div
                 key={idx}
-                className="stagger-child flex flex-col gap-3 py-5 first:pt-0 last:pb-0 sm:flex-row sm:gap-4 sm:py-6 md:gap-6 md:py-8 md:flex-row border-b border-[#A363F4]/30"
+                className="stagger-child flex flex-col gap-3 py-[60px] first:pt-0 sm:flex-row sm:gap-4 sm:py-6 md:gap-6 md:py-8 md:flex-row border-b border-[#A363F4]/30"
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center p-2 sm:h-14 sm:w-14 md:p-3">
                   <Image

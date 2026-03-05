@@ -20,7 +20,7 @@ export const metadata = {
 
 export default function BuyersPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#F5EEFD]">
       <BuyersHero />
       <BuyersTypewriterSection />
       <BuyersBrokenSection />

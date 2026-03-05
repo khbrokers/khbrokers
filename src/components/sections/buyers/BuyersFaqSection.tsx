@@ -14,7 +14,7 @@ export function BuyersFaqSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.35fr_0.65fr] md:gap-16 lg:gap-20">
           <LazyBlock>
-          <header className="text-left">
+          <header className="text-center sm:text-left">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[40px] lg:text-[48px]">
               {heading.before}
               <span className="font-serif font-medium italic text-[#6824BF]">
@@ -35,7 +35,7 @@ export function BuyersFaqSection() {
               return (
                 <div
                   key={idx}
-                  className="stagger-child overflow-hidden rounded-[20px] border-2 bg-white"
+                  className="stagger-child overflow-hidden rounded-[20px] border-2 bg-white transition-[border-color] duration-300 ease-out"
                   style={{
                     borderColor: isOpen
                       ? "rgba(195, 153, 248, 0.5)"
@@ -49,7 +49,7 @@ export function BuyersFaqSection() {
                     aria-expanded={isOpen}
                   >
                     <span
-                      className={`text-base font-medium md:text-lg ${
+                      className={`text-base font-medium transition-colors duration-300 md:text-lg ${
                         isOpen
                           ? "font-semibold text-[#6824BF]"
                           : "text-zinc-900"
@@ -58,7 +58,7 @@ export function BuyersFaqSection() {
                       {item.question}
                     </span>
                     <span
-                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 bg-white ${
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 bg-white transition-colors duration-300 ${
                         isOpen
                           ? "border-[#6824BF] text-[#6824BF]"
                           : "border-zinc-900/50 text-zinc-900/50"
@@ -70,7 +70,7 @@ export function BuyersFaqSection() {
                         height="6"
                         viewBox="0 0 10 6"
                         fill="none"
-                        className={`shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                        className={`shrink-0 transition-transform duration-300 ease-out ${isOpen ? "rotate-180" : ""}`}
                       >
                         <path
                           d="M1 1L5 5L9 1"
@@ -82,20 +82,25 @@ export function BuyersFaqSection() {
                       </svg>
                     </span>
                   </button>
-                  {isOpen && (
-                    <div className="px-4 pb-4 pt-0 sm:px-5 sm:pb-5 md:px-6 md:pb-6">
-                      <div className="space-y-4 pt-2">
-                        {item.answer.map((para, pIdx) => (
-                          <p
-                            key={pIdx}
-                            className="text-sm leading-relaxed text-zinc-600 md:text-base"
-                          >
-                            {para}
-                          </p>
-                        ))}
+                  <div
+                    className="grid transition-[grid-template-rows] duration-300 ease-out"
+                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                  >
+                    <div className="min-h-0 overflow-hidden">
+                      <div className="px-4 pb-4 pt-0 sm:px-5 sm:pb-5 md:px-6 md:pb-6">
+                        <div className="space-y-4 pt-2">
+                          {item.answer.map((para, pIdx) => (
+                            <p
+                              key={pIdx}
+                              className="text-sm leading-relaxed text-zinc-600 md:text-base"
+                            >
+                              {para}
+                            </p>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               );
             })}

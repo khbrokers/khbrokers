@@ -32,7 +32,7 @@ export function BuyersOwnershipSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[30%_1fr] md:gap-16 lg:gap-20">
           <LazyBlock>
-          <div className="flex flex-col justify-start">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left">
             <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-[#1A1A1A] sm:text-[44px] md:text-[60px] lg:text-[72px]">
               {heading.before}
               <span className="font-serif font-medium italic text-[#6824BF]">
@@ -46,7 +46,7 @@ export function BuyersOwnershipSection() {
           </LazyBlock>
 
           <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-2 sm:gap-6 sm:min-h-[900px] md:gap-8 md:min-h-[1100px]">
+          <div className="grid grid-cols-1 min-h-[1200px] gap-4 sm:grid-cols-2 sm:grid-rows-2 sm:gap-6 sm:min-h-[900px] md:gap-8 md:min-h-[1100px]">
             {cards.map((card, idx) => {
               const isThirdCard = idx === 2;
               const gradientStyle = {
