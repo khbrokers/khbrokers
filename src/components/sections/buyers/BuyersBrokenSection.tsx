@@ -15,7 +15,7 @@ export function BuyersBrokenSection() {
       <div className="mx-auto max-w-5xl">
         <LazyBlock>
           <header className="mb-12 space-y-[20px] text-center md:mb-16 max-w-5xl mx-auto">
-            <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-3px] text-zinc-900 sm:text-[40px] md:text-[58px] lg:text-[68px]">
+            <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
               {heading.before}
               <span className="font-serif font-medium italic text-[#A363F4]">
                 {heading.highlight}
@@ -75,7 +75,7 @@ export function BuyersBrokenSection() {
                   <h3 className="mt-4 font-medium text-[20px] md:text-[22px] tracking-[-0.5px] text-zinc-900">
                     {item.title}
                   </h3>
-                  <p className="mt-3 leading-[1.1] font-regular text-[16px] md:text-[18px] tracking-[-0.5px] text-zinc-900/60">
+                  <p className="mt-3 leading-[1.1] font-regular text-[14px] md:text-[18px] tracking-[-0.5px] text-zinc-900/60">
                     {item.description}
                   </p>
                 </div>

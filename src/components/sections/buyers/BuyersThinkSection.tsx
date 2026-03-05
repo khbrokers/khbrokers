@@ -13,8 +13,8 @@ export function BuyersThinkSection() {
     <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-5xl flex flex-col items-center justify-center gap-[20px] md:gap-[30px]">
         <LazyBlock>
-          <header className="mb-12 space-y-[20px] text-center md:mb-16">
-            <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-3px] text-zinc-900 sm:text-[40px] md:text-[58px] lg:text-[68px]">
+          <header className="mx-auto mb-12 w-[80%] space-y-[20px] text-center sm:w-auto md:mb-16">
+            <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
               {heading.before}
               <span className="font-serif font-medium italic text-[#A363F4]">
                 {heading.highlight}
@@ -38,7 +38,7 @@ export function BuyersThinkSection() {
               {leftColumn.paragraphs.map((para, idx) => (
                 <p
                   key={idx}
-                  className={`font-regular text-[16px] md:text-[18px] leading-[1.1] tracking-[-0.5px] ${
+                  className={`font-regular text-[14px] md:text-[18px] leading-[1.1] tracking-[-0.5px] ${
                     idx === leftColumn.italicIndex ? "italic text-zinc-900" : "text-zinc-900/60"
                   }`}
                 >
@@ -75,7 +75,7 @@ export function BuyersThinkSection() {
                   <h3 className="font-medium text-[20px] md:text-[22px] tracking-[-0.5px] text-zinc-900">
                     {item.title}
                   </h3>
-                  <p className="mt-2 font-regular text-[16px] md:text-[18px] leading-[1.1] tracking-[-0.5px] text-zinc-900/60">
+                  <p className="mt-2 font-regular text-[14px] md:text-[18px] leading-[1.1] tracking-[-0.5px] text-zinc-900/60">
                     {item.description}
                   </p>
                 </div>

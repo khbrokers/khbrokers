@@ -125,7 +125,7 @@ export function BuyersDifferenceSection() {
         </AnimateOnView>
 
         <LazyBlock>
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
           <Link
             href={cta.primary.href}
             className="inline-flex w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#A363F4] px-[24px] py-[12px] text-[16px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] md:px-[30px] md:py-[20px] md:text-[18px]"

@@ -6,7 +6,7 @@ import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PARAGRAPH_CLASS =
-  "text-[22px] font-semibold leading-[1.1] tracking-[-1px] text-zinc-900/40 sm:tracking-[-3px] sm:text-[32px] md:text-[40px] lg:text-[48px]";
+  "text-[22px] font-semibold leading-[1.1] tracking-[-2px] text-zinc-900/40 sm:tracking-[-3px] sm:text-[32px] md:text-[40px] lg:text-[48px]";
 
 function getParagraphTexts(): { text: string; emphasis?: boolean }[][] {
   const first = buyersTypewriterConfig.paragraphs[0];

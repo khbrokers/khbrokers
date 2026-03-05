@@ -59,7 +59,7 @@ export function BuyersHero() {
         </div>
 
         {/* Main headline */}
-        <h1 className="stagger-child text-center text-[35px] font-medium leading-[1.15] tracking-[-1.5px] text-zinc-900 sm:text-[44px] sm:tracking-[-3px] md:text-[58px] md:tracking-[-4px] lg:text-[68px]">
+        <h1 className="stagger-child text-center text-[35px] font-medium leading-[1.15] tracking-[-2px] text-zinc-900 sm:text-[44px] sm:tracking-[-3px] md:text-[58px] md:tracking-[-4px] lg:text-[68px]">
           {headline.before}
           <span className="font-serif font-medium italic text-[#7c3aed]">
             {headline.highlight}

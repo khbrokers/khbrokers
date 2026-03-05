@@ -265,7 +265,7 @@ export function BuyersTestimonialsSection() {
     <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-6xl">
         <LazyBlock>
-          <header className="mb-12 text-center md:mb-16">
+          <header className="mx-auto mb-12 w-[80%] text-center sm:w-auto md:mb-16">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[36px] md:text-[52px] lg:text-[60px]">
               {heading.before}
               <span className="font-serif font-medium italic text-[#6824BF]">

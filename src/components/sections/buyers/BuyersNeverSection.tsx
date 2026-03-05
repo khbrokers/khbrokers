@@ -13,7 +13,7 @@ export function BuyersNeverSection() {
       <div className="mx-auto max-w-5xl">
         <LazyBlock>
         <header className="mb-12 space-y-5 text-center md:mb-16 max-w-5xl mx-auto flex flex-col items-center justify-center gap-[10px] md:gap-[20px]">
-          <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-3px] text-zinc-900 sm:text-[36px] md:text-[58px] lg:text-[68px] p-0 m-0">
+          <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[36px] md:text-[58px] lg:text-[68px] p-0 m-0">
             {heading.before}
             <span className="font-serif font-medium italic text-[#A363F4]">
               {heading.highlight}

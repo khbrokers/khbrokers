@@ -33,13 +33,13 @@ export function BuyersOwnershipSection() {
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[30%_1fr] md:gap-16 lg:gap-20">
           <LazyBlock>
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
-            <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-[#1A1A1A] sm:text-[44px] md:text-[60px] lg:text-[72px]">
-              {heading.before}
+          <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
+          {heading.before}
               <span className="font-serif font-medium italic text-[#6824BF]">
                 {heading.highlight}
               </span>
             </h2>
-            <p className="mt-6 text-[18px] font-normal leading-[1.6] text-zinc-900/60">
+            <p className="mt-6 text-[14px] md:text-[18px] font-normal leading-[1.6] text-zinc-900/60">
               {description}
             </p>
           </div>
@@ -80,7 +80,7 @@ export function BuyersOwnershipSection() {
                       />
                       <span className="relative inline-block shrink-0">
                         <span
-                          className="block text-[48px] font-bold leading-none transition-opacity duration-300 group-hover:opacity-0 sm:text-[64px] md:text-[80px] lg:text-[96px]"
+                          className="block text-[68px] font-bold leading-none transition-opacity duration-300 group-hover:opacity-0 sm:text-[64px] md:text-[80px] lg:text-[96px]"
                           style={numberStyle}
                           aria-hidden
                         >
@@ -104,7 +104,7 @@ export function BuyersOwnershipSection() {
                         <h3 className="text-[20px] md:text-[22px] font-medium leading-tight text-zinc-900 transition-colors duration-300 group-hover:text-black">
                           {card.title}
                         </h3>
-                        <p className="text-[16px] font-normal leading-[1.6] text-zinc-900/60 md:text-[18px]">
+                        <p className="text-[14px] md:text-[18px] font-normal leading-[1.6] text-zinc-900/60">
                           {card.description.split("\n").map((paragraph, i) => (
                             <span key={i}>
                               {i > 0 && <span className="block h-5" aria-hidden />}

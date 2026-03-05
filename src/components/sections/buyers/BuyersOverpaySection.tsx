@@ -50,13 +50,13 @@ export function BuyersOverpaySection() {
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.35fr_0.65fr] md:gap-16 lg:gap-20">
           <LazyBlock>
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
-            <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-3px] text-zinc-900 sm:text-[36px] md:text-[58px] lg:text-[68px] p-0 m-0">
+            <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[36px] md:text-[58px] lg:text-[68px] p-0 m-0">
               {heading.before}
               <span className="font-serif font-medium italic text-[#6824BF]">
                 {heading.highlight}
               </span>
             </h2>
-            <p className="mt-4 text-[16px] font-normal leading-[1.5] text-zinc-600 md:text-[18px]">
+            <p className="mt-4 text-[14px] md:text-[18px] font-normal leading-[1.5] text-zinc-600">
               {subheading}
             </p>
 
@@ -83,11 +83,11 @@ export function BuyersOverpaySection() {
                         : undefined
                     }
                   >
-                    <span className="block text-[14px] font-medium sm:text-[18px] md:text-[20px]">
+                    <span className="block text-[16px] font-medium sm:text-[18px] md:text-[20px]">
                       {tab.label}
                     </span>
                     <span
-                      className={`mt-0.5 block text-[12px] font-normal sm:mt-1 sm:text-[18px] md:text-[20px] ${isActive ? "text-white/90" : "text-zinc-900/60"
+                      className={`mt-0.5 block text-[14px] font-normal sm:mt-1 sm:text-[18px] md:text-[20px] ${isActive ? "text-white/90" : "text-zinc-900/60"
                         }`}
                     >
                       {tab.sublabel}
@@ -114,7 +114,7 @@ export function BuyersOverpaySection() {
                       >
                         {ICONS[item.icon as keyof typeof ICONS]}
                       </div>
-                      <span className="flex items-center justify-center bg-[#F8F8F8] border-[1px] border-[#E2E2E2] px-[8px] py-[2px] rounded-[15px] md:px-[12px] md:py-[2px] text-[18px] md:text-[20px] font-normal text-zinc-500">
+                      <span className="flex items-center justify-center bg-[#F8F8F8] border-[1px] border-[#E2E2E2] px-[8px] py-[2px] rounded-[15px] md:px-[12px] md:py-[2px] text-[16px] md:text-[18px] font-normal text-zinc-500">
                         {item.label}
                       </span>
                     </div>
@@ -122,7 +122,7 @@ export function BuyersOverpaySection() {
                       <h3 className="mt-1 text-[18px] font-medium text-zinc-900 sm:text-[20px] md:text-[22px]">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-[16px] font-normal leading-[1.5] text-zinc-900/60 sm:text-[18px] md:text-[20px] lg:text-[22px]">
+                      <p className="mt-2 text-[14px] md:text-[18px] font-normal leading-[1.5] text-zinc-900/60 sm:text-[18px] md:text-[20px] lg:text-[22px]">
                         {item.description}
                       </p>
                     </div>
@@ -149,12 +149,12 @@ export function BuyersOverpaySection() {
                       <h3 className="mt-1 text-[18px] font-medium text-zinc-900 sm:text-[20px] md:text-[22px]">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-[16px] font-normal leading-[1.5] text-zinc-900/60 sm:text-[18px] md:text-[20px] lg:text-[22px]">
+                      <p className="mt-2 text-[14px] md:text-[18px] font-normal leading-[1.5] text-zinc-900/60 sm:text-[18px] md:text-[20px] lg:text-[22px]">
                         {item.description}
                       </p>
                       <Link
                         href={item.cta.href}
-                        className="mt-4 inline-flex items-center gap-1 text-[20px] md:text-[22px] font-medium text-[#6824BF] transition-colors hover:text-[#5a1fa8]"
+                        className="mt-4 inline-flex items-center gap-1 text-[14px] md:text-[18px] font-medium text-[#6824BF] transition-colors hover:text-[#5a1fa8]"
                       >
                         {item.cta.label}
                         <span aria-hidden>→</span>
