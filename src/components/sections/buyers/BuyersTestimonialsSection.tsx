@@ -10,7 +10,7 @@ import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const TESTIMONIAL_ITEMS = [
   { thumbnail: "/assets/reviews/thumbnail01.png", videoId: "1aHlUCAGwYAOXujU9Lvck8GpNe04T-gFU" },
-  { thumbnail: "/assets/reviews/thumbnail02.png", videoId: "1ED8VnwtxsU6O5hJfuz-IQkw1LJubo3rZ" },
+  { thumbnail: "/assets/reviews/thumbnail02.jpg", videoId: "1ED8VnwtxsU6O5hJfuz-IQkw1LJubo3rZ" },
   { thumbnail: "/assets/reviews/thumbnail03.png", videoId: "1Xpqlk3mwY2pfW6j0HHql7M0q0Ub4Mppm" },
 ];
 
@@ -380,48 +380,89 @@ export function BuyersTestimonialsSection() {
             {testimonials[activeIndex] && (
               <article
                 key={activeIndex}
-                className="animate-slide-in-from-top flex min-h-0 flex-col justify-center rounded-xl bg-white p-4 shadow-sm sm:min-h-[545px] sm:rounded-2xl sm:p-6 md:p-8"
+                className="animate-slide-in-from-top flex min-h-0 flex-col justify-between rounded-xl bg-white p-4 shadow-sm sm:min-h-[545px] sm:rounded-2xl sm:p-6 md:p-12"
               >
-                <blockquote className="text-[16px] font-normal leading-[1.5] text-zinc-900 sm:text-[18px] md:text-[20px] lg:text-[22px]">
-                  &ldquo;{testimonials[activeIndex].quote}&rdquo;
-                </blockquote>
-                <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:gap-3">
-                  {testimonials[activeIndex].avatar ? (
-                    <Image
-                      src={testimonials[activeIndex].avatar!}
-                      alt=""
-                      width={40}
-                      height={40}
-                      className="h-8 w-8 rounded-full object-cover sm:h-10 sm:w-10"
-                    />
-                  ) : (
-                    <div className="flex h-6 w-6 md:h-8 md:w-8 shrink-0 items-center justify-center rounded-full bg-[#a36af6]/20 text-[14px] font-regular text-[#6824BF] sm:h-10 sm:w-10 sm:text-[20px] md:text-[22px]">
-                      {testimonials[activeIndex].name.charAt(0)}
+                <div>
+                  <blockquote className="text-[16px] font-normal leading-[1.5] text-zinc-900 sm:text-[18px] md:text-[20px] lg:text-[22px]">
+                    &ldquo;{testimonials[activeIndex].quote}&rdquo;
+                  </blockquote>
+                  <div className="mt-4 flex items-start gap-2 sm:mt-6 sm:gap-3">
+                    {testimonials[activeIndex].avatar ? (
+                      <div className="ring-2 ring-[#a36af6]/60 overflow-hidden rounded-full shrink-0">
+                        <Image
+                          src={testimonials[activeIndex].avatar!}
+                          alt=""
+                          width={48}
+                          height={48}
+                          className="h-10 w-10 rounded-full object-cover sm:h-12 sm:w-12"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#a36af6]/20 text-[14px] font-medium text-[#6824BF] ring-2 ring-[#a36af6]/60 sm:h-12 sm:w-12 sm:text-[18px]">
+                        {testimonials[activeIndex].name.charAt(0)}
+                      </div>
+                    )}
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[14px] font-medium text-zinc-900 sm:text-[16px] md:text-[18px]">
+                        {testimonials[activeIndex].name}
+                      </span>
+                      <div className="flex gap-0.5" aria-hidden>
+                        {Array.from({ length: testimonials[activeIndex].stars ?? 5 }).map((_, i) => (
+                          <svg key={i} className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20">
+                            <defs>
+                              <linearGradient id={`starGradient-${activeIndex}-${i}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stopColor="#7D4ABE" stopOpacity="0.31" />
+                                <stop offset="100%" stopColor="#7D4ABE" stopOpacity="1" />
+                              </linearGradient>
+                            </defs>
+                            <path fill={`url(#starGradient-${activeIndex}-${i})`} d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
                     </div>
-                  )}
-                  <span className="text-[14px] font-regular text-zinc-900/60 sm:text-[18px] md:text-[20px]">
-                    {testimonials[activeIndex].name}
-                  </span>
+                  </div>
                 </div>
-                <div className="mt-3 flex items-center gap-2 py-4 sm:mt-4 sm:py-10">
-                  <span
-                    className="inline-flex items-center rounded-lg px-2.5 py-1 text-[18px] font-regular font-serif italic text-[#9F53FF] sm:rounded-xl sm:px-4 sm:py-2 sm:text-[16px] md:text-[20px] lg:text-[22px]"
-                    style={{
-                      background:
-                        "linear-gradient(to right, #F0E4FF 0%, rgba(240, 228, 255, 0) 100%)",
-                    }}
+                {testimonials[activeIndex].metrics && testimonials[activeIndex].metrics!.length > 0 && (
+                  <div className="mt-6 grid grid-cols-2 md:grid-cols-2 gap-x-2 md:gap-x-8 md:gap-y-6 gap-y-2 sm:mt-8 md:gap-x-10 md:gap-y-8">
+                    {testimonials[activeIndex].metrics!.map((m, i) => (
+                      <div
+                        key={i}
+                        className="flex border-l-3 md:border-l-4 border-l-[#a36af6]/80 md:border-l-[#a36bf6] flex-col rounded-[10px] md:py-[5px] md:px-5 py-[3px] px-[10px]"
+                        style={{
+                        
+                          background: "linear-gradient(45deg, #a36af624, transparent)",
+                        }}
+                      >
+                        <span
+                          className="bg-clip-text text-[16px] font-bold text-transparent sm:text-[20px] md:text-[25px] lg:text-[26px]"
+                          style={{
+                            backgroundImage: "linear-gradient(to bottom, #7D4ABE50 0%, #7D4ABE 100%)",
+                          }}
+                        >
+                          {m.value}
+                        </span>
+                        <span className="text-[12px] font-normal text-zinc-600 sm:text-[14px] md:text-[15px]">
+                          {m.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setPopupVideoId(TESTIMONIAL_ITEMS[activeIndex].videoId)}
+                  className="mt-4 hover:bg-[#a66af6]/5 w-full text-center items-center justify-left py-2 px-2 rounded-lg cursor-pointer hover:underline group inline-flex w-fit items-center gap-1.5 text-[14px] font-medium text-[#7D4ABE] transition-colors hover:text-[#6824BF] sm:mt-6 sm:text-[15px] md:text-[16px]"
+                >
+                  View story
+                  <svg
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    {testimonials[activeIndex].badge}
-                  </span>
-                  <Image
-                    src="/assets/curvedarrow.png"
-                    alt=""
-                    width={128}
-                    height={128}
-                    className="h-12 w-12 rotate-5 opacity-60 relative -top-3 sm:h-20 sm:w-20 sm:-top-4 md:h-24 md:w-24 md:-top-5"
-                    aria-hidden
-                  />
-                </div>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
               </article>
             )}
           </div>

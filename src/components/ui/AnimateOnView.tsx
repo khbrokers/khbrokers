@@ -12,6 +12,8 @@ interface AnimateOnViewProps {
   once?: boolean;
   /** Stagger delay in ms - each card animates in sequence when multiple in view */
   delayMs?: number;
+  /** Skip intersection wait — content visible immediately (for above-the-fold hero) */
+  visibleImmediately?: boolean;
 }
 
 /**
@@ -27,9 +29,10 @@ export function AnimateOnView({
   threshold = 0.15,
   once = true,
   delayMs = 0,
+  visibleImmediately = false,
 }: AnimateOnViewProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isIntersecting, setIsIntersecting] = useState(false);
+  const [isIntersecting, setIsIntersecting] = useState(visibleImmediately);
 
   useEffect(() => {
     const el = ref.current;

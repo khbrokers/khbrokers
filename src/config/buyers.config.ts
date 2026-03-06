@@ -378,26 +378,40 @@ export const buyersTestimonialsConfig = {
   videoPlaceholders: 3,
   testimonials: [
     {
-         quote:
+      quote:
         "The sales are so high payments processors are trying to figure out what's going on",
-
-        name: "Jordan",
-      avatar: null,
-      badge: " $3M+ Since Acquisition",
+      name: "Jordan",
+      avatar: "/assets/reviews/avatar01.png",
+      stars: 5,
+      metrics: [
+        { value: "Jan 2025", label: "Acquired" },
+        { value: "$3M+", label: "Revenue Since" },
+        { value: "+391%", label: "Growth" },
+      ],
     },
     {
       quote:
         "KH Brokers were recommending business at lower prices that were a better fit for me which was a very big green flag",
       name: "Rohan",
-      avatar: null,
-      badge: "$1M+ Since Acquisition",
+      avatar: "/assets/reviews/avatar02.png",
+      stars: 5,
+      metrics: [
+        { value: "June 2025", label: "Acquired" },
+        { value: "$1M+", label: "Revenue Since" },
+        { value: "+225%", label: "Growth" },
+      ],
     },
     {
       quote:
         "The profitably has exceed my expectation, I thought It would be less than what we are making now.",
       name: "Jonah",
-      avatar: null,
-      badge: "$500k+ Since Acquisition",
+      avatar: "/assets/reviews/avatar03.jpg",
+      stars: 5,
+      metrics: [
+        { value: "May 2025", label: "Acquired" },
+        { value: "$500k+", label: "Revenue Since" },
+        { value: "+146%", label: "Growth" },
+      ],
     },
   ],
 };
