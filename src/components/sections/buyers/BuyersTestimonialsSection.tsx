@@ -9,8 +9,8 @@ import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const TESTIMONIAL_ITEMS = [
-  { thumbnail: "/assets/reviews/thumbnail01.png", videoId: "1ED8VnwtxsU6O5hJfuz-IQkw1LJubo3rZ" },
-  { thumbnail: "/assets/reviews/thumbnail02.png", videoId: "1aHlUCAGwYAOXujU9Lvck8GpNe04T-gFU" },
+  { thumbnail: "/assets/reviews/thumbnail01.png", videoId: "1aHlUCAGwYAOXujU9Lvck8GpNe04T-gFU" },
+  { thumbnail: "/assets/reviews/thumbnail02.png", videoId: "1ED8VnwtxsU6O5hJfuz-IQkw1LJubo3rZ" },
   { thumbnail: "/assets/reviews/thumbnail03.png", videoId: "1Xpqlk3mwY2pfW6j0HHql7M0q0Ub4Mppm" },
 ];
 
@@ -72,7 +72,10 @@ function VideoPopup({
   videoId: string;
   onClose: () => void;
 }) {
-  const embedUrl = `https://drive.google.com/file/d/${videoId}/preview?autoplay=1`;
+  const [useIframe, setUseIframe] = useState(false);
+  const directVideoUrl = `https://drive.google.com/uc?export=download&id=${videoId}`;
+  const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
+  const viewUrl = `https://drive.google.com/file/d/${videoId}/view`;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -95,10 +98,11 @@ function VideoPopup({
       aria-label="Video player"
     >
       <div
-        className="relative w-full max-w-md overflow-hidden rounded-2xl bg-black"
+        className="relative overflow-hidden rounded-2xl bg-black"
+        style={{ height: "80vh", width: "auto", aspectRatio: "4/5" }}
         onClick={(e) => e.stopPropagation()}
       >
-        <button
+        {/* <button
           type="button"
           onClick={onClose}
           className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
@@ -107,16 +111,36 @@ function VideoPopup({
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
-        </button>
-        <div className="relative aspect-[4/5] w-full">
-          <iframe
-            src={embedUrl}
-            title="Testimonial video"
-            allow="autoplay"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full border-0"
-          />
+        </button> */}
+        <div className="relative h-full w-full">
+          {useIframe ? (
+            <iframe
+              key={videoId}
+              src={embedUrl}
+              title="Testimonial video"
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full border-0"
+            />
+          ) : (
+            <video
+              key={videoId}
+              src={directVideoUrl}
+              playsInline
+              controls
+              className="absolute inset-0 h-full w-full object-contain"
+              onError={() => setUseIframe(true)}
+            />
+          )}
         </div>
+        <a
+          href={viewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium text-white/90 transition-colors hover:bg-black/80"
+        >
+          Open video in new tab
+        </a>
       </div>
     </div>,
     document.body

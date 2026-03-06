@@ -8,9 +8,9 @@ export function BuyersBookCallSection() {
   const { heading, subheading, calEmbedSlug, calPrimaryColor } = buyersBookCallConfig;
 
   return (
-    <section className="bg-white px-4 py-12 sm:py-16 md:py-24">
-      <div className="mx-auto max-w-5xl">
-        <LazyBlock>
+    <section id="book-a-call" className="bg-white px-4 py-12 sm:py-16 md:py-24 scroll-mt-20">
+      <div className="mx-auto max-w-6xl">
+      <LazyBlock>
           <header className="mb-12 text-center md:mb-16">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[44px] lg:text-[52px]">
               {heading.before}
@@ -33,8 +33,8 @@ export function BuyersBookCallSection() {
               "linear-gradient(to top, rgba(245, 238, 253, 0) 0%, rgba(240, 228, 255, 0.4) 50%, rgba(240, 228, 255, 0.8) 100%)",
           }}
         >
-          <div className="p-4 sm:p-8 md:p-12 lg:p-20">         
-              <div className="relative w-full flex-1 overflow-hidden rounded-lg">
+          <div className="p-4 sm:p-4 md:p-12 lg:p-10">         
+              <div className="relative w-full flex-1 overflow-hidden rounded-xl md:rounded-2xl bg-white">
                 <CalInlineEmbed
                   calLink={calEmbedSlug}
                   primaryColor={calPrimaryColor}

@@ -14,7 +14,7 @@ export const buyersHeroConfig = {
     "We help buyers purchase vetted, cash-flowing e-commerce businesses through an operator-led process — with verified profits, disciplined pricing, and end-to-end execution.",
   highlightedTerms: ["verified profits", "disciplined pricing", "end-to-end execution"],
   cta: {
-    primary: { label: "Book a Strategy Call", href: "/strategy-call" },
+    primary: { label: "Book a Strategy Call", href: "#book-a-call" },
     secondary: { label: "View Deals", href: "/deals" },
   },
   asFeaturedIn: "As Featured in",
@@ -111,7 +111,7 @@ export const buyersThinkConfig = {
       "We would rather walk away from a deal than compromise long-term trust.",
     ],
     italicIndex: 1,
-    cta: { label: "Sounds good? Let's Talk!", href: "/strategy-call" },
+    cta: { label: "Sounds good? Let's Talk!", href: "#book-a-call" },
   },
   rightColumn: {
     items: [
@@ -269,21 +269,21 @@ export const buyersOverpayConfig = {
       label: "Solution #1",
       title: "Disciplined Entry Pricing",
       description: "We remove valuation inflation before capital is deployed.",
-      cta: { label: "Book a Call", href: "/strategy-call" },
+      cta: { label: "Book a Call", href: "#book-a-call" },
     },
     {
       icon: "dollar",
       label: "Solution #2",
       title: "No Inflated Structures",
       description: "What you buy is what you own. Nothing buried.",
-      cta: { label: "Book a Call", href: "/strategy-call" },
+      cta: { label: "Book a Call", href: "#book-a-call" },
     },
     {
       icon: "lock",
       label: "Solution #3",
       title: "Downside protected",
       description: "Upside presented for long-term compounding",
-      cta: { label: "Book a Call", href: "/strategy-call" },
+      cta: { label: "Book a Call", href: "#book-a-call" },
     },
   ],
 };
@@ -363,7 +363,7 @@ export const buyersCtaConfig = {
   subheading:
     "Subscribers receive first access to new opportunities, recent exits, and buyer activity.",
   cta: {
-    primary: { label: "Book a Strategy Call", href: "/strategy-call" },
+    primary: { label: "Book a Strategy Call", href: "#book-a-call" },
     secondary: { label: "View Deals", href: "/deals" },
   },
 };
@@ -472,7 +472,7 @@ export const buyersDifferenceConfig = {
     ],
   },
   cta: {
-    primary: { label: "Book a Strategy Call", href: "/strategy-call" },
+    primary: { label: "Book a Strategy Call", href: "#book-a-call" },
     secondary: { label: "View Deals", href: "/deals" },
   },
 };
