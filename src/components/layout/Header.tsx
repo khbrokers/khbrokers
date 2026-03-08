@@ -96,6 +96,60 @@ function HamburgerIcon({ open }: { open: boolean }) {
   );
 }
 
+const APPLY_BUTTON_BASE =
+  "rounded-full border-2 font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors";
+
+const APPLY_BUTTON_SIZES_HERO = "px-3 py-2 text-xs md:px-5 md:py-2.5 md:text-sm";
+
+const MARKETPLACE_THEMES = {
+  sellers: {
+    logo: "/assets/brand_assets/logo_sellers.png",
+    activeBg: "rgba(0, 150, 95, 0.15)",
+    activeText: "#007a4d",
+    applyButton: {
+      desktopClassName: cn(
+        "hidden md:block",
+        APPLY_BUTTON_BASE,
+        APPLY_BUTTON_SIZES_HERO,
+        "hover:opacity-90"
+      ),
+      mobileClassName: cn(
+        "flex-1 min-w-0 text-center",
+        APPLY_BUTTON_BASE,
+        APPLY_BUTTON_SIZES_HERO,
+        "hover:opacity-90"
+      ),
+      style: {
+        borderColor: "00965F/40",
+        backgroundColor: "#00965F",
+      },
+    },
+  },
+  buyers: {
+    logo: "/assets/brand_assets/logo.png",
+    activeBg: "rgba(163, 106, 246, 0.15)",
+    activeText: "#6824BF",
+    applyButton: {
+      desktopClassName: cn(
+        "hidden md:block",
+        APPLY_BUTTON_BASE,
+        "px-3 py-2 text-xs md:px-5 md:py-2.5 md:text-sm",
+        "hover:!bg-[#6d28d9]"
+      ),
+      mobileClassName: cn(
+        "flex-1 min-w-0 text-center",
+        APPLY_BUTTON_BASE,
+        APPLY_BUTTON_SIZES_HERO,
+        "hover:!bg-[#6d28d9]"
+      ),
+      style: {
+        borderColor: "rgba(247, 239, 255, 0.5)",
+        backgroundColor: "#a36af6",
+      },
+    },
+  },
+} as const;
+
 function MarketplaceHeaderContent({
   activePath,
 }: {
@@ -104,6 +158,7 @@ function MarketplaceHeaderContent({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const theme = MARKETPLACE_THEMES[activePath.slice(1) as keyof typeof MARKETPLACE_THEMES];
 
   useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
@@ -139,14 +194,16 @@ function MarketplaceHeaderContent({
         style={{ width: isDesktop && isScrolled ? "65%" : "80%" }}
       >
         <Link href="/" className="flex shrink-0 items-center">
-          <Image
-            src="/assets/brand_assets/logo.png"
-            alt={siteConfig.name}
-            width={140}
-            height={40}
-            className="h-7 w-auto md:h-10"
-            priority
-          />
+          <div className="relative h-7 w-[98px] md:h-10 md:w-[140px]">
+            <Image
+              src={theme.logo}
+              alt={siteConfig.name}
+              fill
+              className="object-contain object-left"
+              sizes="(max-width: 768px) 98px, 140px"
+              priority
+            />
+          </div>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           {marketplaceNavConfig.map((item) => (
@@ -182,7 +239,8 @@ function MarketplaceHeaderContent({
           </Link>
           <Link
             href={marketplaceCtaConfig.applyHref}
-            className="hidden rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-3 py-2 text-xs font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] md:block md:px-5 md:py-2.5 md:text-sm"
+            className={theme.applyButton.desktopClassName}
+            style={theme.applyButton.style}
           >
             {marketplaceCtaConfig.applyLabel}
           </Link>
@@ -198,7 +256,6 @@ function MarketplaceHeaderContent({
             : "pointer-events-none -translate-y-2 opacity-0"
         )}
       >
-  
         {marketplaceNavConfig.map((item) => (
           <Link
             key={item.href}
@@ -206,10 +263,13 @@ function MarketplaceHeaderContent({
             onClick={() => setMobileMenuOpen(false)}
             className={cn(
               "rounded-xl px-4 py-3 text-[14px] font-medium transition-colors",
-              item.href === activePath
-                ? "bg-[#a36af6]/15 text-[#6824BF]"
-                : "text-zinc-900 hover:bg-zinc-200/60"
+              item.href !== activePath && "text-zinc-900 hover:bg-zinc-200/60"
             )}
+            style={
+              item.href === activePath
+                ? { backgroundColor: theme.activeBg, color: theme.activeText }
+                : undefined
+            }
           >
             {item.label}
           </Link>
@@ -225,7 +285,8 @@ function MarketplaceHeaderContent({
           <Link
             href={marketplaceCtaConfig.applyHref}
             onClick={() => setMobileMenuOpen(false)}
-            className="flex-1 min-w-0 rounded-xl bg-[#a36af6] px-4 py-3 text-center text-[14px] font-medium text-white shadow-[inset_0_2px_10px_rgba(255,255,255,0.3)] transition-colors hover:bg-[#6d28d9]"
+            className={theme.applyButton.mobileClassName}
+            style={theme.applyButton.style}
           >
             {marketplaceCtaConfig.applyLabel}
           </Link>

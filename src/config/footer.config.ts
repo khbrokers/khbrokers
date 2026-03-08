@@ -5,6 +5,12 @@ export const footerConfig = {
     description:
       "We help buyers purchase vetted, cash-flowing e-commerce businesses through an operator-led process.",
   },
+  brandingSellers: {
+    logo: "/assets/brand_assets/logo_sellers.png",
+    name: "KH Brokers",
+    description:
+      "We help sellers achieve fast, liquid exits for their digital businesses — with transparent valuation and capital-ready buyers.",
+  },
   columns: [
     {
       heading: "For Buyers",
@@ -23,6 +29,27 @@ export const footerConfig = {
       links: [
         { label: "Testimonials", href: "/buyers#testimonials" },
         { label: "Faqs", href: "/buyers#faqs" },
+      ],
+    },
+  ],
+  columnsSellers: [
+    {
+      heading: "For Sellers",
+      links: [
+        { label: "For Buyers", href: "/buyers" },
+        { label: "Value My Store", href: "/value-my-store" },
+        { label: "Available Deals", href: "/deals" },
+      ],
+    },
+    {
+      heading: "About",
+      links: [{ label: "Contact", href: "/contact" }],
+    },
+    {
+      heading: "Sellers",
+      links: [
+        { label: "Testimonials", href: "/sellers#testimonials" },
+        { label: "Faqs", href: "/sellers#faqs" },
       ],
     },
   ],

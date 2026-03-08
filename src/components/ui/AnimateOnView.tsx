@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 interface AnimateOnViewProps {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   animation?: "fade-up" | "fade" | "stagger" | "slide-up-from-bottom";
   rootMargin?: string;
   threshold?: number;
@@ -24,6 +25,7 @@ interface AnimateOnViewProps {
 export function AnimateOnView({
   children,
   className = "",
+  style: styleProp,
   animation = "fade-up",
   rootMargin = "0px 0px 0px 0px",
   threshold = 0.15,
@@ -62,11 +64,16 @@ export function AnimateOnView({
           : "animate-on-view";
   const intersectingClass = "animate-on-view-intersecting";
 
+  const combinedStyle = {
+    ...styleProp,
+    ...(delayMs > 0 ? { transitionDelay: `${delayMs}ms` } : {}),
+  };
+
   return (
     <div
       ref={ref}
       className={`${animationClass} ${isIntersecting ? intersectingClass : ""} ${className}`.trim()}
-      style={delayMs > 0 ? { transitionDelay: `${delayMs}ms` } : undefined}
+      style={Object.keys(combinedStyle).length > 0 ? combinedStyle : undefined}
     >
       {children}
     </div>

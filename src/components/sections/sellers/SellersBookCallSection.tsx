@@ -1,7 +1,7 @@
 "use client";
 
 import { sellersBookCallConfig } from "@/config/sellers.config";
-import { LazyBlock } from "@/components/ui/LazyBlock";
+import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { CalInlineEmbed } from "@/components/ui/CalInlineEmbed";
 
 export function SellersBookCallSection() {
@@ -11,11 +11,11 @@ export function SellersBookCallSection() {
   return (
     <section
       id="book-a-call"
-      className="scroll-mt-20 bg-white px-4 py-12 sm:py-16 md:py-24"
+      className="scroll-mt-20 bg-[#f0fdf4] px-4 py-12 sm:py-16 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
-        <LazyBlock>
-          <header className="mb-12 text-center md:mb-16">
+        <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+          <header className="stagger-child mb-12 text-center md:mb-16">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[44px] lg:text-[52px]">
               {heading.before}
               <br />
@@ -30,14 +30,12 @@ export function SellersBookCallSection() {
               {subheading}
             </p>
           </header>
-        </LazyBlock>
 
-        <LazyBlock>
           <div
-            className="overflow-hidden rounded-2xl md:rounded-3xl"
+            className="stagger-child overflow-hidden rounded-2xl md:rounded-3xl"
             style={{
               background:
-                "linear-gradient(to top, rgba(240, 253, 244, 0) 0%, rgba(187, 247, 208, 0.4) 50%, rgba(187, 247, 208, 0.8) 100%)",
+                "linear-gradient(to bottom, #E3F9F1 0%, transparent 100%)",
             }}
           >
             <div className="p-4 sm:p-4 md:p-12 lg:p-10">
@@ -50,7 +48,7 @@ export function SellersBookCallSection() {
               </div>
             </div>
           </div>
-        </LazyBlock>
+        </AnimateOnView>
       </div>
     </section>
   );

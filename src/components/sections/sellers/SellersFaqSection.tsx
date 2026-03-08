@@ -12,7 +12,7 @@ export function SellersFaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="bg-white px-4 py-12 sm:py-16 md:py-24">
+    <section id="faqs" className="scroll-mt-20 bg-[#f0fdf4] px-4 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.35fr_0.65fr] md:gap-16 lg:gap-20">
           <LazyBlock>

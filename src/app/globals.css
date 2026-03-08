@@ -47,3 +47,29 @@ body {
     rgba(163, 106, 246, 0.8) 100%
   ) !important;
 }
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left var(--trusted-by-scroll-duration, 50s) linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right var(--trusted-by-scroll-duration, 50s) linear infinite;
+}

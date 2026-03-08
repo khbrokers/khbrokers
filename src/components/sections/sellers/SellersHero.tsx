@@ -1,26 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useRef, useEffect } from "react";
+import { SiShopify } from "react-icons/si";
 import { sellersHeroConfig } from "@/config/sellers.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { SellersVideoSection } from "./SellersVideoSection";
 
-const PRIMARY = "#16a34a";
-const LIGHT_BG = "#f0fdf4";
+const PRIMARY = "#039760";
 
 export function SellersHero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const { headline, subtitle, highlightedTerms, cta, videoThumbnail, heroVideoSrc, heroVideoPlaybackRate } =
+  const { trustedBy, headline, subtitle, highlightedTerms, cta, asFeaturedIn, featuredBrands } =
     sellersHeroConfig;
-
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    el.playbackRate = heroVideoPlaybackRate;
-    el.muted = true;
-    el.play().catch(() => {});
-  }, [heroVideoPlaybackRate]);
 
   const subtitleWithHighlights = highlightedTerms.reduce(
     (acc, term) => acc.replace(term, `{{${term}}}`),
@@ -32,32 +23,39 @@ export function SellersHero() {
     <section
       className="relative min-h-[75vh] overflow-hidden sm:min-h-[85vh]"
     >
-      {/* Video background — width fits screen, height auto (aspect ratio preserved) */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
-        <video
-          ref={videoRef}
-          src={heroVideoSrc}
-          poster={videoThumbnail}
-          muted
-          loop
-          playsInline
-          autoPlay
-          className="h-auto w-full max-h-full object-contain object-center"
-          aria-hidden
-        />
-      </div>
-      {/* Very subtle overlay for text readability — video clearly visible */}
-      <div
-        className="absolute inset-0 z-[1] bg-gradient-to-b from-white/30 via-transparent to-[#f0fdf4]/35"
-        aria-hidden
+      <Image
+        src="/assets/sellers_landing/hero/hero.png"
+        alt=""
+        fill
+        className="object-cover object-center"
+        priority
+        sizes="100vw"
       />
       <AnimateOnView
         animation="stagger"
         className="relative z-10 mx-auto max-w-4xl px-4 pb-4 pt-[100px] sm:px-6 sm:pb-20 sm:pt-24 md:pb-24 md:pt-[150px] lg:px-8"
         rootMargin="0px 0px 0px 0px"
         threshold={0.15}
-        visibleImmediately
       >
+        {/* Trusted By banner */}
+        <div className="stagger-child flex justify-center">
+          <div
+            className="mb-5 inline-flex items-center gap-1.5 rounded-full border px-2 py-1.5 backdrop-blur-sm sm:mb-8 sm:gap-2 sm:px-3 sm:py-2"
+            style={{
+              borderColor: "rgba(3, 151, 96, 0.2)",
+              background: `linear-gradient(to bottom, ${PRIMARY}20 10%, transparent 100%)`,
+            }}
+          >
+            <SiShopify
+              className="shrink-0 h-[12px] w-[12px] sm:h-[15px] sm:w-[15px] md:h-[17px] md:w-[17px]"
+              style={{ color: "#00965F" }}
+            />
+            <span className="text-[10px] font-medium text-zinc-600 sm:text-[12px] md:text-[15px]">
+              {trustedBy}
+            </span>
+          </div>
+        </div>
+
         {/* Main headline */}
         <h1 className="stagger-child text-center text-[35px] font-medium leading-[1.15] tracking-[-2px] text-zinc-900 sm:text-[44px] sm:tracking-[-3px] md:text-[58px] md:tracking-[-4px] lg:text-[68px]">
           {headline.before}
@@ -81,6 +79,25 @@ export function SellersHero() {
             return <span key={i}>{part}</span>;
           })}
         </p>
+
+        {/* As Featured in */}
+        <div className="stagger-child mt-6 flex flex-col items-center gap-4 md:gap-4 sm:mt-12 sm:gap-4">
+          <p className="text-center text-[12px] font-medium text-zinc-500 sm:text-[16px] md:text-[16px]">
+            {asFeaturedIn}
+          </p>
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8">
+            {featuredBrands.map((src) => (
+              <Image
+                key={src}
+                src={src}
+                alt=""
+                width={120}
+                height={32}
+                className="h-[18px] md:h-[24px] w-auto opacity-80 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
+              />
+            ))}
+          </div>
+        </div>
 
         {/* CTA buttons */}
         <div className="stagger-child mt-6 flex flex-row flex-wrap items-center justify-center gap-2 sm:mt-10 sm:gap-4">
@@ -109,7 +126,6 @@ export function SellersHero() {
         className="relative z-10"
         rootMargin="0px 0px 0px 0px"
         threshold={0.15}
-        visibleImmediately
       >
         <SellersVideoSection />
       </AnimateOnView>

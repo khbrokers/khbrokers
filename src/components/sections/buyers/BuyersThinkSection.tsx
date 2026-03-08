@@ -13,7 +13,7 @@ export function BuyersThinkSection() {
     <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-5xl flex flex-col items-center justify-center gap-[20px] md:gap-[30px]">
         <LazyBlock>
-          <header className="mx-auto mb-12 w-[80%] space-y-[20px] text-center sm:w-auto md:mb-16">
+          <header className="mx-auto mb-6 w-[80%] space-y-[20px] text-center sm:w-auto md:mb-12">
             <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
               {heading.before}
               <span className="font-serif font-medium italic text-[#a36af6]">

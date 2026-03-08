@@ -7,11 +7,28 @@ import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { LazyBlock } from "@/components/ui/LazyBlock";
 
-export function Footer() {
-  const { branding, columns, social, copyright, legal } = footerConfig;
+const SELLERS_PRIMARY = "#00965F";
+
+export function Footer({ theme = "buyers" }: { theme?: "buyers" | "sellers" }) {
+  const {
+    branding,
+    brandingSellers,
+    columns,
+    columnsSellers,
+    social,
+    copyright,
+    legal,
+  } = footerConfig;
+
+  const isSellers = theme === "sellers";
+  const brandingData = isSellers ? brandingSellers : branding;
+  const columnsData = isSellers ? columnsSellers : columns;
 
   return (
-    <footer className="relative overflow-hidden bg-white pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-32 md:pb-16">
+    <footer
+      className="relative overflow-hidden pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-32 md:pb-16"
+      style={{ backgroundColor: isSellers ? "#f0fdf4" : "white" }}
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Main content - columns */}
         <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
@@ -20,8 +37,8 @@ export function Footer() {
           <div className="stagger-child max-w-xs">
             <Link href="/" className="flex items-center gap-3">
               <Image
-                src={branding.logo}
-                alt={branding.name}
+                src={brandingData.logo}
+                alt={brandingData.name}
                 width={140}
                 height={40}
                 className="h-10 w-auto"
@@ -33,7 +50,7 @@ export function Footer() {
           </div>
 
           {/* Columns 2-4 - Navigation */}
-          {columns.map((col) => (
+          {columnsData.map((col) => (
             <div key={col.heading} className="stagger-child">
               <h3 className="text-[16px] md:text-[18px] font-semibold text-zinc-900">
                 {col.heading}
@@ -60,7 +77,11 @@ export function Footer() {
                 key={item.icon}
                 href={item.href}
                 aria-label={item.label}
-                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[10px] bg-[#a36af6]/22 text-[#a36af6] shadow-sm transition-opacity hover:opacity-90"
+                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[10px] shadow-sm transition-opacity hover:opacity-90"
+              style={{
+                backgroundColor: isSellers ? `${SELLERS_PRIMARY}22` : "rgba(163, 106, 246, 0.22)",
+                color: isSellers ? SELLERS_PRIMARY : "#a36af6",
+              }}
               >
                 {item.icon === "facebook" ? (
                   <FaFacebookF className="h-4 w-4" />
@@ -77,7 +98,7 @@ export function Footer() {
         <AnimateOnView animation="slide-up-from-bottom" rootMargin="0px 0px -80px 0px">
         <div className="relative z-0 mt-16 w-screen sm:mt-20 md:mt-28" style={{ marginLeft: "calc(-50vw + 50%)" }}>
           <Image
-            src="/assets/footer_brand.png"
+            src={isSellers ? "/assets/sellers_landing/footer_sellers.png" : "/assets/footer_brand.png"}
             alt=""
             width={1200}
             height={200}

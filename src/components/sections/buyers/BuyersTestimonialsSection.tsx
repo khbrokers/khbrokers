@@ -9,8 +9,8 @@ import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const TESTIMONIAL_ITEMS = [
-  { thumbnail: "/assets/reviews/thumbnail01.png", videoId: "1aHlUCAGwYAOXujU9Lvck8GpNe04T-gFU" },
-  { thumbnail: "/assets/reviews/thumbnail02.jpg", videoId: "1ED8VnwtxsU6O5hJfuz-IQkw1LJubo3rZ" },
+  { thumbnail: "/assets/reviews/thumbnail02.jpg", videoId: "1Q02DZe9gFx9JfMQUhgqUqO2Wdn7VkGcz" },
+  { thumbnail: "/assets/reviews/thumbnail01.png", videoId: "1y2QZ8SAMNkgG1GzSF0tz7npOW0I-CU3M" },
   { thumbnail: "/assets/reviews/thumbnail03.png", videoId: "1Xpqlk3mwY2pfW6j0HHql7M0q0Ub4Mppm" },
 ];
 
@@ -75,7 +75,6 @@ function VideoPopup({
   const [useIframe, setUseIframe] = useState(false);
   const directVideoUrl = `https://drive.google.com/uc?export=download&id=${videoId}`;
   const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
-  const viewUrl = `https://drive.google.com/file/d/${videoId}/view`;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -133,14 +132,6 @@ function VideoPopup({
             />
           )}
         </div>
-        <a
-          href={viewUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium text-white/90 transition-colors hover:bg-black/80"
-        >
-          Open video in new tab
-        </a>
       </div>
     </div>,
     document.body

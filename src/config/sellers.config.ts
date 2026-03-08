@@ -9,31 +9,60 @@ export const sellersTheme = {
 export const HERO_VIDEO_PLAYBACK_RATE = 0.65;
 
 export const sellersHeroConfig = {
+  trustedBy: "#1 Chosen E-commerce Broker",
+  trustBadgeAvatars: [
+    "/assets/hero/avatar01.jpg",
+    "/assets/hero/avatar02.png",
+    "/assets/hero/avatar03.png",
+  ],
   headline: {
-    before: "Fast, Liquid Cash Exits, ",
-    highlight: "Without CapEx",
+    before: "Fast, Liquid Cash Exits, Without",
+    highlight: "Complexity",
     after: "",
   },
   subtitle:
-    "Sell your SaaS or e-commerce business through an operator-led process — verified valuations, qualified buyers, and a structured exit in as little as 10 days.",
+    "KH Brokers is the most active private exit point for Shopify founders seeking fast, liquid exits. When a business passes our process, it moves quickly — often within days.",
   highlightedTerms: ["verified valuations", "qualified buyers", "structured exit"],
   cta: {
-    primary: { label: "Get Started", href: "#get-offer" },
-    secondary: { label: "Book a Call", href: "#book-a-call" },
+    primary: { label: "Get a Cash Valuation", href: "#get-offer" },
+    secondary: { label: "Speak with us", href: "#book-a-call" },
   },
-  videoThumbnail: "/assets/sellers_landing/hero/hero.png",
+  asFeaturedIn: "Trusted by 30+ Partners",
+  featuredBrands: [
+    "/assets/sellers_landing/brands/brand01.png",
+    "/assets/sellers_landing/brands/brand02.png",
+    "/assets/sellers_landing/brands/brand03.png",
+    "/assets/sellers_landing/brands/brand04.png",
+    "/assets/sellers_landing/brands/brand05.png",
+  ],
+  videoThumbnail: "/assets/sellers_landing/hero/videocover.png",
   /** Full-screen hero background video */
   heroVideoSrc: "/assets/sellers_landing/hero/heroanimated_sellers.mp4",
   heroVideoPlaybackRate: HERO_VIDEO_PLAYBACK_RATE,
 };
 
 export const sellersTrustedByConfig = {
-  heading: "Trusted By The Industry's Best",
-  icons: [
-    "/assets/hero/brand01.png",
-    "/assets/hero/brand02.png",
-    "/assets/hero/brand03.png",
-    "/assets/hero/brand04.png",
+  /** Scroll duration in seconds for brand marquee (higher = slower) */
+  scrollDuration: 50,
+  heading: {
+    before: "Trusted by ",
+    highlight: "300+",
+    after: " Founders",
+  },
+  row1Icons: [
+    "/assets/sellers_landing/partners/partner01.png",
+    "/assets/sellers_landing/partners/partner02.png",
+    "/assets/sellers_landing/partners/partner03.png",
+    "/assets/sellers_landing/partners/partner04.png",
+    "/assets/sellers_landing/partners/partner05.png",
+  ],
+  row2Icons: [
+    "/assets/sellers_landing/partners/partner06.png",
+    "/assets/sellers_landing/partners/partner07.png",
+    "/assets/sellers_landing/partners/partner08.png",
+    "/assets/sellers_landing/partners/partner09.png",
+    "/assets/sellers_landing/partners/partner10.png",
+    "/assets/sellers_landing/partners/partner11.png",
   ],
 };
 
@@ -59,47 +88,127 @@ export const sellersWhoWeAreConfig = {
   ],
 };
 
+export const sellersWhoWeRepresentConfig = {
+  heading: {
+    before: "Who We ",
+    highlight: "Represent",
+  },
+  subheading:
+    "We review a wide range of Shopify brands — but only take businesses to market that meet our performance and operational standards.",
+  cards: [
+    {
+      title: "Shopify DTC Brands",
+      description:
+        "Direct-to-consumer e-commerce businesses across all fulfilment models.",
+      image: "/assets/sellers_landing/bentos/bento01.png",
+    },
+    {
+      title: "Cash-Flow Positive",
+      description:
+        "Minimum $20,000 USD total net profit. Actively operating and generating real earnings.",
+      image: "/assets/sellers_landing/bentos/bento02.png",
+    },
+    {
+      title: "Clean Operations",
+      description:
+        "Stable payment processing. Structured ad accounts. No hidden operational risk.",
+      image: "/assets/sellers_landing/bentos/bento03.png",
+    },
+    {
+      title: "Investment-Worthy",
+      description:
+        "We only represent businesses buyers should own — regardless of hype.",
+      image: "/assets/sellers_landing/bentos/bento04.png",
+    },
+  ],
+};
+
 export const sellersWhySellConfig = {
   heading: {
     before: "Why Sell With ",
     highlight: "KH Brokers",
   },
-  subheading: "We handle every type of exit, every deal size.",
-  tabs: [
-    { id: "all-exits", label: "All Exits", sublabel: "SaaS, e-commerce, content" },
-    { id: "all-deals", label: "All Deals", sublabel: "From $50k to $5M+" },
-    { id: "all-buyers", label: "All Buyers", sublabel: "Vetted, qualified, ready" },
+  tagline: "The Exit Partner Founders Choose When Speed Matters",
+  ctas: [
+    { label: "Value My Store", href: "#get-offer", primary: true },
+    { label: "Book A Call", href: "#book-a-call", primary: false },
   ],
-  featureCard: {
-    title: "Operator-Led Process",
-    description:
-      "We've built and sold businesses ourselves. We understand what buyers want, how to position your business, and how to close deals that work for both sides.",
-    cta: { label: "Book a Call", href: "#book-a-call" },
-  },
+  bentoCards: [
+    {
+      title: "Unmatched Speed",
+      description: "Businesses often sell in days — sometimes same day.",
+      image: "/assets/sellers_landing/whysell/card01.png",
+      variant: "translucent" as const,
+    },
+    {
+      title: "Valuation Precision",
+      description: "Pricing aligned to real demand — not theory.",
+      image: "/assets/sellers_landing/whysell/card02.png",
+      variant: "white" as const,
+    },
+    {
+      title: "Operator-Led Process",
+      description:
+        "We've built and sold businesses ourselves. We understand what buyers want.",
+      image: "/assets/sellers_landing/whysell/card03.png",
+      variant: "translucent" as const,
+    },
+    {
+      title: "Pre-Vetted Buyers",
+      description: "Qualified buyers ready to move — no tire-kickers.",
+      image: "/assets/sellers_landing/whysell/card04.png",
+      variant: "translucent" as const,
+    },
+    {
+      title: "End-to-End Support",
+      description: "From valuation to close — we handle every step.",
+      image: "/assets/sellers_landing/whysell/card05.png",
+      variant: "translucent" as const,
+    },
+  ],
 };
 
 export const sellersStructuredApproachConfig = {
   heading: {
-    before: "Our Structured ",
-    highlight: "Approach",
+    before: "A Structured, Fast ",
+    highlight: "Exit Process",
   },
-  subheading: "From first call to closed deal in four clear steps.",
+  subheading: "Clear steps. No friction. No delays.",
   steps: [
     {
-      title: "1. Discovery Call",
-      description: "We learn about your business, goals, and timeline.",
+      title: "Valuation Alignment",
+      description:
+        "We assess profit and loss quickly to determine liquidity and pricing alignment. No long forms. No delays.",
+      top: "79%",
+      left: "5%",
+      topMobile: "64%",
+      leftMobile: "0%",
     },
     {
-      title: "2. Valuation & Package",
-      description: "We build a verified valuation and prepare your listing package.",
+      title: "One-Day Verification",
+      description: "24-hour verification of financials, operations, and assets.",
+      top: "15%",
+      left: "25%",
+      topMobile: "18%",
+      leftMobile: "22%",
     },
     {
-      title: "3. Buyer Matching",
-      description: "We introduce you to pre-vetted buyers who match your criteria.",
+      title: "Buyer Activation",
+      description:
+        "Direct placement with capital-ready buyers for immediate cashflow.",
+      top: "71%",
+      left: "47%",
+      topMobile: "60%",
+      leftMobile: "42%",
     },
     {
-      title: "4. Close",
-      description: "We guide you through LOI, diligence, and escrow to close.",
+      title: "Close & Payout",
+      description:
+        "Secure escrow, seamless ownership transfer, and instant fund release.",
+      top: "3%",
+      left: "71%",
+      topMobile: "14%",
+      leftMobile: "66%",
     },
   ],
 };
@@ -130,44 +239,74 @@ export const sellersGetOfferConfig = {
   cta: { label: "Submit", href: "#" },
 };
 
+export const sellersTestimonialsVideoItems = [
+  { thumbnail: "/assets/sellers_landing/reviews/review01.png", videoId: "1y2QZ8SAMNkgG1GzSF0tz7npOW0I-CU3M" },
+  { thumbnail: "/assets/sellers_landing/reviews/review02.png", videoId: "1Q02DZe9gFx9JfMQUhgqUqO2Wdn7VkGcz" },
+  { thumbnail: "/assets/sellers_landing/reviews/review03.png", videoId: "1Xpqlk3mwY2pfW6j0HHql7M0q0Ub4Mppm" },
+];
+
 export const sellersTestimonialsConfig = {
   heading: {
-    before: "What Sellers Say ",
-    highlight: "After the Exit",
+    before: "The Broker Founders ",
+    highlight: "Come Back To",
   },
-  subheading: "Real exits. Real results.",
+  subheading: "Over 300 brands sold. Hear from founders who continue to work with KH Brokers because the process works.",
   testimonials: [
     {
       quote:
         "Sold in 12 days. KH Brokers handled everything — I just showed up for the calls.",
       name: "Alex",
+      role: "Founder, SaaS Brand",
+      xProfile: "https://x.com/example",
+      xUsername: "alex",
       avatar: null,
       badge: "SaaS Exit",
+      stars: 5,
+      metrics: [
+        { value: "12 days", label: "To close" },
+        { value: "SaaS", label: "Exit type" },
+      ],
     },
     {
       quote:
         "The valuation was fair and the process was transparent. No surprises.",
       name: "Sam",
+      role: "Founder, E-commerce Brand",
+      xProfile: "https://x.com/example",
+      xUsername: "sam",
       avatar: null,
       badge: "E-commerce Exit",
+      stars: 5,
+      metrics: [
+        { value: "Transparent", label: "Process" },
+        { value: "E-commerce", label: "Exit type" },
+      ],
     },
     {
       quote:
         "Best decision I made. They found a buyer who actually understood my business.",
       name: "Jordan",
+      role: " 7 Figure Ecommerce Operator",
+      xProfile: "https://x.com/example",
+      xUsername: "jordan",
       avatar: null,
       badge: "Content Exit",
+      stars: 5,
+      metrics: [
+        { value: "Right fit", label: "Buyer match" },
+        { value: "Content", label: "Exit type" },
+      ],
     },
   ],
 };
 
 export const sellersBookCallConfig = {
   heading: {
-    before: "Book a ",
-    highlight: "Strategy Call",
+    before: "Get Your Liquid Cash  ",
+    highlight: "Valuation",
   },
   subheading:
-    "A focused discussion to understand your exit goals, timeline, and what we can do to help.",
+    "On the call, we assess your numbers, timing, and exit potential — and tell you exactly what serious buyers would pay today.",
   host: {
     name: "Kane",
     title: "Founder & Head of KH Brokers",
@@ -191,33 +330,27 @@ export const sellersFaqConfig = {
   subheading: "Direct answers. No ambiguity.",
   items: [
     {
-      question: "How long does it take to sell my business?",
+      question: "How much commission do you take?",
       answer: [
-        "Most sellers go from first call to signed LOI in 10–30 days, depending on deal size and complexity. We prioritize speed without sacrificing quality — you'll work with qualified buyers who are ready to move.",
+        "KH Brokers does not operate on a rigid, one-size-fits-all commission model. Fees vary depending on factors such as deal size, complexity, buyer type, and how quickly the transaction moves. During the valuation call, we clearly outline the expected net amount you would receive after all fees, so there are no surprises. We are fully transparent about how we're compensated, and our priority is aligning on a deal structure you're comfortable with.",
       ],
     },
     {
-      question: "What types of businesses do you sell?",
+      question: "Who are the buyers and where are they based?",
       answer: [
-        "We work with SaaS, e-commerce, content, and digital businesses. Deal sizes typically range from $50k to $5M+. If you're not sure if we're a fit, book a call and we'll discuss.",
+        "Our buyers are vetted individuals and small funds who have been through our qualification process. They are capital-ready and understand digital businesses. We work with buyers globally — many of our transactions are cross-border. We match you with buyers who fit your business profile and timeline.",
       ],
     },
     {
-      question: "How do you value my business?",
+      question: "Are there any upfront costs? What's expected from me?",
       answer: [
-        "We build valuations from raw data — revenue, profit, growth, and market comparables. We don't rely on seller-prepared summaries alone. You'll get a transparent, defensible valuation that buyers trust.",
+        "There are no upfront fees to list or engage with us. Our model is success-based — we're paid when you close. From your side, we need access to accurate financials, a willingness to participate in verification, and responsiveness during the process. We'll outline exactly what we need during the discovery call.",
       ],
     },
     {
-      question: "What fees do you charge?",
+      question: "How do I know this is safe? What if the buyer doesn't pay?",
       answer: [
-        "Our fee structure is transparent and success-based. We'll outline everything on the discovery call. No hidden costs, no surprises.",
-      ],
-    },
-    {
-      question: "Can I sell if my business isn't profitable yet?",
-      answer: [
-        "It depends. We focus on cash-flowing or clearly path-to-profit businesses. If you're pre-revenue or heavily unprofitable, we may not be the right fit — but we'll tell you honestly on the first call.",
+        "Every transaction closes through escrow. Funds are held by a third-party escrow provider until all conditions are met and the handover is complete. You don't transfer ownership until payment is released. This structure protects both parties and is standard for business acquisitions.",
       ],
     },
   ],
@@ -229,9 +362,9 @@ export const sellersCtaConfig = {
     highlight: "Exit?",
   },
   subheading:
-    "Get a preliminary valuation and see how fast we can help you close.",
+    "Liquidity, speed, and structured execution — without complexity.",
   cta: {
-    primary: { label: "Book a Call", href: "#book-a-call" },
-    secondary: { label: "Get Offer", href: "#get-offer" },
+    primary: { label: "Value My Store", href: "#book-a-call" },
+    secondary: { label: "Book a Call", href: "#get-offer" },
   },
 };

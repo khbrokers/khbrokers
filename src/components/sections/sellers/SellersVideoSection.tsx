@@ -65,10 +65,10 @@ export function SellersVideoSection() {
       />
       <div className="mx-auto max-w-5xl">
         <div
-          className="group relative cursor-pointer overflow-hidden rounded-xl p-[6px] sm:rounded-2xl md:rounded-[2rem]"
+          className="group relative cursor-pointer overflow-hidden rounded-xl p-[6px] sm:rounded-2xl md:rounded-[2.2rem]"
           style={{
             background:
-              "linear-gradient(to bottom, #86efac 0%, #86efac 40%, #FFFFFF80 100%)",
+              "linear-gradient(to bottom, #04986240 0%, #04986240 40%, white 100%)",
             filter: "drop-shadow(0 12px 40px rgba(34, 197, 94, 30%))",
           }}
         >

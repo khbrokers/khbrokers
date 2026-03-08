@@ -44,14 +44,6 @@ export function BuyersNeverSection() {
                 <article
                   className="flex flex-col overflow-hidden rounded-2xl bg-[#F2E7FF] shadow-sm md:flex-row"
                 >
-                  <div className="flex flex-1 flex-col justify-center gap-2 px-4 py-4 sm:gap-[10px] sm:px-5 sm:py-5 md:order-1 md:px-[30px] md:py-[20px]">
-                    <h3 className="text-[20px] md:text-[22px] font-medium leading-[1.2] tracking-[-0.5px] text-zinc-900">
-                      {item.title}
-                    </h3>
-                    <p className="text-[14px] md:text-[16px] font-normal leading-[1.1] tracking-[-0.5px] text-zinc-900/60">
-                      {item.description}
-                    </p>
-                  </div>
                   <div className="relative mb-4 aspect-[4/3] w-full overflow-hidden rounded-lg bg-[#EDE9FE]/50 sm:mb-6 sm:rounded-xl md:order-2 md:mb-0 md:flex-[0_0_50%] md:shrink-0">
                     <Image
                       src={item.image}
@@ -60,6 +52,14 @@ export function BuyersNeverSection() {
                       className="object-contain"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
+                  </div>
+                  <div className="flex flex-1 flex-col justify-center gap-2 px-4 py-4 sm:gap-[10px] sm:px-5 sm:py-5 md:order-1 md:px-[30px] md:py-[20px]">
+                    <h3 className="text-[20px] md:text-[22px] font-medium leading-[1.2] tracking-[-0.5px] text-zinc-900">
+                      {item.title}
+                    </h3>
+                    <p className="text-[14px] md:text-[16px] font-normal leading-[1.1] tracking-[-0.5px] text-zinc-900/60">
+                      {item.description}
+                    </p>
                   </div>
                 </article>
                 </AnimateOnView>
