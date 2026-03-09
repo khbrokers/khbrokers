@@ -57,6 +57,7 @@ export const footerConfig = {
     { label: "Facebook", href: "#", icon: "facebook" },
     { label: "YouTube", href: "#", icon: "youtube" },
   ],
+  socialSellers: [{ label: "X", href: "#", icon: "x" }],
   copyright: "All Copyright reserved @khbrokers.com",
   legal: [
     { label: "Privacy", href: "/privacy" },

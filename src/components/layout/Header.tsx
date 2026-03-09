@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { getStoredLegalTheme } from "@/components/layout/ThemeTracker";
 import { useState, useEffect } from "react";
 import { navConfig, ctaConfig } from "@/config/nav.config";
 import {
@@ -13,17 +14,42 @@ import { siteConfig } from "@/config/site.config";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
-const marketplacePaths = ["/buyers", "/sellers"];
+const marketplacePaths = ["/buyers", "/sellers", "/value-my-store", "/deals", "/terms", "/privacy"];
 
 export function Header() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const isMarketplace = marketplacePaths.some((p) => pathname.startsWith(p));
 
   if (isMarketplace) {
     const activePath = pathname.startsWith("/sellers")
       ? ("/sellers" as const)
-      : ("/buyers" as const);
-    return <MarketplaceHeaderContent activePath={activePath} />;
+      : pathname.startsWith("/value-my-store")
+        ? ("/value-my-store" as const)
+        : pathname.startsWith("/deals")
+          ? ("/deals" as const)
+          : pathname.startsWith("/terms")
+            ? ("/terms" as const)
+            : pathname.startsWith("/privacy")
+              ? ("/privacy" as const)
+              : ("/buyers" as const);
+    const paramTheme = searchParams.get("theme");
+    const legalTheme =
+      activePath === "/terms" || activePath === "/privacy"
+        ? paramTheme === "sellers"
+          ? "sellers"
+          : paramTheme === "buyers"
+            ? "buyers"
+            : typeof window !== "undefined"
+              ? getStoredLegalTheme()
+              : "buyers"
+        : null;
+    return (
+      <MarketplaceHeaderContent
+        activePath={activePath}
+        legalTheme={legalTheme}
+      />
+    );
   }
 
   return <DefaultHeaderContent />;
@@ -152,13 +178,25 @@ const MARKETPLACE_THEMES = {
 
 function MarketplaceHeaderContent({
   activePath,
+  legalTheme,
 }: {
-  activePath: "/buyers" | "/sellers";
+  activePath: "/buyers" | "/sellers" | "/value-my-store" | "/deals" | "/terms" | "/privacy";
+  legalTheme?: "buyers" | "sellers" | null;
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const theme = MARKETPLACE_THEMES[activePath.slice(1) as keyof typeof MARKETPLACE_THEMES];
+  const themeKey =
+    legalTheme === "sellers"
+      ? "sellers"
+      : legalTheme === "buyers"
+        ? "buyers"
+        : activePath === "/value-my-store"
+          ? "sellers"
+          : activePath === "/deals" || activePath === "/terms" || activePath === "/privacy"
+            ? "buyers"
+            : activePath.slice(1);
+  const theme = MARKETPLACE_THEMES[themeKey as keyof typeof MARKETPLACE_THEMES];
 
   useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
@@ -213,7 +251,7 @@ function MarketplaceHeaderContent({
               className={cn(
                 "text-[14px] md:text-[16px] font-medium transition-colors",
                 item.href === activePath
-                  ? "text-zinc-900"
+                  ? "text-zinc-900 font-semibold"
                   : "text-zinc-900/50 hover:text-zinc-900"
               )}
             >
@@ -282,6 +320,7 @@ function MarketplaceHeaderContent({
           >
             {marketplaceCtaConfig.signInLabel}
           </Link>
+          
           <Link
             href={marketplaceCtaConfig.applyHref}
             onClick={() => setMobileMenuOpen(false)}

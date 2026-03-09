@@ -62,7 +62,6 @@ export const sellersTrustedByConfig = {
     "/assets/sellers_landing/partners/partner08.png",
     "/assets/sellers_landing/partners/partner09.png",
     "/assets/sellers_landing/partners/partner10.png",
-    "/assets/sellers_landing/partners/partner11.png",
   ],
 };
 

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { defaultMetadata } from "./metadata";
 import { fontVariables } from "@/lib/fonts";
 import { Header } from "@/components/layout/Header";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
+import { ThemeTracker } from "@/components/layout/ThemeTracker";
 import "./globals.css";
 import "./animations.css";
 
@@ -24,9 +26,14 @@ export default function RootLayout({
           "--animate-ease-out": "cubic-bezier(0.33, 1, 0.68, 1)",
         } as React.CSSProperties}
       >
-        <Header />
+        <ThemeTracker />
+        <Suspense fallback={null}>
+          <Header />
+        </Suspense>
         {children}
-        <ConditionalFooter />
+        <Suspense fallback={null}>
+          <ConditionalFooter />
+        </Suspense>
       </body>
     </html>
   );

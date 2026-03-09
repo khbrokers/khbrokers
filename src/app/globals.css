@@ -48,6 +48,14 @@ body {
   ) !important;
 }
 
+/* Outline stroke for filled metric icons - makes lines/shapes visible */
+.metric-icon-outline {
+  stroke: #a36af6;
+  stroke-width: 1.5px;
+  paint-order: stroke fill;
+  stroke-linejoin: round;
+}
+
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -72,4 +80,31 @@ body {
 
 .animate-scroll-right {
   animation: scroll-right var(--trusted-by-scroll-duration, 50s) linear infinite;
+}
+
+/* Deals page range sliders */
+input[type="range"].deals-slider {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"].deals-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #a36af6;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"].deals-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #a36af6;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
