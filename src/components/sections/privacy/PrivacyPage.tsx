@@ -109,7 +109,7 @@ export function PrivacyPage() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12">
             {/* Left: TOC */}
             <aside
-              className={`h-fit shrink-0 overflow-hidden rounded-2xl border border-zinc-200/80 backdrop-blur-sm transition-all lg:sticky lg:top-24 ${
+              className={`h-fit shrink-0 overflow-hidden rounded-2xl border border-zinc-200/80 p-5 backdrop-blur-sm transition-all lg:sticky lg:top-24 ${
                 tocOpen ? "max-h-none" : "max-h-[72px] lg:max-h-none"
               }`}
               style={{ background: tocGradient }}

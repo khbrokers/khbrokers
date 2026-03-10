@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { defaultMetadata } from "./metadata";
 import { fontVariables } from "@/lib/fonts";
-import { Header } from "@/components/layout/Header";
-import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
 import { ThemeTracker } from "@/components/layout/ThemeTracker";
 import "./globals.css";
 import "./animations.css";
@@ -27,13 +25,7 @@ export default function RootLayout({
         } as React.CSSProperties}
       >
         <ThemeTracker />
-        <Suspense fallback={null}>
-          <Header />
-        </Suspense>
-        {children}
-        <Suspense fallback={null}>
-          <ConditionalFooter />
-        </Suspense>
+        <Suspense fallback={null}>{children}</Suspense>
       </body>
     </html>
   );

@@ -1,16 +1,16 @@
-import { SignUpForm } from "@/components/auth/SignUpForm";
+import { SignInForm } from "@/components/auth/SignInForm";
 import { SignInLeftPanel } from "@/components/auth/SignInLeftPanel";
 
 export const metadata = {
-  title: "Sign Up | KH Brokers",
-  description: "Create your KH Brokers account",
+  title: "Sign In | KH Brokers",
+  description: "Sign in to your KH Brokers account",
 };
 
-export default function SignupPage() {
+export default function SignInPage() {
   return (
     <main className="flex min-h-screen w-full overflow-x-hidden">
       <SignInLeftPanel />
-      <SignUpForm />
+      <SignInForm />
     </main>
   );
 }
