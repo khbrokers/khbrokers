@@ -4,7 +4,6 @@ import Image from "next/image";
 import { FaStore } from "react-icons/fa6";
 import { valueMyStoreConfig } from "@/config/value-my-store.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
-import { ValueMyStoreForm } from "./ValueMyStoreForm";
 
 const PRIMARY = "#00965F";
 
@@ -12,7 +11,7 @@ export function ValueMyStoreHero() {
   const { tag, headline, description, ctaLabel } = valueMyStoreConfig;
 
   return (
-    <section className="relative min-h-[75vh] overflow-hidden sm:min-h-[85vh]">
+    <section className="fixed inset-0 z-0 h-screen overflow-hidden">
       <Image
         src="/assets/sellers_landing/hero/hero.png"
         alt=""
@@ -23,7 +22,7 @@ export function ValueMyStoreHero() {
       />
       <AnimateOnView
         animation="stagger"
-        className="relative z-10 mx-auto flex min-h-[75vh] flex-col items-center justify-center px-4 pb-4 pt-[100px] sm:min-h-[75vh] md:min-h-[75vh] sm:pb-20 sm:pt-24 md:pb-24 md:pt-[150px] lg:px-8"
+        className="relative z-10 mx-auto flex h-full min-h-screen flex-col items-center justify-center px-4 pb-4 pt-[100px] sm:pb-20 sm:pt-24 md:pb-24 md:pt-[150px] lg:px-8"
         rootMargin="0px 0px 0px 0px"
         threshold={0.1}
       >
@@ -74,7 +73,6 @@ export function ValueMyStoreHero() {
           </a>
         </div>
       </AnimateOnView>
-      <ValueMyStoreForm />
     </section>
   );
 }

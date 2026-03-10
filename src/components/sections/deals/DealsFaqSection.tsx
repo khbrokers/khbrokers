@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { dealsFaqConfig } from "@/config/deals.config";
-import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 export function DealsFaqSection() {
@@ -13,19 +12,19 @@ export function DealsFaqSection() {
     <section id="faqs" className="scroll-mt-20 bg-white px-4 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.35fr_0.65fr] md:gap-16 lg:gap-20">
-          <LazyBlock>
+          <AnimateOnView animation="stagger" rootMargin="0px 0px -60px 0px">
             <header className="text-center sm:text-left">
-              <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[40px] lg:text-[48px]">
+              <h2 className="stagger-child text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[40px] lg:text-[48px]">
                 {heading.before}
                 <span className="font-serif font-medium italic text-[#6824BF]">
                   {heading.highlight}
                 </span>
               </h2>
-              <p className="mt-4 text-base font-normal text-zinc-600 md:text-lg">
+              <p className="stagger-child mt-4 text-base font-normal text-zinc-600 md:text-lg">
                 {subheading}
               </p>
             </header>
-          </LazyBlock>
+          </AnimateOnView>
 
           {/* Right - Accordion */}
           <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">

@@ -10,7 +10,7 @@ export function ValueMyStoreForm() {
   const { formTitle, formDescription } = valueMyStoreConfig;
 
   return (
-    <section className="relative -mt-16 px-4 pb-24 sm:-mt-20 sm:px-6 md:pb-32">
+    <section className="relative px-4 pb-24 sm:px-6 md:pb-32 top-[40px] md:top-[120px]">
       <div className="mx-auto flex w-full justify-center">
         <AnimateOnView
           animation="fade-up"

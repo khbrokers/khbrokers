@@ -3,6 +3,9 @@ import { Suspense } from "react";
 import { defaultMetadata } from "./metadata";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeTracker } from "@/components/layout/ThemeTracker";
+import { Header } from "@/components/layout/Header";
+import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
+import { WelcomeModal } from "@/components/modals/WelcomeModal";
 import "./globals.css";
 import "./animations.css";
 
@@ -25,7 +28,14 @@ export default function RootLayout({
         } as React.CSSProperties}
       >
         <ThemeTracker />
+        <Header />
         <Suspense fallback={null}>{children}</Suspense>
+        <Suspense fallback={null}>
+          <ConditionalFooter />
+        </Suspense>
+        <Suspense fallback={null}>
+          <WelcomeModal />
+        </Suspense>
       </body>
     </html>
   );

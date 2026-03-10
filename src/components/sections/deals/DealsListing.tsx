@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 import { DealsFilters } from "./DealsFilters";
 import { DealCard } from "./DealCard";
+import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { dealsSearchConfig, dealsFiltersConfig, mockDeals } from "@/config/deals.config";
 
 const { refineCollapsedLabel } = dealsFiltersConfig;
@@ -127,7 +128,9 @@ export function DealsListing() {
   return (
     <section className="relative overflow-visible px-4 pb-16 sm:pb-20 md:pb-24">
       <div className="mx-auto max-w-6xl overflow-visible">
-        <div
+        <AnimateOnView
+          animation="stagger"
+          rootMargin="0px 0px -60px 0px"
           className="-mt-8 rounded-[24px] bg-white p-5 sm:-mt-10 sm:rounded-[28px] sm:p-6 md:-mt-12 md:p-[20px]"
           style={{
             position: "sticky",
@@ -140,7 +143,7 @@ export function DealsListing() {
           }}
         >
           {/* Search and sort bar */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="stagger-child flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center border border-zinc-900/10 rounded-[30px] px-2 py-2">
               <input
                 type="search"
@@ -199,7 +202,7 @@ export function DealsListing() {
 
           {/* Main layout: filters + cards */}
           <div
-            className={`mt-8 flex flex-col gap-8 transition-all duration-300 md:grid ${
+            className={`stagger-child mt-8 flex flex-col gap-8 transition-all duration-300 md:grid ${
               filtersOpen ? "md:grid-cols-[280px_1fr] lg:grid-cols-[300px_1fr]" : "md:grid-cols-[56px_1fr]"
             }`}
           >
@@ -249,20 +252,29 @@ export function DealsListing() {
             <div className="min-w-0">
               <div className="grid gap-6 sm:grid-cols-1 lg:gap-8">
                 {filteredAndSortedDeals.length > 0 ? (
-                  filteredAndSortedDeals.map((deal) => (
-                    <DealCard key={deal.id} deal={deal} />
+                  filteredAndSortedDeals.map((deal, i) => (
+                    <AnimateOnView
+                      key={deal.id}
+                      animation="fade-up"
+                      rootMargin="0px 0px -60px 0px"
+                      delayMs={i * 60}
+                    >
+                      <DealCard deal={deal} />
+                    </AnimateOnView>
                   ))
                 ) : (
-                  <div className="rounded-[20px] bg-zinc-50 py-16 text-center">
-                    <p className="text-[16px] text-zinc-600">
-                      No deals match your filters. Try adjusting your criteria.
-                    </p>
-                  </div>
+                  <AnimateOnView animation="fade-up" rootMargin="0px 0px -60px 0px">
+                    <div className="rounded-[20px] bg-zinc-50 py-16 text-center">
+                      <p className="text-[16px] text-zinc-600">
+                        No deals match your filters. Try adjusting your criteria.
+                      </p>
+                    </div>
+                  </AnimateOnView>
                 )}
               </div>
             </div>
           </div>
-        </div>
+        </AnimateOnView>
       </div>
     </section>
   );

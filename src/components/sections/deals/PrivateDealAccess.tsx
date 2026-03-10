@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PRIMARY = "#a36af6";
 
@@ -16,7 +17,9 @@ export function PrivateDealAccess() {
   return (
     <section className="px-4 pb-12 pt-4 sm:pb-16 sm:pt-6 md:pb-20 md:pt-8 lg:pb-24">
       <div className="mx-auto max-w-6xl">
-        <div
+        <AnimateOnView
+          animation="stagger"
+          rootMargin="0px 0px -60px 0px"
           className="overflow-hidden rounded-2xl sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px]"
           style={{
             border: "4px solid transparent",
@@ -36,21 +39,21 @@ export function PrivateDealAccess() {
             <div className="relative z-10 flex flex-col items-center gap-6 text-center sm:gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:text-left">
               {/* Left: Text content */}
               <div className="min-w-0 flex-1">
-                <h2 className="text-[24px] font-bold leading-tight text-white sm:text-[28px] md:text-[34px] lg:text-[40px] xl:text-[44px]">
-                Private Deal Access.
-              </h2>
-              <p className="mt-1.5 font-serif text-[18px] font-medium italic text-white/95 sm:mt-2 sm:text-[22px] md:text-[26px] lg:text-[28px]">
-                Before Anyone Else.
-              </p>
-              <p className="mx-auto mt-3 max-w-xl text-[14px] leading-relaxed text-white/90 sm:mt-4 sm:text-[15px] md:text-[16px] lg:text-[17px] lg:mx-0">
-                Most deals are sold quickly and never reach public marketplaces. Subscribers receive
-                first access when new opportunities go live, along with updates on recent exits and
-                buyer activity.
+                <h2 className="stagger-child text-[24px] font-bold leading-tight text-white sm:text-[28px] md:text-[34px] lg:text-[40px] xl:text-[44px]">
+                  Private Deal Access.
+                </h2>
+                <p className="stagger-child mt-1.5 font-serif text-[18px] font-medium italic text-white/95 sm:mt-2 sm:text-[22px] md:text-[26px] lg:text-[28px]">
+                  Before Anyone Else.
+                </p>
+                <p className="stagger-child mx-auto mt-3 max-w-xl text-[14px] leading-relaxed text-white/90 sm:mt-4 sm:text-[15px] md:text-[16px] lg:text-[17px] lg:mx-0">
+                  Most deals are sold quickly and never reach public marketplaces. Subscribers receive
+                  first access when new opportunities go live, along with updates on recent exits and
+                  buyer activity.
                 </p>
               </div>
 
               {/* Right: Email + CTA - pill shape, input left + button right */}
-              <div className="w-full shrink-0 lg:w-auto lg:min-w-0 lg:max-w-md">
+              <div className="stagger-child w-full shrink-0 lg:w-auto lg:min-w-0 lg:max-w-md">
                 <form
                 onSubmit={handleSubmit}
                 className="flex w-full flex-col overflow-hidden rounded-2xl bg-white p-1.5 shadow-lg sm:flex-row sm:rounded-full sm:p-1"
@@ -76,7 +79,7 @@ export function PrivateDealAccess() {
               </div>
             </div>
           </div>
-        </div>
+        </AnimateOnView>
       </div>
     </section>
   );
