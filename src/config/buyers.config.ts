@@ -34,7 +34,7 @@ export const buyersBrokenConfig = {
   subheading: "And why KH Brokers exists as an operator-led alternative",
   items: [
     {
-      icon: "/assets/bento/question_icon.png",
+      icon: "/assets/sellers_landing/motionicons/question.gif",
       title: "The Real Problem",
       description:
         "E-commerce isn't a broken asset class — the risk comes from buying the wrong business.",
@@ -44,7 +44,7 @@ export const buyersBrokenConfig = {
       },
     },
     {
-      icon: "/assets/bento/money_icon.png",
+      icon: "/assets/sellers_landing/motionicons/devaluation.gif",
       title: "Why Buyers Lose Money",
       description:
         "Losses happen due to poor selection, incomplete information, and inflated seller narratives — not because the businesses can't work.",
@@ -54,7 +54,7 @@ export const buyersBrokenConfig = {
       },
     },
     {
-      icon: "/assets/bento/process_icon.png",
+      icon: "/assets/sellers_landing/motionicons/broken-chain.gif",
       title: "A Broken Buying Process",
       description:
         "Marketplaces and traditional brokers leave buyers to interpret risk on their own, without operator-level context.",
@@ -64,7 +64,7 @@ export const buyersBrokenConfig = {
       },
     },
     {
-      icon: "/assets/bento/dollar_icon.png",
+      icon: "/assets/sellers_landing/motionicons/dollar.gif",
       title: "Seller Incentives",
       description:
         "Sellers naturally highlight upside. Risk, fragility, and limitations are rarely presented with the same clarity.",
@@ -74,7 +74,7 @@ export const buyersBrokenConfig = {
       },
     },
     {
-      icon: "/assets/bento/check_icon.png",
+      icon: "/assets/sellers_landing/motionicons/shield.gif",
       title: "Our Response",
       description:
         "KH Brokers applies operator-led judgment, aggressive filtering, and end-to-end control before any deal reaches buyers.",
@@ -84,7 +84,7 @@ export const buyersBrokenConfig = {
       },
     },
     {
-      icon: "/assets/bento/thumbsup_icon.png",
+      icon: "/assets/sellers_landing/motionicons/like.gif",
       title: "What Changes for Buyers",
       description:
         "Only businesses we would be comfortable owning ourselves ever make it through our process.",
@@ -116,22 +116,22 @@ export const buyersThinkConfig = {
   rightColumn: {
     items: [
       {
-        icon: "/assets/khbthink/uparrow.png",
+        icon: "/assets/motionicons/growth.gif",
         title: "Outcomes Over Volume",
         description: "Long-term ownership matters more than closing transactions.",
       },
       {
-        icon: "/assets/khbthink/tablerclock.png",
+        icon: "/assets/motionicons/wait.gif",
         title: "We Slow Decisions",
         description: "Urgency is controlled, not encouraged.",
       },
       {
-        icon: "/assets/khbthink/filter.png",
+        icon: "/assets/motionicons/filter.gif",
         title: "We Say No Often",
         description: "Most deals never reach buyers.",
       },
       {
-        icon: "/assets/khbthink/loop.png",
+        icon: "/assets/motionicons/refresh.gif",
         title: "Built on Repeat Buyers",
         description: "Trust compounds over time.",
       },
@@ -426,19 +426,19 @@ export const buyersNeverConfig = {
     "Only 1-2 out of every 10 businesses pass our internal approval process.",
   items: [
     {
-      image: "/assets/bento2/bento03.png",
+      lottie: "/assets/bento2/buyers_bento-01.json",
       title: "Financial Verification",
       description:
         "We do not rely on seller-prepared profit sheets. Every business is rebuilt from raw data — Shopify payouts, ad spend, refunds, chargebacks, supplier invoices, and operating expenses.",
     },
     {
-      image: "/assets/bento2/bento02.png",
+      lottie: "/assets/bento2/buyers_bento-02.json",
       title: "Built to Withstand Pressure",
       description:
         "We reject businesses with hidden dependencies, unstable payment processing, incomplete assets, or revenue that relies on conditions that cannot be sustained. If performance can't survive pressure, it doesn't qualify.",
     },
     {
-      image: "/assets/bento2/bento01.png",
+      lottie: "/assets/bento2/buyers_bento-03.json",
       title: "Selective by Design",
       description:
         "Not every strong business is a suitable acquisition. We assess ownership complexity, capital requirements, and operational intensity before introducing any deal. If it cannot be responsibly owned by our buyer base, it does not reach them.",

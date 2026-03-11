@@ -107,6 +107,20 @@
   transform: translateY(0);
 }
 
+/* Slide in from left - fade + swipe right (for right-column cards) */
+.animate-slide-in-from-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition:
+    opacity 1s var(--ease-butter),
+    transform 1s var(--ease-butter);
+}
+
+.animate-slide-in-from-left.animate-on-view-intersecting {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* Staggered children - each animates in sequence (Framer Motion style) */
 .animate-stagger .stagger-child {
   opacity: 0;
@@ -133,3 +147,71 @@
 .animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(10) { transition-delay: 1080ms; }
 .animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(11) { transition-delay: 1200ms; }
 .animate-stagger.animate-on-view-intersecting .stagger-child:nth-child(12) { transition-delay: 1320ms; }
+
+/* Hero: slower stagger - 1.5s duration, 250ms step */
+.animate-stagger-slow .stagger-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 1.5s var(--ease-butter),
+    transform 1.5s var(--ease-butter);
+}
+
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(1) { transition-delay: 0ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(2) { transition-delay: 250ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(3) { transition-delay: 500ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(4) { transition-delay: 750ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(5) { transition-delay: 1000ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(6) { transition-delay: 1250ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(7) { transition-delay: 1500ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(8) { transition-delay: 1750ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(9) { transition-delay: 2000ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(10) { transition-delay: 2250ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(11) { transition-delay: 2500ms; }
+.animate-stagger-slow.animate-on-view-intersecting .stagger-child:nth-child(12) { transition-delay: 2750ms; }
+
+/* Table: extra slow stagger - 2.5s duration, 450ms step */
+.animate-stagger-slower .stagger-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 2.5s var(--ease-butter),
+    transform 2.5s var(--ease-butter);
+}
+
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(1) { transition-delay: 0ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(2) { transition-delay: 450ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(3) { transition-delay: 900ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(4) { transition-delay: 1350ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(5) { transition-delay: 1800ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(6) { transition-delay: 2250ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(7) { transition-delay: 2700ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(8) { transition-delay: 3150ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(9) { transition-delay: 3600ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(10) { transition-delay: 4050ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(11) { transition-delay: 4500ms; }
+.animate-stagger-slower.animate-on-view-intersecting .stagger-child:nth-child(12) { transition-delay: 4950ms; }
+
+/* Hero: slower fade-up - 1.5s duration */
+.animate-on-view-slow {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 1.5s var(--ease-butter),
+    transform 1.5s var(--ease-butter);
+}
+
+.animate-on-view-slow.animate-on-view-intersecting {
+  opacity: 1;
+  transform: translateY(0);
+}

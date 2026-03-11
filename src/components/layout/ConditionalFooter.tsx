@@ -13,6 +13,8 @@ export function ConditionalFooter() {
     setStoredTheme(getStoredLegalTheme());
   }, [pathname]);
 
+  if (pathname === "/") return null;
+
   const isLegalPage = pathname === "/terms" || pathname === "/privacy";
   const paramTheme = searchParams.get("theme");
   const legalTheme = isLegalPage

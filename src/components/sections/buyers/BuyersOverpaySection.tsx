@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { buyersOverpayConfig } from "@/config/buyers.config";
-import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaHandHoldingHeart } from "react-icons/fa";
@@ -48,20 +47,37 @@ export function BuyersOverpaySection() {
     <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.35fr_0.65fr] md:gap-16 lg:gap-20">
-          <LazyBlock>
-          <div className="flex flex-col items-center text-center md:items-start md:text-left">
+          <AnimateOnView
+            animation="fade-up-slow"
+            rootMargin="0px 0px -60px 0px"
+            threshold={0.05}
+            className="flex flex-col items-center text-center md:items-start md:text-left"
+          >
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[36px] md:text-[58px] lg:text-[68px] p-0 m-0">
               {heading.before}
               <span className="font-serif font-medium italic text-[#6824BF]">
                 {heading.highlight}
               </span>
             </h2>
-            <p className="mt-4 text-[14px] md:text-[18px] font-normal leading-[1.5] text-zinc-600">
-              {subheading}
-            </p>
+            <AnimateOnView
+              animation="fade-up-slow"
+              rootMargin="0px 0px -60px 0px"
+              threshold={0.05}
+              delayMs={200}
+            >
+              <p className="mt-4 text-[14px] md:text-[18px] font-normal leading-[1.5] text-zinc-600">
+                {subheading}
+              </p>
+            </AnimateOnView>
 
             {/* Switchable buttons */}
-            <div className="mt-6 flex w-full flex-row gap-2 sm:mt-10 sm:flex-col sm:gap-4 md:mt-12">
+            <AnimateOnView
+              animation="fade-up-slow"
+              rootMargin="0px 0px -60px 0px"
+              threshold={0.05}
+              delayMs={400}
+              className="mt-6 flex w-full flex-row gap-2 sm:mt-10 sm:flex-col sm:gap-4 md:mt-12"
+            >
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
@@ -95,11 +111,15 @@ export function BuyersOverpaySection() {
                   </button>
                 );
               })}
-            </div>
-          </div>
-          </LazyBlock>
+            </AnimateOnView>
+          </AnimateOnView>
 
-          <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+          <AnimateOnView
+            key={activeTab}
+            animation="stagger-slower"
+            rootMargin="0px 0px -80px 0px"
+            threshold={0.05}
+          >
           <div className="flex flex-col gap-8">
             {isMarketReality
               ? problems.map((item, idx) => (

@@ -14,7 +14,11 @@ export function SellersCtaSection() {
     <section className="bg-[#f0fdf4] px-4 py-12 sm:py-16 md:py-24">
        
       <div className="mx-auto max-w-6xl">
-        <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+        <AnimateOnView
+          animation="stagger-slower"
+          rootMargin="0px 0px -80px 0px"
+          threshold={0.05}
+        >
           <div className="relative overflow-hidden rounded-xl px-4 py-12 text-center sm:rounded-2xl sm:px-6 sm:py-14 md:rounded-[20px] md:px-12 md:py-20 lg:px-16 lg:py-24">
             <div className="absolute inset-0 z-0">
               <Image

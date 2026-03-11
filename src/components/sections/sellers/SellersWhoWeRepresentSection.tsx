@@ -1,13 +1,37 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import Lottie from "lottie-react";
 import { sellersWhoWeRepresentConfig } from "@/config/sellers.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PRIMARY = "#039760";
+const BENTO_LOTTIE_PATHS = [
+  "/assets/sellers_landing/lottie/bento-01.json",
+  "/assets/sellers_landing/lottie/bento-02.json",
+  "/assets/sellers_landing/lottie/bento-03.json",
+  "/assets/sellers_landing/lottie/bento-04.json",
+];
 
 export function SellersWhoWeRepresentSection() {
   const { heading, subheading, cards } = sellersWhoWeRepresentConfig;
+  const [lottieData, setLottieData] = useState<(object | null)[]>([
+    null,
+    null,
+    null,
+    null,
+  ]);
+
+  useEffect(() => {
+    Promise.all(
+      BENTO_LOTTIE_PATHS.map((path) =>
+        fetch(path)
+          .then((res) => res.json())
+          .catch(() => null)
+      )
+    ).then(setLottieData);
+  }, []);
 
   return (
     <section
@@ -48,20 +72,26 @@ export function SellersWhoWeRepresentSection() {
               >
                 <div
                   className="relative mx-auto mb-5 flex h-[180px] w-full items-center justify-center overflow-hidden rounded-2xl px-6 sm:h-[220px] md:h-[280px]"
-                  // style={{
-                  //   background:
-                  //     "linear-gradient(135deg, rgba(222, 243, 236, 0.6) 0%, rgba(240, 253, 244, 0.4) 100%)",
-                  // }}
                 >
-                  <Image
-                    src={card.image}
-                    alt=""
-                    width={800}
-                    height={600}
-                    quality={100}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
-                    className="h-full w-full object-contain"
-                  />
+                  {idx < BENTO_LOTTIE_PATHS.length && lottieData[idx] ? (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <Lottie
+                        animationData={lottieData[idx]!}
+                        loop
+                        style={{ width: "100%", height: "100%", maxHeight: "100%" }}
+                      />
+                    </div>
+                  ) : (
+                    <Image
+                      src={card.image}
+                      alt=""
+                      width={800}
+                      height={600}
+                      quality={100}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+                      className="h-full w-full object-contain"
+                    />
+                  )}
                 </div>
                 <div className="flex flex-col h-[140px] md:h-[130px] pt-0 md:pt-0 gap-[5px] md:gap-[10px] p-4 sm:p-5 md:p-[30px]">
                   <h3 className="font-regular text-[18px] tracking-[-0.5px] text-zinc-900 md:text-[22px]">

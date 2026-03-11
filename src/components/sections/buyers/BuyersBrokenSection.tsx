@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { buyersBrokenConfig } from "@/config/buyers.config";
-import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 export function BuyersBrokenSection() {
@@ -13,19 +12,31 @@ export function BuyersBrokenSection() {
   return (
     <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-5xl">
-        <LazyBlock>
-          <header className="mb-12 space-y-[20px] text-center md:mb-16 max-w-5xl mx-auto">
+        <header className="mb-12 space-y-5 text-center md:mb-16 max-w-5xl mx-auto">
+          <AnimateOnView
+            animation="fade-up"
+            rootMargin="0px 0px -120px 0px"
+            threshold={0.2}
+            delayMs={0}
+          >
             <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
               {heading.before}
               <span className="font-serif font-medium italic text-[#a36af6]">
                 {heading.highlight}
               </span>
             </h2>
+          </AnimateOnView>
+          <AnimateOnView
+            animation="fade-up"
+            rootMargin="0px 0px -120px 0px"
+            threshold={0.2}
+            delayMs={350}
+          >
             <p className="mt-3 font-regular text-[14px] leading-[1.1] tracking-[-0.5px] text-zinc-900/60 sm:mt-4 md:text-[18px]">
               {subheading}
             </p>
-          </header>
-        </LazyBlock>
+          </AnimateOnView>
+        </header>
 
         <div className="mx-auto grid max-w-5xl grid-cols-1 border-grid-border divide-y divide-grid-border md:grid-cols-3 md:divide-x md:divide-y">
           {items.map((item, idx) => {
@@ -48,12 +59,12 @@ export function BuyersBrokenSection() {
               <AnimateOnView
                 key={idx}
                 animation="fade-up"
-                rootMargin="0px 0px -40px 0px"
-                threshold={0.05}
-                delayMs={idx * 100}
+                rootMargin="0px 0px -120px 0px"
+                threshold={0.2}
+                delayMs={idx * 350}
               >
                 <div
-                  className="group relative flex flex-col overflow-hidden p-5 sm:p-6 md:p-8"
+                  className="group relative flex flex-col overflow-hidden p-5 sm:p-6 md:p-8 h-[100%]"
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
@@ -75,6 +86,7 @@ export function BuyersBrokenSection() {
                         width={44}
                         height={44}
                         className="object-contain"
+                        unoptimized
                       />
                     </div>
                     <h3 className="mt-4 font-medium text-[20px] md:text-[22px] tracking-[-0.5px] text-zinc-900">

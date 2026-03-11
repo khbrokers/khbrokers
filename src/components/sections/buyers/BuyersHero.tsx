@@ -1,12 +1,23 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { buyersHeroConfig } from "@/config/buyers.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { BuyersVideoSection } from "./BuyersVideoSection";
 
+const VIDEO_PLAYBACK_RATE = 0.5;
+
 export function BuyersHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = VIDEO_PLAYBACK_RATE;
+    }
+  }, []);
   const { trustedBy, trustBadgeAvatars, headline, description, highlightedTerms, cta, asFeaturedIn, featuredBrands } =
     buyersHeroConfig;
 
@@ -18,17 +29,19 @@ export function BuyersHero() {
 
   return (
     <section className="relative min-h-[75vh] overflow-hidden sm:min-h-[85vh]">
-      <Image
-        src="/assets/hero/hero.png"
-        alt=""
-        fill
-        className="object-cover object-center"
-        priority
-        sizes="100vw"
+      <video
+        ref={videoRef}
+        src="/assets/hero/hero_animatedb.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden
       />
 
       <AnimateOnView
-        animation="stagger"
+        animation="stagger-slow"
         className="relative mx-auto max-w-4xl px-4 pb-4 pt-[100px] sm:px-6 sm:pb-20 sm:pt-24 md:pb-24 md:pt-[150px] lg:px-8"
         rootMargin="0px 0px 0px 0px"
         threshold={0.15}
@@ -59,11 +72,19 @@ export function BuyersHero() {
         </div>
 
         {/* Main headline */}
-        <h1 className="stagger-child text-center text-[35px] font-medium leading-[1.15] tracking-[-2px] text-zinc-900 sm:text-[44px] sm:tracking-[-3px] md:text-[58px] md:tracking-[-4px] lg:text-[68px]">
+        <h1 className="stagger-child mx-auto w-[90%] max-w-7xl text-center  text-[35px] font-medium leading-[1.15] tracking-[-2px] text-zinc-900 sm:w-[85%] sm:text-[44px] sm:tracking-[-3px] md:w-full md:max-w-5xl md:text-[58px] md:leading-[1.12] md:tracking-[-4px] lg:text-[68px]">
           {headline.before}
           <span className="font-serif font-medium italic text-[#7c3aed]">
             {headline.highlight}
           </span>
+          {/* <Image
+            src="/assets/hero/salary.gif"
+            alt=""
+            width={48}
+            height={48}
+            className="inline-block align-middle -rotate-15 mx-1 h-[28px] w-auto sm:h-[36px] md:h-[74px]"
+            aria-hidden
+          /> */}
           {headline.after}
         </h1>
 
@@ -117,13 +138,14 @@ export function BuyersHero() {
                 width={120}
                 height={32}
                 className="h-[18px] w-auto opacity-80 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
-              />
+                unoptimized
+                />
             ))}
           </div>
         </div>
       </AnimateOnView>
       <AnimateOnView
-        animation="fade-up"
+        animation="fade-up-slow"
         rootMargin="0px 0px 0px 0px"
         threshold={0.15}
       >

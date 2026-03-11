@@ -6,7 +6,6 @@ import { footerConfig } from "@/config/footer.config";
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
-import { LazyBlock } from "@/components/ui/LazyBlock";
 
 const SELLERS_PRIMARY = "#00965F";
 
@@ -34,7 +33,11 @@ export function Footer({ theme = "buyers" }: { theme?: "buyers" | "sellers" }) {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Main content - columns */}
-        <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+        <AnimateOnView
+          animation="stagger-slower"
+          rootMargin="0px 0px -80px 0px"
+          threshold={0.05}
+        >
         <div className="relative z-10 grid gap-8 sm:grid-cols-2 sm:gap-10 md:grid-cols-[1.2fr_repeat(3,1fr)_auto] md:gap-8">
           {/* Column 1 - Branding */}
           <div className="stagger-child max-w-xs">
@@ -100,7 +103,11 @@ export function Footer({ theme = "buyers" }: { theme?: "buyers" | "sellers" }) {
         </AnimateOnView>
 
         {/* Footer brand watermark - KH BROKERS text - slides up from bottom */}
-        <AnimateOnView animation="slide-up-from-bottom" rootMargin="0px 0px -80px 0px">
+        <AnimateOnView
+          animation="fade-up-slow"
+          rootMargin="0px 0px -80px 0px"
+          threshold={0.05}
+        >
         <div className="relative z-0 mt-16 w-screen sm:mt-20 md:mt-28" style={{ marginLeft: "calc(-50vw + 50%)" }}>
           <Image
             src={isSellers ? "/assets/sellers_landing/footer_sellers.png" : "/assets/footer_brand.png"}
@@ -114,8 +121,13 @@ export function Footer({ theme = "buyers" }: { theme?: "buyers" | "sellers" }) {
         </AnimateOnView>
 
         {/* Bottom bar - copyright and legal */}
-        <LazyBlock>
-        <div className="relative z-10 mt-4 flex flex-col items-center justify-between gap-4 pt-6 text-center sm:flex-row sm:pt-8 sm:text-left md:mt-8">
+        <AnimateOnView
+          animation="fade-up-slow"
+          rootMargin="0px 0px -60px 0px"
+          threshold={0.05}
+          delayMs={300}
+          className="relative z-10 mt-4 flex flex-col items-center justify-between gap-4 pt-6 text-center sm:flex-row sm:pt-8 sm:text-left md:mt-8"
+        >
           <p className="text-[16px] md:text-[18px] text-zinc-900/20">{copyright}</p>
           <nav className="flex flex-wrap justify-center gap-4 sm:gap-6">
             {legal.map((link) => {
@@ -134,8 +146,7 @@ export function Footer({ theme = "buyers" }: { theme?: "buyers" | "sellers" }) {
               );
             })}
           </nav>
-        </div>
-        </LazyBlock>
+        </AnimateOnView>
       </div>
     </footer>
   );

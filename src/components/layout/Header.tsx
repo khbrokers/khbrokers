@@ -19,6 +19,7 @@ const marketplacePaths = ["/buyers", "/sellers", "/value-my-store", "/deals", "/
 export function Header() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  if (pathname === "/") return null;
   const isMarketplace = marketplacePaths.some((p) => pathname.startsWith(p));
 
   if (isMarketplace) {
@@ -240,7 +241,8 @@ function MarketplaceHeaderContent({
               className="object-contain object-left"
               sizes="(max-width: 768px) 98px, 140px"
               priority
-            />
+              unoptimized
+/>
           </div>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">

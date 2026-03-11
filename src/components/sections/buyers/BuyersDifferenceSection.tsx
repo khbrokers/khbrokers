@@ -61,7 +61,11 @@ export function BuyersDifferenceSection() {
         </header>
         </LazyBlock>
 
-        <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+        <AnimateOnView
+          animation="stagger-slower"
+          rootMargin="0px 0px -60px 0px"
+          threshold={0.05}
+        >
         <div className="mb-8 overflow-hidden rounded-xl bg-[#FFFFFF] shadow-lg sm:rounded-2xl md:mb-12">
           <div className="relative overflow-x-auto">
             {/* Gradient overlay for KH Brokers column - top to bottom, 0% opacity at top to full at bottom */}

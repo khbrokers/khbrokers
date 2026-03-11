@@ -6,7 +6,7 @@ interface AnimateOnViewProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  animation?: "fade-up" | "fade" | "stagger" | "slide-up-from-bottom";
+  animation?: "fade-up" | "fade" | "fade-up-slow" | "stagger" | "stagger-slow" | "stagger-slower" | "slide-up-from-bottom" | "slide-in-from-left";
   rootMargin?: string;
   threshold?: number;
   /** Disconnect observer after first intersection for performance */
@@ -57,11 +57,19 @@ export function AnimateOnView({
   const animationClass =
     animation === "fade"
       ? "animate-on-view-fade"
-      : animation === "stagger"
-        ? "animate-stagger animate-on-view"
-        : animation === "slide-up-from-bottom"
-          ? "animate-slide-up-from-bottom"
-          : "animate-on-view";
+      : animation === "fade-up-slow"
+        ? "animate-on-view-slow"
+        : animation === "stagger"
+          ? "animate-stagger animate-on-view"
+          : animation === "stagger-slow"
+            ? "animate-stagger-slow"
+            : animation === "stagger-slower"
+              ? "animate-stagger-slower"
+              : animation === "slide-up-from-bottom"
+                ? "animate-slide-up-from-bottom"
+                : animation === "slide-in-from-left"
+                ? "animate-slide-in-from-left"
+                : "animate-on-view";
   const intersectingClass = "animate-on-view-intersecting";
 
   const combinedStyle = {
