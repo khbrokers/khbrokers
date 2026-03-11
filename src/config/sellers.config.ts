@@ -136,32 +136,32 @@ export const sellersWhySellConfig = {
     {
       title: "Unmatched Speed",
       description: "Businesses often sell in days — sometimes same day.",
-      image: "/assets/sellers_landing/motionicons/broken-chain.gif",
+      image: "/assets/sellers_landing/whysell/card01.png",
       variant: "translucent" as const,
     },
     {
       title: "Valuation Precision",
       description: "Pricing aligned to real demand — not theory.",
-      image: "/assets/sellers_landing/motionicons/dollar.gif",
+      image: "/assets/sellers_landing/whysell/card02.png",
       variant: "white" as const,
     },
     {
       title: "Operator-Led Process",
       description:
         "We've built and sold businesses ourselves. We understand what buyers want.",
-      image: "/assets/sellers_landing/motionicons/shield.gif",
+      image: "/assets/sellers_landing/whysell/card03.png",
       variant: "translucent" as const,
     },
     {
       title: "Pre-Vetted Buyers",
       description: "Qualified buyers ready to move — no tire-kickers.",
-      image: "/assets/sellers_landing/motionicons/like.gif",
+      image: "/assets/sellers_landing/whysell/card04.png",
       variant: "translucent" as const,
     },
     {
       title: "End-to-End Support",
       description: "From valuation to close — we handle every step.",
-      image: "/assets/sellers_landing/motionicons/question.gif",
+      image: "/assets/sellers_landing/whysell/card05.png",
       variant: "translucent" as const,
     },
   ],
