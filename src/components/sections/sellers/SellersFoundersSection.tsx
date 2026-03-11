@@ -71,7 +71,7 @@ export function SellersFoundersSection() {
       />
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.45fr_0.55fr] md:gap-16 lg:gap-20">
-          <LazyBlock>
+          <LazyBlock rootMargin="100px 0px -40px 0px">
             <header className="text-center md:text-left">
               <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[44px] lg:text-[52px]">
                 {heading.before}
@@ -85,7 +85,7 @@ export function SellersFoundersSection() {
             </header>
           </LazyBlock>
 
-          <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+          <AnimateOnView animation="stagger" rootMargin="100px 0px -40px 0px" threshold={0.05}>
             <div className="stagger-child flex flex-col gap-6">
               <article
                 className="rounded-2xl border-2 bg-white p-6 shadow-sm sm:p-8"

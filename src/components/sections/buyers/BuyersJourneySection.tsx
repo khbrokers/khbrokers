@@ -42,6 +42,7 @@ export function BuyersJourneySection() {
     if (hasPlayedRef.current) return;
     if (lottieRef.current?.animationLoaded) {
       hasPlayedRef.current = true;
+      lottieRef.current.setSpeed(4);
       lottieRef.current.play();
     }
   };

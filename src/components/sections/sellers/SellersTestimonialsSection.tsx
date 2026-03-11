@@ -8,7 +8,6 @@ import {
   sellersTestimonialsConfig,
   sellersTestimonialsVideoItems,
 } from "@/config/sellers.config";
-import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PRIMARY = "#00965F";
@@ -345,7 +344,11 @@ export function SellersTestimonialsSection() {
   return (
     <section id="testimonials" className="scroll-mt-20 overflow-x-hidden px-4 py-12 sm:py-16 md:py-24" style={{ backgroundColor: BG }}>
       <div className="mx-auto max-w-6xl min-w-0">
-        <LazyBlock>
+        <AnimateOnView
+          animation="fade-up-slow"
+          rootMargin="100px 0px -40px 0px"
+          threshold={0.05}
+        >
           <header className="mx-auto mb-12 w-full max-w-2xl text-center md:mb-16">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[36px] md:text-[52px] lg:text-[60px]">
               {heading.before}
@@ -358,9 +361,9 @@ export function SellersTestimonialsSection() {
               {subheading}
             </p>
           </header>
-        </LazyBlock>
+        </AnimateOnView>
 
-        <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+        <AnimateOnView animation="stagger" rootMargin="100px 0px -40px 0px" threshold={0.05}>
           <div className="grid min-w-0 grid-cols-1 gap-4 sm:gap-6 md:grid-cols-[0.45fr_0.55fr] md:gap-12 lg:gap-16">
             <div className="stagger-child min-w-0 overflow-hidden">
             <VideoCarousel

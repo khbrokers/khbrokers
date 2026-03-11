@@ -17,7 +17,7 @@ export function SellersGetOfferSection() {
       style={{ backgroundColor: "#f0fdf4" }}
     >
       <div className="mx-auto max-w-2xl">
-        <LazyBlock>
+        <LazyBlock rootMargin="100px 0px -40px 0px">
           <header className="mb-12 text-center md:mb-16">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[44px] lg:text-[52px]">
               {heading.before}
@@ -31,7 +31,7 @@ export function SellersGetOfferSection() {
           </header>
         </LazyBlock>
 
-        <AnimateOnView animation="fade-up" rootMargin="0px 0px -80px 0px">
+        <AnimateOnView animation="fade-up" rootMargin="100px 0px -40px 0px" threshold={0.05}>
           <div
             className="rounded-2xl border-2 bg-white p-6 shadow-sm sm:p-8 md:p-10"
             style={{ borderColor: "rgba(34, 197, 94, 0.3)" }}

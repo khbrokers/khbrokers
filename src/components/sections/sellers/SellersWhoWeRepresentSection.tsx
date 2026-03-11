@@ -39,7 +39,11 @@ export function SellersWhoWeRepresentSection() {
       style={{ backgroundColor: "#f0fdf4" }}
     >
       <div className="mx-auto max-w-6xl">
-        <AnimateOnView animation="fade-up" rootMargin="0px 0px -80px 0px">
+        <AnimateOnView
+          animation="fade-up-slow"
+          rootMargin="100px 0px -40px 0px"
+          threshold={0.05}
+        >
           <header className="mb-12 text-center md:mb-16">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[44px] lg:text-[52px]">
               {heading.before}
@@ -60,9 +64,10 @@ export function SellersWhoWeRepresentSection() {
           {cards.map((card, idx) => (
             <AnimateOnView
               key={idx}
-              animation="fade-up"
-              rootMargin="0px 0px -40px 0px"
+              animation="fade-up-slow"
+              rootMargin="100px 0px -40px 0px"
               threshold={0.05}
+              delayMs={idx * 80}
             >
               <div
                 className="flex flex-col overflow-hidden rounded-2xl border bg-white shadow-sm shadow-[#5DB67C]/20"
@@ -74,13 +79,31 @@ export function SellersWhoWeRepresentSection() {
                   className="relative mx-auto mb-5 flex h-[180px] w-full items-center justify-center overflow-hidden rounded-2xl px-6 sm:h-[220px] md:h-[280px]"
                 >
                   {idx < BENTO_LOTTIE_PATHS.length && lottieData[idx] ? (
-                    <div className="flex h-full w-full items-center justify-center">
-                      <Lottie
-                        animationData={lottieData[idx]!}
-                        loop
-                        style={{ width: "100%", height: "100%", maxHeight: "100%" }}
+                    <>
+                      <div className="flex h-full w-full items-center justify-center">
+                        <Lottie
+                          animationData={lottieData[idx]!}
+                          loop
+                          style={{ width: "100%", height: "100%", maxHeight: "100%" }}
+                        />
+                      </div>
+                      <div
+                        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent sm:h-16 md:h-20"
+                        aria-hidden
                       />
-                    </div>
+                      <div
+                        className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white to-transparent sm:h-16 md:h-20"
+                        aria-hidden
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent sm:w-12 md:w-16"
+                        aria-hidden
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent sm:w-12 md:w-16"
+                        aria-hidden
+                      />
+                    </>
                   ) : (
                     <Image
                       src={card.image}

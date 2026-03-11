@@ -14,16 +14,17 @@ import { siteConfig } from "@/config/site.config";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
-const marketplacePaths = ["/buyers", "/sellers", "/value-my-store", "/deals", "/terms", "/privacy"];
+const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/terms", "/privacy"];
 
 export function Header() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  if (pathname === "/") return null;
-  const isMarketplace = marketplacePaths.some((p) => pathname.startsWith(p));
+  const isMarketplace = marketplacePaths.some((p) => p === "/" ? pathname === "/" : pathname.startsWith(p));
 
   if (isMarketplace) {
-    const activePath = pathname.startsWith("/sellers")
+    const activePath = pathname === "/" || pathname.startsWith("/buyers")
+      ? ("/buyers" as const)
+      : pathname.startsWith("/sellers")
       ? ("/sellers" as const)
       : pathname.startsWith("/value-my-store")
         ? ("/value-my-store" as const)

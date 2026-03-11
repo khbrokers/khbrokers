@@ -15,8 +15,8 @@ export function SellersCtaSection() {
        
       <div className="mx-auto max-w-6xl">
         <AnimateOnView
-          animation="stagger-slower"
-          rootMargin="0px 0px -80px 0px"
+          animation="stagger"
+          rootMargin="100px 0px -40px 0px"
           threshold={0.05}
         >
           <div className="relative overflow-hidden rounded-xl px-4 py-12 text-center sm:rounded-2xl sm:px-6 sm:py-14 md:rounded-[20px] md:px-12 md:py-20 lg:px-16 lg:py-24">

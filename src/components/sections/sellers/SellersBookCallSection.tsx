@@ -14,7 +14,7 @@ export function SellersBookCallSection() {
       className="scroll-mt-20 bg-[#f0fdf4] px-4 py-12 sm:py-16 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
-        <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+        <AnimateOnView animation="stagger" rootMargin="100px 0px -40px 0px" threshold={0.05}>
           <header className="stagger-child mb-12 text-center md:mb-16">
             <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[44px] lg:text-[52px]">
               {heading.before}

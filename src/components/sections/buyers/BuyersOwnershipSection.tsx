@@ -38,7 +38,7 @@ export function BuyersOwnershipSection() {
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[30%_1fr] md:gap-16 lg:gap-20">
           <AnimateOnView
             animation="fade-up-slow"
-            rootMargin="0px 0px -60px 0px"
+            rootMargin="100px 0px -40px 0px"
             threshold={0.05}
             delayMs={0}
             className="flex flex-col items-center text-center md:items-start md:text-left"
@@ -51,9 +51,9 @@ export function BuyersOwnershipSection() {
             </h2>
             <AnimateOnView
               animation="fade-up-slow"
-              rootMargin="0px 0px -60px 0px"
+              rootMargin="100px 0px -40px 0px"
               threshold={0.05}
-              delayMs={400}
+              delayMs={80}
             >
               <p className="mt-6 text-[14px] md:text-[18px] font-normal leading-[1.6] text-zinc-900/60">
                 {description}
@@ -62,8 +62,8 @@ export function BuyersOwnershipSection() {
           </AnimateOnView>
 
           <AnimateOnView
-            animation="stagger-slower"
-            rootMargin="0px 0px -60px 0px"
+            animation="stagger"
+            rootMargin="100px 0px -40px 0px"
             threshold={0.05}
             className="grid grid-cols-1 min-h-[1200px] gap-4 sm:grid-cols-2 sm:grid-rows-2 sm:gap-6 sm:min-h-[900px] md:gap-8 md:min-h-[1100px]"
           >
@@ -103,8 +103,8 @@ export function BuyersOwnershipSection() {
                       style={{ transform: "rotateY(0deg)" }}
                     >
                       <AnimateOnView
-                        animation="stagger-slower"
-                        rootMargin="0px 0px -60px 0px"
+                        animation="stagger"
+                        rootMargin="100px 0px -40px 0px"
                         threshold={0.05}
                         className={`flex flex-1 flex-col ${isThirdCard ? "justify-between gap-4" : ""}`}
                       >

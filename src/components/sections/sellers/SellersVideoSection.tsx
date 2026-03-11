@@ -57,7 +57,10 @@ export function SellersVideoSection() {
 
   return (
     <div className="relative z-10 px-4 pb-12 pt-6 sm:pb-20 sm:pt-8 md:pb-24">
-      <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
+      <Script
+        src="https://fast.wistia.com/player.js"
+        strategy="lazyOnload"
+      />
       <Script
         src={`https://fast.wistia.com/embed/${WISTIA_MEDIA_ID}.js`}
         strategy="lazyOnload"
@@ -65,7 +68,7 @@ export function SellersVideoSection() {
       />
       <div className="mx-auto max-w-5xl">
         <div
-          className="group relative cursor-pointer overflow-hidden rounded-xl p-[6px] sm:rounded-2xl md:rounded-[2.2rem]"
+          className="group relative cursor-pointer overflow-hidden rounded-xl p-[6px] transition-all duration-300 ease-out sm:rounded-2xl md:rounded-[2rem]"
           style={{
             background:
               "linear-gradient(to bottom, #04986240 0%, #04986240 40%, white 100%)",
@@ -84,12 +87,12 @@ export function SellersVideoSection() {
               src={videoThumbnail}
               alt="Video thumbnail"
               fill
-              className="object-cover object-center transition-transform group-hover:scale-105"
+              className="object-cover object-center transition-transform duration-300 ease-out group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 1024px"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div
-                className="flex items-center justify-center rounded-full p-2 backdrop-blur-[10px] transition-transform group-hover:scale-105"
+                className="flex items-center justify-center rounded-full p-2 backdrop-blur-[10px] transition-transform duration-300 ease-out group-hover:scale-105"
                 style={{
                   background:
                     "linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -109,6 +112,7 @@ export function SellersVideoSection() {
         </div>
       </div>
 
+      {/* Video popup modal - rendered via portal above header (z-[9999]) */}
       {isPopupOpen &&
         typeof document !== "undefined" &&
         createPortal(
@@ -130,18 +134,8 @@ export function SellersVideoSection() {
                 className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
                 aria-label="Close video"
               >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
               {createElement("wistia-player", {

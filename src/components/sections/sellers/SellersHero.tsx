@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SiShopify } from "react-icons/si";
@@ -8,8 +9,17 @@ import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { SellersVideoSection } from "./SellersVideoSection";
 
 const PRIMARY = "#039760";
+const VIDEO_PLAYBACK_RATE = 0.5;
 
 export function SellersHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = VIDEO_PLAYBACK_RATE;
+    }
+  }, []);
   const { trustedBy, headline, subtitle, highlightedTerms, cta, asFeaturedIn, featuredBrands } =
     sellersHeroConfig;
 
@@ -23,16 +33,18 @@ export function SellersHero() {
     <section
       className="relative min-h-[75vh] overflow-hidden sm:min-h-[85vh]"
     >
-      <Image
-        src="/assets/sellers_landing/hero/hero.png"
-        alt=""
-        fill
-        className="object-cover object-center"
-        priority
-        sizes="100vw"
+      <video
+        ref={videoRef}
+        src="/assets/sellers_landing/hero/hero_animateds.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden
       />
       <AnimateOnView
-        animation="stagger"
+        animation="stagger-slow"
         className="relative z-10 mx-auto max-w-4xl px-4 pb-4 pt-[100px] sm:px-6 sm:pb-20 sm:pt-24 md:pb-24 md:pt-[150px] lg:px-8"
         rootMargin="0px 0px 0px 0px"
         threshold={0.15}
@@ -57,7 +69,7 @@ export function SellersHero() {
         </div>
 
         {/* Main headline */}
-        <h1 className="stagger-child text-center text-[35px] font-medium leading-[1.15] tracking-[-2px] text-zinc-900 sm:text-[44px] sm:tracking-[-3px] md:text-[58px] md:tracking-[-4px] lg:text-[68px]">
+        <h1 className="stagger-child mx-auto w-[90%] max-w-7xl text-center text-[35px] font-medium leading-[1.15] tracking-[-2px] text-zinc-900 sm:w-[85%] sm:text-[44px] sm:tracking-[-3px] md:w-full md:max-w-5xl md:text-[58px] md:leading-[1.12] md:tracking-[-4px] lg:text-[68px]">
           {headline.before}
           <span className="font-serif font-medium italic" style={{ color: PRIMARY }}>
             {headline.highlight}
@@ -85,7 +97,7 @@ export function SellersHero() {
           <p className="text-center text-[12px] font-medium text-zinc-500 sm:text-[16px] md:text-[16px]">
             {asFeaturedIn}
           </p>
-          <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-[25px] sm:gap-6 md:gap-12">
             {featuredBrands.map((src) => (
               <Image
                 key={src}
@@ -122,10 +134,11 @@ export function SellersHero() {
         </div>
       </AnimateOnView>
       <AnimateOnView
-        animation="fade-up"
+        animation="fade-up-slow"
         className="relative z-10"
-        rootMargin="0px 0px 0px 0px"
-        threshold={0.15}
+        rootMargin="0px 0px -80px 0px"
+        threshold={0.05}
+        delayMs={200}
       >
         <SellersVideoSection />
       </AnimateOnView>

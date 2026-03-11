@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { sellersFaqConfig } from "@/config/sellers.config";
-import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PRIMARY = "#16a34a";
@@ -15,21 +14,31 @@ export function SellersFaqSection() {
     <section id="faqs" className="scroll-mt-20 bg-[#f0fdf4] px-4 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[0.35fr_0.65fr] md:gap-16 lg:gap-20">
-          <LazyBlock>
-            <header className="text-center sm:text-left">
-              <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[40px] lg:text-[48px]">
-                {heading.before}
-                <span className="font-serif font-medium italic" style={{ color: PRIMARY }}>
-                  {heading.highlight}
-                </span>
-              </h2>
+          <AnimateOnView
+            animation="fade-up-slow"
+            rootMargin="100px 0px -40px 0px"
+            threshold={0.05}
+            className="text-center sm:text-left"
+          >
+            <h2 className="text-[26px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[32px] md:text-[40px] lg:text-[48px]">
+              {heading.before}
+              <span className="font-serif font-medium italic" style={{ color: PRIMARY }}>
+                {heading.highlight}
+              </span>
+            </h2>
+            <AnimateOnView
+              animation="fade-up-slow"
+              rootMargin="0px 0px -60px 0px"
+              threshold={0.05}
+              delayMs={200}
+            >
               <p className="mt-4 text-base font-normal text-zinc-600 md:text-lg">
                 {subheading}
               </p>
-            </header>
-          </LazyBlock>
+            </AnimateOnView>
+          </AnimateOnView>
 
-          <AnimateOnView animation="stagger" rootMargin="0px 0px -80px 0px">
+          <AnimateOnView animation="stagger" rootMargin="100px 0px -40px 0px" threshold={0.05}>
             <div className="flex flex-col gap-4">
               {items.map((item, idx) => {
                 const isOpen = openIndex === idx;

@@ -49,9 +49,9 @@ export function BuyersNeverSection() {
                 <AnimateOnView
                   key={idx}
                   animation="fade-up-slow"
-                  rootMargin="0px 0px -60px 0px"
+                  rootMargin="100px 0px -40px 0px"
                   threshold={0.05}
-                  delayMs={idx * 400}
+                  delayMs={idx * 80}
                   className="md:col-span-2"
                 >
                 <article
@@ -88,9 +88,9 @@ export function BuyersNeverSection() {
               <AnimateOnView
                 key={idx}
                 animation="fade-up-slow"
-                rootMargin="0px 0px -60px 0px"
+                rootMargin="100px 0px -40px 0px"
                 threshold={0.05}
-                delayMs={idx * 400}
+                delayMs={idx * 80}
               >
               <article
                 className="flex min-w-0 flex-col overflow-hidden rounded-2xl bg-[#F2E7FF] shadow-sm"

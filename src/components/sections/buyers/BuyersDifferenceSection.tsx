@@ -62,8 +62,8 @@ export function BuyersDifferenceSection() {
         </LazyBlock>
 
         <AnimateOnView
-          animation="stagger-slower"
-          rootMargin="0px 0px -60px 0px"
+          animation="stagger"
+          rootMargin="100px 0px -40px 0px"
           threshold={0.05}
         >
         <div className="mb-8 overflow-hidden rounded-xl bg-[#FFFFFF] shadow-lg sm:rounded-2xl md:mb-12">

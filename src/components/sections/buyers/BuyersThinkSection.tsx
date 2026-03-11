@@ -13,8 +13,8 @@ export function BuyersThinkSection() {
         <header className="mx-auto mb-6 w-[80%] space-y-5 text-center sm:w-auto md:mb-12">
           <AnimateOnView
             animation="fade-up"
-            rootMargin="0px 0px -120px 0px"
-            threshold={0.2}
+            rootMargin="100px 0px -40px 0px"
+            threshold={0.05}
             delayMs={0}
           >
             <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
@@ -43,9 +43,9 @@ export function BuyersThinkSection() {
             <div className="mx-auto flex w-[95%] flex-col gap-4 md:mx-0 md:w-full md:max-w-none md:gap-6 md:rounded-none md:border-0 md:bg-transparent md:p-0">
               <AnimateOnView
                 animation="fade-up-slow"
-                rootMargin="0px 0px -120px 0px"
-                threshold={0.2}
-                delayMs={700}
+                rootMargin="100px 0px -40px 0px"
+                threshold={0.05}
+                delayMs={120}
               >
                 <p className="text-[18px] font-semibold leading-[1.2] tracking-[-0.5px] text-zinc-900 md:text-[22px] md:font-medium md:leading-[1.1]">
                   {leftColumn.statement}
@@ -54,9 +54,9 @@ export function BuyersThinkSection() {
 
               <AnimateOnView
                 animation="fade-up-slow"
-                rootMargin="0px 0px -120px 0px"
-                threshold={0.2}
-                delayMs={1050}
+                rootMargin="100px 0px -40px 0px"
+                threshold={0.05}
+                delayMs={180}
               >
                 <div className="space-y-3 md:mt-0 md:space-y-6">
                   {leftColumn.paragraphs.map((para, idx) => {
@@ -87,9 +87,9 @@ export function BuyersThinkSection() {
 
               <AnimateOnView
                 animation="fade-up-slow"
-                rootMargin="0px 0px -120px 0px"
-                threshold={0.2}
-                delayMs={1400}
+                rootMargin="100px 0px -40px 0px"
+                threshold={0.05}
+                delayMs={240}
               >
                 <Link
                   href={leftColumn.cta.href}
@@ -107,9 +107,9 @@ export function BuyersThinkSection() {
               <AnimateOnView
                 key={idx}
                 animation="slide-in-from-left"
-                rootMargin="0px 0px -120px 0px"
-                threshold={0.2}
-                delayMs={1050 + idx * 350}
+                rootMargin="100px 0px -40px 0px"
+                threshold={0.05}
+                delayMs={180 + idx * 80}
               >
                 <div
                   className="flex flex-col gap-3 px-4 md:px-0 py-[30px] sm:flex-row sm:gap-4 sm:py-6 md:gap-6 md:py-8 md:flex-row border-b border-[#a36af6]/30"

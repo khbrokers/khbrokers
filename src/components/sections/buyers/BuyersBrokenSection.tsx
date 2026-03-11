@@ -15,8 +15,8 @@ export function BuyersBrokenSection() {
         <header className="mb-12 space-y-5 text-center md:mb-16 max-w-5xl mx-auto">
           <AnimateOnView
             animation="fade-up"
-            rootMargin="0px 0px -120px 0px"
-            threshold={0.2}
+            rootMargin="100px 0px -40px 0px"
+            threshold={0.05}
             delayMs={0}
           >
             <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:tracking-[-3px] sm:text-[40px] md:text-[58px] lg:text-[68px]">
@@ -28,9 +28,9 @@ export function BuyersBrokenSection() {
           </AnimateOnView>
           <AnimateOnView
             animation="fade-up"
-            rootMargin="0px 0px -120px 0px"
-            threshold={0.2}
-            delayMs={350}
+            rootMargin="100px 0px -40px 0px"
+            threshold={0.05}
+            delayMs={80}
           >
             <p className="mt-3 font-regular text-[14px] leading-[1.1] tracking-[-0.5px] text-zinc-900/60 sm:mt-4 md:text-[18px]">
               {subheading}
@@ -59,9 +59,9 @@ export function BuyersBrokenSection() {
               <AnimateOnView
                 key={idx}
                 animation="fade-up"
-                rootMargin="0px 0px -120px 0px"
-                threshold={0.2}
-                delayMs={idx * 350}
+                rootMargin="100px 0px -40px 0px"
+                threshold={0.05}
+                delayMs={idx * 80}
               >
                 <div
                   className="group relative flex flex-col overflow-hidden p-5 sm:p-6 md:p-8 h-[100%]"

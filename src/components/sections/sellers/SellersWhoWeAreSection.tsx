@@ -16,7 +16,7 @@ export function SellersWhoWeAreSection() {
       style={{ backgroundColor: "#f0fdf4" }}
     >
       <div className="mx-auto max-w-6xl">
-        <LazyBlock>
+        <LazyBlock rootMargin="100px 0px -40px 0px">
           <header className="mb-12 space-y-[20px] text-center md:mb-16">
             <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[40px] md:text-[58px] lg:text-[68px]">
               {heading.before}
@@ -35,9 +35,9 @@ export function SellersWhoWeAreSection() {
             <AnimateOnView
               key={idx}
               animation="fade-up"
-              rootMargin="0px 0px -40px 0px"
+              rootMargin="100px 0px -40px 0px"
               threshold={0.05}
-              delayMs={idx * 100}
+              delayMs={idx * 80}
             >
               <div
                 className="group relative flex flex-col overflow-hidden rounded-2xl border-2 bg-white p-6 shadow-sm transition-colors sm:p-8"

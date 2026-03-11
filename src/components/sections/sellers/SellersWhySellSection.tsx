@@ -25,11 +25,15 @@ const CENTER_PADDING = (SCROLL_VIEWPORT_HEIGHT - ACTIVE_CARD_HEIGHT) / 2;
 const scrollContainerBg1 = "#7fcdb1";
 const scrollContainerBg2 = "#dff8ef";
 
+const AUTO_SWIPE_INTERVAL_MS = 3500;
+
 export function SellersWhySellSection() {
   const { heading, tagline, ctas, bentoCards } = sellersWhySellConfig;
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
 
   const itemHeight = ACTIVE_CARD_HEIGHT + CARD_GAP;
   const scrollStep = itemHeight + CARD_GAP; // item + flex gap between items
@@ -55,6 +59,17 @@ export function SellersWhySellSection() {
     updateActive();
     return () => el.removeEventListener("scroll", updateActive);
   }, [bentoCards.length]);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const next =
+        activeIndexRef.current >= bentoCards.length - 1
+          ? 0
+          : activeIndexRef.current + 1;
+      scrollToIndex(next);
+    }, AUTO_SWIPE_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [bentoCards.length, scrollToIndex]);
 
   const wheelLockRef = useRef(false);
   const handleWheel = useCallback(
@@ -84,7 +99,8 @@ export function SellersWhySellSection() {
       <div className="mx-auto max-w-6xl">
         <AnimateOnView
           animation="stagger"
-          rootMargin="0px 0px -80px 0px"
+          rootMargin="100px 0px -40px 0px"
+          threshold={0.05}
           className="relative grid gap-6 rounded-[23px] md:grid-cols-2 md:gap-8 lg:gap-10"
           style={{
             background: "linear-gradient(180deg, #7CCCAF 0%, #E2F9F1 100%)",
@@ -117,7 +133,7 @@ export function SellersWhySellSection() {
                   {tagline}
                 </p>
 
-                <div className="mt-8 flex w-full flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
+                <div className="mt-8 flex w-fit flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
                   {ctas.map((cta) =>
                     cta.primary ? (
                       <Link
@@ -170,12 +186,19 @@ export function SellersWhySellSection() {
                       key={i}
                       type="button"
                       onClick={() => scrollToIndex(i)}
-                      className={`cursor-pointer shrink-0 rounded-full transition-colors ${i === activeIndex ? "h-[10px] w-[22px]" : "h-2.5 w-2.5"}`}
-                      style={{
-                        backgroundColor: i === activeIndex ? "#00965F70" : "rgba(0,0,0,0.12)",
-                      }}
+                      className={`cursor-pointer shrink-0 rounded-full overflow-hidden transition-colors ${
+                        i === activeIndex ? "h-[10px] w-[28px]" : "h-2.5 w-2.5"
+                      }`}
+                      style={{ backgroundColor: "rgba(0,0,0,0.12)" }}
                       aria-label={`Go to slide ${i + 1}`}
-                    />
+                    >
+                      {i === activeIndex && (
+                        <span
+                          key={activeIndex}
+                          className="block h-full min-w-0 rounded-full bg-[#00965F70] animate-progress-pill"
+                        />
+                      )}
+                    </button>
                   ))}
                 </div>
                 <button

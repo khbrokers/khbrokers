@@ -43,7 +43,7 @@ export const sellersHeroConfig = {
 
 export const sellersTrustedByConfig = {
   /** Scroll duration in seconds for brand marquee (higher = slower) */
-  scrollDuration: 50,
+  scrollDuration: 70,
   heading: {
     before: "Trusted by ",
     highlight: "300+",
@@ -55,13 +55,19 @@ export const sellersTrustedByConfig = {
     "/assets/sellers_landing/partners/partner03.png",
     "/assets/sellers_landing/partners/partner04.png",
     "/assets/sellers_landing/partners/partner05.png",
-  ],
-  row2Icons: [
     "/assets/sellers_landing/partners/partner06.png",
     "/assets/sellers_landing/partners/partner07.png",
     "/assets/sellers_landing/partners/partner08.png",
+  ],
+  row2Icons: [
     "/assets/sellers_landing/partners/partner09.png",
     "/assets/sellers_landing/partners/partner10.png",
+    "/assets/sellers_landing/partners/partner11.png",
+    "/assets/sellers_landing/partners/partner12.png",
+    "/assets/sellers_landing/partners/partner13.png",
+    "/assets/sellers_landing/partners/partner14.png",
+    "/assets/sellers_landing/partners/partner15.png",
+    "/assets/sellers_landing/partners/partner16.png",
   ],
 };
 
