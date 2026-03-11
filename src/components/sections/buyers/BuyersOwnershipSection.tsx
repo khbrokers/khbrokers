@@ -83,7 +83,7 @@ export function BuyersOwnershipSection() {
               return (
                 <div
                   key={idx}
-                  className={`stagger-child flex [perspective:1000px] ${isThirdCard ? "h-[200px] sm:h-[250px] md:h-[380px] sm:col-span-2" : "h-full"}`}
+                  className={`stagger-child flex [perspective:1000px] ${isThirdCard ? "h-[300px] sm:h-[300px] md:h-[380px] sm:col-span-2" : "h-full"}`}
                 >
                   <div
                     className="relative h-full w-full"
