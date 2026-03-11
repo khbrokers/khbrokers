@@ -20,7 +20,7 @@ export function ValueMyStoreForm() {
         <AnimateOnView
           animation="fade-up"
           rootMargin="0px 0px -60px 0px"
-          className="w-[70%] overflow-hidden md:py-[60px] md:px-[100px] rounded-[40px] p-6 shadow-xl shadow-[#00965F]/10 sm:rounded-[28px] sm:p-8 md:p-10"
+          className="w-[100%] md:w-[70%] overflow-hidden md:py-[60px] md:px-[100px] rounded-[20px] md:rounded-[40px] p-6 shadow-xl shadow-[#00965F]/10 sm:rounded-[28px] sm:p-8 md:p-10"
           style={{
             border: "2px solid transparent",
             background:
