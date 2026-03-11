@@ -43,6 +43,7 @@ export function SellersBookCallSection() {
                 <CalInlineEmbed
                   calLink={calEmbedSlug}
                   primaryColor={calPrimaryColor}
+                  height={630}
                   className="rounded-lg"
                 />
               </div>

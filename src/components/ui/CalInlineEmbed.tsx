@@ -7,9 +7,11 @@ interface CalInlineEmbedProps {
   calLink: string;
   primaryColor?: string;
   className?: string;
+  height?: number;
 }
 
 const PRIMARY_PURPLE = "#a36af6";
+const DEFAULT_HEIGHT = 630;
 
 /**
  * Cal.com inline embed with white + purple theme.
@@ -23,6 +25,7 @@ export function CalInlineEmbed({
   calLink,
   primaryColor = PRIMARY_PURPLE,
   className = "",
+  height = DEFAULT_HEIGHT,
 }: CalInlineEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -39,6 +42,24 @@ export function CalInlineEmbed({
           },
         },
         layout: "month_view",
+        cssVarsPerTheme: {
+          light: {
+            "cal-brand": primaryColor,
+            "cal-brand-default": primaryColor,
+            "cal-brand-emphasis": primaryColor,
+            "cal-brand-foreground": "#ffffff",
+            "cal-color-brand-foreground": "#ffffff",
+            "cal-background": "#ffffff",
+          },
+          dark: {
+            "cal-brand": primaryColor,
+            "cal-brand-default": primaryColor,
+            "cal-brand-emphasis": primaryColor,
+            "cal-brand-foreground": "#ffffff",
+            "cal-color-brand-foreground": "#ffffff",
+            "cal-background": "#ffffff",
+          },
+        },
       });
 
       cal("inline", {
@@ -55,12 +76,12 @@ export function CalInlineEmbed({
   return (
     <div
       ref={containerRef}
-      className={`cal-embed overflow-hidden rounded-lg ${className}`.trim()}
+      className={`cal-embed overflow-auto rounded-lg ${className}`.trim()}
       style={{
         width: "100%",
-        height: "630px",
+        height: `${height}px`,
         maxWidth: "100%",
-        minHeight: "630px",
+        minHeight: `${height}px`,
         contain: "layout",
       }}
     />

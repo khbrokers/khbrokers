@@ -5,8 +5,15 @@ import { sellersTrustedByConfig } from "@/config/sellers.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const BRAND_PANEL_BG = "#DEF3EC";
+const DEFAULT_OPACITY = 0.8;
 
-function BrandPanel({ src }: { src: string }) {
+function BrandPanel({
+  src,
+  opacity = DEFAULT_OPACITY,
+}: {
+  src: string;
+  opacity?: number;
+}) {
   return (
     <div
       className="group shrink-0 flex items-center justify-center rounded-xl px-4 py-3 sm:px-5 sm:py-4 md:px-[30px] md:py-[40px]"
@@ -17,7 +24,8 @@ function BrandPanel({ src }: { src: string }) {
         alt=""
         width={200}
         height={42}
-        className="h-[32px] md:h-[42px] w-auto opacity-80 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0"
+        className="h-[32px] md:h-[42px] w-auto grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0"
+        style={{ opacity }}
       />
     </div>
   );
@@ -73,11 +81,11 @@ export function SellersTrustedBySection() {
                 className="flex gap-4 sm:gap-5 md:gap-6 animate-scroll-left"
                 style={{ width: "max-content" }}
               >
-              {row1Icons.map((src, i) => (
-                <BrandPanel key={`r1-${src}-${i}`} src={src} />
+              {row1Icons.map((item, i) => (
+                <BrandPanel key={`r1-${item.src}-${i}`} src={item.src} opacity={item.opacity} />
               ))}
-              {row1Icons.map((src, i) => (
-                <BrandPanel key={`r1-dup-${src}-${i}`} src={src} />
+              {row1Icons.map((item, i) => (
+                <BrandPanel key={`r1-dup-${item.src}-${i}`} src={item.src} opacity={item.opacity} />
               ))}
               </div>
             </div>
@@ -88,11 +96,11 @@ export function SellersTrustedBySection() {
                 className="flex gap-4 sm:gap-5 md:gap-6 animate-scroll-right"
                 style={{ width: "max-content" }}
               >
-              {row2Icons.map((src, i) => (
-                <BrandPanel key={`r2-${src}-${i}`} src={src} />
+              {row2Icons.map((item, i) => (
+                <BrandPanel key={`r2-${item.src}-${i}`} src={item.src} opacity={item.opacity} />
               ))}
-              {row2Icons.map((src, i) => (
-                <BrandPanel key={`r2-dup-${src}-${i}`} src={src} />
+              {row2Icons.map((item, i) => (
+                <BrandPanel key={`r2-dup-${item.src}-${i}`} src={item.src} opacity={item.opacity} />
               ))}
               </div>
             </div>

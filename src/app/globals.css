@@ -108,3 +108,10 @@ input[type="range"].deals-slider::-moz-range-thumb {
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+/* Cal.com embed: white text on brand buttons (date selected, CTA) */
+.cal-embed [class*="bg-brand-default"][class*="text-brand"],
+.cal-embed button[class*="bg-brand-default"],
+.cal-embed [class*="bg-brand-default"].cursor-pointer {
+  color: #ffffff !important;
+}
