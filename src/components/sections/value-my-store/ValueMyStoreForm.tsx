@@ -1,16 +1,21 @@
 "use client";
 
+import Script from "next/script";
 import { valueMyStoreConfig } from "@/config/value-my-store.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PRIMARY = "#00965F";
-const TYPEFORM_URL = "https://form.typeform.com/to/tKEml6uU";
+const TYPEFORM_LIVE_ID = "01KHRW1Q39EC9SYDTFQDPYG364";
 
 export function ValueMyStoreForm() {
   const { formTitle, formDescription } = valueMyStoreConfig;
 
   return (
     <section className="relative px-4 pb-24 sm:px-6 md:pb-32 top-[40px] md:top-[120px]">
+      <Script
+        src="https://embed.typeform.com/next/embed.js"
+        strategy="lazyOnload"
+      />
       <div className="mx-auto flex w-full justify-center">
         <AnimateOnView
           animation="fade-up"
@@ -40,11 +45,9 @@ export function ValueMyStoreForm() {
 
           {/* Typeform embed */}
           <div className="mt-8 sm:mt-10 w-full overflow-hidden rounded-xl border border-zinc-200 bg-white">
-            <iframe
-              src={TYPEFORM_URL}
-              title="Value My Store - Typeform"
-              className="h-[500px] w-full min-h-[500px] border-0 sm:h-[550px] sm:min-h-[550px] md:h-[600px] md:min-h-[600px]"
-              allow="camera; microphone; fullscreen"
+            <div
+              data-tf-live={TYPEFORM_LIVE_ID}
+              className="h-[500px] w-full min-h-[500px] sm:h-[550px] sm:min-h-[550px] md:h-[600px] md:min-h-[600px]"
             />
           </div>
         </AnimateOnView>

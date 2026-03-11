@@ -1,24 +1,35 @@
 "use client";
 
-import Image from "next/image";
+import { useRef, useEffect } from "react";
 import { FaStore } from "react-icons/fa6";
 import { valueMyStoreConfig } from "@/config/value-my-store.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PRIMARY = "#00965F";
+const VIDEO_PLAYBACK_RATE = 0.5;
 
 export function ValueMyStoreHero() {
   const { tag, headline, description, ctaLabel } = valueMyStoreConfig;
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = VIDEO_PLAYBACK_RATE;
+    }
+  }, []);
 
   return (
     <section className="fixed inset-0 z-0 h-screen overflow-hidden">
-      <Image
-        src="/assets/sellers_landing/hero/hero.png"
-        alt=""
-        fill
-        className="object-cover object-center"
-        priority
-        sizes="100vw"
+      <video
+        ref={videoRef}
+        src="/assets/sellers_landing/hero/hero_animateds.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden
       />
       <AnimateOnView
         animation="stagger"

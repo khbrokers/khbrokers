@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { FaTag } from "react-icons/fa";
 import { dealsHeroConfig } from "@/config/deals.config";
@@ -8,20 +8,32 @@ import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PRIMARY = "#a36af6";
 const PAGE_BG = "#F5EEFD";
+const VIDEO_PLAYBACK_RATE = 0.5;
 
 export function DealsHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = VIDEO_PLAYBACK_RATE;
+    }
+  }, []);
+
   const { tag, headline, highlight, description, ctaLabel, ctaHref } =
     dealsHeroConfig;
 
   return (
     <section className="relative min-h-[65vh] max-h-[80vh] overflow-hidden sm:min-h-[70vh] md:min-h-[75vh]">
-      <Image
-        src="/assets/hero/hero.png"
-        alt=""
-        fill
-        className="object-cover object-center"
-        priority
-        sizes="100vw"
+      <video
+        ref={videoRef}
+        src="/assets/hero/hero_animatedb.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden
       />
       {/* Faded layer at bottom */}
       <div
@@ -54,12 +66,13 @@ export function DealsHero() {
               </span>
             </div>
           </div>
-          <h1 className="stagger-child text-center text-[32px] font-bold leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[40px] md:text-[48px] lg:text-[56px]">
-            {headline}
-          </h1>
-          <p className="stagger-child mt-2 text-center font-serif text-[28px] font-medium italic sm:text-[32px] md:text-[36px] lg:text-[40px]">
-            <span style={{ color: PRIMARY }}>{highlight}</span>
-          </p>
+          <h1 className="stagger-child text-center text-[36px] font-medium leading-[1.1] tracking-[-2px] text-zinc-900 sm:text-[48px] sm:tracking-[-3px] md:text-[58px] md:tracking-[-4px] lg:text-[68px]">
+          {headline}<br/>
+          <span className="font-serif font-medium italic" style={{ color: PRIMARY }}>
+          {highlight}
+          </span>
+        </h1>
+ 
           <p className="stagger-child mx-auto mt-6 max-w-2xl text-center text-[15px] leading-relaxed text-zinc-900/60 sm:text-[16px] md:text-[17px]">
             {description}
           </p>
