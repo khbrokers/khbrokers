@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 
 interface CalInlineEmbedProps {
   calLink: string;
+  namespace: string;
   primaryColor?: string;
   className?: string;
   height?: number;
@@ -23,6 +24,7 @@ const DEFAULT_HEIGHT = 630;
  */
 export function CalInlineEmbed({
   calLink,
+  namespace,
   primaryColor = PRIMARY_PURPLE,
   className = "",
   height = DEFAULT_HEIGHT,
@@ -30,9 +32,12 @@ export function CalInlineEmbed({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const container = containerRef.current;
+    let mounted = true;
+
     (async () => {
-      const cal = await getCalApi();
-      if (!cal || !containerRef.current) return;
+      const cal = await getCalApi({ namespace });
+      if (!cal || !container || !mounted) return;
 
       cal("ui", {
         theme: "light",
@@ -63,7 +68,7 @@ export function CalInlineEmbed({
       });
 
       cal("inline", {
-        elementOrSelector: containerRef.current,
+        elementOrSelector: container,
         calLink,
         config: {
           theme: "light",
@@ -71,7 +76,12 @@ export function CalInlineEmbed({
         },
       });
     })();
-  }, [calLink, primaryColor]);
+
+    return () => {
+      mounted = false;
+      if (container) container.innerHTML = "";
+    };
+  }, [calLink, namespace, primaryColor]);
 
   return (
     <div

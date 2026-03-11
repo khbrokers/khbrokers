@@ -50,6 +50,7 @@ export function DealsBookCallSection({
                >
                 <CalInlineEmbed
                   calLink={calEmbedSlug}
+                  namespace="deals"
                   primaryColor={calPrimaryColor}
                   className="rounded-lg"
                 />

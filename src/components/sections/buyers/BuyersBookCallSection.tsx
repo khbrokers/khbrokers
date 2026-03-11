@@ -37,6 +37,7 @@ export function BuyersBookCallSection() {
               <div className="relative w-full flex-1 overflow-hidden rounded-xl md:rounded-2xl bg-white">
                 <CalInlineEmbed
                   calLink={calEmbedSlug}
+                  namespace="buyers"
                   primaryColor={calPrimaryColor}
                   className="rounded-lg"
                 /> 
