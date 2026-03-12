@@ -234,9 +234,9 @@ export function DealsFilters({
                 className="rounded-[10px] border border-zinc-900/10 bg-[#F4F4F4] px-3 py-1.5 text-[12px] font-medium transition-colors sm:text-[13px]"
                 style={{
                   backgroundColor: isSelected
-                    ? "#A363F420"
+                    ? `${PRIMARY}20`
                     : "rgba(0,0,0,0.06)",
-                  color: isSelected ? "#A363F4" : "rgb(39,39,42)",
+                  color: isSelected ? PRIMARY : "rgb(39,39,42)",
                 }}
               >
                 {niche}

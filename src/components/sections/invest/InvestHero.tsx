@@ -184,8 +184,8 @@ export function InvestHero() {
             backgroundClip: "padding-box, border-box",
           }}
         >
-          <div className="bg-white flex flex-col gap-6 p-4 sm:gap-8 sm:p-6 md:flex-row md:items-center md:gap-12 md:p-10 lg:gap-16 lg:p-12">
-            <div className="flex flex-1 flex-col items-center justify-center text-center md:items-start md:text-left">
+          <div className="bg-white flex flex-col gap-6 p-4 sm:gap-8 sm:p-6 md:flex-row md:items-center md:gap-10 md:p-8 lg:gap-12 lg:p-10">
+            <div className="flex flex-col items-center justify-center text-center md:flex-[0_0_40%] md:items-start md:text-left md:min-w-0">
               <h2 className="w-[80%] text-[20px] font-medium leading-[1.2] tracking-[-2px] text-zinc-900 sm:w-auto sm:text-[24px] md:text-[32px] lg:text-[36px]">
                 {downloadHeadline.before}
                 <span
@@ -203,14 +203,14 @@ export function InvestHero() {
                 {downloadButton.label}
               </Link>
             </div>
-            <div className="relative flex flex-col items-center w-full md:max-w-[400px] lg:max-w-[420px]">
+            <div className="relative flex flex-col items-center w-full md:flex-[0_0_60%] md:min-w-0">
               <div
-                className="rounded-xl bg-white/90 p-4 shadow-sm backdrop-blur-sm sm:rounded-2xl sm:p-6 md:p-8"
+                className="rounded-xl bg-white/90 p-4 shadow-sm backdrop-blur-sm sm:rounded-2xl sm:p-6 md:p-6 lg:p-8 w-full max-w-[420px] md:max-w-none"
                 style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.04)" }}
               >
                 <div className="space-y-3 sm:space-y-4">
                   {form.fields.map((field) => (
-                    <div key={field.name} className="relative flex items-center gap-2 p-1 sm:gap-3 sm:p-2 border border-[#D3B1FF]/50 rounded-full">
+                    <div key={field.name} className="relative flex items-center gap-2 p-1 sm:gap-3 sm:p-2 md:gap-3 md:p-2 border border-[#D3B1FF]/50 rounded-full">
                       <div
                         className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors sm:h-10 sm:w-10"
                         style={{
@@ -222,7 +222,7 @@ export function InvestHero() {
                         {FIELD_ICONS[field.icon]}
                       </div>
                       <div
-                        className="flex flex-1 items-center rounded-full px-3 py-2 transition-colors focus-within:ring-2 focus-within:ring-[#a36af6]/20 sm:px-4 sm:py-3"
+                        className="flex flex-1 items-center rounded-full px-3 py-2 transition-colors focus-within:ring-2 focus-within:ring-[#a36af6]/20 sm:px-4 sm:py-3 md:px-4 md:py-3"
                         style={{
                           backgroundColor: "#F9F0FD",
                           border: "1px solid rgba(163, 99, 244, 0.15)",

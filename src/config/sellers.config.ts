@@ -255,7 +255,7 @@ export const sellersGetOfferConfig = {
 /** Wistia testimonial videos: Jesper, Jacob, Victor, Jake, Oriol */
 export const sellersTestimonialsVideoItems = [
   { thumbnail: "/assets/sellers_landing/reviews/Jesper_thumbnail.png", wistiaMediaId: "l8p873fntt", aspect: 1.7777777777777777 },
-  { thumbnail: "/assets/sellers_landing/reviews/jacob.jpg", wistiaMediaId: "z943501fxo", aspect: 0.5581395348837209 },
+  { thumbnail: "/assets/sellers_landing/reviews/jacob_thumbnail.png", wistiaMediaId: "z943501fxo", aspect: 0.5581395348837209 },
   { thumbnail: "/assets/sellers_landing/reviews/victor_thumbnail.png", wistiaMediaId: "uoobeednv1", aspect: 1.7777777777777777 },
   { thumbnail: "/assets/sellers_landing/reviews/jake_thumbnail.jpeg", wistiaMediaId: "po5apg6cqr", aspect: 1.7679558011049723 },
   { thumbnail: "/assets/sellers_landing/reviews/oriol_thumbnail.jpg", wistiaMediaId: "b98kon4ao4", aspect: 1.7777777777777777 },
@@ -301,7 +301,7 @@ export const sellersTestimonialsConfig = {
       role: "Health, Shopify Brand",
       xProfile: "https://x.com/agm_jake",
       xUsername: "agm_jake",
-      avatar: "/assets/sellers_landing/reviews/jake_thumbnail.jpeg",
+      avatar: "/assets/sellers_landing/reviews/jake.png",
       stars: 5,
     },
     {

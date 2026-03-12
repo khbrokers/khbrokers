@@ -190,7 +190,7 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
           }}
         />
 
-        <div className="relative z-10 mx-auto flex min-h-[70vh] flex-col items-center justify-center px-4 pb-8 pt-24 sm:min-h-[75vh] sm:pb-12 sm:pt-28 md:min-h-[80vh] md:pb-16 md:pt-32 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[70vh] flex-col items-center justify-center px-4 pl-6 pb-8 pt-24 sm:min-h-[75vh] sm:pb-12 sm:pt-28 sm:pl-10 md:min-h-[80vh] md:pb-16 md:pt-32 md:pl-16 lg:px-12 lg:pl-20">
           {/* Listings tag - exact DealsHero badge style */}
           <div className="mb-6 flex justify-center sm:mb-8">
             <div
@@ -222,7 +222,7 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
           </p>
 
           {/* Investment Snapshot */}
-          <div className="mt-10 flex flex-col items-center gap-2 w-full max-w-4xl">
+          <div className="mt-10 flex flex-col items-center gap-2 w-full max-w-3xl lg:max-w-4xl">
             <div className="flex justify-center">
               <span
                 className="inline-flex italic items-center gap-2 rounded-[12px] border px-3 py-1.5 text-xs tracking-[0] font-medium sm:px-4 sm:py-2 sm:text-[12px] md:text-[15px]"
@@ -236,7 +236,7 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
               </span>
             </div>
             <div
-              className="grid w-full grid-cols-2 gap-2 rounded-2xl border-2 border-[#a36af6]/20 bg-white/20 backdrop-blur-[6px] sm:grid-cols-3 sm:gap-4 sm:rounded-3xl md:grid-cols-6 md:gap-2 md:rounded-full"
+              className="grid w-full max-w-full grid-cols-2 gap-2 rounded-2xl border-2 border-[#a36af6]/20 bg-white/20 backdrop-blur-[6px] sm:grid-cols-3 sm:gap-3 sm:rounded-3xl md:grid-cols-6 md:gap-2 md:rounded-full lg:gap-3"
               style={{ borderBottom: "3px solid white" }}
             >
               {INVESTMENT_SNAPSHOT_ORDER.map((iconKey, idx) => {
@@ -245,7 +245,7 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
                 return (
                   <div
                     key={metric.icon}
-                    className="flex flex-row items-start justify-start gap-1.5 border-r-2 border-white p-2 sm:gap-2 sm:p-3 md:gap-1.5 md:px-5 md:py-3.5 md:max-w-max [&:nth-child(2n)]:max-sm:border-r-0 [&:nth-child(3n)]:sm:border-r-0 md:[&:nth-child(3n)]:border-r-2 md:[&:nth-child(3n)]:border-white md:[&:last-child]:border-r-0"
+                    className="flex flex-row items-start justify-start gap-1 border-r-2 border-white p-2 sm:gap-1.5 sm:p-2.5 md:gap-1.5 md:px-2.5 md:py-3 [&:first-child]:md:pl-5 [&:last-child]:md:pr-5 [&:last-child]:!border-r-0 [&:nth-child(2n)]:max-sm:border-r-0 [&:nth-child(3n)]:sm:border-r-0 md:[&:nth-child(3n)]:border-r-2 md:[&:nth-child(3n)]:border-white"
                   >
                     <span
                       className="flex h-fit shrink-0 items-center justify-center rounded-full"
@@ -256,11 +256,11 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
                     >
                       {METRIC_ICONS[metric.icon]}
                     </span>
-                    <div className="flex flex-col items-start justify-start gap-1">
-                      <p className="text-[11px] font-medium text-zinc-500 sm:text-[12px]">
+                    <div className="flex flex-col items-start justify-start gap-1 md:gap-1.5">
+                      <p className="text-[13px] font-medium text-zinc-500 sm:text-[13px] md:text-[13px] md:whitespace-nowrap lg:text-[14px]">
                         {METRIC_LABELS[metric.icon]}
                       </p>
-                      <p className="text-[13px] font-bold text-zinc-900 sm:text-[14px] md:text-[15px]">
+                      <p className="text-[15px] font-bold text-zinc-900 sm:text-[15px] md:text-[16px] md:whitespace-nowrap lg:text-[18px]">
                         {metric.value}
                       </p>
                     </div>

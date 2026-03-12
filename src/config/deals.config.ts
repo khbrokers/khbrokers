@@ -155,6 +155,8 @@ export interface Deal {
   heroTitle?: string;
   /** Optional: Custom hero subtitle (purple accent) */
   heroSubtitle?: string;
+  /** If true, deal was sold recently (for "Recently Sold" filter) */
+  recentlySold?: boolean;
 }
 
 export const mockDeals: Deal[] = [
@@ -244,6 +246,7 @@ export const mockDeals: Deal[] = [
   },
   {
     id: "2",
+    recentlySold: true,
     platform: "Shopify",
     niche: "Home & Garden",
     title: "Shopify | Home & Garden",
@@ -344,6 +347,7 @@ export const mockDeals: Deal[] = [
     askingPrice: 232500,
     speakHref: "#book-a-call",
     viewHref: "/deals/4",
+    recentlySold: true,
     businessOverview: {
       content:
         "Premium Pet Food & Supplements with 2-year track record. Subscription model with high LTV, established brand in growing pet wellness category. $620K TTM revenue and $93K net profit.",

@@ -12,6 +12,19 @@ import type { Deal } from "@/config/deals.config";
 
 const PRIMARY = "#a36af6";
 
+/** Parse metric value (e.g. "$252,996", "$1.2M", "$500K") to number */
+function parseMetricValue(str: string): number {
+  const cleaned = str.replace(/\s/g, "").replace(/,/g, "");
+  const match = cleaned.match(/^\$?([\d.]+)([KkMm])?$/);
+  if (!match) return 0;
+  let num = parseFloat(match[1]);
+  if (isNaN(num)) return 0;
+  const suffix = match[2]?.toUpperCase();
+  if (suffix === "K") num *= 1_000;
+  else if (suffix === "M") num *= 1_000_000;
+  return num;
+}
+
 export function DealsListing() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState(dealsSearchConfig.sortOptions[0]);
@@ -88,6 +101,11 @@ export function DealsListing() {
       (d) => ageValue(d) >= businessAge[0] && ageValue(d) <= businessAge[1]
     );
 
+    // Recently sold filter
+    if (recentlySold) {
+      result = result.filter((d) => d.recentlySold === true);
+    }
+
     // Sort
     switch (sortBy) {
       case "Price: Low to High":
@@ -98,14 +116,8 @@ export function DealsListing() {
         break;
       case "Revenue":
         result.sort((a, b) => {
-          const revA = parseInt(
-            a.metrics.find((m) => m.icon === "revenue")?.value.replace(/[^0-9]/g, "") || "0",
-            10
-          );
-          const revB = parseInt(
-            b.metrics.find((m) => m.icon === "revenue")?.value.replace(/[^0-9]/g, "") || "0",
-            10
-          );
+          const revA = parseMetricValue(a.metrics.find((m) => m.icon === "revenue")?.value || "0");
+          const revB = parseMetricValue(b.metrics.find((m) => m.icon === "revenue")?.value || "0");
           return revB - revA;
         });
         break;
@@ -122,6 +134,7 @@ export function DealsListing() {
     annualProfit,
     annualRevenue,
     businessAge,
+    recentlySold,
     sortBy,
   ]);
 

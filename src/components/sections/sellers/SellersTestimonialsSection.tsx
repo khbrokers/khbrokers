@@ -327,9 +327,7 @@ function VideoCarousel({
 
 export function SellersTestimonialsSection() {
   const { heading, subheading, testimonials } = sellersTestimonialsConfig;
-  const [activeIndex, setActiveIndex] = useState(
-    Math.floor(sellersTestimonialsVideoItems.length / 2)
-  );
+  const [activeIndex, setActiveIndex] = useState(1); // Jacob shows initially
   const [popupVideoItem, setPopupVideoItem] = useState<WistiaVideoItem | null>(null);
 
   return (
@@ -359,7 +357,7 @@ export function SellersTestimonialsSection() {
             <div className="stagger-child min-w-0 overflow-hidden">
             <VideoCarousel
               items={sellersTestimonialsVideoItems}
-              initialCenterIndex={Math.floor(sellersTestimonialsVideoItems.length / 2)}
+              initialCenterIndex={1}
               onActiveChange={setActiveIndex}
               onPlayVideo={setPopupVideoItem}
             />
