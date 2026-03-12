@@ -35,7 +35,7 @@ export const sellersHeroConfig = {
     "/assets/sellers_landing/brands/brand04.png",
     "/assets/sellers_landing/brands/brand05.png",
   ],
-  videoThumbnail: "/assets/sellers_landing/hero/videocover.png",
+  videoThumbnail: "/assets/sellers_landing/hero/videocover_seller.png",
   /** Full-screen hero background video */
   heroVideoSrc: "/assets/sellers_landing/hero/heroanimated_sellers.mp4",
   heroVideoPlaybackRate: HERO_VIDEO_PLAYBACK_RATE,
