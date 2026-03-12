@@ -107,7 +107,7 @@ export function InvestHero() {
         {/* Profit badge */}
         <div className="stagger-child flex justify-center">
           <div className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-[#A364F4]/10 bg-[linear-gradient(to_bottom,#d6b6ff_10%,transparent_100%)] px-2 py-1.5 backdrop-blur-sm sm:mb-8 sm:gap-2 sm:px-3 sm:py-2">
-            <FaDollarSign className="h-4 w-4 shrink-0 text-zinc-600 sm:h-5 sm:w-5" />
+            <FaDollarSign className="h-4 w-4 shrink-0 bg-[#A364F4]/70 p-1 md:p-1 rounded-full text-[#D3CAFD] sm:h-4 sm:w-4 md:w-5 md:h-5" />
             <span className="text-[10px] font-medium text-zinc-600 sm:text-[12px] md:text-[15px]">
               {profitBadge}
             </span>
