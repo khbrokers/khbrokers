@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 import { FaPlay } from "react-icons/fa";
 import { sellersHeroConfig } from "@/config/sellers.config";
 
-const WISTIA_MEDIA_ID = "h6xfyxiaea";
+const WISTIA_MEDIA_ID = "42gevs67ii";
 const WISTIA_ASPECT = 1.7777777777777777;
 const PRIMARY = "#16a34a";
 

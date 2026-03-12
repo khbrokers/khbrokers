@@ -24,7 +24,7 @@ export default function SellersPage() {
         style={{
           top: "-59px",
           height: "60px",
-          zIndex: 10000,
+          zIndex: 1000,
           background: "transparent",
         }}
       >
