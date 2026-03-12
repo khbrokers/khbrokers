@@ -14,7 +14,7 @@ import { siteConfig } from "@/config/site.config";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
-const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/terms", "/privacy"];
+const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest", "/terms", "/privacy"];
 
 export function Header() {
   const pathname = usePathname();
@@ -30,11 +30,13 @@ export function Header() {
         ? ("/value-my-store" as const)
         : pathname.startsWith("/deals")
           ? ("/deals" as const)
-          : pathname.startsWith("/terms")
-            ? ("/terms" as const)
-            : pathname.startsWith("/privacy")
-              ? ("/privacy" as const)
-              : ("/buyers" as const);
+          : pathname.startsWith("/invest")
+            ? ("/invest" as const)
+            : pathname.startsWith("/terms")
+              ? ("/terms" as const)
+              : pathname.startsWith("/privacy")
+                ? ("/privacy" as const)
+                : ("/buyers" as const);
     const paramTheme = searchParams.get("theme");
     const legalTheme =
       activePath === "/terms" || activePath === "/privacy"
@@ -182,7 +184,7 @@ function MarketplaceHeaderContent({
   activePath,
   legalTheme,
 }: {
-  activePath: "/buyers" | "/sellers" | "/value-my-store" | "/deals" | "/terms" | "/privacy";
+  activePath: "/buyers" | "/sellers" | "/value-my-store" | "/deals" | "/invest" | "/terms" | "/privacy";
   legalTheme?: "buyers" | "sellers" | null;
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -195,7 +197,7 @@ function MarketplaceHeaderContent({
         ? "buyers"
         : activePath === "/value-my-store"
           ? "sellers"
-          : activePath === "/deals" || activePath === "/terms" || activePath === "/privacy"
+          : activePath === "/deals" || activePath === "/invest" || activePath === "/terms" || activePath === "/privacy"
             ? "buyers"
             : activePath.slice(1);
   const theme = MARKETPLACE_THEMES[themeKey as keyof typeof MARKETPLACE_THEMES];

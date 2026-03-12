@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, FormEvent } from "react";
-import { siteConfig } from "@/config/site.config";
-
+import { useState, FormEvent, useRef, useEffect } from "react";
 const PURPLE = "#8C52FF";
 
 const BUDGET_OPTIONS = [
@@ -24,18 +22,106 @@ const OWNERSHIP_OPTIONS = [
   "Partnership",
 ];
 
+function CustomSelect({
+  value,
+  options,
+  onChange,
+  placeholderOpacity = false,
+  error = false,
+}: {
+  value: string;
+  options: string[];
+  onChange: (v: string) => void;
+  placeholderOpacity?: boolean;
+  error?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const isPlaceholder = value === options[0];
+  const displayClass = placeholderOpacity && isPlaceholder ? "text-zinc-900/70" : "text-zinc-900";
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative w-full">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className={`flex w-full items-center justify-between rounded-2xl border-0 bg-zinc-100 px-4 py-3 text-[14px] transition-colors hover:bg-zinc-200/80 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:px-4 sm:py-3.5 sm:text-[15px] ${displayClass} ${
+          error && isPlaceholder ? "ring-2 ring-red-400/50" : ""
+        }`}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label="Select option"
+      >
+        <span className="truncate">{value}</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="#717171"
+          className={`h-4 w-4 shrink-0 ml-2 transition-transform duration-200 sm:h-[18px] sm:w-[18px] ${open ? "rotate-180" : ""}`}
+          aria-hidden
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {open && (
+        <ul
+          role="listbox"
+          className="absolute left-0 right-0 top-full z-50 mt-1.5 max-h-[220px] overflow-y-auto rounded-xl border border-zinc-200/90 bg-white py-1 shadow-xl shadow-zinc-900/8 scrollbar-hide sm:max-h-[200px]"
+        >
+          {options.map((opt) => (
+            <li
+              key={opt}
+              role="option"
+              aria-selected={value === opt}
+              onClick={() => {
+                onChange(opt);
+                setOpen(false);
+              }}
+              className={`cursor-pointer px-4 py-3 text-[14px] transition-colors first:rounded-t-[11px] last:rounded-b-[11px] active:bg-zinc-100 sm:py-2.5 sm:text-[15px] ${
+                value === opt
+                  ? "bg-[#8C52FF]/10 text-zinc-900 font-medium"
+                  : "text-zinc-700 hover:bg-zinc-50"
+              }`}
+            >
+              {opt}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 export function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [budget, setBudget] = useState("");
-  const [ownership, setOwnership] = useState("");
+  const [budget, setBudget] = useState(BUDGET_OPTIONS[0]);
+  const [ownership, setOwnership] = useState(OWNERSHIP_OPTIONS[0]);
   const [lookingFor, setLookingFor] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSelectError, setShowSelectError] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
+    const invalidSelect = budget === BUDGET_OPTIONS[0] || ownership === OWNERSHIP_OPTIONS[0];
+    if (invalidSelect) {
+      setShowSelectError(true);
+      return;
+    }
+    setShowSelectError(false);
     setIsSubmitting(true);
     // TODO: wire to API
     setTimeout(() => setIsSubmitting(false), 1000);
@@ -95,30 +181,26 @@ export function SignUpForm() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <select
+            <CustomSelect
               value={budget}
-              onChange={(e) => setBudget(e.target.value)}
-              required
-              className={inputClass + " cursor-pointer"}
-            >
-              {BUDGET_OPTIONS.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </select>
-            <select
+              options={BUDGET_OPTIONS}
+              onChange={(v) => {
+                setBudget(v);
+                setShowSelectError(false);
+              }}
+              placeholderOpacity
+              error={showSelectError}
+            />
+            <CustomSelect
               value={ownership}
-              onChange={(e) => setOwnership(e.target.value)}
-              required
-              className={inputClass + " cursor-pointer"}
-            >
-              {OWNERSHIP_OPTIONS.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </select>
+              options={OWNERSHIP_OPTIONS}
+              onChange={(v) => {
+                setOwnership(v);
+                setShowSelectError(false);
+              }}
+              placeholderOpacity
+              error={showSelectError}
+            />
           </div>
 
           <div className="flex flex-col gap-3 rounded-2xl bg-zinc-900/4 p-4 sm:flex-row sm:gap-4 md:mb-4 md:p-5">

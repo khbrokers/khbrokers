@@ -9,7 +9,12 @@ import { FaPlay } from "react-icons/fa";
 const WISTIA_MEDIA_ID = "h6xfyxiaea";
 const WISTIA_ASPECT = 1.7777777777777777;
 
-export function BuyersVideoSection() {
+interface BuyersVideoSectionProps {
+  /** Optional label to show beside the play icon (e.g. "Know more") */
+  playLabel?: string;
+}
+
+export function BuyersVideoSection({ playLabel }: BuyersVideoSectionProps = {}) {
   const popupRef = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -85,20 +90,38 @@ export function BuyersVideoSection() {
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div
-                className="flex items-center justify-center rounded-full p-2 backdrop-blur-[10px] transition-transform group-hover:scale-105"
+                className="flex items-center justify-center gap-3 rounded-full p-2 backdrop-blur-[10px] transition-transform group-hover:scale-105 sm:gap-4"
                 style={{
                   background:
                     "linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)",
                 }}
               >
                 <div
-                  className="flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg sm:h-14 sm:w-14 md:h-16 md:w-16"
+                  className={`flex shrink-0 items-center justify-center rounded-full text-white shadow-lg ${
+                    playLabel ? "gap-2.5 px-4 py-2 sm:px-5 sm:py-3 md:py-5 md:px-5" : "h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16"
+                  }`}
                   style={{
                     background:
-                      "linear-gradient(to bottom, rgba(163, 106, 246, 0.2) 0%, #a36af6 100%)",
+                      "linear-gradient(to bottom, #E7D6FC 0%, #a36af6 100%)",
+                    ...(playLabel && {
+                      width: "max-content",
+                      gap: "10px",
+                      color: "white",
+                    }),
                   }}
                 >
-                  <FaPlay className="ml-1 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
+                  {playLabel && (
+                    <span className="text-[14px] font-medium sm:text-[16px] md:text-[18px]">
+                      {playLabel === "Know more" ? (
+                        <>
+                          Know <span className="font-serif text-[16px] font-medium sm:text-[18px] md:text-[20px] italic">more</span>
+                        </>
+                      ) : (
+                        playLabel
+                      )}
+                    </span>
+                  )}
+                  <FaPlay className={playLabel ? "h-4 w-4 sm:h-5 sm:w-5" : "ml-1 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6"} />
                 </div>
               </div>
             </div>

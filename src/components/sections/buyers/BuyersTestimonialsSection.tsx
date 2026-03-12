@@ -9,9 +9,9 @@ import { LazyBlock } from "@/components/ui/LazyBlock";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const TESTIMONIAL_ITEMS = [
-  { thumbnail: "/assets/reviews/thumbnail02.jpg", videoId: "1Q02DZe9gFx9JfMQUhgqUqO2Wdn7VkGcz" },
-  { thumbnail: "/assets/reviews/thumbnail01.png", videoId: "1y2QZ8SAMNkgG1GzSF0tz7npOW0I-CU3M" },
-  { thumbnail: "/assets/reviews/thumbnail03.png", videoId: "1Xpqlk3mwY2pfW6j0HHql7M0q0Ub4Mppm" },
+  { thumbnail: "/assets/reviews/thumbnail02.jpg", wistiaMediaId: "lkpd9lifdz" }, // Rohan
+  { thumbnail: "/assets/reviews/thumbnail01.png", wistiaMediaId: "cfoi0ucq2c" }, // Jordan
+  { thumbnail: "/assets/reviews/thumbnail03.png", wistiaMediaId: "3qgx8hxh5a" }, // Jonah
 ];
 
 function ThumbnailBlock({
@@ -66,15 +66,13 @@ function ThumbnailBlock({
 }
 
 function VideoPopup({
-  videoId,
+  wistiaMediaId,
   onClose,
 }: {
-  videoId: string;
+  wistiaMediaId: string;
   onClose: () => void;
 }) {
-  const [useIframe, setUseIframe] = useState(false);
-  const directVideoUrl = `https://drive.google.com/uc?export=download&id=${videoId}`;
-  const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
+  const embedUrl = `https://fast.wistia.com/embed/iframe/${wistiaMediaId}?videoFoam=true&autoplay=1`;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -97,41 +95,16 @@ function VideoPopup({
       aria-label="Video player"
     >
       <div
-        className="relative overflow-hidden rounded-2xl bg-black"
-        style={{ height: "80vh", width: "auto", aspectRatio: "4/5" }}
+        className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-black"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* <button
-          type="button"
-          onClick={onClose}
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
-          aria-label="Close video"
-        >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button> */}
-        <div className="relative h-full w-full">
-          {useIframe ? (
-            <iframe
-              key={videoId}
-              src={embedUrl}
-              title="Testimonial video"
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full border-0"
-            />
-          ) : (
-            <video
-              key={videoId}
-              src={directVideoUrl}
-              playsInline
-              controls
-              className="absolute inset-0 h-full w-full object-contain"
-              onError={() => setUseIframe(true)}
-            />
-          )}
-        </div>
+        <iframe
+          src={embedUrl}
+          title="Testimonial video"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-0 h-full w-full border-0"
+        />
       </div>
     </div>,
     document.body
@@ -325,7 +298,7 @@ function VideoCarousel({
             >
               <ThumbnailBlock
                 thumbnail={item.thumbnail}
-                onPlay={() => onPlayVideo?.(item.videoId)}
+                onPlay={() => onPlayVideo?.(item.wistiaMediaId)}
               />
             </div>
           ))}
@@ -338,7 +311,7 @@ function VideoCarousel({
 export function BuyersTestimonialsSection() {
   const { heading, subheading, testimonials } = buyersTestimonialsConfig;
   const [activeIndex, setActiveIndex] = useState(1);
-  const [popupVideoId, setPopupVideoId] = useState<string | null>(null);
+  const [popupWistiaMediaId, setPopupWistiaMediaId] = useState<string | null>(null);
 
   return (
     <section className="bg-[#F5EEFD] px-4 py-12 sm:py-16 md:py-24">
@@ -363,7 +336,7 @@ export function BuyersTestimonialsSection() {
           {/* Left - Thumbnail carousel: click opens video in popup */}
           <VideoCarousel
             onActiveChange={setActiveIndex}
-            onPlayVideo={setPopupVideoId}
+            onPlayVideo={setPopupWistiaMediaId}
           />
 
           {/* Right - Testimonial card (synced with active video) */}
@@ -441,7 +414,7 @@ export function BuyersTestimonialsSection() {
                 )}
                 <button
                   type="button"
-                  onClick={() => setPopupVideoId(TESTIMONIAL_ITEMS[activeIndex].videoId)}
+                  onClick={() => setPopupWistiaMediaId(TESTIMONIAL_ITEMS[activeIndex].wistiaMediaId)}
                   className="mt-4 hover:bg-[#a66af6]/5 w-full text-center items-center justify-left py-2 px-2 rounded-lg cursor-pointer hover:underline group inline-flex w-fit items-center gap-1.5 text-[14px] font-medium text-[#7D4ABE] transition-colors hover:text-[#6824BF] sm:mt-6 sm:text-[15px] md:text-[16px]"
                 >
                   View story
@@ -460,10 +433,10 @@ export function BuyersTestimonialsSection() {
         </div>
         </AnimateOnView>
 
-        {popupVideoId && typeof document !== "undefined" && (
+        {popupWistiaMediaId && typeof document !== "undefined" && (
           <VideoPopup
-            videoId={popupVideoId}
-            onClose={() => setPopupVideoId(null)}
+            wistiaMediaId={popupWistiaMediaId}
+            onClose={() => setPopupWistiaMediaId(null)}
           />
         )}
       </div>

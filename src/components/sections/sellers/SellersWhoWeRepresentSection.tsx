@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Lottie from "lottie-react";
 import { sellersWhoWeRepresentConfig } from "@/config/sellers.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
@@ -15,7 +16,7 @@ const BENTO_LOTTIE_PATHS = [
 ];
 
 export function SellersWhoWeRepresentSection() {
-  const { heading, subheading, cards } = sellersWhoWeRepresentConfig;
+  const { heading, subheading, cards, cta } = sellersWhoWeRepresentConfig;
   const [lottieData, setLottieData] = useState<(object | null)[]>([
     null,
     null,
@@ -128,6 +129,39 @@ export function SellersWhoWeRepresentSection() {
             </AnimateOnView>
           ))}
         </div>
+
+        <AnimateOnView
+          animation="fade-up-slow"
+          rootMargin="100px 0px -40px 0px"
+          threshold={0.05}
+        >
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:mt-16">
+            {cta.map((item) =>
+              item.primary ? (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border-2 px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:opacity-90 sm:px-5 sm:py-3 sm:text-[16px] md:px-6 md:py-3.5 md:text-[18px]"
+                  style={{
+                    borderColor: "rgba(255,255,255,0.5)",
+                    backgroundColor: PRIMARY,
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <div key={item.label} className="flex shrink-0 rounded-full bg-gradient-to-b from-zinc-900/10 to-transparent p-[2px]">
+                  <Link
+                    href={item.href}
+                    className="block whitespace-nowrap rounded-full bg-white px-4 py-2.5 text-[13px] font-medium text-zinc-900 transition-colors hover:bg-zinc-100 sm:px-5 sm:py-3 sm:text-[16px] md:px-6 md:py-3.5 md:text-[18px]"
+                  >
+                    {item.label}
+                  </Link>
+                </div>
+              )
+            )}
+          </div>
+        </AnimateOnView>
       </div>
     </section>
   );

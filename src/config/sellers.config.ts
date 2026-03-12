@@ -126,6 +126,10 @@ export const sellersWhoWeRepresentConfig = {
       image: "/assets/sellers_landing/bentos/bento04.png",
     },
   ],
+  cta: [
+    { label: "Value My Store", href: "/value-my-store", primary: true },
+    { label: "Book A Call", href: "#book-a-call", primary: false },
+  ],
 };
 
 export const sellersWhySellConfig = {
@@ -135,7 +139,7 @@ export const sellersWhySellConfig = {
   },
   tagline: "The Exit Partner Founders Choose When Speed Matters",
   ctas: [
-    { label: "Value My Store", href: "#get-offer", primary: true },
+    { label: "Value My Store", href: "/value-my-store", primary: true },
     { label: "Book A Call", href: "#book-a-call", primary: false },
   ],
   bentoCards: [
@@ -216,6 +220,10 @@ export const sellersStructuredApproachConfig = {
       leftMobile: "66%",
     },
   ],
+  cta: [
+    { label: "Value My Store", href: "/value-my-store", primary: true },
+    { label: "Book A Call", href: "#book-a-call", primary: false },
+  ],
 };
 
 export const sellersFoundersConfig = {
@@ -244,12 +252,13 @@ export const sellersGetOfferConfig = {
   cta: { label: "Submit", href: "#" },
 };
 
+/** Wistia testimonial videos: Jesper, Jacob, Victor, Jake, Oriol */
 export const sellersTestimonialsVideoItems = [
-  { thumbnail: "/assets/sellers_landing/reviews/Jesper_thumbnail.png", videoId: "1y2QZ8SAMNkgG1GzSF0tz7npOW0I-CU3M" },
-  { thumbnail: "/assets/sellers_landing/reviews/jacob.jpg", videoId: "1Q02DZe9gFx9JfMQUhgqUqO2Wdn7VkGcz" },
-  { thumbnail: "/assets/sellers_landing/reviews/victor_thumbnail.png", videoId: "1Xpqlk3mwY2pfW6j0HHql7M0q0Ub4Mppm" },
-  { thumbnail: "/assets/sellers_landing/reviews/jake_thumbnail.jpeg", videoId: "1y2QZ8SAMNkgG1GzSF0tz7npOW0I-CU3M" },
-  { thumbnail: "/assets/sellers_landing/reviews/oriol_thumbnail.jpg", videoId: "1Q02DZe9gFx9JfMQUhgqUqO2Wdn7VkGcz" },
+  { thumbnail: "/assets/sellers_landing/reviews/Jesper_thumbnail.png", wistiaMediaId: "l8p873fntt", aspect: 1.7777777777777777 },
+  { thumbnail: "/assets/sellers_landing/reviews/jacob.jpg", wistiaMediaId: "z943501fxo", aspect: 0.5581395348837209 },
+  { thumbnail: "/assets/sellers_landing/reviews/victor_thumbnail.png", wistiaMediaId: "uoobeednv1", aspect: 1.7777777777777777 },
+  { thumbnail: "/assets/sellers_landing/reviews/jake_thumbnail.jpeg", wistiaMediaId: "po5apg6cqr", aspect: 1.7679558011049723 },
+  { thumbnail: "/assets/sellers_landing/reviews/oriol_thumbnail.jpg", wistiaMediaId: "b98kon4ao4", aspect: 1.7777777777777777 },
 ];
 
 export const sellersTestimonialsConfig = {

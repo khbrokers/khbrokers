@@ -144,7 +144,7 @@ export function DealsListing() {
         >
           {/* Search and sort bar */}
           <div className={`stagger-child flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${sortDropdownOpen ? "relative z-[100]" : ""}`}>
-            <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center border border-zinc-900/10 rounded-[30px] px-2 py-2">
+            <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center border border-zinc-900/10 rounded-[10px] md:rounded-[30px] px-2 py-2">
               <input
                 type="search"
                 placeholder={dealsSearchConfig.placeholder}

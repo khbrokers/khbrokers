@@ -10,6 +10,8 @@ import {
 } from "@/config/sellers.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
+type WistiaVideoItem = (typeof sellersTestimonialsVideoItems)[number];
+
 const PRIMARY = "#00965F";
 const PRIMARY_LIGHT = "rgba(0, 150, 95, 0.2)";
 const BG = "#f0fdf4";
@@ -67,16 +69,15 @@ function ThumbnailBlock({
   );
 }
 
-function VideoPopup({
-  videoId,
+function WistiaVideoPopup({
+  item,
   onClose,
 }: {
-  videoId: string;
+  item: WistiaVideoItem;
   onClose: () => void;
 }) {
-  const [useIframe, setUseIframe] = useState(false);
-  const directVideoUrl = `https://drive.google.com/uc?export=download&id=${videoId}`;
-  const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
+  const { wistiaMediaId } = item;
+  const embedUrl = `https://fast.wistia.com/embed/iframe/${wistiaMediaId}?videoFoam=true&autoplay=1`;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -99,31 +100,16 @@ function VideoPopup({
       aria-label="Video player"
     >
       <div
-        className="relative overflow-hidden rounded-2xl bg-black"
-        style={{ height: "80vh", width: "auto", aspectRatio: "4/5" }}
+        className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-black"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative h-full w-full">
-          {useIframe ? (
-            <iframe
-              key={videoId}
-              src={embedUrl}
-              title="Testimonial video"
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full border-0"
-            />
-          ) : (
-            <video
-              key={videoId}
-              src={directVideoUrl}
-              playsInline
-              controls
-              className="absolute inset-0 h-full w-full object-contain"
-              onError={() => setUseIframe(true)}
-            />
-          )}
-        </div>
+        <iframe
+          src={embedUrl}
+          title="Testimonial video"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-0 h-full w-full border-0"
+        />
       </div>
     </div>,
     document.body
@@ -142,8 +128,8 @@ function VideoCarousel({
   initialCenterIndex,
 }: {
   onActiveChange?: (index: number) => void;
-  onPlayVideo?: (videoId: string) => void;
-  items: { thumbnail: string; videoId: string }[];
+  onPlayVideo?: (item: WistiaVideoItem) => void;
+  items: WistiaVideoItem[];
   initialCenterIndex?: number;
 }) {
   const centerIdx = initialCenterIndex ?? Math.floor(items.length / 2);
@@ -329,7 +315,7 @@ function VideoCarousel({
             >
               <ThumbnailBlock
                 thumbnail={item.thumbnail}
-                onPlay={() => onPlayVideo?.(item.videoId)}
+                onPlay={() => onPlayVideo?.(item)}
               />
             </div>
           ))}
@@ -344,7 +330,7 @@ export function SellersTestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(
     Math.floor(sellersTestimonialsVideoItems.length / 2)
   );
-  const [popupVideoId, setPopupVideoId] = useState<string | null>(null);
+  const [popupVideoItem, setPopupVideoItem] = useState<WistiaVideoItem | null>(null);
 
   return (
     <section id="testimonials" className="scroll-mt-20 overflow-x-hidden px-4 py-12 sm:py-16 md:py-24" style={{ backgroundColor: BG }}>
@@ -375,7 +361,7 @@ export function SellersTestimonialsSection() {
               items={sellersTestimonialsVideoItems}
               initialCenterIndex={Math.floor(sellersTestimonialsVideoItems.length / 2)}
               onActiveChange={setActiveIndex}
-              onPlayVideo={setPopupVideoId}
+              onPlayVideo={setPopupVideoItem}
             />
             </div>
 
@@ -461,10 +447,10 @@ export function SellersTestimonialsSection() {
           </div>
         </AnimateOnView>
 
-        {popupVideoId && typeof document !== "undefined" && (
-          <VideoPopup
-            videoId={popupVideoId}
-            onClose={() => setPopupVideoId(null)}
+        {popupVideoItem && typeof document !== "undefined" && (
+          <WistiaVideoPopup
+            item={popupVideoItem}
+            onClose={() => setPopupVideoItem(null)}
           />
         )}
       </div>

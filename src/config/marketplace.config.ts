@@ -11,5 +11,5 @@ export const marketplaceCtaConfig = {
   signInLabel: "Buyer Sign In",
   signInHref: "/signin",
   applyLabel: "Apply to Join",
-  applyHref: "/apply",
+  applyHref: "/signup",
 };
