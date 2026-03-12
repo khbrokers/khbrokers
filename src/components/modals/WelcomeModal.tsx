@@ -89,7 +89,7 @@ export function WelcomeModal() {
             style={{ borderColor: theme.logoBorder }}
           >
             <Image
-              src="/assets/brand_assets/logo_icon.png"
+              src={activeOption === "sellers" ? "/assets/brand_assets/logo_icon_sellers.png" : "/assets/brand_assets/logo_icon.png"}
               alt=""
               width={60}
               height={60}

@@ -139,11 +139,14 @@ function VideoCarousel({
   onActiveChange,
   onPlayVideo,
   items,
+  initialCenterIndex,
 }: {
   onActiveChange?: (index: number) => void;
   onPlayVideo?: (videoId: string) => void;
   items: { thumbnail: string; videoId: string }[];
+  initialCenterIndex?: number;
 }) {
+  const centerIdx = initialCenterIndex ?? Math.floor(items.length / 2);
   const scrollRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isScrollingRef = useRef(false);
@@ -214,34 +217,34 @@ function VideoCarousel({
   }, [updateActiveIndex]);
 
   useEffect(() => {
-    const centerSecondVideo = () => {
+    const centerVideo = () => {
       const el = scrollRef.current;
-      const target = videoRefs.current[1];
+      const target = videoRefs.current[centerIdx];
       if (!el || !target) return;
       if (isMobile) {
         if (el.scrollWidth > 0) {
           const scrollLeft =
             target.offsetLeft - el.offsetWidth / 2 + target.offsetWidth / 2;
           el.scrollLeft = Math.max(0, scrollLeft);
-          onActiveChange?.(1);
+          onActiveChange?.(centerIdx);
         }
       } else {
         if (el.scrollHeight > 0) {
           const scrollTop =
             target.offsetTop - el.offsetHeight / 2 + target.offsetHeight / 2;
           el.scrollTop = Math.max(0, scrollTop);
-          onActiveChange?.(1);
+          onActiveChange?.(centerIdx);
         }
       }
     };
-    centerSecondVideo();
-    const rafId = requestAnimationFrame(centerSecondVideo);
-    const timeoutId = setTimeout(centerSecondVideo, 150);
+    centerVideo();
+    const rafId = requestAnimationFrame(centerVideo);
+    const timeoutId = setTimeout(centerVideo, 150);
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(timeoutId);
     };
-  }, [onActiveChange, isMobile]);
+  }, [onActiveChange, isMobile, centerIdx]);
 
   const handleWheel = (e: React.WheelEvent) => {
     if (isMobile) return;
@@ -338,7 +341,9 @@ function VideoCarousel({
 
 export function SellersTestimonialsSection() {
   const { heading, subheading, testimonials } = sellersTestimonialsConfig;
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(
+    Math.floor(sellersTestimonialsVideoItems.length / 2)
+  );
   const [popupVideoId, setPopupVideoId] = useState<string | null>(null);
 
   return (
@@ -368,6 +373,7 @@ export function SellersTestimonialsSection() {
             <div className="stagger-child min-w-0 overflow-hidden">
             <VideoCarousel
               items={sellersTestimonialsVideoItems}
+              initialCenterIndex={Math.floor(sellersTestimonialsVideoItems.length / 2)}
               onActiveChange={setActiveIndex}
               onPlayVideo={setPopupVideoId}
             />
@@ -404,16 +410,30 @@ export function SellersTestimonialsSection() {
                           </div>
                         )}
                         <div className="flex flex-col gap-1 items-center md:items-start">
-                          <span className="text-[12px] font-medium text-zinc-900 sm:text-[14px] md:text-[16px] lg:text-[18px]">
-                            {testimonials[activeIndex].name}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[12px] font-medium text-zinc-900 sm:text-[14px] md:text-[16px] lg:text-[18px]">
+                              {testimonials[activeIndex].name}
+                            </span>
+                            <div className="flex gap-0.5" aria-hidden>
+                              {Array.from({ length: testimonials[activeIndex].stars ?? 5 }).map((_, i) => (
+                                <svg key={i} className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20">
+                                  <defs>
+                                    <linearGradient id={`starGradientSellers-${activeIndex}-${i}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                                      <stop offset="0%" stopColor="#00965F" stopOpacity="0.2" />
+                                      <stop offset="100%" stopColor="#00965F" stopOpacity="1" />
+                                    </linearGradient>
+                                  </defs>
+                                  <path fill={`url(#starGradientSellers-${activeIndex}-${i})`} d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              ))}
+                            </div>
+                          </div>
                           {testimonials[activeIndex].role && (
                             <span className="text-[11px] text-zinc-600 sm:text-[13px] md:text-[14px] text-center md:text-left">
                               {testimonials[activeIndex].role}
                             </span>
                           )}
                         </div>
-
                       </div>
                     </div>
                     <div className="flex items-center justify-center md:justify-start gap-1 w-full">

@@ -27,6 +27,82 @@ const scrollContainerBg2 = "#dff8ef";
 
 const AUTO_SWIPE_INTERVAL_MS = 3500;
 
+function CarouselNav({
+  activeIndex,
+  totalSlides,
+  onPrev,
+  onNext,
+  onGoTo,
+  className = "",
+}: {
+  activeIndex: number;
+  totalSlides: number;
+  onPrev: () => void;
+  onNext: () => void;
+  onGoTo: (i: number) => void;
+  className?: string;
+}) {
+  return (
+    <div className={`flex items-center gap-3 ${className}`}>
+      <button
+        type="button"
+        onClick={() => activeIndex > 0 && onPrev()}
+        disabled={activeIndex === 0}
+        className="flex cursor-pointer items-center justify-center rounded-xl transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:opacity-50"
+        style={{
+          padding: "5px 20px",
+          backgroundColor: "rgba(0, 169, 107, 0.4)",
+          border: "2px solid rgba(0, 169, 107, 0.4)",
+          color: "white",
+        }}
+        aria-label="Previous"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+      </button>
+      <div className="flex items-center gap-2">
+        {Array.from({ length: totalSlides }).map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => onGoTo(i)}
+            className={`cursor-pointer shrink-0 rounded-full overflow-hidden transition-colors ${
+              i === activeIndex ? "h-[10px] w-[28px]" : "h-2.5 w-2.5"
+            }`}
+            style={{ backgroundColor: "rgba(0,0,0,0.12)" }}
+            aria-label={`Go to slide ${i + 1}`}
+          >
+            {i === activeIndex && (
+              <span
+                key={activeIndex}
+                className="block h-full min-w-0 rounded-full bg-[#00965F70] animate-progress-pill"
+              />
+            )}
+          </button>
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={() => activeIndex < totalSlides - 1 && onNext()}
+        disabled={activeIndex === totalSlides - 1}
+        className="flex cursor-pointer items-center justify-center rounded-xl transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:opacity-50"
+        style={{
+          padding: "5px 20px",
+          backgroundColor: "rgba(0, 169, 107, 0.5)",
+          border: "2px solid rgba(0, 169, 107, 0.7)",
+          color: "white",
+        }}
+        aria-label="Next"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 export function SellersWhySellSection() {
   const { heading, tagline, ctas, bentoCards } = sellersWhySellConfig;
   const [activeIndex, setActiveIndex] = useState(0);
@@ -133,7 +209,7 @@ export function SellersWhySellSection() {
                   {tagline}
                 </p>
 
-                <div className="mt-8 flex w-fit flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
+                <div className="mt-8 flex w-full md:w-fit flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
                   {ctas.map((cta) =>
                     cta.primary ? (
                       <Link
@@ -161,71 +237,30 @@ export function SellersWhySellSection() {
                 </div>
               </div>
 
-              {/* Carousel nav */}
-              <div className="mt-10 flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => activeIndex > 0 && scrollToIndex(activeIndex - 1)}
-                  disabled={activeIndex === 0}
-                  className="flex cursor-pointer items-center justify-center rounded-xl transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:opacity-50"
-                  style={{
-                    padding: "5px 20px",
-                    backgroundColor: "rgba(0, 169, 107, 0.4)",
-                    border: "2px solid rgba(0, 169, 107, 0.4)",
-                    color: "white",
-                  }}
-                  aria-label="Previous"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="m15 18-6-6 6-6" />
-                  </svg>
-                </button>
-                <div className="flex items-center gap-2">
-                  {bentoCards.map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => scrollToIndex(i)}
-                      className={`cursor-pointer shrink-0 rounded-full overflow-hidden transition-colors ${
-                        i === activeIndex ? "h-[10px] w-[28px]" : "h-2.5 w-2.5"
-                      }`}
-                      style={{ backgroundColor: "rgba(0,0,0,0.12)" }}
-                      aria-label={`Go to slide ${i + 1}`}
-                    >
-                      {i === activeIndex && (
-                        <span
-                          key={activeIndex}
-                          className="block h-full min-w-0 rounded-full bg-[#00965F70] animate-progress-pill"
-                        />
-                      )}
-                    </button>
-                  ))}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => activeIndex < bentoCards.length - 1 && scrollToIndex(activeIndex + 1)}
-                  disabled={activeIndex === bentoCards.length - 1}
-                  className="flex cursor-pointer items-center justify-center rounded-xl transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:opacity-50"
-                  style={{
-                    padding: "5px 20px",
-                    backgroundColor: "rgba(0, 169, 107, 0.5)",
-                    border: "2px solid rgba(0, 169, 107, 0.7)",
-                    color: "white",
-                  }}
-                  aria-label="Next"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="m9 18 6-6-6-6" />
-                  </svg>
-                </button>
-              </div>
+              {/* Carousel nav - desktop only (in left panel) */}
+              <CarouselNav
+                activeIndex={activeIndex}
+                totalSlides={bentoCards.length}
+                onPrev={() => scrollToIndex(activeIndex - 1)}
+                onNext={() => scrollToIndex(activeIndex + 1)}
+                onGoTo={scrollToIndex}
+                className="mt-10 hidden md:flex"
+              />
             </div>
 
           {/* Right panel - Vertical scrolling cards */}
           <div className="stagger-child relative min-h-[672px] overflow-hidden rounded-xl sm:rounded-2xl">
             {/* Fade overlays */}
             <div
-              className="pointer-events-none absolute left-0 right-0 top-0 z-10"
+              className="pointer-events-none absolute left-0 right-0 top-0 z-10 md:hidden"
+              style={{
+                height: FADE_HEIGHT,
+                background: "linear-gradient(rgb(150 216 192), transparent)",
+              }}
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute left-0 right-0 top-0 z-10 hidden md:block"
               style={{
                 height: FADE_HEIGHT,
                 background: `linear-gradient(to bottom, ${scrollContainerBg1}, transparent)`,
@@ -314,6 +349,16 @@ export function SellersWhySellSection() {
               </div>
             </div>
           </div>
+
+          {/* Carousel nav - mobile only (below right panel) */}
+          <CarouselNav
+            activeIndex={activeIndex}
+            totalSlides={bentoCards.length}
+            onPrev={() => scrollToIndex(activeIndex - 1)}
+            onNext={() => scrollToIndex(activeIndex + 1)}
+            onGoTo={scrollToIndex}
+            className="mt-6 flex justify-center md:hidden"
+          />
         </AnimateOnView>
       </div>
     </section>

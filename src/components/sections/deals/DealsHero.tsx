@@ -1,13 +1,13 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import Link from "next/link";
 import { FaTag } from "react-icons/fa";
 import { dealsHeroConfig } from "@/config/deals.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
 const PRIMARY = "#a36af6";
 const PAGE_BG = "#F5EEFD";
+const CAL_PURPLE = "#a36af6";
 const VIDEO_PLAYBACK_RATE = 0.5;
 
 export function DealsHero() {
@@ -20,8 +20,7 @@ export function DealsHero() {
     }
   }, []);
 
-  const { tag, headline, highlight, description, ctaLabel, ctaHref } =
-    dealsHeroConfig;
+  const { tag, headline, highlight, description, ctaLabel } = dealsHeroConfig;
 
   return (
     <section className="relative min-h-[65vh] max-h-[80vh] overflow-hidden sm:min-h-[70vh] md:min-h-[75vh]">
@@ -77,9 +76,10 @@ export function DealsHero() {
             {description}
           </p>
           <div className="stagger-child mt-8 flex justify-center">
-            <Link
-              href={ctaHref}
-              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-[15px] font-medium text-zinc-900 transition-colors hover:bg-zinc-50 sm:px-8 sm:py-4 sm:text-[16px]"
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-deal-speak-modal", { detail: { headline: ctaLabel } }))}
+              className="inline-flex cursor-pointer items-center justify-center rounded-full bg-white px-6 py-3 text-[15px] font-medium text-zinc-900 transition-colors hover:bg-zinc-50 sm:px-8 sm:py-4 sm:text-[16px]"
               style={{
                 border: "2px solid transparent",
                 background:
@@ -90,7 +90,7 @@ export function DealsHero() {
               }}
             >
               {ctaLabel}
-            </Link>
+            </button>
           </div>
         </AnimateOnView>
       </div>

@@ -16,7 +16,7 @@ export const sellersHeroConfig = {
     "/assets/hero/avatar03.png",
   ],
   headline: {
-    before: "Fast, Liquid Cash Exits, Without",
+    before: "Fast, Liquid Cash Exits, Without ",
     highlight: "Complexity",
     after: "",
   },
@@ -245,9 +245,11 @@ export const sellersGetOfferConfig = {
 };
 
 export const sellersTestimonialsVideoItems = [
-  { thumbnail: "/assets/sellers_landing/reviews/review01.png", videoId: "1y2QZ8SAMNkgG1GzSF0tz7npOW0I-CU3M" },
-  { thumbnail: "/assets/sellers_landing/reviews/review02.png", videoId: "1Q02DZe9gFx9JfMQUhgqUqO2Wdn7VkGcz" },
-  { thumbnail: "/assets/sellers_landing/reviews/review03.png", videoId: "1Xpqlk3mwY2pfW6j0HHql7M0q0Ub4Mppm" },
+  { thumbnail: "/assets/sellers_landing/reviews/Jesper_thumbnail.png", videoId: "1y2QZ8SAMNkgG1GzSF0tz7npOW0I-CU3M" },
+  { thumbnail: "/assets/sellers_landing/reviews/jacob.jpg", videoId: "1Q02DZe9gFx9JfMQUhgqUqO2Wdn7VkGcz" },
+  { thumbnail: "/assets/sellers_landing/reviews/victor_thumbnail.png", videoId: "1Xpqlk3mwY2pfW6j0HHql7M0q0Ub4Mppm" },
+  { thumbnail: "/assets/sellers_landing/reviews/jake_thumbnail.jpeg", videoId: "1y2QZ8SAMNkgG1GzSF0tz7npOW0I-CU3M" },
+  { thumbnail: "/assets/sellers_landing/reviews/oriol_thumbnail.jpg", videoId: "1Q02DZe9gFx9JfMQUhgqUqO2Wdn7VkGcz" },
 ];
 
 export const sellersTestimonialsConfig = {
@@ -258,49 +260,49 @@ export const sellersTestimonialsConfig = {
   subheading: "Over 300 brands sold. Hear from founders who continue to work with KH Brokers because the process works.",
   testimonials: [
     {
-      quote:
-        "Sold in 12 days. KH Brokers handled everything — I just showed up for the calls.",
-      name: "Alex",
-      role: "Founder, SaaS Brand",
-      xProfile: "https://x.com/example",
-      xUsername: "alex",
-      avatar: null,
-      badge: "SaaS Exit",
+      quote: "Sold in 12 days. KH Brokers handled everything — I just showed up for the calls.",
+      name: "Jesper H",
+      role: "Clothing, Shopify Brand",
+      xProfile: "https://x.com/JesperHensgens",
+      xUsername: "JesperHensgens",
+      avatar: "/assets/sellers_landing/reviews/Jesper.jpg",
       stars: 5,
-      metrics: [
-        { value: "12 days", label: "To close" },
-        { value: "SaaS", label: "Exit type" },
-      ],
     },
     {
-      quote:
-        "The valuation was fair and the process was transparent. No surprises.",
-      name: "Sam",
-      role: "Founder, E-commerce Brand",
-      xProfile: "https://x.com/example",
-      xUsername: "sam",
-      avatar: null,
-      badge: "E-commerce Exit",
+      quote: "We sold our brand within 48 hours & I got $50k more than I expected to get",
+      name: "Jacob F",
+      role: "Fitness, Shopify Brand",
+      xProfile: "https://x.com/JacobFors37794",
+      xUsername: "JacobFors37794",
+      avatar: "/assets/sellers_landing/reviews/jacob.jpg",
       stars: 5,
-      metrics: [
-        { value: "Transparent", label: "Process" },
-        { value: "E-commerce", label: "Exit type" },
-      ],
     },
     {
-      quote:
-        "Best decision I made. They found a buyer who actually understood my business.",
-      name: "Jordan",
-      role: " 7 Figure Ecommerce Operator",
-      xProfile: "https://x.com/example",
-      xUsername: "jordan",
-      avatar: null,
-      badge: "Content Exit",
+      quote: "I've been working with KH Brokers for 2 years now, they sell my stores & my students stores",
+      name: "Victor B",
+      role: "Beauty, Shopify Brand",
+      xProfile: "https://x.com/iambronza",
+      xUsername: "iambronza",
+      avatar: "/assets/sellers_landing/reviews/victor.jpg",
       stars: 5,
-      metrics: [
-        { value: "Right fit", label: "Buyer match" },
-        { value: "Content", label: "Exit type" },
-      ],
+    },
+    {
+      quote: "I've now sold 3 of my existing ecom stores ranging from 5 figures to low 6 figures with KH Brokers",
+      name: "Jake G",
+      role: "Health, Shopify Brand",
+      xProfile: "https://x.com/agm_jake",
+      xUsername: "agm_jake",
+      avatar: "/assets/sellers_landing/reviews/jake_thumbnail.jpeg",
+      stars: 5,
+    },
+    {
+      quote: "I highly recommend KH Brokers, they are the best ecommerce broker out there",
+      name: "Oriol V",
+      role: "Clothing, Shopify Brand",
+      xProfile: "https://x.com/oriolvingut",
+      xUsername: "oriolvingut",
+      avatar: "/assets/sellers_landing/reviews/Oriol.jpg",
+      stars: 5,
     },
   ],
 };

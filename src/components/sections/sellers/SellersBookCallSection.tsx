@@ -44,8 +44,8 @@ export function SellersBookCallSection() {
                   calLink={calEmbedSlug}
                   namespace="sellers"
                   primaryColor={calPrimaryColor}
-                  height={910}
-                  className="rounded-lg"
+                  height={610}
+                  className="rounded-lg overflow-auto"
                 />
               </div>
             </div>

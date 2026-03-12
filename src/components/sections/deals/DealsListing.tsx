@@ -143,7 +143,7 @@ export function DealsListing() {
           }}
         >
           {/* Search and sort bar */}
-          <div className="stagger-child flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className={`stagger-child flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${sortDropdownOpen ? "relative z-[100]" : ""}`}>
             <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center border border-zinc-900/10 rounded-[30px] px-2 py-2">
               <input
                 type="search"
@@ -174,11 +174,11 @@ export function DealsListing() {
                   {sortDropdownOpen && (
                     <>
                       <div
-                        className="fixed inset-0 z-10"
+                        className="fixed inset-0 z-[9998]"
                         onClick={() => setSortDropdownOpen(false)}
                         aria-hidden
                       />
-                      <div className="absolute right-0 top-full z-20 mt-1 min-w-[180px] rounded-xl border border-zinc-200 bg-white py-2 shadow-lg">
+                      <div className="absolute right-0 top-full z-[9999] mt-1 min-w-[180px] rounded-xl border border-zinc-200 bg-white py-2 shadow-lg">
                         {dealsSearchConfig.sortOptions.map((opt) => (
                           <button
                             key={opt}

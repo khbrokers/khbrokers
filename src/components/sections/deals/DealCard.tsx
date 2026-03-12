@@ -151,16 +151,22 @@ export function DealCard({ deal }: DealCardProps) {
 
       {/* Asking price + CTAs */}
       <div className="mt-4 flex flex-col gap-3 sm:mt-5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-        <p className="text-[20px] font-medium text-zinc-900 sm:text-[24px] md:text-[28px]">
-          {formatPrice(deal.askingPrice)}
-        </p>
+        <div className="flex flex-col items-start">
+          <p className="text-[20px] font-medium text-zinc-900 sm:text-[24px] md:text-[28px]">
+            {formatPrice(deal.askingPrice)}
+          </p>
+          <span className="text-[10px] font-normal text-zinc-900/60 sm:text-[10px] md:text-[12px]">
+            Asking Price
+          </span>
+        </div>
         <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
-        <Link
-          href={deal.speakHref}
-          className="inline-flex items-center justify-center rounded-full border-2 border-zinc-200 bg-white px-4 py-3 text-[13px] font-medium text-zinc-900 transition-colors hover:border-zinc-300 hover:bg-zinc-50 sm:py-2.5 sm:text-[14px]"
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new CustomEvent("open-deal-speak-modal", { detail: { headline: `Speak with us about ${deal.title}` } }))}
+          className="inline-flex cursor-pointer items-center justify-center rounded-full border-2 border-zinc-200 bg-white px-4 py-3 text-[13px] font-medium text-zinc-900 transition-colors hover:border-zinc-300 hover:bg-zinc-50 sm:py-2.5 sm:text-[14px]"
         >
           Speak with us
-        </Link>
+        </button>
         <Link
           href={deal.viewHref}
           className="inline-flex items-center justify-center rounded-full border-2 font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:!bg-[#6d28d9] px-4 py-3 text-[13px] sm:py-2.5 sm:text-[14px]"

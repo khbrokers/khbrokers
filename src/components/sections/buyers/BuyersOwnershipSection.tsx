@@ -65,7 +65,7 @@ export function BuyersOwnershipSection() {
             animation="stagger"
             rootMargin="100px 0px -40px 0px"
             threshold={0.05}
-            className="grid grid-cols-1 min-h-[1200px] gap-4 sm:grid-cols-2 sm:grid-rows-2 sm:gap-6 sm:min-h-[900px] md:gap-8 md:min-h-[1100px]"
+            className="grid grid-cols-1 min-h-0 gap-4 sm:grid-cols-2 sm:grid-rows-2 sm:gap-6 sm:min-h-[900px] md:gap-8 md:min-h-[1100px]"
           >
             {cards.map((card, idx) => {
               const isThirdCard = idx === 2;
@@ -83,7 +83,7 @@ export function BuyersOwnershipSection() {
               return (
                 <div
                   key={idx}
-                  className={`stagger-child flex [perspective:1000px] ${isThirdCard ? "h-[300px] sm:h-[300px] md:h-[380px] sm:col-span-2" : "h-full"}`}
+                  className={`stagger-child flex [perspective:1000px] ${isThirdCard ? "h-[300px] sm:h-[300px] md:h-[380px] sm:col-span-2" : "min-h-[320px] sm:min-h-0 sm:h-full"}`}
                 >
                   <div
                     className="relative h-full w-full"

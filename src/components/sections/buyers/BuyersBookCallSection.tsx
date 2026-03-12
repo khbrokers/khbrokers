@@ -2,10 +2,10 @@
 
 import { buyersBookCallConfig } from "@/config/buyers.config";
 import { LazyBlock } from "@/components/ui/LazyBlock";
-import { CalInlineEmbed } from "@/components/ui/CalInlineEmbed";
+import { BuyersCalInlineEmbed } from "@/components/ui/BuyersCalInlineEmbed";
 
 export function BuyersBookCallSection() {
-  const { heading, subheading, calEmbedSlug, calPrimaryColor } = buyersBookCallConfig;
+  const { heading, subheading } = buyersBookCallConfig;
 
   return (
     <section id="book-a-call" className="bg-white px-4 py-12 sm:py-16 md:py-24 scroll-mt-20">
@@ -35,12 +35,7 @@ export function BuyersBookCallSection() {
         >
           <div className="p-4 sm:p-4 md:p-12 lg:p-10">         
               <div className="relative w-full flex-1 overflow-hidden rounded-xl md:rounded-2xl bg-white">
-                <CalInlineEmbed
-                  calLink={calEmbedSlug}
-                  namespace="buyers"
-                  primaryColor={calPrimaryColor}
-                  className="rounded-lg"
-                /> 
+                <BuyersCalInlineEmbed className="rounded-lg" /> 
               </div>
            </div>
         </div>
