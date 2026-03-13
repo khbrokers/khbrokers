@@ -36,13 +36,28 @@ export function BuyersHero() {
         loop
         muted
         playsInline
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
+        className="hero-bg-video absolute inset-0 z-0 h-full w-full object-cover object-center pointer-events-none select-none"
+        style={{ WebkitPlaysInline: true } as React.CSSProperties}
         aria-hidden
+      />
+
+      {/* Fallback: subtle overlay masks any native video controls that slip through on edge-case browsers */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(ellipse 90% 70% at 50% 45%, rgba(245, 240, 255, 0.2) 0%, rgba(245, 240, 255, 0.05) 50%, transparent 100%)",
+        }}
       />
 
       <AnimateOnView
         animation="stagger-slow"
-        className="relative mx-auto max-w-4xl px-4 pb-4 pt-[100px] sm:px-6 sm:pb-20 sm:pt-24 md:pb-24 md:pt-[150px] lg:px-8"
+        visibleImmediately
+        className="relative z-10 mx-auto max-w-4xl px-4 pb-4 pt-[100px] sm:px-6 sm:pb-20 sm:pt-24 md:pb-24 md:pt-[150px] lg:px-8"
         rootMargin="0px 0px 0px 0px"
         threshold={0.15}
       >

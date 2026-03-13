@@ -35,6 +35,9 @@ export function LimitedAvailabilityCalEmbed({
           light: {
             "cal-brand": LIMITED_AVAILABILITY_CAL_BRAND,
           },
+          dark: {
+            "cal-brand": LIMITED_AVAILABILITY_CAL_BRAND,
+          },
         },
       });
 

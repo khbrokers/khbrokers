@@ -115,3 +115,14 @@ input[type="range"].deals-slider::-moz-range-thumb {
 .cal-embed [class*="bg-brand-default"].cursor-pointer {
   color: #ffffff !important;
 }
+
+/* Hero background video: hide native controls overlay (fallback for iOS/mobile edge cases) */
+.hero-bg-video::-webkit-media-controls,
+.hero-bg-video::-webkit-media-controls-enclosure,
+.hero-bg-video::-webkit-media-controls-panel,
+.hero-bg-video::-webkit-media-controls-play-button,
+.hero-bg-video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
