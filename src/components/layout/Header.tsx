@@ -225,7 +225,7 @@ function MarketplaceHeaderContent({
 
   return (
     <header
-      className="relative !fixed top-5 left-0 right-0 z-50 animate-slide-in-from-top"
+      className="relative !fixed top-5 left-0 right-0 z-50 animate-slide-in-from-top z-[10000]"
       style={{ background: "transparent" }}
     >
       <div

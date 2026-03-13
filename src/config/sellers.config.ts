@@ -24,7 +24,7 @@ export const sellersHeroConfig = {
     "KH Brokers is the most active private exit point for Shopify founders seeking fast, liquid exits. When a business passes our process, it moves quickly — often within days.",
   highlightedTerms: ["verified valuations", "qualified buyers", "structured exit"],
   cta: {
-    primary: { label: "Get a Cash Valuation", href: "#get-offer" },
+    primary: { label: "Get a Cash Valuation", href: "/value-my-store" },
     secondary: { label: "Speak with us", href: "#book-a-call" },
   },
   asFeaturedIn: "Trusted by 30+ Partners",
@@ -35,7 +35,7 @@ export const sellersHeroConfig = {
     "/assets/sellers_landing/brands/brand04.png",
     "/assets/sellers_landing/brands/brand05.png",
   ],
-  videoThumbnail: "/assets/sellers_landing/hero/videocover_seller.png",
+  videoThumbnail: "/assets/sellers_landing/hero/videocover_sellers.png",
   /** Full-screen hero background video */
   heroVideoSrc: "/assets/sellers_landing/hero/heroanimated_sellers.mp4",
   heroVideoPlaybackRate: HERO_VIDEO_PLAYBACK_RATE,
@@ -380,7 +380,7 @@ export const sellersCtaConfig = {
   subheading:
     "Liquidity, speed, and structured execution — without complexity.",
   cta: {
-    primary: { label: "Value My Store", href: "#book-a-call" },
-    secondary: { label: "Book a Call", href: "#get-offer" },
+    primary: { label: "Value My Store", href: "/value-my-store" },
+    secondary: { label: "Book a Call", href: "/sellers#book-a-call" },
   },
 };

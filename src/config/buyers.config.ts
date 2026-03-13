@@ -363,7 +363,7 @@ export const buyersCtaConfig = {
   subheading:
     "Subscribers receive first access to new opportunities, recent exits, and buyer activity.",
   cta: {
-    primary: { label: "Book a Strategy Call", href: "#book-a-call" },
+    primary: { label: "Book a Strategy Call", href: "/buyers#book-a-call" },
     secondary: { label: "View Deals", href: "/deals" },
   },
 };

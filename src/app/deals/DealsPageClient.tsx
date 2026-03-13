@@ -12,10 +12,8 @@ export function DealsPageClient() {
       <main className="min-h-screen bg-[#F5EEFD]">
         <DealsHero />
         <div
-          className="relative"
+          className="relative -top-12 h-12 md:-top-10 md:h-10 lg:-top-8 lg:h-8"
           style={{
-            top: "-60px",
-            height: "60px",
             zIndex: 1000,
             background: "transparent",
           }}

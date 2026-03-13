@@ -87,6 +87,7 @@ export function SellersVideoSection() {
               src={videoThumbnail}
               alt="Video thumbnail"
               fill
+              unoptimized
               className="object-cover object-center transition-transform duration-300 ease-out group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 1024px"
             />

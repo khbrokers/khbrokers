@@ -66,7 +66,7 @@ export function SellersCtaSection() {
               <div className="stagger-child mt-2 flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
                 <Link
                   href={cta.primary.href}
-                  className="rounded-full border-2 px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:opacity-90 sm:px-[20px] sm:py-[10px] sm:text-[16px] md:px-[30px] md:py-[20px] md:text-[18px]"
+                  className="inline-flex min-w-[160px] shrink-0 items-center justify-center whitespace-nowrap rounded-full border-2 px-5 py-3 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:opacity-90 sm:min-w-[180px] sm:px-6 sm:py-3.5 sm:text-[16px] md:min-w-[200px] md:px-8 md:py-4 md:text-[18px]"
                   style={{
                     borderColor: "rgba(255,255,255,0.5)",
                     backgroundColor: PRIMARY,
@@ -74,10 +74,10 @@ export function SellersCtaSection() {
                 >
                   {cta.primary.label}
                 </Link>
-                <div className="rounded-full bg-gradient-to-b from-zinc-900/10 to-transparent p-[2px]">
+                <div className="flex shrink-0 rounded-full bg-gradient-to-b from-zinc-900/10 to-transparent p-[2px]">
                   <Link
                     href={cta.secondary.href}
-                    className="block rounded-full bg-white px-4 py-2.5 text-[13px] font-medium text-zinc-900 transition-colors hover:bg-zinc-100 sm:px-[20px] sm:py-[10px] sm:text-[16px] md:px-[30px] md:py-[20px] md:text-[18px]"
+                    className="inline-flex min-w-[160px] items-center justify-center whitespace-nowrap rounded-full bg-white px-5 py-3 text-[13px] font-medium text-zinc-900 transition-colors hover:bg-zinc-100 sm:min-w-[180px] sm:px-6 sm:py-3.5 sm:text-[16px] md:min-w-[200px] md:px-8 md:py-4 md:text-[18px]"
                   >
                     {cta.secondary.label}
                   </Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -29,12 +29,12 @@ const METRIC_ICONS: Record<DealMetric["icon"], React.ReactNode> = {
 };
 
 const INVESTMENT_SNAPSHOT_ORDER: DealMetric["icon"][] = [
-  "age",
-  "asking",
   "revenue",
-  "multiple",
-  "monthly",
   "profit",
+  "monthly",
+  "age",
+  "multiple",
+  "asking",
 ];
 
 const METRIC_LABELS: Record<DealMetric["icon"], string> = {
@@ -42,7 +42,7 @@ const METRIC_LABELS: Record<DealMetric["icon"], string> = {
   asking: "Asking Price",
   revenue: "TTM Revenue",
   multiple: "Profit Multiple",
-  monthly: "Avg Monthly Profit",
+  monthly: "Monthly Profit",
   profit: "TTM Net Profit",
 };
 
@@ -57,6 +57,87 @@ const INFO_CARD_ICONS = [
   "/assets/deals_assets/ic_twotone-sell.png",
 ] as const;
 
+function TruncatedContent({
+  content,
+  maxLines = 4,
+  primaryColor,
+}: {
+  content: string;
+  maxLines?: number;
+  primaryColor: string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(false);
+  const [maxHeight, setMaxHeight] = useState<number | null>(null);
+  const contentRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (expanded) return;
+    const el = contentRef.current;
+    if (!el) return;
+    const check = () => setIsTruncated(el.scrollHeight > el.clientHeight);
+    check();
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [content, expanded]);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const el = contentRef.current;
+    if (!el) return;
+    const endHeight = el.scrollHeight;
+    setMaxHeight(endHeight);
+  }, [expanded]);
+
+  const handleExpand = () => {
+    const el = contentRef.current;
+    if (!el) return;
+    const startHeight = el.offsetHeight;
+    setMaxHeight(startHeight);
+    setExpanded(true);
+  };
+
+  return (
+    <div>
+      <div
+        className="overflow-hidden transition-[max-height] duration-300"
+        style={{
+          maxHeight: expanded && maxHeight !== null ? maxHeight : undefined,
+          transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+        }}
+      >
+        <p
+          ref={contentRef}
+          className="text-[14px] leading-relaxed text-zinc-900/60 sm:text-[14px] md:text-[18px]"
+          style={
+            expanded
+              ? undefined
+              : {
+                  display: "-webkit-box",
+                  WebkitLineClamp: maxLines,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }
+          }
+        >
+          {content}
+        </p>
+      </div>
+      {isTruncated && !expanded && (
+        <button
+          type="button"
+          onClick={handleExpand}
+          className="mt-1 cursor-pointer font-medium transition-colors hover:underline"
+          style={{ color: primaryColor }}
+        >
+          more
+        </button>
+      )}
+    </div>
+  );
+}
+
 const INFO_CARDS = [
   {
     key: "businessOverview" as const,
@@ -64,9 +145,7 @@ const INFO_CARDS = [
     iconSrc: INFO_CARD_ICONS[0],
     getContent: (d: Deal) =>
       d.businessOverview?.content ||
-      `${d.description} This is a 2-year-old direct-to-consumer lifestyle apparel brand operating under a fully automated print-on-demand (POD) model. The business sells ocean-themed clothing aligned with environmental values, combining strong brand storytelling with a scalable digital infrastructure.
-Over the trailing twelve months, the brand has generated $1.95M in revenue and $252,996 in net profit, validating product-market fit and consistent paid acquisition performance. With no inventory held, no warehousing more..`,
-    hasMore: (d: Deal) => d.businessOverview?.hasMore ?? true,
+      `${d.description} This is a 2-year-old direct-to-consumer lifestyle apparel brand operating under a fully automated print-on-demand (POD) model. The business sells ocean-themed clothing aligned with environmental values, combining strong brand storytelling with a scalable digital infrastructure. Over the trailing twelve months, the brand has generated $1.95M in revenue and $252,996 in net profit, validating product-market fit and consistent paid acquisition performance. With no inventory held, no warehousing.`,
   },
   {
     key: "whyBuilt" as const,
@@ -75,7 +154,6 @@ Over the trailing twelve months, the brand has generated $1.95M in revenue and $
     getContent: (d: Deal) =>
       d.whyBuilt?.content ||
       `A ${d.platform} business in the ${d.niche} space, built for scalability and long-term growth. The founder's vision and strategic approach are shared during the investor call.`,
-    hasMore: (d: Deal) => d.whyBuilt?.hasMore ?? false,
   },
   {
     key: "revenueModel" as const,
@@ -84,7 +162,6 @@ Over the trailing twelve months, the brand has generated $1.95M in revenue and $
     getContent: (d: Deal) =>
       d.revenueModel?.content ||
       `Revenue generated through ${d.platform} with diversified traffic channels. Detailed breakdown of revenue streams and acquisition costs available during the call.`,
-    hasMore: (d: Deal) => d.revenueModel?.hasMore ?? true,
   },
   {
     key: "whySelling" as const,
@@ -93,7 +170,6 @@ Over the trailing twelve months, the brand has generated $1.95M in revenue and $
     getContent: (d: Deal) =>
       d.whySelling?.content ||
       `Strategic exit. The business is being transitioned to a new owner. Full context on the seller's motivation and timeline shared during the private call.`,
-    hasMore: (d: Deal) => d.whySelling?.hasMore ?? true,
   },
 ] as const;
 
@@ -301,7 +377,6 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
           <div className="grid items-start gap-4 sm:gap-6 md:grid-cols-2">
             {INFO_CARDS.map((card) => {
               const content = card.getContent(deal);
-              const showMore = card.hasMore(deal);
               const isExpanded = expandedCards.has(card.key);
 
               return (
@@ -333,7 +408,7 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
                     </div>
                   </button>
                   <div
-                    className="grid transition-[grid-template-rows] duration-300 ease-out overflow-hidden rounded-b-2xl"
+                    className="grid transition-[grid-template-rows] duration-300 ease-out overflow-hidden"
                     style={{ gridTemplateRows: isExpanded ? "1fr" : "0fr" }}
                   >
                     <div className="min-h-0 overflow-hidden">
@@ -341,18 +416,11 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
                         className="-mx-5 -mb-5 rounded-b-2xl px-5 pb-5 pt-4 sm:-mx-6 sm:-mb-6 sm:px-6 sm:pb-6"
 
                       >
-                        <p className="text-[14px] leading-relaxed text-zinc-900/60 sm:text-[14px] md:text-[18px]">
-                          {content}
-                          {showMore && (
-                            <Link
-                              href={deal.speakHref}
-                              className="ml-1 inline font-medium transition-colors hover:underline"
-                              style={{ color: PRIMARY }}
-                            >
-                              more..
-                            </Link>
-                          )}
-                        </p>
+                        <TruncatedContent
+                          content={content}
+                          maxLines={4}
+                          primaryColor={PRIMARY}
+                        />
                       </div>
                     </div>
                   </div>

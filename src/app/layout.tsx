@@ -6,6 +6,7 @@ import { ThemeTracker } from "@/components/layout/ThemeTracker";
 import { ConditionalHeader } from "@/components/layout/ConditionalHeader";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
 import { WelcomeModal } from "@/components/modals/WelcomeModal";
+import { ScrollToHashHandler } from "@/components/ui/ScrollToHashLink";
 import "./globals.css";
 import "./animations.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         } as React.CSSProperties}
       >
         <ThemeTracker />
+        <ScrollToHashHandler />
         <Suspense fallback={null}>
           <ConditionalHeader />
         </Suspense>

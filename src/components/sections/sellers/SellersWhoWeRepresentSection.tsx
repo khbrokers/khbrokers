@@ -136,12 +136,13 @@ export function SellersWhoWeRepresentSection() {
           threshold={0.05}
         >
           <div className="mt-12 flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:mt-16">
-            {cta.map((item) =>
-              item.primary ? (
+            {cta.map((item) => {
+              const baseClasses = "inline-flex min-w-[160px] shrink-0 items-center justify-center whitespace-nowrap rounded-full px-5 py-3 text-[13px] font-medium sm:min-w-[180px] sm:px-6 sm:py-3.5 sm:text-[16px] md:min-w-[200px] md:px-8 md:py-4 md:text-[18px]";
+              return item.primary ? (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border-2 px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:opacity-90 sm:px-5 sm:py-3 sm:text-[16px] md:px-6 md:py-3.5 md:text-[18px]"
+                  className={`${baseClasses} border-2 text-white shadow-[inset_0_4px_14px_white] transition-colors hover:opacity-90`}
                   style={{
                     borderColor: "rgba(255,255,255,0.5)",
                     backgroundColor: PRIMARY,
@@ -153,13 +154,13 @@ export function SellersWhoWeRepresentSection() {
                 <div key={item.label} className="flex shrink-0 rounded-full bg-gradient-to-b from-zinc-900/10 to-transparent p-[2px]">
                   <Link
                     href={item.href}
-                    className="block whitespace-nowrap rounded-full bg-white px-4 py-2.5 text-[13px] font-medium text-zinc-900 transition-colors hover:bg-zinc-100 sm:px-5 sm:py-3 sm:text-[16px] md:px-6 md:py-3.5 md:text-[18px]"
+                    className={`${baseClasses} bg-white text-zinc-900 transition-colors hover:bg-zinc-100`}
                   >
                     {item.label}
                   </Link>
                 </div>
-              )
-            )}
+              );
+            })}
           </div>
         </AnimateOnView>
       </div>

@@ -139,12 +139,12 @@ export function DealsListing() {
   ]);
 
   return (
-    <section className="relative overflow-visible px-4 pb-16 sm:pb-20 md:pb-24">
+    <section className="relative overflow-visible px-4 pb-16 sm:pb-20 md:pb-24 z-[1000]">
       <div className="mx-auto max-w-6xl overflow-visible">
         <AnimateOnView
           animation="stagger"
           rootMargin="0px 0px -60px 0px"
-          className="-mt-8 rounded-[24px] bg-white p-5 sm:-mt-10 sm:rounded-[28px] sm:p-6 md:-mt-12 md:p-[20px]"
+          className="-mt-8 rounded-[24px] bg-white p-5 sm:-mt-10 sm:rounded-[28px] sm:p-6 md:-mt-14 md:p-[20px] lg:-mt-16"
           style={{
             position: "sticky",
             top: "10vh",

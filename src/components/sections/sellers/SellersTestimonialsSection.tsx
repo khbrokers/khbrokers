@@ -76,8 +76,10 @@ function WistiaVideoPopup({
   item: WistiaVideoItem;
   onClose: () => void;
 }) {
-  const { wistiaMediaId } = item;
-  const embedUrl = `https://fast.wistia.com/embed/iframe/${wistiaMediaId}?videoFoam=true&autoplay=1`;
+  const { wistiaMediaId, aspect } = item;
+  // videoFoam=false for portrait videos to prevent zoom/crop; true for landscape
+  const isPortrait = aspect < 1;
+  const embedUrl = `https://fast.wistia.com/embed/iframe/${wistiaMediaId}?videoFoam=${!isPortrait}&autoplay=1`;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -100,7 +102,11 @@ function WistiaVideoPopup({
       aria-label="Video player"
     >
       <div
-        className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-black"
+        className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black"
+        style={{
+          aspectRatio: isPortrait ? "9/16" : "16/9",
+          maxHeight: isPortrait ? "min(90vh, 600px)" : undefined,
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         <iframe
