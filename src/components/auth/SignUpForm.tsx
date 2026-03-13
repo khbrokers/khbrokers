@@ -16,10 +16,9 @@ const BUDGET_OPTIONS = [
 
 const OWNERSHIP_OPTIONS = [
   "Select structure",
-  "Sole proprietorship",
-  "LLC",
-  "Corporation",
-  "Partnership",
+  "Fully hands-on (I operate the business)",
+  "Hybrid (I'm involved strategically with support)",
+  "Fully managed / passive",
 ];
 
 function CustomSelect({
