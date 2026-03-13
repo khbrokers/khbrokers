@@ -10,7 +10,11 @@ export function ThemeTracker() {
 
   useEffect(() => {
     if (!pathname) return;
-    if (pathname.startsWith("/buyers") || pathname.startsWith("/deals")) {
+    if (
+      pathname.startsWith("/buyers") ||
+      pathname.startsWith("/deals") ||
+      pathname.startsWith("/invest-success")
+    ) {
       typeof window !== "undefined" && sessionStorage.setItem(LEGAL_THEME_KEY, "buyers");
     } else if (
       pathname.startsWith("/sellers") ||

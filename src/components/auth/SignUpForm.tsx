@@ -174,7 +174,7 @@ export function SignUpForm() {
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="+0123456789"
+              placeholder="+1 (205) 938-1352"
               className={inputClass}
             />
           </div>

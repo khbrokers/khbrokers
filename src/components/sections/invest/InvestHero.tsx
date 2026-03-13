@@ -43,7 +43,51 @@ const STATS_ICONS: Record<string, React.ReactNode> = {
   chart: <FaChartLine className="h-5 w-5 sm:h-6 sm:w-6" />,
 };
 
-export function InvestHero() {
+const STATS_BLOCK = (
+  <div className="stagger-child mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:mt-10 sm:gap-4 md:mt-12 md:grid-cols-4 md:gap-6">
+    {investStatsConfig.map((item) => (
+      <div
+        key={item.icon}
+        className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-sm sm:gap-4 sm:rounded-2xl sm:p-5 md:rounded-[25px] md:p-6"
+        style={{
+          boxShadow: "0 2px 12px rgba(163, 106, 246, 0.08)",
+          border: "2px solid transparent",
+          background:
+            "linear-gradient(white, white) padding-box, linear-gradient(to bottom, #DFC5FF, #F1E7FD) border-box",
+          backgroundClip: "padding-box, border-box",
+        }}
+      >
+        <div
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white sm:h-11 sm:w-11 md:h-12 md:w-12"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(234, 217, 255, 0.7), rgba(163, 99, 244, 0.7))",
+          }}
+        >
+          {STATS_ICONS[item.icon]}
+        </div>
+        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+          <div
+            className="text-[22px] font-semibold leading-none sm:text-[28px] md:text-[32px] lg:text-[36px]"
+            style={{
+              background: "linear-gradient(135deg, #a36af6 0%, #7c3aed 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            {item.stat}
+          </div>
+          <p className="text-[12px] font-medium leading-snug text-zinc-600 sm:text-[14px] md:text-[15px]">
+            {item.description}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { profitBadge, headline, benefits, socialProof, trustBadgeAvatars } =
     investHeroConfig;
@@ -173,6 +217,8 @@ export function InvestHero() {
             {socialProof.suffix}
           </p>
         </div>
+
+        {!statsBelowForm && STATS_BLOCK}
 
         {/* Download section - inside hero */}
         <div
@@ -306,48 +352,7 @@ export function InvestHero() {
           </div>
         </div>
 
-        {/* Stats cards - above video */}
-        <div className="stagger-child mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:mt-10 sm:gap-4 md:mt-12 md:grid-cols-4 md:gap-6">
-          {investStatsConfig.map((item) => (
-            <div
-                key={item.icon}
-                className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-sm sm:gap-4 sm:rounded-2xl sm:p-5 md:rounded-[25px] md:p-6"
-                style={{
-                  boxShadow: "0 2px 12px rgba(163, 106, 246, 0.08)",
-                  border: "2px solid transparent",
-                  background:
-                    "linear-gradient(white, white) padding-box, linear-gradient(to bottom, #DFC5FF, #F1E7FD) border-box",
-                  backgroundClip: "padding-box, border-box",
-                }}
-              >
-              <div
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white sm:h-11 sm:w-11 md:h-12 md:w-12"
-                style={{
-                  background:
-                    "linear-gradient(to bottom, rgba(234, 217, 255, 0.7), rgba(163, 99, 244, 0.7))",
-                }}
-              >
-                {STATS_ICONS[item.icon]}
-              </div>
-              <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                <div
-                  className="text-[22px] font-semibold leading-none sm:text-[28px] md:text-[32px] lg:text-[36px]"
-                  style={{
-                    background: "linear-gradient(135deg, #a36af6 0%, #7c3aed 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {item.stat}
-                </div>
-                <p className="text-[12px] font-medium leading-snug text-zinc-600 sm:text-[14px] md:text-[15px]">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        {statsBelowForm && STATS_BLOCK}
 
         <AnimateOnView
           animation="fade-up-slow"

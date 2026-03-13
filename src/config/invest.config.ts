@@ -125,15 +125,28 @@ export const investFaqConfig = {
   ],
 };
 
+export const investSuccessConfig = {
+  headline: {
+    before: "You're in. Your ",
+    highlight: "list of available brands",
+    after: " will arrive in your inbox within 1 hour.",
+  },
+  subheadline: {
+    before: "You'll receive the current ",
+    highlight: "list of cash-flowing e-commerce brands",
+    after: " available for acquisition in your inbox within the next hour.",
+  },
+};
+
 export const investDownloadConfig = {
   headline: {
-    before: "Download our current  ",
+    before: "Receive our current ",
     highlight: "list of brands",
     after: " available right now.",
   },
   downloadButton: {
-    label: "Download Now - starting at $25K",
-    href: "#",
+    label: "Receive List – starting at $25K",
+    href: "/invest-success",
   },
   form: {
     fields: [

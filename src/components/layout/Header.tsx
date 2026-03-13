@@ -14,7 +14,7 @@ import { siteConfig } from "@/config/site.config";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
-const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest", "/terms", "/privacy"];
+const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest", "/invest-success", "/terms", "/privacy"];
 
 export function Header() {
   const pathname = usePathname();
@@ -30,8 +30,10 @@ export function Header() {
         ? ("/value-my-store" as const)
         : pathname.startsWith("/deals")
           ? ("/deals" as const)
-          : pathname.startsWith("/invest")
+          : pathname.startsWith("/invest-success")
             ? ("/invest" as const)
+            : pathname.startsWith("/invest")
+              ? ("/invest" as const)
             : pathname.startsWith("/terms")
               ? ("/terms" as const)
               : pathname.startsWith("/privacy")
