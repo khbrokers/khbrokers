@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { mockDeals } from "@/config/deals.config";
-import { ListingDetailPage } from "@/components/sections/deals/ListingDetailPage";
+import { ListingPageClient } from "./ListingPageClient";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -26,5 +26,5 @@ export default async function ListingPage({ params }: PageProps) {
   const deal = mockDeals.find((d) => d.id === id);
   if (!deal) notFound();
 
-  return <ListingDetailPage deal={deal} />;
+  return <ListingPageClient deal={deal} />;
 }
