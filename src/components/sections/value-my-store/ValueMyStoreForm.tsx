@@ -1,6 +1,6 @@
 "use client";
 
-import Script from "next/script";
+import { useEffect, useRef, useState } from "react";
 import { valueMyStoreConfig } from "@/config/value-my-store.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
@@ -9,13 +9,47 @@ const TYPEFORM_LIVE_ID = "01KHRW1Q39EC9SYDTFQDPYG364";
 
 export function ValueMyStoreForm() {
   const { formTitle, formDescription } = valueMyStoreConfig;
+  const [isFormReady, setIsFormReady] = useState(false);
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = formContainerRef.current;
+    if (!container) return;
+
+    const attachLoadListener = (iframe: HTMLIFrameElement) => {
+      iframe.addEventListener(
+        "load",
+        () => setIsFormReady(true),
+        { once: true }
+      );
+    };
+
+    const checkForIframe = () => {
+      const iframe = container.querySelector("iframe");
+      if (iframe) {
+        attachLoadListener(iframe);
+        return true;
+      }
+      return false;
+    };
+
+    if (checkForIframe()) return;
+
+    const observer = new MutationObserver(() => {
+      if (checkForIframe()) observer.disconnect();
+    });
+    observer.observe(container, { childList: true, subtree: true });
+
+    const fallbackTimer = setTimeout(() => setIsFormReady(true), 10000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
+  }, []);
 
   return (
     <section className="relative px-4 pb-24 sm:px-6 md:pb-32 top-[40px] md:top-[120px]">
-      <Script
-        src="https://embed.typeform.com/next/embed.js"
-        strategy="lazyOnload"
-      />
       <div className="mx-auto flex w-full justify-center">
         <AnimateOnView
           animation="fade-up"
@@ -44,7 +78,25 @@ export function ValueMyStoreForm() {
           </p>
 
           {/* Typeform embed */}
-          <div className="mt-8 sm:mt-10 w-full overflow-hidden rounded-xl border border-zinc-200 bg-white">
+          <div
+            ref={formContainerRef}
+            className="relative mt-8 sm:mt-10 w-full overflow-hidden rounded-xl border border-zinc-200 bg-white"
+          >
+            {!isFormReady && (
+              <div
+                className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-white/95"
+                aria-live="polite"
+                aria-busy="true"
+              >
+                <div
+                  className="h-6 w-6 animate-spin rounded-full border-2 border-[#00965F] border-t-transparent"
+                  aria-hidden
+                />
+                <p className="text-sm font-medium text-zinc-600">
+                  getting form ready..
+                </p>
+              </div>
+            )}
             <div
               data-tf-live={TYPEFORM_LIVE_ID}
               className="h-[500px] w-full min-h-[500px] sm:h-[550px] sm:min-h-[550px] md:h-[600px] md:min-h-[600px]"

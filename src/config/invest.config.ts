@@ -80,7 +80,7 @@ export const investBenefitsConfig = {
     },
   ],
   cta: {
-    label: "Download a List of 5 Cash Flowing Brands",
+    label: "Receive List – starting at $25K",
     href: "#",
   },
 };
@@ -92,7 +92,7 @@ export const investFaqConfig = {
   },
   subheading: "Direct answers. No ambiguity.",
   cta: {
-    label: "Download a List of 5 Cash Flowing Brands",
+    label: "Receive List – starting at $25K",
     href: "#",
   },
   items: [

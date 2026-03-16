@@ -175,7 +175,7 @@ export const buyersJourneyConfig = {
   heading: {
     before: "How Buying Through ",
     highlight: "KH Brokers",
-    after: " looks",
+    after: " Looks",
   },
   subheading:
     "Handled end-to-end with buyer protection at every stage.",
