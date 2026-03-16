@@ -11,7 +11,7 @@ export function ValueMyStoreWhySection() {
 
   return (
     <section className="px-4 py-12 sm:py-16 md:py-24" style={{ backgroundColor: "#F0FFFA" }}>
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         {/* Main title - stagger: heading then subtitle */}
         <AnimateOnView
           animation="stagger"

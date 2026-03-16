@@ -6,6 +6,25 @@ import { dealsFiltersConfig } from "@/config/deals.config";
 
 const PRIMARY = "#a36af6";
 
+function countActiveFilters(
+  selectedNiches: string[],
+  priceRange: [number, number],
+  annualProfit: [number, number],
+  annualRevenue: [number, number],
+  businessAge: [number, number],
+  recentlySold: boolean
+): number {
+  const { priceRange: pr, annualProfit: ap, annualRevenue: ar, businessAge: ba } =
+    dealsFiltersConfig;
+  let count = selectedNiches.length;
+  if (priceRange[0] !== pr.min || priceRange[1] !== pr.max) count += 1;
+  if (annualProfit[0] !== ap.min || annualProfit[1] !== ap.max) count += 1;
+  if (annualRevenue[0] !== ar.min || annualRevenue[1] !== ar.max) count += 1;
+  if (businessAge[0] !== ba.min || businessAge[1] !== ba.max) count += 1;
+  if (recentlySold) count += 1;
+  return count;
+}
+
 function parseFilterInput(
   input: string,
   type: "currency" | "years"
@@ -27,6 +46,7 @@ function parseFilterInput(
 
 interface DealsFiltersProps {
   onClose?: () => void;
+  onClearAll?: () => void;
   selectedNiches: string[];
   onNicheToggle: (niche: string) => void;
   priceRange: [number, number];
@@ -142,6 +162,7 @@ function SliderRow({
 
 export function DealsFilters({
   onClose,
+  onClearAll,
   selectedNiches,
   onNicheToggle,
   priceRange,
@@ -157,6 +178,15 @@ export function DealsFilters({
 }: DealsFiltersProps) {
   const { refineTitle, priceRange: pr, annualProfit: ap, annualRevenue: ar, businessAge: ba, industryLabel, recentlySoldLabel, niches } =
     dealsFiltersConfig;
+
+  const activeCount = countActiveFilters(
+    selectedNiches,
+    priceRange,
+    annualProfit,
+    annualRevenue,
+    businessAge,
+    recentlySold
+  );
 
   return (
     <div className="space-y-5 h-fit rounded-[30px] p-2 md:p-3">
@@ -175,7 +205,19 @@ export function DealsFilters({
           <h3 className="text-[16px] md:text-[18px] font-normal text-zinc-900 sm:text-[18px]">
             {refineTitle}
           </h3>
-          <FaFilter className="h-4 w-4 shrink-0" style={{ color: PRIMARY }} />
+          {activeCount > 0 ? (
+            <button
+              type="button"
+              onClick={onClearAll}
+              aria-label="Clear all filters"
+              className="flex h-7 shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-[#a36af6] px-3 text-white transition-colors hover:bg-[#a36af650] hover:text-[#a36af6] [&>svg]:hover:text-[#a36af6]"
+            >
+              <FaTimes className="h-2 w-2 shrink-0 md:h-3 md:w-3" />
+              <span className="text-[13px] md:text-[14px] font-normal border-l border-white/10 pl-2">{activeCount}</span>
+            </button>
+          ) : (
+            <FaFilter className="h-4 w-4 shrink-0" style={{ color: PRIMARY }} />
+          )}
         </div>
       </div>
 

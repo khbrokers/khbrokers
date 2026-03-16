@@ -55,6 +55,15 @@ export function DealsListing() {
     );
   };
 
+  const handleClearAllFilters = () => {
+    setSelectedNiches([]);
+    setPriceRange([dealsFiltersConfig.priceRange.min, dealsFiltersConfig.priceRange.max]);
+    setAnnualProfit([dealsFiltersConfig.annualProfit.min, dealsFiltersConfig.annualProfit.max]);
+    setAnnualRevenue([dealsFiltersConfig.annualRevenue.min, dealsFiltersConfig.annualRevenue.max]);
+    setBusinessAge([dealsFiltersConfig.businessAge.min, dealsFiltersConfig.businessAge.max]);
+    setRecentlySold(false);
+  };
+
   const filteredAndSortedDeals = useMemo(() => {
     let result = [...mockDeals];
 
@@ -229,6 +238,7 @@ export function DealsListing() {
               {filtersOpen ? (
                 <DealsFilters
                   onClose={() => setFiltersOpen(false)}
+                  onClearAll={handleClearAllFilters}
                   selectedNiches={selectedNiches}
                 onNicheToggle={handleNicheToggle}
                 priceRange={priceRange}
