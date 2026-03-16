@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { getStoredLegalTheme } from "@/components/layout/ThemeTracker";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { navConfig, ctaConfig } from "@/config/nav.config";
 import {
   marketplaceNavConfig,
@@ -15,6 +15,87 @@ import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
 const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest", "/invest-success", "/terms", "/privacy"];
+
+interface AuthUser {
+  id: string;
+  email: string;
+  name: string | null;
+}
+
+function useAuth() {
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => setUser(data?.user ?? null))
+      .catch(() => setUser(null))
+      .finally(() => setLoading(false));
+  }, []);
+
+  return { user, loading };
+}
+
+function UserMenu({ user, themeKey }: { user: AuthUser; themeKey: "buyers" | "sellers" }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSignOut = useCallback(async () => {
+    await fetch("/api/auth/signout", { method: "POST" });
+    setOpen(false);
+    router.refresh();
+    window.location.href = "/";
+  }, [router]);
+
+  const initial = (user.name?.[0] || user.email[0]).toUpperCase();
+  const bgColor = themeKey === "sellers" ? "#00965F" : "#a36af6";
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="flex items-center gap-2 rounded-full px-1.5 py-1 transition-colors hover:bg-zinc-100 md:px-2.5 md:py-1.5"
+      >
+        <span
+          className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold text-white md:h-8 md:w-8 md:text-sm"
+          style={{ backgroundColor: bgColor }}
+        >
+          {initial}
+        </span>
+        <span className="hidden text-sm font-medium text-zinc-900 md:block">
+          {user.name || "Account"}
+        </span>
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-full z-50 mt-2 min-w-[180px] rounded-xl border border-zinc-200/80 bg-white p-1.5 shadow-xl">
+          <div className="border-b border-zinc-100 px-3 py-2.5">
+            <p className="text-sm font-medium text-zinc-900 truncate">{user.name || "User"}</p>
+            <p className="text-xs text-zinc-500 truncate">{user.email}</p>
+          </div>
+          <button
+            type="button"
+            onClick={handleSignOut}
+            className="mt-1 w-full rounded-lg px-3 py-2 text-left text-sm text-red-600 transition-colors hover:bg-red-50"
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Header() {
   const pathname = usePathname();
@@ -189,6 +270,7 @@ function MarketplaceHeaderContent({
   activePath: "/buyers" | "/sellers" | "/value-my-store" | "/deals" | "/invest" | "/terms" | "/privacy";
   legalTheme?: "buyers" | "sellers" | null;
 }) {
+  const { user, loading } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -232,7 +314,7 @@ function MarketplaceHeaderContent({
     >
       <div
         className={cn(
-          "relative mx-auto flex h-12 overflow-hidden rounded-full items-center justify-between px-2 sm:px-3 md:h-16 md:px-4 lg:px-4 bg-white/70 backdrop-blur-[6px] before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:rounded-t-full before:bg-gradient-to-b before:from-white before:to-white/0 before:content-['']",
+          "relative mx-auto flex h-12 rounded-full items-center justify-between px-2 sm:px-3 md:h-16 md:px-4 lg:px-4 bg-white/70 backdrop-blur-[6px] before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:rounded-t-full before:bg-gradient-to-b before:from-white before:to-white/0 before:content-['']",
           "transition-[width] duration-300 ease-out"
         )}
         style={{ width: isDesktop && isScrolled ? "65%" : "80%" }}
@@ -276,19 +358,27 @@ function MarketplaceHeaderContent({
           >
             <HamburgerIcon open={mobileMenuOpen} />
           </button>
-          <Link
-            href={marketplaceCtaConfig.signInHref}
-            className="hidden text-xs font-medium text-zinc-900 transition-colors hover:text-zinc-900/50 md:block md:text-sm"
-          >
-            {marketplaceCtaConfig.signInLabel}
-          </Link>
-          <Link
-            href={marketplaceCtaConfig.applyHref}
-            className={theme.applyButton.desktopClassName}
-            style={theme.applyButton.style}
-          >
-            {marketplaceCtaConfig.applyLabel}
-          </Link>
+          {!loading && user ? (
+            <div className="hidden md:block">
+              <UserMenu user={user} themeKey={themeKey as "buyers" | "sellers"} />
+            </div>
+          ) : (
+            <>
+              <Link
+                href={marketplaceCtaConfig.signInHref}
+                className="hidden text-xs font-medium text-zinc-900 transition-colors hover:text-zinc-900/50 md:block md:text-sm"
+              >
+                {marketplaceCtaConfig.signInLabel}
+              </Link>
+              <Link
+                href={marketplaceCtaConfig.applyHref}
+                className={theme.applyButton.desktopClassName}
+                style={theme.applyButton.style}
+              >
+                {marketplaceCtaConfig.applyLabel}
+              </Link>
+            </>
+          )}
         </div>
       </div>
 
@@ -320,22 +410,28 @@ function MarketplaceHeaderContent({
           </Link>
         ))}
         <div className="mt-2 flex flex-row flex-wrap gap-2 border-t border-zinc-200/60 pt-3">
-          <Link
-            href={marketplaceCtaConfig.signInHref}
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex-1 min-w-0 rounded-xl px-4 py-3 text-center text-[14px] font-medium text-zinc-900 transition-colors hover:bg-zinc-200/60"
-          >
-            {marketplaceCtaConfig.signInLabel}
-          </Link>
-          
-          <Link
-            href={marketplaceCtaConfig.applyHref}
-            onClick={() => setMobileMenuOpen(false)}
-            className={theme.applyButton.mobileClassName}
-            style={theme.applyButton.style}
-          >
-            {marketplaceCtaConfig.applyLabel}
-          </Link>
+          {!loading && user ? (
+            <UserMenu user={user} themeKey={themeKey as "buyers" | "sellers"} />
+          ) : (
+            <>
+              <Link
+                href={marketplaceCtaConfig.signInHref}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex-1 min-w-0 rounded-xl px-4 py-3 text-center text-[14px] font-medium text-zinc-900 transition-colors hover:bg-zinc-200/60"
+              >
+                {marketplaceCtaConfig.signInLabel}
+              </Link>
+
+              <Link
+                href={marketplaceCtaConfig.applyHref}
+                onClick={() => setMobileMenuOpen(false)}
+                className={theme.applyButton.mobileClassName}
+                style={theme.applyButton.style}
+              >
+                {marketplaceCtaConfig.applyLabel}
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

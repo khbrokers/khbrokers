@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, FormEvent, useRef, useEffect } from "react";
 const PURPLE = "#8C52FF";
 
@@ -111,8 +112,13 @@ export function SignUpForm() {
   const [lookingFor, setLookingFor] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSelectError, setShowSelectError] = useState(false);
+  const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
     const invalidSelect = budget === BUDGET_OPTIONS[0] || ownership === OWNERSHIP_OPTIONS[0];
@@ -121,9 +127,37 @@ export function SignUpForm() {
       return;
     }
     setShowSelectError(false);
+    setError("");
     setIsSubmitting(true);
-    // TODO: wire to API
-    setTimeout(() => setIsSubmitting(false), 1000);
+
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          password,
+          budget,
+          ownership,
+          lookingFor,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong");
+        return;
+      }
+
+      router.push(redirectTo);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass =
@@ -152,6 +186,12 @@ export function SignUpForm() {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4 sm:mt-8">
+          {error && (
+            <div className="rounded-xl bg-red-50 px-4 py-3 text-[14px] text-red-600">
+              {error}
+            </div>
+          )}
+
           <input
             type="text"
             value={name}
@@ -178,6 +218,16 @@ export function SignUpForm() {
               className={inputClass}
             />
           </div>
+
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            minLength={6}
+            className={inputClass}
+          />
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <CustomSelect
