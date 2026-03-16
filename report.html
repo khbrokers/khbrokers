@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KH Brokers — Comprehensive Audit Report</title>
+  <style>
+    :root {
+      --purple: #8C52FF;
+      --purple-light: #f3edff;
+      --green: #00965F;
+      --green-light: #e6f7f0;
+      --red: #e53e3e;
+      --red-light: #fff5f5;
+      --orange: #dd6b20;
+      --orange-light: #fffaf0;
+      --blue: #3182ce;
+      --blue-light: #ebf8ff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --gray-900: #111827;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--gray-900);
+      background: var(--gray-50);
+      line-height: 1.6;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ─── Cover Page ─── */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a0533 0%, #2d1052 30%, #4a1a8a 60%, var(--purple) 100%);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      page-break-after: always;
+    }
+    .cover h1 { font-size: 3rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+    .cover .subtitle { font-size: 1.35rem; opacity: 0.85; margin-bottom: 2.5rem; font-weight: 300; }
+    .cover .meta { display: flex; gap: 2rem; font-size: 0.95rem; opacity: 0.7; }
+    .cover .divider { width: 80px; height: 3px; background: rgba(255,255,255,0.4); border-radius: 2px; margin: 2rem 0; }
+
+    /* ─── Table of Contents ─── */
+    .toc {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      page-break-after: always;
+    }
+    .toc h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; color: var(--purple); }
+    .toc-list { list-style: none; }
+    .toc-list li { border-bottom: 1px dashed var(--gray-200); }
+    .toc-list li a {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      text-decoration: none;
+      color: var(--gray-700);
+      font-size: 0.95rem;
+      transition: color 0.15s;
+    }
+    .toc-list li a:hover { color: var(--purple); }
+    .toc-list li a .num { font-weight: 700; color: var(--purple); margin-right: 0.75rem; min-width: 28px; }
+
+    /* ─── Main Content ─── */
+    .content { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+    section {
+      background: white;
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border: 1px solid var(--gray-200);
+      page-break-inside: avoid;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--purple-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2 .section-num {
+      background: var(--purple);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    p { margin-bottom: 0.75rem; color: var(--gray-700); font-size: 0.95rem; }
+    ul, ol { margin: 0.5rem 0 1rem 1.5rem; color: var(--gray-700); font-size: 0.95rem; }
+    li { margin-bottom: 0.35rem; }
+
+    /* ─── Summary Cards ─── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .summary-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .summary-card .num { font-size: 2rem; font-weight: 800; color: var(--purple); }
+    .summary-card .label { font-size: 0.8rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.25rem; }
+
+    /* ─── Badge ─── */
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .badge-critical { background: var(--red-light); color: var(--red); }
+    .badge-high { background: var(--orange-light); color: var(--orange); }
+    .badge-medium { background: var(--blue-light); color: var(--blue); }
+    .badge-low { background: var(--green-light); color: var(--green); }
+    .badge-ok { background: var(--green-light); color: var(--green); }
+
+    /* ─── Tables ─── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    th {
+      background: var(--gray-50);
+      font-weight: 600;
+      color: var(--gray-700);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    /* ─── Code Blocks ─── */
+    code {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      background: var(--gray-100);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--purple);
+    }
+    pre {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0.75rem 0 1rem;
+    }
+    pre code { background: none; color: inherit; padding: 0; }
+
+    /* ─── Alert Boxes ─── */
+    .alert {
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      border-left: 4px solid;
+    }
+    .alert-critical { background: var(--red-light); border-color: var(--red); }
+    .alert-warning { background: var(--orange-light); border-color: var(--orange); }
+    .alert-info { background: var(--blue-light); border-color: var(--blue); }
+    .alert-success { background: var(--green-light); border-color: var(--green); }
+    .alert strong { display: block; margin-bottom: 0.25rem; }
+
+    /* ─── Checklist ─── */
+    .checklist { list-style: none; margin-left: 0; }
+    .checklist li { padding: 0.4rem 0; padding-left: 1.75rem; position: relative; }
+    .checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 0;
+      font-size: 1.1rem;
+    }
+
+    /* ─── Architecture Diagram ─── */
+    .diagram {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 1.5rem;
+      border-radius: 10px;
+      font-family: 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 1rem 0;
+    }
+
+    /* ─── Flow ─── */
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .flow-step {
+      background: var(--purple-light);
+      color: var(--purple);
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .flow-arrow { color: var(--gray-300); font-weight: 700; }
+
+    /* ─── Score Meter ─── */
+    .score-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .score-item {
+      background: var(--gray-50);
+      border-radius: 10px;
+      padding: 1.25rem;
+      border: 1px solid var(--gray-200);
+    }
+    .score-item .score-label {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      margin-bottom: 0.5rem;
+    }
+    .score-bar {
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.35rem;
+    }
+    .score-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+    .score-fill.high { background: var(--green); }
+    .score-fill.mid { background: var(--orange); }
+    .score-fill.low { background: var(--red); }
+    .score-value { font-size: 0.8rem; color: var(--gray-500); text-align: right; }
+
+    /* ─── Footer ─── */
+    .report-footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--gray-500);
+      font-size: 0.85rem;
+    }
+
+    /* ─── Print Styles ─── */
+    @media print {
+      body { background: white; }
+      section { box-shadow: none; border: 1px solid var(--gray-200); }
+      .cover { min-height: auto; padding: 4rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ COVER PAGE ═══════════════════════ -->
+<div class="cover">
+  <h1>KH Brokers</h1>
+  <p class="subtitle">Comprehensive Project Audit Report</p>
+  <div class="divider"></div>
+  <div class="meta">
+    <span>Date: March 14, 2026</span>
+    <span>Version: 1.0</span>
+    <span>Next.js 16.1.6</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ TABLE OF CONTENTS ═══════════════════════ -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol class="toc-list">
+    <li><a href="#executive-summary"><span class="num">01</span> Executive Summary</a></li>
+    <li><a href="#tech-stack"><span class="num">02</span> Technology Stack &amp; Dependencies</a></li>
+    <li><a href="#architecture"><span class="num">03</span> Architecture &amp; Project Structure</a></li>
+    <li><a href="#routes"><span class="num">04</span> Routes &amp; Pages</a></li>
+    <li><a href="#api"><span class="num">05</span> API Routes &amp; Backend</a></li>
+    <li><a href="#auth"><span class="num">06</span> Authentication &amp; Session Management</a></li>
+    <li><a href="#supabase"><span class="num">07</span> Supabase Integration</a></li>
+    <li><a href="#mailchimp"><span class="num">08</span> Mailchimp Integration</a></li>
+    <li><a href="#security"><span class="num">09</span> Security Audit</a></li>
+    <li><a href="#performance"><span class="num">10</span> Performance Analysis</a></li>
+    <li><a href="#seo"><span class="num">11</span> SEO &amp; Metadata</a></li>
+    <li><a href="#ui"><span class="num">12</span> UI, Styling &amp; Animations</a></li>
+    <li><a href="#components"><span class="num">13</span> Components Inventory</a></li>
+    <li><a href="#missing"><span class="num">14</span> Missing Features &amp; Gaps</a></li>
+    <li><a href="#recommendations"><span class="num">15</span> Recommendations &amp; Roadmap</a></li>
+    <li><a href="#checklist"><span class="num">16</span> Pre-Deployment Checklist</a></li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════ MAIN CONTENT ═══════════════════════ -->
+<div class="content">
+
+<!-- 1. EXECUTIVE SUMMARY -->
+<section id="executive-summary">
+  <h2><span class="section-num">01</span> Executive Summary</h2>
+  <p>KH Brokers is a modern e-commerce brokerage marketplace built with <strong>Next.js 16 (App Router)</strong>, <strong>React 19</strong>, <strong>TypeScript (strict)</strong>, and <strong>Tailwind CSS v4</strong>. The platform implements a dual-marketplace model with separate buyer and seller flows, featuring config-driven content, Supabase authentication, Mailchimp email marketing, and a polished responsive UI.</p>
+  <p>The project is currently in <strong>MVP stage</strong> — the frontend is feature-complete with a well-organized component architecture, but the backend relies on mock data for deals and lacks several production essentials (rate limiting, input validation, error tracking, testing).</p>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="num">15</div>
+      <div class="label">Page Routes</div>
+    </div>
+    <div class="summary-card">
+      <div class="num">66</div>
+      <div class="label">Components</div>
+    </div>
+    <div class="summary-card">
+      <div class="num">14</div>
+      <div class="label">Config Files</div>
+    </div>
+    <div class="summary-card">
+      <div class="num">5</div>
+      <div class="label">API Endpoints</div>
+    </div>
+  </div>
+
+  <h3>Health Scores</h3>
+  <div class="score-section">
+    <div class="score-item">
+      <div class="score-label">Code Quality &amp; Architecture</div>
+      <div class="score-bar"><div class="score-fill high" style="width:85%"></div></div>
+      <div class="score-value">85 / 100</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Security Posture</div>
+      <div class="score-bar"><div class="score-fill low" style="width:40%"></div></div>
+      <div class="score-value">40 / 100</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">SEO &amp; Metadata</div>
+      <div class="score-bar"><div class="score-fill high" style="width:80%"></div></div>
+      <div class="score-value">80 / 100</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Performance</div>
+      <div class="score-bar"><div class="score-fill mid" style="width:65%"></div></div>
+      <div class="score-value">65 / 100</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Production Readiness</div>
+      <div class="score-bar"><div class="score-fill mid" style="width:45%"></div></div>
+      <div class="score-value">45 / 100</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">UI / UX Polish</div>
+      <div class="score-bar"><div class="score-fill high" style="width:90%"></div></div>
+      <div class="score-value">90 / 100</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. TECHNOLOGY STACK -->
+<section id="tech-stack">
+  <h2><span class="section-num">02</span> Technology Stack &amp; Dependencies</h2>
+
+  <h3>Core Framework</h3>
+  <table>
+    <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
+    <tr><td><code>next</code></td><td>16.1.6</td><td>App Router, Server Components, API Routes</td></tr>
+    <tr><td><code>react</code></td><td>19.2.3</td><td>UI rendering, hooks, Suspense</td></tr>
+    <tr><td><code>typescript</code></td><td>5.x</td><td>Type safety (strict mode enabled)</td></tr>
+    <tr><td><code>tailwindcss</code></td><td>v4</td><td>Utility-first CSS via <code>@tailwindcss/postcss</code></td></tr>
+  </table>
+
+  <h3>Integrations</h3>
+  <table>
+    <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
+    <tr><td><code>@supabase/supabase-js</code></td><td>^2.99.1</td><td>Auth + database (profiles table)</td></tr>
+    <tr><td><code>@calcom/embed-react</code></td><td>^1.5.3</td><td>Booking calendar embeds</td></tr>
+    <tr><td><code>lottie-react</code></td><td>^2.4.1</td><td>Lottie JSON animations</td></tr>
+    <tr><td><code>react-icons</code></td><td>^5.6.0</td><td>Icon library</td></tr>
+  </table>
+
+  <h3>Environment Variables</h3>
+  <table>
+    <tr><th>Variable</th><th>Scope</th><th>Status</th></tr>
+    <tr><td><code>NEXT_PUBLIC_SUPABASE_URL</code></td><td>Client + Server</td><td><span class="badge badge-ok">Set</span></td></tr>
+    <tr><td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td><td>Client + Server</td><td><span class="badge badge-ok">Set</span></td></tr>
+    <tr><td><code>SUPABASE_SERVICE_ROLE_KEY</code></td><td>Server only</td><td><span class="badge badge-ok">Set</span></td></tr>
+    <tr><td><code>MAILCHIMP_API_KEY</code></td><td>Server only</td><td><span class="badge badge-ok">Set</span></td></tr>
+    <tr><td><code>MAILCHIMP_AUDIENCE_ID</code></td><td>Server only</td><td><span class="badge badge-ok">Set</span></td></tr>
+    <tr><td><code>MAILCHIMP_SERVER_PREFIX</code></td><td>Server only</td><td><span class="badge badge-ok">Set</span></td></tr>
+    <tr><td><code>NEXT_PUBLIC_SITE_URL</code></td><td>Client + Server</td><td><span class="badge badge-high">Missing</span></td></tr>
+    <tr><td>Analytics / Sentry keys</td><td>Client</td><td><span class="badge badge-high">Missing</span></td></tr>
+  </table>
+</section>
+
+<!-- 3. ARCHITECTURE -->
+<section id="architecture">
+  <h2><span class="section-num">03</span> Architecture &amp; Project Structure</h2>
+
+  <p>The project follows a <strong>config-driven architecture</strong> where all page content lives in TypeScript config files (<code>src/config/*.config.ts</code>). Components read from these configs, making content updates possible without touching component logic.</p>
+
+  <div class="diagram">src/
+├── app/                          # Next.js App Router
+│   ├── layout.tsx                # Root layout (fonts, animations, suspense)
+│   ├── metadata.ts               # Default SEO metadata
+│   ├── sitemap.ts                # Dynamic sitemap generation
+│   ├── robots.ts                 # robots.txt rules
+│   ├── globals.css               # Tailwind v4 theme + global styles
+│   ├── animations.css            # Scroll &amp; entrance animations
+│   ├── (auth)/                   # Auth route group (no header/footer)
+│   │   ├── signin/
+│   │   ├── signup/
+│   │   └── demo/
+│   ├── (main)/                   # Marketplace route group
+│   │   ├── buyers/
+│   │   ├── sellers/
+│   │   ├── invest/ &amp; invest-2/
+│   │   ├── invest-success/
+│   │   └── value-my-store/
+│   ├── deals/                    # Protected marketplace listings
+│   │   └── [id]/                 # Dynamic deal detail
+│   ├── about/ contact/           # Info pages
+│   ├── privacy/ terms/           # Legal (theme-aware)
+│   └── api/                      # API routes
+│       ├── auth/ (signup, signin, signout, me)
+│       └── health/
+├── components/
+│   ├── ui/                       # Primitives (Button, Container, etc.)
+│   ├── layout/                   # Header, Footer, Conditional wrappers
+│   ├── auth/                     # SignInForm, SignUpForm
+│   ├── modals/                   # WelcomeModal, DealSpeakModal
+│   └── sections/                 # Page sections by domain
+│       ├── buyers/ (13)
+│       ├── sellers/ (13)
+│       ├── deals/ (8)
+│       ├── invest/ (4)
+│       ├── value-my-store/ (3)
+│       └── legal/ (2)
+├── config/                       # 14 config files (content source)
+├── lib/                          # Utilities
+│   ├── supabase.ts               # Lazy client factories
+│   ├── mailchimp.ts              # Mailchimp API wrapper
+│   ├── animations.ts             # Animation tokens
+│   └── utils.ts                  # cn() helper
+├── types/                        # Shared TypeScript types
+└── proxy.ts                      # Route protection (Next.js 16 proxy)</div>
+
+  <h3>Key Architectural Patterns</h3>
+  <ul>
+    <li><strong>Config → Component:</strong> All content in <code>src/config/</code>, components are pure renderers</li>
+    <li><strong>Route Groups:</strong> <code>(auth)</code> hides header/footer; <code>(main)</code> for marketplace pages</li>
+    <li><strong>Dual Theme:</strong> Buyers = purple (<code>#a36af6</code>), Sellers = green (<code>#00965F</code>)</li>
+    <li><strong>Server Components by default:</strong> Only <code>"use client"</code> where needed (forms, interactivity)</li>
+    <li><strong>Lazy initialization:</strong> Supabase clients created on first use, not at import time</li>
+    <li><strong>Path alias:</strong> <code>@/*</code> maps to <code>./src/*</code></li>
+  </ul>
+</section>
+
+<!-- 4. ROUTES -->
+<section id="routes">
+  <h2><span class="section-num">04</span> Routes &amp; Pages</h2>
+
+  <table>
+    <tr><th>Route</th><th>Group</th><th>Auth</th><th>Description</th></tr>
+    <tr><td><code>/</code></td><td>Root</td><td>Public</td><td>Home page (buyers landing + welcome modal)</td></tr>
+    <tr><td><code>/buyers</code></td><td>(main)</td><td>Public</td><td>Buyers marketplace landing</td></tr>
+    <tr><td><code>/sellers</code></td><td>(main)</td><td>Public</td><td>Sellers marketplace landing</td></tr>
+    <tr><td><code>/invest</code></td><td>(main)</td><td>Public</td><td>Investment page</td></tr>
+    <tr><td><code>/invest-2</code></td><td>(main)</td><td>Public</td><td>Investment variant</td></tr>
+    <tr><td><code>/invest-success</code></td><td>(main)</td><td>Public</td><td>Investment success confirmation</td></tr>
+    <tr><td><code>/value-my-store</code></td><td>(main)</td><td>Public</td><td>Store valuation tool</td></tr>
+    <tr><td><code>/deals</code></td><td>Root</td><td><span class="badge badge-critical">Protected</span></td><td>Deal marketplace listing</td></tr>
+    <tr><td><code>/deals/[id]</code></td><td>Root</td><td><span class="badge badge-critical">Protected</span></td><td>Individual deal detail page</td></tr>
+    <tr><td><code>/about</code></td><td>Root</td><td>Public</td><td>About page</td></tr>
+    <tr><td><code>/contact</code></td><td>Root</td><td>Public</td><td>Contact page</td></tr>
+    <tr><td><code>/privacy</code></td><td>Root</td><td>Public</td><td>Privacy policy (theme-aware)</td></tr>
+    <tr><td><code>/terms</code></td><td>Root</td><td>Public</td><td>Terms of service (theme-aware)</td></tr>
+    <tr><td><code>/signin</code></td><td>(auth)</td><td>Public</td><td>Sign in form</td></tr>
+    <tr><td><code>/signup</code></td><td>(auth)</td><td>Public</td><td>Sign up form</td></tr>
+  </table>
+</section>
+
+<!-- 5. API ROUTES -->
+<section id="api">
+  <h2><span class="section-num">05</span> API Routes &amp; Backend</h2>
+
+  <table>
+    <tr><th>Method</th><th>Endpoint</th><th>Purpose</th><th>Status</th></tr>
+    <tr><td><code>POST</code></td><td><code>/api/auth/signup</code></td><td>User registration (Supabase + Mailchimp)</td><td><span class="badge badge-ok">Active</span></td></tr>
+    <tr><td><code>POST</code></td><td><code>/api/auth/signin</code></td><td>User login</td><td><span class="badge badge-ok">Active</span></td></tr>
+    <tr><td><code>POST</code></td><td><code>/api/auth/signout</code></td><td>Clear auth cookies</td><td><span class="badge badge-ok">Active</span></td></tr>
+    <tr><td><code>GET</code></td><td><code>/api/auth/me</code></td><td>Session verify + token refresh</td><td><span class="badge badge-ok">Active</span></td></tr>
+    <tr><td><code>GET</code></td><td><code>/api/health</code></td><td>Health check</td><td><span class="badge badge-ok">Active</span></td></tr>
+  </table>
+
+  <h3>Signup Flow</h3>
+  <div class="flow">
+    <span class="flow-step">Client Form</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">POST /api/auth/signup</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Create Auth User</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Insert Profile</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Mailchimp Subscribe</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Auto Sign-in</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Set Cookies</span>
+  </div>
+
+  <h3>Token Refresh Flow</h3>
+  <div class="flow">
+    <span class="flow-step">GET /api/auth/me</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Verify Access Token</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">If Expired: Use Refresh Token</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Return New Cookies</span>
+  </div>
+
+  <div class="alert alert-warning">
+    <strong>Note: No Real Deal Data</strong>
+    All deal listings are hardcoded mock data in <code>src/config/deals.config.ts</code>. There are no API routes for CRUD operations on deals. A backend for deal management needs to be built.
+  </div>
+</section>
+
+<!-- 6. AUTHENTICATION -->
+<section id="auth">
+  <h2><span class="section-num">06</span> Authentication &amp; Session Management</h2>
+
+  <h3>Token Strategy</h3>
+  <table>
+    <tr><th>Cookie</th><th>Type</th><th>Lifetime</th><th>Flags</th></tr>
+    <tr><td><code>access_token</code></td><td>JWT (Supabase)</td><td>1 hour</td><td>httpOnly, secure (prod), sameSite=lax</td></tr>
+    <tr><td><code>refresh_token</code></td><td>JWT (Supabase)</td><td>7 days</td><td>httpOnly, secure (prod), sameSite=lax</td></tr>
+  </table>
+
+  <h3>Route Protection — <code>src/proxy.ts</code></h3>
+  <p>Uses Next.js 16's <code>proxy.ts</code> convention (replaces deprecated <code>middleware.ts</code>). Protects <code>/deals</code> and <code>/deals/*</code> routes. If no auth cookies are present, redirects to <code>/signin?redirect=/deals</code>.</p>
+
+  <div class="alert alert-warning">
+    <strong>Limitation:</strong> The proxy only checks cookie <em>existence</em>, not token validity. A user with an expired token cookie will pass the proxy but fail at the API level. Consider adding token validation in the proxy or implementing a client-side redirect on 401.
+  </div>
+
+  <h3>Profile Storage</h3>
+  <p>User profile data stored in Supabase <code>profiles</code> table:</p>
+  <table>
+    <tr><th>Column</th><th>Type</th><th>Required</th></tr>
+    <tr><td><code>id</code></td><td>UUID (FK to auth.users)</td><td>Yes</td></tr>
+    <tr><td><code>name</code></td><td>text</td><td>Yes</td></tr>
+    <tr><td><code>email</code></td><td>text</td><td>Yes</td></tr>
+    <tr><td><code>phone</code></td><td>text</td><td>No</td></tr>
+    <tr><td><code>budget</code></td><td>text</td><td>No</td></tr>
+    <tr><td><code>ownership</code></td><td>text</td><td>No</td></tr>
+    <tr><td><code>looking_for</code></td><td>text</td><td>No</td></tr>
+  </table>
+</section>
+
+<!-- 7. SUPABASE -->
+<section id="supabase">
+  <h2><span class="section-num">07</span> Supabase Integration</h2>
+
+  <h3>Client Architecture</h3>
+  <p>Two Supabase clients using <strong>lazy initialization</strong> pattern to avoid build-time crashes when env vars aren't available:</p>
+
+  <pre><code>// Public client (RLS enforced) — used for general queries
+getSupabase() → createClient(URL, ANON_KEY)
+
+// Admin client (bypasses RLS) — used in API routes
+getSupabaseAdmin() → createClient(URL, SERVICE_ROLE_KEY)</code></pre>
+
+  <h3>Operations Used</h3>
+  <table>
+    <tr><th>Operation</th><th>Route</th><th>Client</th></tr>
+    <tr><td><code>auth.admin.createUser()</code></td><td>signup</td><td>Admin</td></tr>
+    <tr><td><code>auth.admin.deleteUser()</code></td><td>signup (rollback)</td><td>Admin</td></tr>
+    <tr><td><code>auth.signInWithPassword()</code></td><td>signin, signup</td><td>Admin</td></tr>
+    <tr><td><code>auth.getUser(token)</code></td><td>me</td><td>Admin</td></tr>
+    <tr><td><code>auth.refreshSession()</code></td><td>me</td><td>Admin</td></tr>
+    <tr><td><code>.from('profiles').insert()</code></td><td>signup</td><td>Admin</td></tr>
+    <tr><td><code>.from('profiles').select()</code></td><td>signin, me</td><td>Admin</td></tr>
+  </table>
+
+  <div class="alert alert-info">
+    <strong>Rollback Pattern:</strong> If profile insertion fails after auth user creation, the signup route automatically deletes the orphaned auth user — good defensive coding.
+  </div>
+</section>
+
+<!-- 8. MAILCHIMP -->
+<section id="mailchimp">
+  <h2><span class="section-num">08</span> Mailchimp Integration</h2>
+
+  <p>On user signup, <code>addToMailchimp()</code> is called <strong>non-blocking</strong> (fire-and-forget) to subscribe the user to the Mailchimp audience. Signup will succeed even if Mailchimp fails.</p>
+
+  <h3>Merge Fields Sent</h3>
+  <table>
+    <tr><th>Tag</th><th>Mapped From</th><th>Status</th></tr>
+    <tr><td><code>FNAME</code></td><td>First name (split from full name)</td><td><span class="badge badge-ok">Working</span></td></tr>
+    <tr><td><code>LNAME</code></td><td>Last name (split from full name)</td><td><span class="badge badge-ok">Working</span></td></tr>
+    <tr><td><code>PHONE</code></td><td>Phone number</td><td><span class="badge badge-ok">Working</span></td></tr>
+    <tr><td><code>BUDGET</code></td><td>Budget selection</td><td><span class="badge badge-high">Tag Mismatch</span></td></tr>
+    <tr><td><code>OWNERSHIP</code></td><td>Ownership preference</td><td><span class="badge badge-high">Needs Verification</span></td></tr>
+    <tr><td><code>LOOKINGFOR</code></td><td>What they're looking for</td><td><span class="badge badge-high">Needs Verification</span></td></tr>
+  </table>
+
+  <div class="alert alert-warning">
+    <strong>Known Issue:</strong> The Mailchimp audience's Budget field uses the tag <code>MMERGE12</code> (auto-generated), not <code>BUDGET</code>. The merge field tags in code must match the actual tags configured in the Mailchimp audience. Verify all custom field tags via the Mailchimp API or dashboard and update <code>src/lib/mailchimp.ts</code> accordingly.
+  </div>
+</section>
+
+<!-- 9. SECURITY AUDIT -->
+<section id="security">
+  <h2><span class="section-num">09</span> Security Audit</h2>
+
+  <div class="alert alert-critical">
+    <strong>Overall Security Rating: Needs Significant Improvement</strong>
+    Multiple critical and high-priority issues must be addressed before production deployment.
+  </div>
+
+  <h3>Critical Issues</h3>
+  <table>
+    <tr><th>#</th><th>Issue</th><th>Severity</th><th>Details</th></tr>
+    <tr>
+      <td>1</td>
+      <td><strong>No Rate Limiting</strong></td>
+      <td><span class="badge badge-critical">Critical</span></td>
+      <td>Auth endpoints (<code>/api/auth/signup</code>, <code>/api/auth/signin</code>) have no rate limiting. Vulnerable to brute-force attacks and credential stuffing.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>No Input Validation</strong></td>
+      <td><span class="badge badge-critical">Critical</span></td>
+      <td>API routes accept raw JSON without schema validation. No email format checks, no password strength enforcement, no field sanitization. Risk of injection attacks.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Email Auto-Confirmed</strong></td>
+      <td><span class="badge badge-critical">Critical</span></td>
+      <td>Signup uses <code>email_confirm: true</code>, skipping email verification. Anyone can create accounts with fake emails.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>No CAPTCHA / Bot Protection</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>No reCAPTCHA, hCaptcha, or Turnstile on signup/signin forms. Bots can mass-register accounts.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Token Existence vs Validity</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Proxy checks if cookies exist but doesn't verify if tokens are valid or expired.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>No Refresh Token Rotation</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Refresh tokens are not rotated after use. If a refresh token is stolen, it remains valid for the full 7-day lifetime.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>No Password Reset Flow</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>No forgot-password endpoint. Users who forget their password are locked out permanently.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Missing Security Headers</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>No Content-Security-Policy, X-Frame-Options, or Permissions-Policy headers configured.</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>No Consent for Mailchimp</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Users are auto-subscribed to Mailchimp without explicit opt-in checkbox. Potential GDPR/CAN-SPAM violation.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Secrets in .env.local</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Secret keys stored in local env file. Must use hosting provider's secret management for production (Vercel Environment Variables, AWS Secrets Manager, etc.).</td>
+    </tr>
+  </table>
+
+  <h3>What's Done Well</h3>
+  <ul>
+    <li><span class="badge badge-ok">Good</span> httpOnly cookies prevent XSS token theft</li>
+    <li><span class="badge badge-ok">Good</span> SameSite=lax protects against basic CSRF</li>
+    <li><span class="badge badge-ok">Good</span> Secure flag enabled in production</li>
+    <li><span class="badge badge-ok">Good</span> Service role key is server-side only (not exposed to client)</li>
+    <li><span class="badge badge-ok">Good</span> Profile creation rollback on failure</li>
+    <li><span class="badge badge-ok">Good</span> Mailchimp errors don't block signup</li>
+  </ul>
+</section>
+
+<!-- 10. PERFORMANCE -->
+<section id="performance">
+  <h2><span class="section-num">10</span> Performance Analysis</h2>
+
+  <h3>Positive Patterns</h3>
+  <ul>
+    <li>Server Components used by default — reduces client JavaScript</li>
+    <li>Font optimization with <code>display: swap</code> prevents FOIT</li>
+    <li>Next.js <code>Image</code> component with responsive <code>sizes</code></li>
+    <li>AnimateOnView disconnects observer after first trigger</li>
+    <li>Suspense boundaries on dynamic components</li>
+    <li>Route groups minimize unnecessary layout re-renders</li>
+  </ul>
+
+  <h3>Areas for Improvement</h3>
+  <table>
+    <tr><th>Issue</th><th>Impact</th><th>Fix</th></tr>
+    <tr>
+      <td><code>lottie-react</code> adds ~150KB to bundle</td>
+      <td>Slower initial load</td>
+      <td>Dynamic import: <code>next/dynamic</code> with <code>ssr: false</code></td>
+    </tr>
+    <tr>
+      <td>Hero background video not lazy-loaded</td>
+      <td>Large initial payload</td>
+      <td>Use Intersection Observer to load video only when visible</td>
+    </tr>
+    <tr>
+      <td>Some images use <code>unoptimized={true}</code></td>
+      <td>Bypasses Next.js image optimization</td>
+      <td>Remove flag where possible, use WebP/AVIF formats</td>
+    </tr>
+    <tr>
+      <td>Each AnimateOnView creates its own observer</td>
+      <td>Many observers on page</td>
+      <td>Consider shared observer instance</td>
+    </tr>
+    <tr>
+      <td>No pagination on deals listing</td>
+      <td>Performance degrades with more deals</td>
+      <td>Add pagination or virtual scrolling</td>
+    </tr>
+    <tr>
+      <td><code>cn()</code> utility doesn't use tailwind-merge</td>
+      <td>Conflicting classes in output</td>
+      <td>Replace with <code>tailwind-merge</code> + <code>clsx</code></td>
+    </tr>
+  </table>
+</section>
+
+<!-- 11. SEO -->
+<section id="seo">
+  <h2><span class="section-num">11</span> SEO &amp; Metadata</h2>
+
+  <h3>What's Configured</h3>
+  <ul>
+    <li><strong>Default Metadata:</strong> Title template (<code>%s | KH Brokers</code>), description, Open Graph, Twitter card</li>
+    <li><strong>Per-Page Metadata:</strong> Each route exports custom <code>metadata</code> object</li>
+    <li><strong>Sitemap:</strong> Dynamic at <code>/sitemap.xml</code> — includes all public routes with priorities</li>
+    <li><strong>Robots.txt:</strong> Allows all, disallows <code>/api/</code> and <code>/auth/</code></li>
+    <li><strong>Open Graph:</strong> Type, locale, site name, images configured</li>
+    <li><strong>Twitter Card:</strong> <code>summary_large_image</code> format</li>
+  </ul>
+
+  <h3>What's Missing</h3>
+  <ul>
+    <li>No <strong>structured data</strong> (JSON-LD) for deal listings (Product schema would help search visibility)</li>
+    <li>No <strong>canonical URLs</strong> explicitly set (Next.js handles basic cases)</li>
+    <li>No <strong>Google Analytics / Tag Manager</strong> integration</li>
+    <li>The <code>og-image.png</code> referenced in site config may not exist in <code>/public</code></li>
+    <li>Legal pages (<code>/privacy</code>, <code>/terms</code>) aren't in the sitemap</li>
+  </ul>
+</section>
+
+<!-- 12. UI & STYLING -->
+<section id="ui">
+  <h2><span class="section-num">12</span> UI, Styling &amp; Animations</h2>
+
+  <h3>Styling Setup</h3>
+  <ul>
+    <li><strong>Tailwind CSS v4</strong> with <code>@theme inline</code> directive in <code>globals.css</code></li>
+    <li><strong>Fonts:</strong> Inter (sans-serif) + Instrument Serif (headings) via Google Fonts</li>
+    <li><strong>Dark mode:</strong> Configured via <code>prefers-color-scheme</code> media query</li>
+    <li><strong>Theming:</strong> Buyers (purple <code>#a36af6</code>) vs Sellers (green <code>#00965F</code>)</li>
+  </ul>
+
+  <h3>Animation System</h3>
+  <p>Extensive animation system with centralized tokens in <code>src/lib/animations.ts</code>, injected as CSS custom properties:</p>
+  <table>
+    <tr><th>Animation</th><th>Type</th><th>Trigger</th></tr>
+    <tr><td><code>fade-up</code></td><td>translateY + opacity</td><td>Scroll into view</td></tr>
+    <tr><td><code>fade</code></td><td>Opacity only</td><td>Scroll into view</td></tr>
+    <tr><td><code>stagger</code></td><td>Sequential children (80ms step)</td><td>Scroll into view</td></tr>
+    <tr><td><code>stagger-slow</code></td><td>Sequential children (120ms step)</td><td>Scroll into view</td></tr>
+    <tr><td><code>slide-up-from-bottom</code></td><td>translateY + opacity</td><td>Scroll into view</td></tr>
+    <tr><td><code>slide-in-from-left</code></td><td>translateX + opacity</td><td>Scroll into view</td></tr>
+    <tr><td><code>scroll-left / right</code></td><td>Infinite horizontal scroll</td><td>Always running</td></tr>
+  </table>
+
+  <h3>Custom CSS Utilities</h3>
+  <ul>
+    <li><code>.deals-slider</code> — Custom range slider for deal filters</li>
+    <li><code>.scrollbar-hide</code> — Hides scrollbar across browsers</li>
+    <li><code>.icon-gradient-bg</code> — Gradient background for icons</li>
+    <li><code>.cal-embed</code> — Cal.com embed text color overrides</li>
+  </ul>
+</section>
+
+<!-- 13. COMPONENTS -->
+<section id="components">
+  <h2><span class="section-num">13</span> Components Inventory</h2>
+
+  <table>
+    <tr><th>Category</th><th>Count</th><th>Location</th><th>Examples</th></tr>
+    <tr><td>UI Primitives</td><td>9</td><td><code>components/ui/</code></td><td>Button, Container, AnimateOnView, CalInlineEmbed</td></tr>
+    <tr><td>Layout</td><td>5</td><td><code>components/layout/</code></td><td>Header, Footer, ConditionalHeader/Footer, ThemeTracker</td></tr>
+    <tr><td>Auth</td><td>3</td><td><code>components/auth/</code></td><td>SignInForm, SignUpForm, SignInLeftPanel</td></tr>
+    <tr><td>Modals</td><td>2</td><td><code>components/modals/</code></td><td>WelcomeModal, DealSpeakModal</td></tr>
+    <tr><td>Buyers Sections</td><td>13</td><td><code>sections/buyers/</code></td><td>BuyersHero, BuyersFaqSection, BuyersJourneySection</td></tr>
+    <tr><td>Sellers Sections</td><td>13</td><td><code>sections/sellers/</code></td><td>SellersHero, SellersVideoSection, SellersFaqSection</td></tr>
+    <tr><td>Deals Sections</td><td>8</td><td><code>sections/deals/</code></td><td>DealsListing, DealCard, DealsFilters, ListingDetailPage</td></tr>
+    <tr><td>Invest Sections</td><td>4</td><td><code>sections/invest/</code></td><td>InvestHero, InvestBenefitsSection</td></tr>
+    <tr><td>Value My Store</td><td>3</td><td><code>sections/value-my-store/</code></td><td>ValueMyStoreHero, ValueMyStoreForm</td></tr>
+    <tr><td>Legal</td><td>2</td><td><code>sections/legal/</code></td><td>PrivacyPage, TermsOfServicePage</td></tr>
+    <tr><td>Generic Sections</td><td>3</td><td><code>sections/</code></td><td>HeroSection, FeaturesSection, PricingSection</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>66</strong></td><td></td><td></td></tr>
+  </table>
+</section>
+
+<!-- 14. MISSING FEATURES -->
+<section id="missing">
+  <h2><span class="section-num">14</span> Missing Features &amp; Gaps</h2>
+
+  <h3>Backend &amp; Data</h3>
+  <table>
+    <tr><th>Feature</th><th>Priority</th><th>Notes</th></tr>
+    <tr><td>Real deal database &amp; CRUD API</td><td><span class="badge badge-critical">Critical</span></td><td>Currently mock data in config file</td></tr>
+    <tr><td>Deal search/filter backend</td><td><span class="badge badge-critical">Critical</span></td><td>Filtering is client-side only</td></tr>
+    <tr><td>Admin dashboard</td><td><span class="badge badge-high">High</span></td><td>No way to manage deals, users, content</td></tr>
+    <tr><td>Payment processing</td><td><span class="badge badge-high">High</span></td><td>No Stripe/PayPal integration</td></tr>
+    <tr><td>File uploads</td><td><span class="badge badge-high">High</span></td><td>No document/financial uploads for deals</td></tr>
+    <tr><td>Messaging system</td><td><span class="badge badge-medium">Medium</span></td><td>No buyer-seller communication</td></tr>
+    <tr><td>Notifications</td><td><span class="badge badge-medium">Medium</span></td><td>No email/push notifications</td></tr>
+  </table>
+
+  <h3>Auth &amp; User Management</h3>
+  <table>
+    <tr><th>Feature</th><th>Priority</th><th>Notes</th></tr>
+    <tr><td>Forgot password / reset flow</td><td><span class="badge badge-critical">Critical</span></td><td>Users locked out if password forgotten</td></tr>
+    <tr><td>Email verification</td><td><span class="badge badge-critical">Critical</span></td><td>Currently auto-confirmed on signup</td></tr>
+    <tr><td>User profile / settings page</td><td><span class="badge badge-high">High</span></td><td>No way to edit profile after signup</td></tr>
+    <tr><td>Deal favorites / wishlist</td><td><span class="badge badge-medium">Medium</span></td><td>No save/bookmark feature</td></tr>
+    <tr><td>OAuth providers (Google, etc.)</td><td><span class="badge badge-low">Low</span></td><td>Only email/password auth</td></tr>
+  </table>
+
+  <h3>Operations &amp; Monitoring</h3>
+  <table>
+    <tr><th>Feature</th><th>Priority</th><th>Notes</th></tr>
+    <tr><td>Error tracking (Sentry)</td><td><span class="badge badge-critical">Critical</span></td><td>Only console.error for Mailchimp</td></tr>
+    <tr><td>Analytics (GA / Plausible)</td><td><span class="badge badge-high">High</span></td><td>No usage tracking</td></tr>
+    <tr><td>Testing setup (Vitest / Playwright)</td><td><span class="badge badge-high">High</span></td><td>Zero tests</td></tr>
+    <tr><td>Error boundaries (<code>error.tsx</code>)</td><td><span class="badge badge-high">High</span></td><td>No graceful error handling</td></tr>
+    <tr><td>Loading states (<code>loading.tsx</code>)</td><td><span class="badge badge-medium">Medium</span></td><td>No skeleton screens</td></tr>
+    <tr><td>CI/CD pipeline</td><td><span class="badge badge-medium">Medium</span></td><td>No automated builds/deploys</td></tr>
+  </table>
+</section>
+
+<!-- 15. RECOMMENDATIONS -->
+<section id="recommendations">
+  <h2><span class="section-num">15</span> Recommendations &amp; Roadmap</h2>
+
+  <h3>Phase 1 — Before Launch (Critical)</h3>
+  <ol>
+    <li><strong>Add input validation</strong> — Use Zod schemas on all API routes to validate request bodies</li>
+    <li><strong>Implement rate limiting</strong> — Use Upstash or similar for auth endpoints (e.g., 5 attempts / minute)</li>
+    <li><strong>Enable email verification</strong> — Remove <code>email_confirm: true</code>, send verification email via Supabase</li>
+    <li><strong>Add forgot password flow</strong> — Implement <code>/api/auth/reset-password</code> using Supabase's built-in flow</li>
+    <li><strong>Set up error tracking</strong> — Integrate Sentry for server and client error monitoring</li>
+    <li><strong>Add error boundaries</strong> — Create <code>error.tsx</code> files in root and route groups</li>
+    <li><strong>Add security headers</strong> — CSP, X-Frame-Options, X-Content-Type-Options via <code>next.config.ts</code></li>
+    <li><strong>Add Mailchimp consent checkbox</strong> — Required for GDPR/CAN-SPAM compliance</li>
+    <li><strong>Fix Mailchimp merge field tags</strong> — Verify all tags match Mailchimp audience configuration</li>
+    <li><strong>Move secrets to hosting provider</strong> — Use Vercel env vars or similar for production</li>
+  </ol>
+
+  <h3>Phase 2 — Post-Launch (High Priority)</h3>
+  <ol>
+    <li><strong>Build deal management backend</strong> — Supabase tables + CRUD API routes for deals</li>
+    <li><strong>Add admin dashboard</strong> — Manage deals, users, and content</li>
+    <li><strong>Integrate analytics</strong> — Google Analytics 4 or Plausible for usage insights</li>
+    <li><strong>Add user profile page</strong> — Let users edit their info after signup</li>
+    <li><strong>Set up testing</strong> — Vitest for unit tests, Playwright for E2E</li>
+    <li><strong>Optimize performance</strong> — Dynamic imports for Lottie, lazy-load video, image optimization</li>
+    <li><strong>Add loading skeletons</strong> — <code>loading.tsx</code> files for better perceived performance</li>
+    <li><strong>Add CAPTCHA</strong> — Cloudflare Turnstile or reCAPTCHA on auth forms</li>
+  </ol>
+
+  <h3>Phase 3 — Growth (Medium Priority)</h3>
+  <ol>
+    <li><strong>CMS integration</strong> — Replace config files with Sanity or Contentful</li>
+    <li><strong>Payment processing</strong> — Stripe integration for premium features</li>
+    <li><strong>Messaging system</strong> — Real-time buyer/seller communication</li>
+    <li><strong>OAuth providers</strong> — Google, LinkedIn sign-in</li>
+    <li><strong>CI/CD pipeline</strong> — GitHub Actions for automated testing and deployment</li>
+    <li><strong>Blog / content marketing</strong> — SEO-driven content for organic traffic</li>
+    <li><strong>Structured data</strong> — JSON-LD for deal listings (Product schema)</li>
+  </ol>
+</section>
+
+<!-- 16. CHECKLIST -->
+<section id="checklist">
+  <h2><span class="section-num">16</span> Pre-Deployment Checklist</h2>
+
+  <h3>Security</h3>
+  <ul class="checklist">
+    <li>Add rate limiting to auth endpoints</li>
+    <li>Add Zod input validation schemas</li>
+    <li>Enable email verification flow</li>
+    <li>Implement forgot password / reset</li>
+    <li>Add security headers (CSP, X-Frame-Options)</li>
+    <li>Configure RLS policies in Supabase</li>
+    <li>Add CAPTCHA to auth forms</li>
+    <li>Add Mailchimp consent opt-in checkbox</li>
+    <li>Move all secrets to hosting provider env vars</li>
+  </ul>
+
+  <h3>Reliability</h3>
+  <ul class="checklist">
+    <li>Add <code>error.tsx</code> error boundaries</li>
+    <li>Add <code>loading.tsx</code> skeleton screens</li>
+    <li>Integrate Sentry error tracking</li>
+    <li>Add health check monitoring</li>
+    <li>Test auth flows end-to-end</li>
+    <li>Verify Mailchimp merge field mapping</li>
+  </ul>
+
+  <h3>Performance</h3>
+  <ul class="checklist">
+    <li>Dynamic import Lottie animations</li>
+    <li>Lazy-load hero background video</li>
+    <li>Remove unnecessary <code>unoptimized</code> flags on images</li>
+    <li>Implement deal listing pagination</li>
+    <li>Add <code>tailwind-merge</code> to <code>cn()</code> utility</li>
+  </ul>
+
+  <h3>SEO &amp; Analytics</h3>
+  <ul class="checklist">
+    <li>Verify <code>og-image.png</code> exists in <code>/public</code></li>
+    <li>Add legal pages to sitemap</li>
+    <li>Integrate Google Analytics / Plausible</li>
+    <li>Add JSON-LD structured data for deals</li>
+    <li>Set up Google Search Console</li>
+  </ul>
+
+  <h3>Deployment</h3>
+  <ul class="checklist">
+    <li>Configure custom domain</li>
+    <li>SSL/TLS certificate (auto on Vercel)</li>
+    <li>Set <code>NEXT_PUBLIC_SITE_URL</code> env var</li>
+    <li>Verify production build succeeds</li>
+    <li>Test all routes on staging</li>
+  </ul>
+</section>
+
+</div>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<div class="report-footer">
+  <p>KH Brokers Audit Report &bull; Generated March 14, 2026 &bull; Confidential</p>
+</div>
+
+</body>
+</html>

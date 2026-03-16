@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, FormEvent } from "react";
-import { siteConfig } from "@/config/site.config";
 
 const PURPLE = "#8C52FF";
 
@@ -11,13 +11,37 @@ export function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!email.trim() || !password || isSubmitting) return;
+    setError("");
     setIsSubmitting(true);
-    // TODO: wire to auth API
-    setTimeout(() => setIsSubmitting(false), 1000);
+
+    try {
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong");
+        return;
+      }
+
+      router.push(redirectTo);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -41,6 +65,11 @@ export function SignInForm() {
         <p className="mt-1.5 sm:mt-2 text-[14px] sm:text-[15px] text-zinc-500 w-fit mx-auto">Login to Your Account</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4 sm:mt-8 sm:space-y-5">
+          {error && (
+            <div className="rounded-xl bg-red-50 px-4 py-3 text-[14px] text-red-600">
+              {error}
+            </div>
+          )}
           <input
             type="email"
             value={email}
