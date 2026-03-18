@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, FormEvent, useRef, useEffect } from "react";
+import { COUNTRY_CODES } from "@/config/countries.config";
 const PURPLE = "#8C52FF";
 
 const BUDGET_OPTIONS = [
@@ -107,6 +108,13 @@ export function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState(
+    COUNTRY_CODES.find((c) => c.country === "US") ?? COUNTRY_CODES[0]
+  );
+  const [countryOpen, setCountryOpen] = useState(false);
+  const [countrySearch, setCountrySearch] = useState("");
+  const countryRef = useRef<HTMLDivElement>(null);
+  const countrySearchRef = useRef<HTMLInputElement>(null);
   const [budget, setBudget] = useState(BUDGET_OPTIONS[0]);
   const [ownership, setOwnership] = useState(OWNERSHIP_OPTIONS[0]);
   const [lookingFor, setLookingFor] = useState("");
@@ -117,6 +125,17 @@ export function SignUpForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirect") || "/";
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (countryRef.current && !countryRef.current.contains(e.target as Node)) {
+        setCountryOpen(false);
+        setCountrySearch("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -137,11 +156,16 @@ export function SignUpForm() {
         body: JSON.stringify({
           name,
           email,
-          phone,
+          phone: phone ? `${countryCode.code}${phone}` : "",
           password,
           budget,
           ownership,
           lookingFor,
+          utm_source: searchParams.get("utm_source") || "",
+          utm_medium: searchParams.get("utm_medium") || "",
+          utm_campaign: searchParams.get("utm_campaign") || "",
+          utm_content: searchParams.get("utm_content") || "",
+          utm_term: searchParams.get("utm_term") || "",
         }),
       });
 
@@ -210,13 +234,80 @@ export function SignUpForm() {
               required
               className={inputClass}
             />
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="+1 (205) 938-1352"
-              className={inputClass}
-            />
+            <div ref={countryRef} className="relative flex w-full">
+              <button
+                type="button"
+                onClick={() => setCountryOpen((o) => !o)}
+                className="flex shrink-0 items-center gap-1.5 rounded-l-2xl border-0 bg-zinc-100 pl-3 pr-2 py-3.5 text-[14px] text-zinc-700 transition-colors hover:bg-zinc-200/80 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:pl-4 sm:pr-2.5 sm:py-4 sm:text-[15px]"
+                aria-haspopup="listbox"
+                aria-expanded={countryOpen}
+                aria-label="Select country code"
+              >
+                <span>{countryCode.flag}</span>
+                <span>{countryCode.code}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="#717171"
+                  className={`h-3.5 w-3.5 shrink-0 transition-transform duration-200 ${countryOpen ? "rotate-180" : ""}`}
+                  aria-hidden
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="(205) 938-1352"
+                className="w-full min-w-0 rounded-r-2xl border-0 bg-zinc-100 px-3 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:px-4 sm:py-4"
+              />
+              {countryOpen && (
+                <div className="absolute left-0 right-0 top-full z-50 mt-1.5 rounded-xl border border-zinc-200/90 bg-white shadow-xl shadow-zinc-900/8">
+                  <div className="p-2">
+                    <input
+                      ref={countrySearchRef}
+                      type="text"
+                      value={countrySearch}
+                      onChange={(e) => setCountrySearch(e.target.value)}
+                      placeholder="Search country..."
+                      className="w-full rounded-lg border-0 bg-zinc-100 px-3 py-2 text-[13px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:text-[14px]"
+                      autoFocus
+                    />
+                  </div>
+                  <ul
+                    role="listbox"
+                    className="max-h-[180px] overflow-y-auto py-1 scrollbar-hide"
+                  >
+                    {COUNTRY_CODES.filter((c) => {
+                      const q = countrySearch.toLowerCase();
+                      return c.country.toLowerCase().includes(q) || c.code.includes(q);
+                    }).map((c) => (
+                      <li
+                        key={`${c.country}-${c.code}`}
+                        role="option"
+                        aria-selected={countryCode.country === c.country}
+                        onClick={() => {
+                          setCountryCode(c);
+                          setCountryOpen(false);
+                          setCountrySearch("");
+                        }}
+                        className={`flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-[14px] transition-colors active:bg-zinc-100 sm:text-[15px] ${
+                          countryCode.country === c.country
+                            ? "bg-[#8C52FF]/10 text-zinc-900 font-medium"
+                            : "text-zinc-700 hover:bg-zinc-50"
+                        }`}
+                      >
+                        <span>{c.flag}</span>
+                        <span>{c.country}</span>
+                        <span className="text-zinc-400">{c.code}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
 
           <input

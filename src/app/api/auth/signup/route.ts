@@ -4,8 +4,10 @@ import { addToMailchimp } from "@/lib/mailchimp";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, phone, password, budget, ownership, lookingFor } =
-      await req.json();
+    const {
+      name, email, phone, password, budget, ownership, lookingFor,
+      utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+    } = await req.json();
 
     if (!name || !email || !password) {
       return NextResponse.json(
@@ -54,7 +56,10 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. Add to Mailchimp (non-blocking — don't fail signup if this errors)
-    addToMailchimp({ email, name, phone, budget, ownership, lookingFor }).catch(
+    addToMailchimp({
+      email, name, phone, budget, ownership, lookingFor,
+      utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+    }).catch(
       (err) => console.error("Mailchimp subscribe failed:", err)
     );
 
