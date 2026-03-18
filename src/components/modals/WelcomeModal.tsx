@@ -32,7 +32,7 @@ const ICONS = {
   check: FaCheckCircle,
 };
 
-const MODAL_PATHS = ["/", "/buyers", "/sellers"];
+const GUEST_MODAL_PATHS = ["/", "/buyers", "/sellers"];
 
 export function WelcomeModal() {
   const router = useRouter();
@@ -47,30 +47,40 @@ export function WelcomeModal() {
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
 
-    // Already chose this session
-    const choice = sessionStorage.getItem(WELCOME_CHOICE_KEY);
-    if (choice) return;
-
-    // Check if logged-in user already has a saved type
+    // Check if user is logged in
     fetch("/api/auth/me")
       .then((res) => res.json())
       .then((data) => {
-        if (data.user?.user_type) {
-          // User already chose before — persist in session and skip modal
-          sessionStorage.setItem(WELCOME_CHOICE_KEY, data.user.user_type);
-          return;
+        if (data.user) {
+          // Logged in — database preference takes priority
+          if (data.user.user_type) {
+            // Has preference in DB — sync to localStorage, skip modal
+            const localVal = data.user.user_type === "buyer" ? "buyers" : "sellers";
+            localStorage.setItem(WELCOME_CHOICE_KEY, localVal);
+            return;
+          }
+          // Logged in but no preference in DB — show modal on any page
+          setIsOpen(true);
+        } else {
+          // Not logged in — check localStorage
+          const localChoice = localStorage.getItem(WELCOME_CHOICE_KEY);
+          if (localChoice) return; // Already chose before, skip
+
+          // No choice yet — show modal only on landing pages
+          const showOnPath =
+            !pathname ||
+            GUEST_MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+          if (showOnPath) setIsOpen(true);
         }
-        // Show modal on allowed paths
-        const showOnPath =
-          !pathname ||
-          MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-        if (showOnPath) setIsOpen(true);
       })
       .catch(() => {
-        // Not logged in — show modal for non-logged-in users on allowed paths
+        // Network error / not logged in — check localStorage
+        const localChoice = localStorage.getItem(WELCOME_CHOICE_KEY);
+        if (localChoice) return;
+
         const showOnPath =
           !pathname ||
-          MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+          GUEST_MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
         if (showOnPath) setIsOpen(true);
       });
   }, [mounted, pathname]);
@@ -84,7 +94,9 @@ export function WelcomeModal() {
     const userType = path === "/buyers" ? "buyer" : "seller";
     setActiveOption(option);
     setIsNavigating(true);
-    sessionStorage.setItem(WELCOME_CHOICE_KEY, option);
+
+    // Always save to localStorage
+    localStorage.setItem(WELCOME_CHOICE_KEY, option);
 
     // Save to profile if logged in (fire and forget)
     fetch("/api/auth/user-type", {

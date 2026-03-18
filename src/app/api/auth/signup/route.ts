@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     const {
       name, email, phone, password, budget, ownership, lookingFor,
       utm_source, utm_medium, utm_campaign, utm_content, utm_term,
-      signup_page,
+      signup_page, user_type,
     } = await req.json();
 
     if (!name || !email || !password) {
@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
         budget: budget || null,
         ownership: ownership || null,
         looking_for: lookingFor || null,
+        user_type: user_type || null,
       });
 
     if (profileError) {
