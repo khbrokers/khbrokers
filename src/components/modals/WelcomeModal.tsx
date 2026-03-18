@@ -46,12 +46,33 @@ export function WelcomeModal() {
 
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
+
+    // Already chose this session
     const choice = sessionStorage.getItem(WELCOME_CHOICE_KEY);
     if (choice) return;
-    const showOnPath =
-      !pathname ||
-      MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-    if (showOnPath) setIsOpen(true);
+
+    // Check if logged-in user already has a saved type
+    fetch("/api/auth/me")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user?.user_type) {
+          // User already chose before — persist in session and skip modal
+          sessionStorage.setItem(WELCOME_CHOICE_KEY, data.user.user_type);
+          return;
+        }
+        // Show modal on allowed paths
+        const showOnPath =
+          !pathname ||
+          MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+        if (showOnPath) setIsOpen(true);
+      })
+      .catch(() => {
+        // Not logged in — show modal for non-logged-in users on allowed paths
+        const showOnPath =
+          !pathname ||
+          MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+        if (showOnPath) setIsOpen(true);
+      });
   }, [mounted, pathname]);
 
   const [activeOption, setActiveOption] = useState<"buyers" | "sellers">("buyers");
@@ -60,9 +81,18 @@ export function WelcomeModal() {
   const handleChoice = (path: "/buyers" | "/sellers") => {
     if (isNavigating) return;
     const option = path === "/buyers" ? "buyers" : "sellers";
+    const userType = path === "/buyers" ? "buyer" : "seller";
     setActiveOption(option);
     setIsNavigating(true);
     sessionStorage.setItem(WELCOME_CHOICE_KEY, option);
+
+    // Save to profile if logged in (fire and forget)
+    fetch("/api/auth/user-type", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_type: userType }),
+    }).catch(() => {});
+
     setTimeout(() => {
       setIsOpen(false);
       router.push(path);
