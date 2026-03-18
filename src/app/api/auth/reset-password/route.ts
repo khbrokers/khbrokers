@@ -12,10 +12,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const origin = req.headers.get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
     const { error } = await getSupabase().auth.resetPasswordForEmail(email, {
-      redirectTo: `${siteUrl}/reset-password/update`,
+      redirectTo: `${origin}/reset-password/update`,
     });
 
     if (error) {
