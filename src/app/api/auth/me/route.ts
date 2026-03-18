@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
   if (!error && userData.user) {
     const { data: profile } = await getSupabaseAdmin()
       .from("profiles")
-      .select("name, phone, budget, ownership, looking_for")
+      .select("name, phone, budget, ownership, looking_for, user_type")
       .eq("id", userData.user.id)
       .single();
 
@@ -25,6 +25,7 @@ export async function GET(req: NextRequest) {
         id: userData.user.id,
         email: userData.user.email,
         name: profile?.name || userData.user.user_metadata?.name || null,
+        user_type: profile?.user_type || null,
       },
     });
   }
@@ -37,7 +38,7 @@ export async function GET(req: NextRequest) {
     if (!refreshError && refreshData.session && refreshData.user) {
       const { data: profile } = await getSupabaseAdmin()
         .from("profiles")
-        .select("name, phone, budget, ownership, looking_for")
+        .select("name, phone, budget, ownership, looking_for, user_type")
         .eq("id", refreshData.user.id)
         .single();
 
