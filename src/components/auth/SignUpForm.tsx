@@ -229,7 +229,7 @@ export function SignUpForm() {
         body: JSON.stringify({
           name,
           email,
-          phone: phone ? `${countryCode.code}${phone}` : "",
+          phone: phone ? `${countryCode.code}${phone.replace(/\D/g, "")}` : "",
           password,
           budget,
           ownership,
@@ -334,7 +334,21 @@ export function SignUpForm() {
               <input
                 type="tel"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => {
+                  const digits = e.target.value.replace(/\D/g, "");
+                  if (countryCode.code === "+1") {
+                    // US format: (205) 938-1352
+                    let formatted = "";
+                    if (digits.length > 0) formatted += `(${digits.slice(0, 3)}`;
+                    if (digits.length >= 3) formatted += `) `;
+                    if (digits.length > 3) formatted += digits.slice(3, 6);
+                    if (digits.length >= 6) formatted += `-`;
+                    if (digits.length > 6) formatted += digits.slice(6, 10);
+                    setPhone(formatted);
+                  } else {
+                    setPhone(digits);
+                  }
+                }}
                 placeholder="(205) 938-1352"
                 className="w-full min-w-0 rounded-r-2xl border-0 bg-zinc-100 px-3 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:px-4 sm:py-4"
               />
@@ -367,6 +381,19 @@ export function SignUpForm() {
                           setCountryCode(c);
                           setCountryOpen(false);
                           setCountrySearch("");
+                          // Reformat phone when switching country
+                          const digits = phone.replace(/\D/g, "");
+                          if (c.code === "+1" && digits) {
+                            let formatted = "";
+                            if (digits.length > 0) formatted += `(${digits.slice(0, 3)}`;
+                            if (digits.length >= 3) formatted += `) `;
+                            if (digits.length > 3) formatted += digits.slice(3, 6);
+                            if (digits.length >= 6) formatted += `-`;
+                            if (digits.length > 6) formatted += digits.slice(6, 10);
+                            setPhone(formatted);
+                          } else {
+                            setPhone(digits);
+                          }
                         }}
                         className={`flex cursor-pointer items-center gap-2.5 px-4 py-2.5 text-[14px] transition-colors active:bg-zinc-100 sm:text-[15px] ${
                           countryCode.country === c.country
