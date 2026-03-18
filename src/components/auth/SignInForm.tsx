@@ -87,6 +87,16 @@ export function SignInForm() {
             className="w-full rounded-2xl border-0 bg-zinc-100 px-4 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:px-5 sm:py-4"
           />
 
+          <div className="flex justify-end">
+            <Link
+              href="/reset-password"
+              className="text-[13px] font-medium sm:text-[14px]"
+              style={{ color: PURPLE }}
+            >
+              Forgot password?
+            </Link>
+          </div>
+
           <button
             type="submit"
             disabled={isSubmitting}
