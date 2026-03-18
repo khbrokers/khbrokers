@@ -7,6 +7,7 @@ export async function POST(req: NextRequest) {
     const {
       name, email, phone, password, budget, ownership, lookingFor,
       utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+      signup_page,
     } = await req.json();
 
     if (!name || !email || !password) {
@@ -59,6 +60,7 @@ export async function POST(req: NextRequest) {
     addToMailchimp({
       email, name, phone, budget, ownership, lookingFor,
       utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+      signup_page,
     }).catch(
       (err) => console.error("Mailchimp subscribe failed:", err)
     );

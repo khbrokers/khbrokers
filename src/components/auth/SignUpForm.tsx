@@ -126,6 +126,79 @@ export function SignUpForm() {
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirect") || "/";
 
+  // Detect referrer info for UTM defaults and page location
+  const getReferrerInfo = () => {
+    const ref = document.referrer;
+    let hostname = "";
+    let pathname = "";
+    try {
+      if (ref) {
+        const url = new URL(ref);
+        hostname = url.hostname.toLowerCase();
+        pathname = url.pathname;
+      }
+    } catch { /* invalid referrer */ }
+
+    const organicSources: Record<string, string> = {
+      "google": "google",
+      "bing": "bing",
+      "yahoo": "yahoo",
+      "duckduckgo": "duckduckgo",
+      "baidu": "baidu",
+      "yandex": "yandex",
+    };
+
+    const matchedEngine = Object.keys(organicSources).find((engine) => hostname.includes(engine));
+
+    if (matchedEngine) {
+      return { source: organicSources[matchedEngine], medium: "organic", refPath: pathname };
+    }
+
+    // Social media referrals
+    const socialSources: Record<string, string> = {
+      "facebook": "facebook",
+      "instagram": "instagram",
+      "linkedin": "linkedin",
+      "twitter": "twitter",
+      "x.com": "twitter",
+      "tiktok": "tiktok",
+      "youtube": "youtube",
+      "reddit": "reddit",
+    };
+
+    const matchedSocial = Object.keys(socialSources).find((s) => hostname.includes(s));
+
+    if (matchedSocial) {
+      return { source: socialSources[matchedSocial], medium: "social", refPath: pathname };
+    }
+
+    // External website referral
+    if (hostname && !hostname.includes("khbrokers")) {
+      return { source: hostname, medium: "referral", refPath: pathname };
+    }
+
+    // Internal navigation or direct
+    return { source: "direct", medium: "none", refPath: pathname };
+  };
+
+  const getPageLocation = () => {
+    const { refPath } = getReferrerInfo();
+    const source = redirectTo !== "/" ? redirectTo : refPath || "/";
+    const labels: Record<string, string> = {
+      "/": "Home Khbrokers",
+      "/invest": "Invest Khbrokers",
+      "/invest-2": "Invest Khbrokers",
+      "/buyers": "Buyers Khbrokers",
+      "/sellers": "Sellers Khbrokers",
+      "/deals": "Deals Khbrokers",
+      "/about": "About Khbrokers",
+      "/contact": "Contact Khbrokers",
+      "/value-my-store": "Valuation Khbrokers",
+      "/demo": "Demo Khbrokers",
+    };
+    return labels[source] || `${source.replace(/^\//, "").replace(/-/g, " ")} Khbrokers`;
+  };
+
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (countryRef.current && !countryRef.current.contains(e.target as Node)) {
@@ -161,11 +234,12 @@ export function SignUpForm() {
           budget,
           ownership,
           lookingFor,
-          utm_source: searchParams.get("utm_source") || "",
-          utm_medium: searchParams.get("utm_medium") || "",
-          utm_campaign: searchParams.get("utm_campaign") || "",
-          utm_content: searchParams.get("utm_content") || "",
-          utm_term: searchParams.get("utm_term") || "",
+          utm_source: searchParams.get("utm_source") || getReferrerInfo().source,
+          utm_medium: searchParams.get("utm_medium") || getReferrerInfo().medium,
+          utm_campaign: searchParams.get("utm_campaign") || "none",
+          utm_content: searchParams.get("utm_content") || "none",
+          utm_term: searchParams.get("utm_term") || "none",
+          signup_page: getPageLocation(),
         }),
       });
 
