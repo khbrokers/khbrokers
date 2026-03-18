@@ -13,7 +13,7 @@ export function ConditionalFooter() {
     setStoredTheme(getStoredLegalTheme());
   }, [pathname]);
 
-  const AUTH_PATHS = ["/signin", "/signup", "/demo"];
+  const AUTH_PATHS = ["/signin", "/signup", "/demo", "/reset-password"];
   const isAuthPage = AUTH_PATHS.some(
     (p) => pathname === p || pathname?.startsWith(`${p}/`)
   );
