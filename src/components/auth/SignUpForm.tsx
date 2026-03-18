@@ -240,6 +240,7 @@ export function SignUpForm() {
           utm_content: searchParams.get("utm_content") || "none",
           utm_term: searchParams.get("utm_term") || "none",
           signup_page: getPageLocation(),
+          user_type: localStorage.getItem("welcomeChoice") === "sellers" ? "seller" : localStorage.getItem("welcomeChoice") === "buyers" ? "buyer" : "",
         }),
       });
 
