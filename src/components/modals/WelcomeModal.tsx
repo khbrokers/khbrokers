@@ -32,7 +32,7 @@ const ICONS = {
   check: FaCheckCircle,
 };
 
-const GUEST_MODAL_PATHS = ["/", "/buyers", "/sellers"];
+const MODAL_PATHS = ["/", "/buyers", "/sellers"];
 
 export function WelcomeModal() {
   const router = useRouter();
@@ -47,42 +47,15 @@ export function WelcomeModal() {
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
 
-    // Check if user is logged in
-    fetch("/api/auth/me")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.user) {
-          // Logged in — database preference takes priority
-          if (data.user.user_type) {
-            // Has preference in DB — sync to localStorage, skip modal
-            const localVal = data.user.user_type === "buyer" ? "buyers" : "sellers";
-            localStorage.setItem(WELCOME_CHOICE_KEY, localVal);
-            return;
-          }
-          // Logged in but no preference in DB — show modal on any page
-          setIsOpen(true);
-        } else {
-          // Not logged in — check localStorage
-          const localChoice = localStorage.getItem(WELCOME_CHOICE_KEY);
-          if (localChoice) return; // Already chose before, skip
+    // If user already made a choice, never show again
+    const choice = localStorage.getItem(WELCOME_CHOICE_KEY);
+    if (choice) return;
 
-          // No choice yet — show modal only on landing pages
-          const showOnPath =
-            !pathname ||
-            GUEST_MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-          if (showOnPath) setIsOpen(true);
-        }
-      })
-      .catch(() => {
-        // Network error / not logged in — check localStorage
-        const localChoice = localStorage.getItem(WELCOME_CHOICE_KEY);
-        if (localChoice) return;
-
-        const showOnPath =
-          !pathname ||
-          GUEST_MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-        if (showOnPath) setIsOpen(true);
-      });
+    // No choice yet — show on landing pages only
+    const showOnPath =
+      !pathname ||
+      MODAL_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+    if (showOnPath) setIsOpen(true);
   }, [mounted, pathname]);
 
   const [activeOption, setActiveOption] = useState<"buyers" | "sellers">("buyers");
@@ -95,7 +68,7 @@ export function WelcomeModal() {
     setActiveOption(option);
     setIsNavigating(true);
 
-    // Always save to localStorage
+    // Save to localStorage — persists across browser sessions
     localStorage.setItem(WELCOME_CHOICE_KEY, option);
 
     // Save to profile if logged in (fire and forget)
