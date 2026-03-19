@@ -156,7 +156,7 @@ export function DealCard({ deal }: DealCardProps) {
             {formatPrice(deal.askingPrice)}
           </p>
           <span className="text-[10px] font-normal text-zinc-900/60 sm:text-[10px] md:text-[12px]">
-            Asking Price
+            {deal.recentlySold ? "Sold For" : "Asking Price"}
           </span>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
@@ -167,6 +167,7 @@ export function DealCard({ deal }: DealCardProps) {
         >
           Speak with us
         </button>
+        {!deal.recentlySold && (
         <Link
           href={deal.viewHref}
           className="inline-flex items-center justify-center rounded-full border-2 font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:!bg-[#6d28d9] px-4 py-3 text-[13px] sm:py-2.5 sm:text-[14px]"
@@ -177,6 +178,7 @@ export function DealCard({ deal }: DealCardProps) {
         >
           View Listing
         </Link>
+        )}
         </div>
       </div>
       </div>
