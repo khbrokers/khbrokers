@@ -245,48 +245,6 @@ export const mockDeals: Deal[] = [
     heroSubtitle: "Lifestyle Apparel Brand",
   },
   {
-    id: "2",
-    recentlySold: true,
-    platform: "Shopify",
-    niche: "Home & Garden",
-    title: "Shopify | Home & Garden",
-    coverImage: "/assets/sellers_landing/whysell/card02.png",
-    description:
-      "Eco-Friendly Home Decor Brand. Strong organic traffic, loyal customer base, and scalable product line with multiple revenue streams.",
-    verified: true,
-    metrics: [
-      { label: "TTM Revenue", value: "$890,000", icon: "revenue" },
-      { label: "TTM Profit", value: "$142,400", icon: "profit" },
-      { label: "Monthly Profit", value: "$11,867", icon: "monthly" },
-      { label: "Business Age", value: "4 Years", icon: "age" },
-      { label: "Asking Price", value: "$355,000", icon: "asking" },
-      { label: "Profit Multiple", value: "2.5x", icon: "multiple" },
-    ],
-    askingPrice: 355000,
-    speakHref: "#book-a-call",
-    viewHref: "/deals/2",
-    businessOverview: {
-      content:
-        "Eco-Friendly Home Decor Brand with 4-year track record. Strong organic traffic, loyal customer base, and scalable product line with multiple revenue streams. $890K TTM revenue and $142K net profit. Sustainable positioning in growing home & garden category.",
-      hasMore: true,
-    },
-    whyBuilt: {
-      content:
-        "Built to address demand for sustainable home products. The brand combines environmental values with strong design and community appeal. Story-driven positioning for conscious consumers seeking eco-friendly alternatives.",
-      hasMore: false,
-    },
-    revenueModel: {
-      content:
-        "DTC model via Shopify. Primary traffic from organic search and Pinterest, with Meta and Google Ads for paid acquisition. Strong repeat purchase rate and subscription options for recurring revenue.",
-      hasMore: true,
-    },
-    whySelling: {
-      content:
-        "Strategic exit after building a profitable, scalable brand. Owner is reallocating capital toward new ventures. Business is ready for transition with documented processes and systems.",
-      hasMore: true,
-    },
-  },
-  {
     id: "3",
     platform: "Shopify",
     niche: "Electronics",
@@ -327,48 +285,7 @@ export const mockDeals: Deal[] = [
       hasMore: true,
     },
   },
-  {
-    id: "4",
-    platform: "Shopify",
-    niche: "Pet",
-    title: "Shopify | Pet",
-    coverImage: "/assets/sellers_landing/whysell/card04.png",
-    description:
-      "Premium Pet Food & Supplements. Subscription model with high LTV, established brand in growing pet wellness category.",
-    verified: true,
-    metrics: [
-      { label: "TTM Revenue", value: "$620,000", icon: "revenue" },
-      { label: "TTM Profit", value: "$93,000", icon: "profit" },
-      { label: "Monthly Profit", value: "$7,750", icon: "monthly" },
-      { label: "Business Age", value: "2 Years", icon: "age" },
-      { label: "Asking Price", value: "$232,500", icon: "asking" },
-      { label: "Profit Multiple", value: "2.5x", icon: "multiple" },
-    ],
-    askingPrice: 232500,
-    speakHref: "#book-a-call",
-    viewHref: "/deals/4",
-    recentlySold: true,
-    businessOverview: {
-      content:
-        "Premium Pet Food & Supplements with 2-year track record. Subscription model with high LTV, established brand in growing pet wellness category. $620K TTM revenue and $93K net profit.",
-      hasMore: true,
-    },
-    whyBuilt: {
-      content:
-        "Built to serve the growing pet wellness market. Combines premium positioning with subscription economics. Strong brand loyalty and repeat purchase behavior in a recession-resistant category.",
-      hasMore: false,
-    },
-    revenueModel: {
-      content:
-        "DTC subscription model via Shopify. Primary acquisition through Meta and influencer partnerships. Strong retention and predictable recurring revenue from subscription base.",
-      hasMore: true,
-    },
-    whySelling: {
-      content:
-        "Strategic exit after building a profitable subscription model. Owner is focusing on other ventures. Business has clear systems and growth runway for new owner.",
-      hasMore: true,
-    },
-  },
+  
   {
     id: "5",
     platform: "Shopify",
