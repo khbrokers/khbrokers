@@ -22,7 +22,7 @@ export const dealsHeroConfig = {
 export const dealsFiltersConfig = {
   refineTitle: "Refine Results",
   refineCollapsedLabel: "Refine Filter",
-  priceRange: { label: "Price Range", min: 20000, max: 5000000, step: 10000 },
+  priceRange: { label: "Price Range", min: 10000, max: 5000000, step: 10000 },
   annualProfit: { label: "Annual Profit (TTM)", min: 5000, max: 1500000, step: 1000 },
   annualRevenue: { label: "Annual Revenue (TTM)", min: 50000, max: 10000000, step: 50000 },
   businessAge: { label: "Business Age", min: 0, max: 10, step: 1, suffix: " years" },
@@ -611,7 +611,7 @@ export const mockDeals: Deal[] = [
     platform: "Shopify",
     niche: "Home & Garden",
     title: "Shopify | Home & Garden",
-    coverImage: "/assets/sellers_landing/whysell/card02.png",
+    coverImage: "/assets/deals/bonco.jpeg",
     description:
       "A 1 Year Old French Dropshipping Store Selling General Products. Total Revenue Of $670k With A NET Profit Of $146k. Growing MoM & Has Stable Income",
     verified: true,
