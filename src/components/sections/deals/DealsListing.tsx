@@ -103,16 +103,22 @@ export function DealsListing() {
       (d) => revenueValue(d) >= annualRevenue[0] && revenueValue(d) <= annualRevenue[1]
     );
 
-    // Business age filter
-    const ageValue = (d: Deal) =>
-      parseInt(d.metrics.find((m) => m.icon === "age")?.value.replace(/\D/g, "") || "0", 10);
+    // Business age filter — "8 Months" → 0, "1.8 Years" → 1, "2+ Years" → 2
+    const ageValue = (d: Deal) => {
+      const raw = d.metrics.find((m) => m.icon === "age")?.value || "0";
+      const num = parseFloat(raw.replace(/[^0-9.]/g, "") || "0");
+      if (raw.toLowerCase().includes("month")) return Math.max(0, Math.floor(num / 12));
+      return Math.floor(num);
+    };
     result = result.filter(
       (d) => ageValue(d) >= businessAge[0] && ageValue(d) <= businessAge[1]
     );
 
-    // Recently sold filter
+    // Recently sold filter: toggle ON = show only sold, toggle OFF = hide sold
     if (recentlySold) {
       result = result.filter((d) => d.recentlySold === true);
+    } else {
+      result = result.filter((d) => !d.recentlySold);
     }
 
     // Sort
@@ -153,6 +159,7 @@ export function DealsListing() {
         <AnimateOnView
           animation="stagger"
           rootMargin="0px 0px -60px 0px"
+          threshold={0.01}
           className="-mt-8 rounded-[24px] bg-white p-5 sm:-mt-10 sm:rounded-[28px] sm:p-6 md:-mt-14 md:p-[20px] lg:-mt-16"
           style={{
             position: "sticky",
