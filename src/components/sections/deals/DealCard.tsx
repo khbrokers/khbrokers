@@ -34,13 +34,7 @@ const METRIC_ORDER: DealMetric["icon"][] = [
 ];
 
 function formatPrice(value: number): string {
-  if (value >= 1_000_000) {
-    return `$${(value / 1_000_000).toFixed(1)}M`;
-  }
-  if (value >= 1_000) {
-    return `$${(value / 1_000).toFixed(0)}K`;
-  }
-  return `$${value}`;
+  return `$${value.toLocaleString("en-US")} USD`;
 }
 
 interface DealCardProps {
@@ -76,6 +70,24 @@ export function DealCard({ deal }: DealCardProps) {
             />
           ) : (
             <div aria-hidden />
+          )}
+          {deal.recentlySold && (
+            <>
+              <div className="absolute inset-0 z-10 rounded-xl bg-black/40" />
+              <div className="absolute inset-0 z-20 flex items-center justify-center">
+                <span
+                  className="select-none rounded-full px-7 py-3 text-[16px] font-bold tracking-[0.15em] text-white uppercase sm:px-9 sm:py-3.5 sm:text-[20px]"
+                  style={{
+                    transform: "rotate(-12deg)",
+                    background: "linear-gradient(135deg, #a36af6 0%, #7c3aed 100%)",
+                    boxShadow:
+                      "0 0 30px rgba(163, 106, 246, 0.5), 0 0 60px rgba(163, 106, 246, 0.25), inset 0 2px 4px rgba(255,255,255,0.25)",
+                  }}
+                >
+                  SOLD
+                </span>
+              </div>
+            </>
           )}
         </div>
       </div>
