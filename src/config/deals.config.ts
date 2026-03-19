@@ -456,7 +456,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Gel Cushion",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/gel-cushon.jpg",
     description:
       "An 8 Month Old Health Store Selling A Natural Pain Relief Product | Explosive Revenue Of $1.9M | Total Net Profit $243k | Ready For SKU Expansion",
@@ -478,7 +478,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Loravey",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/loravey.jpg",
     description:
       "A Rapid Growing Soap Brand Combating Fungal Related Issues. Over 9,000 Customers Subscribed To Receive Monthly Soap Bars | Net Profit Exceeds $300k",
@@ -500,7 +500,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Design & Style",
-    title: "BareStep",
+    title: "Shopify | Design & Style",
     coverImage: "/assets/deals/barestep.jpg",
     description:
       "An Approaching 3 Year Old Shoe Brand Selling In The U.S & International Markets. Total Revenue $3.4M | Net Profit $800k+ | Consistent & Stable",
@@ -522,7 +522,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Norma Design",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/norma.jpg",
     description:
       "A 7 Month Old Fitness Store Selling Balance & Mobility Boards. Aggressive Scale As Revenue Exceeds $1.6M With A NET Profit Of $300k+",
@@ -544,7 +544,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Vivo Sleep",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/vivo-sleep.jpg",
     description:
       "A 7 Month Old Neck Mobility Relief Brand Selling In The U.S Market. Total Sales $300k+ | Total Net Profit $81k+ | Ready To Expand",
@@ -566,7 +566,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Curlic",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/curlic.jpg",
     description:
       "A 1 Year Old Branded Hair Care Store Selling In The U.S. Total Revenue Exceeds $660k+ | NET Profit $69k | Ready To Be Scaled Into New Product Verticals",
@@ -588,7 +588,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Glossan",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/glossan.jpg",
     description:
       "A 7 Month Old Lipstick Brand Selling In The U.S Market. Total Revenue Exceeds $352k Whilst Netting $52k. Ready For New Ownership & Fresh Minds",
@@ -610,7 +610,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Home & Garden",
-    title: "Botanco",
+    title: "Shopify | Home & Garden",
     coverImage: "/assets/sellers_landing/whysell/card02.png",
     description:
       "A 1 Year Old French Dropshipping Store Selling General Products. Total Revenue Of $670k With A NET Profit Of $146k. Growing MoM & Has Stable Income",
@@ -632,7 +632,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Home & Garden",
-    title: "Solar Energy Lighting",
+    title: "Shopify | Home & Garden",
     coverImage: "/assets/deals/solar-energy.webp",
     description:
       "An Approaching 2 Year Old Home Decor Automated Shopify Store. Total Revenue $720k | Total Net Profit $200k+. Fully Automated & Passive",
@@ -654,7 +654,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Nurvate",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/nurvate.jpg",
     description:
       "A Young & Exciting Health & Wellness Store. Total Revenue Generated $200k | Total Net Profit $29k+ | Full Team Included To Manage & Scale The Business.",
@@ -676,7 +676,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Bluile",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/bluile.jpg",
     description:
       "A Fast-Growing Skincare Brand Built On A Proven, Custom Collagen Formula. Over $776K in sales & $137K profit With $38K+ Monthly Subscriptions",
@@ -698,7 +698,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Design & Style",
-    title: "Jouvio",
+    title: "Shopify | Design & Style",
     coverImage: "/assets/deals/jouvie.jpg",
     description:
       "A 2+ Year Old Watch Store With Stable & Consistent Profits. Total Revenue $2M | Total Net Profit $270k | Perfect For First Time Buyers",
@@ -720,7 +720,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Design & Style",
-    title: "Aussie Tactix",
+    title: "Shopify | Design & Style",
     coverImage: "/assets/deals/aussie tactix.jpg",
     description:
       "An 8 Month Old Fully Automated Dropshipping Clothing Store Selling In Australia. Total Revenue Exceeds $240k | Net Profit $44k | Stable & Consistent",
@@ -742,7 +742,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "WakeLoop",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/wake-loop.jpg",
     description:
       "An 8 Month Old Branded Health Store Selling Sleep Enhancing Watches. Total Revenue $118k | Total Net Profit $18k | Perfect For First Time Buyers",
@@ -764,7 +764,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Ethale",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/ethale.jpg",
     description:
       "A 1+ Year Old Subscription-Based Supplement Store With Explosive Growth. Total Revenue Exceeds $1.1M Whilst Netting $190K+. Over $150K In Monthly Subscribers.",
@@ -786,7 +786,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "Veluna",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/veluna.jpg",
     description:
       "A 9 Month Old Health & Wellness Store Selling Back Pain Relief Products. Total Revenue Exceeds $120k Whilst Profiting $18k | Perfect For First Time Buyers",
@@ -808,7 +808,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Health & Beauty",
-    title: "FlexWrap",
+    title: "Shopify | Health & Beauty",
     coverImage: "/assets/deals/flexwrap.jpg",
     description:
       "A 6 Month Old Health & Wellness Brand With Explosive Growth. Revenue Of $1.8m Whilst Netting $231K In Profit.",
@@ -830,7 +830,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Design & Style",
-    title: "Somnea",
+    title: "Shopify | Design & Style",
     coverImage: "/assets/deals/somnea.jpg",
     description:
       "A 10 Month Old Custom Store Selling High Quality Tank Tops For Men. Explosive Revenue Of $750k Whilst Netting $79k In Profit. Ready For Product Expansion",
@@ -852,7 +852,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Home & Garden",
-    title: "Elmbridge Home",
+    title: "Shopify | Home & Garden",
     coverImage: "/assets/deals/elmbridge.jpg",
     description:
       "A 6 Month Old Dropshipping Brand In The Home Decor Niche | Total Revenue $275k | Total Profit $66k | Perfect For First Time Buyers",
@@ -874,7 +874,7 @@ export const mockDeals: Deal[] = [
     recentlySold: true,
     platform: "Shopify",
     niche: "Design & Style",
-    title: "R&B Builds",
+    title: "Shopify | Design & Style",
     coverImage: "/assets/deals/r&b-builds.jpg",
     description:
       "An 11 Month Old Organic Dropshipping Store Selling Custom Lego Kits. Total Revenue Exceeds $70k | Net Profit $36k | Perfect For First Time Buyers",
