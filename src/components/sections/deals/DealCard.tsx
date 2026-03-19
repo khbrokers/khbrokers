@@ -164,7 +164,7 @@ export function DealCard({ deal }: DealCardProps) {
       {/* Asking price + CTAs */}
       <div className="mt-4 flex flex-col gap-3 sm:mt-5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
         <div className="flex flex-col items-start">
-          <p className="text-[20px] font-medium text-zinc-900 sm:text-[24px] md:text-[28px]">
+          <p className={`font-medium text-zinc-900 ${deal.recentlySold ? "text-[16px] sm:text-[18px] md:text-[20px]" : "text-[20px] sm:text-[24px] md:text-[28px]"}`}>
             {formatPrice(deal.askingPrice)}
           </p>
           <span className="text-[10px] font-normal text-zinc-900/60 sm:text-[10px] md:text-[12px]">
