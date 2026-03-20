@@ -11,7 +11,7 @@ export const metadata = {
 export default function InvestPage() {
   return (
     <main className="min-h-screen bg-[#F5EEFD]">
-      <InvestHero />
+      <InvestHero statsBelowForm />
       <InvestBenefitsSection />
       <InvestFaqSection />
     </main>

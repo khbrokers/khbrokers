@@ -3,7 +3,10 @@ import { addToMailchimp } from "@/lib/mailchimp";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, signup_page } = await req.json();
+    const {
+      email, name, phone, budget, signup_page,
+      utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+    } = await req.json();
 
     if (!email) {
       return NextResponse.json(
@@ -12,7 +15,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const result = await addToMailchimp({ email, signup_page });
+    const result = await addToMailchimp({
+      email, name, phone, budget, signup_page,
+      utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+    });
 
     if (!result.success) {
       return NextResponse.json(
