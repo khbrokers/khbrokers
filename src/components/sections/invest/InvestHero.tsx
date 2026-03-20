@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { investHeroConfig, investDownloadConfig, investStatsConfig } from "@/config/invest.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 import { BuyersVideoSection } from "@/components/sections/buyers/BuyersVideoSection";
@@ -92,7 +92,9 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
   const { profitBadge, headline, benefits, socialProof, trustBadgeAvatars } =
     investHeroConfig;
   const { headline: downloadHeadline, downloadButton, form } = investDownloadConfig;
+  const router = useRouter();
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", budget: "" });
+  const [submitting, setSubmitting] = useState(false);
   const [budgetOpen, setBudgetOpen] = useState(false);
   const budgetTriggerRef = useRef<HTMLDivElement>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
@@ -120,6 +122,36 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
 
   const handleFormChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = async () => {
+    if (!formData.email.trim()) return;
+    setSubmitting(true);
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const referrer = document.referrer || "";
+      const isGoogleOrganic = /google\./i.test(referrer) && !params.get("gclid");
+
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name,
+          phone: formData.phone,
+          budget: formData.budget,
+          signup_page: "Invest - Khbrokers",
+          utm_source: params.get("utm_source") || (isGoogleOrganic ? "google" : "direct"),
+          utm_medium: params.get("utm_medium") || (isGoogleOrganic ? "organic" : "none"),
+          utm_campaign: params.get("utm_campaign") || "",
+          utm_content: params.get("utm_content") || "",
+          utm_term: params.get("utm_term") || "",
+        }),
+      });
+    } catch (err) {
+      console.error("Mailchimp subscribe failed:", err);
+    }
+    router.push(downloadButton.href);
   };
 
   useEffect(() => {
@@ -242,12 +274,14 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
                 </span>
                 {downloadHeadline.after}
               </h2>
-              <Link
-                href={downloadButton.href}
-                className="mt-6 hidden w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] sm:mt-8 sm:px-[20px] sm:py-[10px] sm:text-[16px] md:inline-flex md:px-[30px] md:py-[20px] md:text-[18px]"
+              <button
+                type="button"
+                onClick={handleFormSubmit}
+                disabled={submitting}
+                className="mt-6 hidden w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:opacity-70 sm:mt-8 sm:px-[20px] sm:py-[10px] sm:text-[16px] md:inline-flex md:px-[30px] md:py-[20px] md:text-[18px]"
               >
-                {downloadButton.label}
-              </Link>
+                {submitting ? "Submitting..." : downloadButton.label}
+              </button>
             </div>
             <div className="relative flex flex-col items-center w-full md:flex-[0_0_60%] md:min-w-0">
               <div
@@ -342,12 +376,14 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
                   ))}
                 </div>
               </div>
-              <Link
-                href={downloadButton.href}
-                className="mt-4 flex w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] sm:mt-6 sm:px-5 sm:py-2.5 sm:text-[16px] md:hidden"
+              <button
+                type="button"
+                onClick={handleFormSubmit}
+                disabled={submitting}
+                className="mt-4 flex w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:opacity-70 sm:mt-6 sm:px-5 sm:py-2.5 sm:text-[16px] md:hidden"
               >
-                {downloadButton.label}
-              </Link>
+                {submitting ? "Submitting..." : downloadButton.label}
+              </button>
             </div>
           </div>
         </div>

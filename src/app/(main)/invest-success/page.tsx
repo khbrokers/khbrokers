@@ -40,7 +40,7 @@ export default function InvestSuccessPage() {
 
         <AnimateOnView
           animation="stagger-slow"
-          className="relative mx-auto max-w-4xl px-4 pb-4 pt-[100px] sm:px-6 sm:pb-6 sm:pt-24 md:pb-8 md:pt-[150px] lg:px-8"
+          className="relative mx-auto max-w-4xl px-4 pb-4 pt-[100px] sm:px-6 sm:pb-6 sm:pt-24 md:pb-8 md:pt-[232px] lg:px-8"
           rootMargin="0px 0px 0px 0px"
           threshold={0.15}
         >
@@ -51,13 +51,13 @@ export default function InvestSuccessPage() {
             </span>
             {headline.after}
           </h1>
-          <p className="stagger-child mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-zinc-700 sm:mt-6 sm:text-[17px] md:text-[18px]">
+          {/* <p className="stagger-child mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-zinc-700 sm:mt-6 sm:text-[17px] md:text-[18px]">
             {subheadline.before}
             <span className="font-semibold text-zinc-900">
               {subheadline.highlight}
             </span>
-            {subheadline.after}
-          </p>
+            
+          </p> */}
         </AnimateOnView>
       </section>
 

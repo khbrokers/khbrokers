@@ -127,7 +127,7 @@ export const investFaqConfig = {
 
 export const investSuccessConfig = {
   headline: {
-    before: "You're in. Your ",
+    before: "Your ",
     highlight: "list of available brands",
     after: " will arrive in your inbox within 1 hour.",
   },
