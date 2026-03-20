@@ -14,7 +14,7 @@ import { siteConfig } from "@/config/site.config";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
-const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest", "/invest-success", "/terms", "/privacy"];
+const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest-1", "/invest-success", "/terms", "/privacy"];
 
 interface AuthUser {
   id: string;
@@ -112,9 +112,9 @@ export function Header() {
         : pathname.startsWith("/deals")
           ? ("/deals" as const)
           : pathname.startsWith("/invest-success")
-            ? ("/invest" as const)
+            ? ("/invest-1" as const)
             : pathname.startsWith("/invest")
-              ? ("/invest" as const)
+              ? ("/invest-1" as const)
             : pathname.startsWith("/terms")
               ? ("/terms" as const)
               : pathname.startsWith("/privacy")
@@ -267,7 +267,7 @@ function MarketplaceHeaderContent({
   activePath,
   legalTheme,
 }: {
-  activePath: "/buyers" | "/sellers" | "/value-my-store" | "/deals" | "/invest" | "/terms" | "/privacy";
+  activePath: "/buyers" | "/sellers" | "/value-my-store" | "/deals" | "/invest-1" | "/terms" | "/privacy";
   legalTheme?: "buyers" | "sellers" | null;
 }) {
   const { user, loading } = useAuth();
@@ -281,7 +281,7 @@ function MarketplaceHeaderContent({
         ? "buyers"
         : activePath === "/value-my-store"
           ? "sellers"
-          : activePath === "/deals" || activePath === "/invest" || activePath === "/terms" || activePath === "/privacy"
+          : activePath === "/deals" || activePath === "/invest-1" || activePath === "/terms" || activePath === "/privacy"
             ? "buyers"
             : activePath.slice(1);
   const theme = MARKETPLACE_THEMES[themeKey as keyof typeof MARKETPLACE_THEMES];
