@@ -3,15 +3,45 @@
 import { useState } from "react";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
-const PRIMARY = "#a36af6";
-
 export function PrivateDealAccess() {
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    // TODO: wire to newsletter/private list API
+
+    setStatus("loading");
+
+    try {
+      const signupPage = `Deals Private Access - Khbrokers`;
+
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, signup_page: signupPage }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setStatus("success");
+      setMessage(
+        data.alreadyExists
+          ? "You're already on the private list!"
+          : "You're in! We'll notify you when new deals drop."
+      );
+      setEmail("");
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -52,30 +82,43 @@ export function PrivateDealAccess() {
                 </p>
               </div>
 
-              {/* Right: Email + CTA - pill shape, input left + button right */}
+              {/* Right: Email + CTA */}
               <div className="stagger-child w-full shrink-0 lg:w-auto lg:min-w-0 lg:max-w-md">
-                <form
-                onSubmit={handleSubmit}
-                className="flex w-full flex-col overflow-hidden rounded-2xl bg-white p-1.5 shadow-lg sm:flex-row sm:rounded-full sm:p-1"
-                >
-                  <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="min-w-0 flex-1 border-0 bg-white px-4 py-3 text-center text-[14px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-0 sm:px-5 sm:py-3.5 sm:text-[15px] md:px-6 md:py-4 md:text-[16px]"
-                />
-                <button
-                  type="submit"
-                  className="w-full shrink-0 rounded-xl border-2 font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:!bg-[#6d28d9] px-4 py-3 text-[14px] sm:w-auto sm:rounded-full sm:px-6 sm:py-2.5 sm:text-[15px] md:px-8 md:py-3"
-                  style={{
-                    borderColor: "rgba(247, 239, 255, 0.5)",
-                    backgroundColor: "#a36af6",
-                  }}
-                >
-                  Join the Private List
-                  </button>
-                </form>
+                {status === "success" ? (
+                  <div className="rounded-2xl bg-white/20 px-6 py-4 text-center backdrop-blur-sm sm:rounded-full">
+                    <p className="text-[15px] font-medium text-white sm:text-[16px]">{message}</p>
+                  </div>
+                ) : (
+                  <>
+                    <form
+                      onSubmit={handleSubmit}
+                      className="flex w-full flex-col overflow-hidden rounded-2xl bg-white p-1.5 shadow-lg sm:flex-row sm:rounded-full sm:p-1"
+                    >
+                      <input
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        disabled={status === "loading"}
+                        className="min-w-0 flex-1 border-0 bg-white px-4 py-3 text-center text-[14px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-0 disabled:opacity-50 sm:px-5 sm:py-3.5 sm:text-[15px] md:px-6 md:py-4 md:text-[16px]"
+                      />
+                      <button
+                        type="submit"
+                        disabled={status === "loading"}
+                        className="w-full shrink-0 rounded-xl border-2 font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:!bg-[#6d28d9] disabled:opacity-70 px-4 py-3 text-[14px] sm:w-auto sm:rounded-full sm:px-6 sm:py-2.5 sm:text-[15px] md:px-8 md:py-3"
+                        style={{
+                          borderColor: "rgba(247, 239, 255, 0.5)",
+                          backgroundColor: "#a36af6",
+                        }}
+                      >
+                        {status === "loading" ? "Joining..." : "Join the Private List"}
+                      </button>
+                    </form>
+                    {status === "error" && (
+                      <p className="mt-2 text-center text-[13px] text-white/90">{message}</p>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           </div>
