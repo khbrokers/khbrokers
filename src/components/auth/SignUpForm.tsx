@@ -186,7 +186,7 @@ export function SignUpForm() {
     const source = redirectTo !== "/" ? redirectTo : refPath || "/";
     const labels: Record<string, string> = {
       "/": "Home Khbrokers",
-      "/invest-1": "Invest Khbrokers",
+      "/invest": "Invest Khbrokers",
       "/invest-2": "Invest Khbrokers",
       "/buyers": "Buyers Khbrokers",
       "/sellers": "Sellers Khbrokers",
