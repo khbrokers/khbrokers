@@ -40,7 +40,7 @@ export default function InvestSuccessPage() {
 
         <AnimateOnView
           animation="stagger-slow"
-          className="relative mx-auto max-w-4xl px-4 pb-4 pt-[100px] sm:px-6 sm:pb-6 sm:pt-24 md:pb-8 md:pt-[232px] lg:px-8"
+          className="relative mx-auto max-w-4xl px-4 pb-4 pt-[180px] sm:px-6 sm:pb-6 sm:pt-24 md:pb-8 md:pt-[232px] lg:px-8"
           rootMargin="0px 0px 0px 0px"
           threshold={0.15}
         >
