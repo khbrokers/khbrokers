@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import { investSuccessConfig } from "@/config/invest.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
-import { LimitedAvailabilityCalEmbed } from "@/components/ui/LimitedAvailabilityCalEmbed";
+import { InvestSuccessBookingSection } from "@/components/sections/invest/InvestSuccessBookingSection";
 import { BuyersTestimonialsSection } from "@/components/sections/buyers/BuyersTestimonialsSection";
 import { BuyersFaqSection } from "@/components/sections/buyers/BuyersFaqSection";
 import { BuyersCtaSection } from "@/components/sections/buyers/BuyersCtaSection";
@@ -61,18 +61,8 @@ export default function InvestSuccessPage() {
         </AnimateOnView>
       </section>
 
-      {/* Cal inline embed */}
-      <section className="px-4 py-4 sm:py-6 md:py-8">
-        <div className="mx-auto max-w-6xl">
-          <AnimateOnView
-            animation="fade-up-slow"
-            rootMargin="0px 0px -60px 0px"
-            threshold={0.05}
-          >
-            <LimitedAvailabilityCalEmbed className="rounded-2xl" />
-          </AnimateOnView>
-        </div>
-      </section>
+      {/* Booking calendar - centered design */}
+      <InvestSuccessBookingSection />
 
       {/* Buyers testimonials */}
       <BuyersTestimonialsSection />
