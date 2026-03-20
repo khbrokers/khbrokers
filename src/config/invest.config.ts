@@ -138,6 +138,22 @@ export const investSuccessConfig = {
   },
 };
 
+export const investSuccessBookingConfig = {
+  availabilityBadge: "● LIMITED AVAILABILITY THIS WEEK",
+  headline: {
+    before: "Book a Free Call With Our Team",
+    highlight: "Get Matched to the Right Brand -Before It's Gone.",
+  },
+  subheadline:
+    "We'll shortlist the 2–3 brands that match your budget and goals, walk you through the real financials, and give you priority access before other buyers see them.",
+  pickTimeTitle: "Pick a Time",
+  pickTimeSubtext: "1h call with Kane · Free · Zoom",
+  slotsAvailable: "● Slots available",
+  callDuration: "1 h",
+  timezone: "Europe/London",
+  meetingType: "Zoom",
+};
+
 export const investDownloadConfig = {
   headline: {
     before: "Receive our current ",
