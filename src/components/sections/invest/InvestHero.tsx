@@ -140,7 +140,7 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
           name: formData.name,
           phone: formData.phone,
           budget: formData.budget,
-          signup_page: "Invest - Khbrokers",
+          signup_page: window.location.pathname === "/invest-2" ? "Invest 2 - Khbrokers" : "Invest - Khbrokers",
           utm_source: params.get("utm_source") || (isGoogleOrganic ? "google" : "direct"),
           utm_medium: params.get("utm_medium") || (isGoogleOrganic ? "organic" : "none"),
           utm_campaign: params.get("utm_campaign") || "",
