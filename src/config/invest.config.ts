@@ -8,15 +8,15 @@ export const investHeroConfig = {
   benefits: [
     {
       icon: "equity",
-      text: "Keep 100% of Your Equity & Profits",
+      text: "Keep 100% of Your Equity",
     },
     {
       icon: "price",
-      text: "Lowest Price Multiples — Anywhere",
+      text: "Lowest Price Multiples",
     },
     {
       icon: "growth",
-      text: "Hands-Off Growth with Trusted Experts",
+      text: "Hands-Off Growth",
     },
   ],
   socialProof: {
