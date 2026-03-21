@@ -58,9 +58,6 @@ export function InvestSuccessBookingSection() {
               {headline.before}<br/>
               <span className="font-serif italic text-[#a36af6] tracking-[-1px] text-[20px] sm:text-[20px] md:text-[28px] lg:text-[30px]">{headline.highlight}</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-center text-[15px] leading-relaxed text-zinc-700 sm:text-[16px] md:text-[17px]">
-              {subheadline}
-            </p>
           </div>
 
           {/* Centered calendar card - overlaps hero for cohesive flow */}

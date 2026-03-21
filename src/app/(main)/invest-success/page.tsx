@@ -26,7 +26,7 @@ export default function InvestSuccessPage() {
   return (
     <main className="min-h-screen bg-[#F5EEFD]">
       {/* Hero - same buyers animated bg */}
-      <section className="relative min-h-[40vh] overflow-hidden sm:min-h-[42vh] md:min-h-[45vh]">
+      <section className="relative min-h-[25vh] overflow-hidden sm:min-h-[42vh] md:min-h-[45vh]">
         <video
           ref={videoRef}
           src="/assets/hero/hero_animatedb.mp4"
@@ -40,7 +40,7 @@ export default function InvestSuccessPage() {
 
         <AnimateOnView
           animation="stagger-slow"
-          className="relative mx-auto max-w-4xl px-4 pb-4 pt-[210px] sm:px-6 sm:pb-6 sm:pt-24 md:pb-8 md:pt-[232px] lg:px-8"
+          className="relative mx-auto max-w-4xl px-4 pb-4 pt-[160px] sm:px-6 sm:pb-6 sm:pt-24 md:pb-8 md:pt-[232px] lg:px-8"
           rootMargin="0px 0px 0px 0px"
           threshold={0.15}
         >
