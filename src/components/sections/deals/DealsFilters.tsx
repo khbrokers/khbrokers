@@ -237,7 +237,7 @@ export function DealsFilters({
           min={ap.min}
           max={ap.max}
           step={ap.step}
-          format={(v) => (v >= 1_000 ? `$${(v / 1_000).toFixed(0)}K` : `$${v.toLocaleString()}`)}
+          format={(v) => (v >= 1_000_000 ? `$${(v / 1_000_000).toFixed(1)}M` : v >= 1_000 ? `$${(v / 1_000).toFixed(0)}K` : `$${v.toLocaleString()}`)}
           onChange={onAnnualProfitChange}
         />
         <SliderRow
@@ -255,7 +255,13 @@ export function DealsFilters({
           min={ba.min}
           max={ba.max}
           step={ba.step}
-          format={(v) => `${v}${ba.suffix}`}
+          format={(v) => {
+            if (v <= 3) return "3 Months";
+            if (v <= 6) return "6 Months";
+            if (v <= 12) return "1 Year";
+            if (v <= 24) return "2 Years";
+            return "3+ Years";
+          }}
           parseType="years"
           onChange={onBusinessAgeChange}
         />

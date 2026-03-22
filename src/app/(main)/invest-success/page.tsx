@@ -26,7 +26,7 @@ export default function InvestSuccessPage() {
   return (
     <main className="min-h-screen bg-[#F5EEFD]">
       {/* Hero - same buyers animated bg */}
-      <section className="relative min-h-[25vh] overflow-hidden sm:min-h-[42vh] md:min-h-[45vh]">
+      <section className="relative min-h-[15vh] overflow-hidden sm:min-h-[18vh] md:min-h-[20vh]">
         <video
           ref={videoRef}
           src="/assets/hero/hero_animatedb.mp4"
@@ -37,7 +37,7 @@ export default function InvestSuccessPage() {
           className="absolute inset-0 h-full w-full object-cover object-center"
           aria-hidden
         />
-
+{/* 
         <AnimateOnView
           animation="stagger-slow"
           className="relative mx-auto max-w-4xl px-4 pb-4 pt-[160px] sm:px-6 sm:pb-6 sm:pt-24 md:pb-8 md:pt-[232px] lg:px-8"
@@ -51,14 +51,14 @@ export default function InvestSuccessPage() {
             </span>
             {headline.after}
           </h1>
-          {/* <p className="stagger-child mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-zinc-700 sm:mt-6 sm:text-[17px] md:text-[18px]">
+          <p className="stagger-child mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-zinc-700 sm:mt-6 sm:text-[17px] md:text-[18px]">
             {subheadline.before}
             <span className="font-semibold text-zinc-900">
               {subheadline.highlight}
             </span>
             
-          </p> */}
-        </AnimateOnView>
+          </p>
+        </AnimateOnView> */}
       </section>
 
       {/* Booking calendar - centered design */}

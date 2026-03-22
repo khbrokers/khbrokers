@@ -25,7 +25,7 @@ export function InvestSuccessBookingSection() {
   ];
 
   return (
-    <section className="px-4 py-8 sm:py-10 md:py-14">
+    <section className="px-4 py-4 sm:py-6 md:py-8">
       <div className="mx-auto max-w-6xl">
         <AnimateOnView
           animation="fade-up-slow"

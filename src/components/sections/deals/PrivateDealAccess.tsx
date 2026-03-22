@@ -15,12 +15,33 @@ export function PrivateDealAccess() {
     setStatus("loading");
 
     try {
-      const signupPage = `Deals Private Access - Khbrokers`;
+      const params = new URLSearchParams(window.location.search);
+      const referrer = document.referrer || "";
+      let source = "direct";
+      let medium = "none";
+      try {
+        const refUrl = new URL(referrer);
+        if (/google\./i.test(refUrl.hostname) && !params.get("gclid")) {
+          source = "google";
+          medium = "organic";
+        } else if (refUrl.hostname && !refUrl.hostname.includes("khbrokers")) {
+          source = refUrl.hostname;
+          medium = "referral";
+        }
+      } catch {}
 
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, signup_page: signupPage }),
+        body: JSON.stringify({
+          email,
+          signup_page: "Deals Private Access - Khbrokers",
+          utm_source: params.get("utm_source") || source,
+          utm_medium: params.get("utm_medium") || medium,
+          utm_campaign: params.get("utm_campaign") || "none",
+          utm_content: params.get("utm_content") || "none",
+          utm_term: params.get("utm_term") || "none",
+        }),
       });
 
       const data = await res.json();

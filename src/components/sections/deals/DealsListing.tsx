@@ -103,15 +103,16 @@ export function DealsListing() {
       (d) => revenueValue(d) >= annualRevenue[0] && revenueValue(d) <= annualRevenue[1]
     );
 
-    // Business age filter — "8 Months" → 0, "1.8 Years" → 1, "2+ Years" → 2
-    const ageValue = (d: Deal) => {
+    // Business age filter — convert deal age to months for filtering
+    const ageInMonths = (d: Deal) => {
       const raw = d.metrics.find((m) => m.icon === "age")?.value || "0";
       const num = parseFloat(raw.replace(/[^0-9.]/g, "") || "0");
-      if (raw.toLowerCase().includes("month")) return Math.max(0, Math.floor(num / 12));
-      return Math.floor(num);
+      if (raw.toLowerCase().includes("month")) return num;
+      return num * 12;
     };
+    const isMaxAge = businessAge[1] >= dealsFiltersConfig.businessAge.max;
     result = result.filter(
-      (d) => ageValue(d) >= businessAge[0] && ageValue(d) <= businessAge[1]
+      (d) => ageInMonths(d) >= businessAge[0] && (isMaxAge || ageInMonths(d) <= businessAge[1])
     );
 
     // Recently sold filter: toggle ON = show only sold, toggle OFF = hide sold

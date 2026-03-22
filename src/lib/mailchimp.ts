@@ -24,7 +24,7 @@ export async function addToMailchimp(subscriber: MailchimpSubscriber) {
   // Build merge_fields dynamically — only include non-empty values
   // so tags that don't exist in Mailchimp yet won't break the request
   const merge_fields: Record<string, string> = {};
-  if (firstName) merge_fields.FNAME = firstName;
+  merge_fields.FNAME = firstName || "Subscriber";
   if (subscriber.phone) merge_fields.PHONE = subscriber.phone;
   if (subscriber.budget) merge_fields.MMERGE12 = subscriber.budget;
   if (subscriber.utm_source) merge_fields.UTM_SOURCE = subscriber.utm_source;
