@@ -84,23 +84,26 @@ export function DealsListing() {
       result = result.filter((d) => selectedNiches.includes(d.niche));
     }
 
-    // Price range filter
+    // Price range filter — at max, include all above
+    const isMaxPrice = priceRange[1] >= dealsFiltersConfig.priceRange.max;
     result = result.filter(
-      (d) => d.askingPrice >= priceRange[0] && d.askingPrice <= priceRange[1]
+      (d) => d.askingPrice >= priceRange[0] && (isMaxPrice || d.askingPrice <= priceRange[1])
     );
 
-    // Annual profit filter
+    // Annual profit filter — at max, include all above
     const profitValue = (d: Deal) =>
       parseInt(d.metrics.find((m) => m.icon === "profit")?.value.replace(/[^0-9]/g, "") || "0", 10);
+    const isMaxProfit = annualProfit[1] >= dealsFiltersConfig.annualProfit.max;
     result = result.filter(
-      (d) => profitValue(d) >= annualProfit[0] && profitValue(d) <= annualProfit[1]
+      (d) => profitValue(d) >= annualProfit[0] && (isMaxProfit || profitValue(d) <= annualProfit[1])
     );
 
-    // Annual revenue filter
+    // Annual revenue filter — at max, include all above
     const revenueValue = (d: Deal) =>
       parseInt(d.metrics.find((m) => m.icon === "revenue")?.value.replace(/[^0-9]/g, "") || "0", 10);
+    const isMaxRevenue = annualRevenue[1] >= dealsFiltersConfig.annualRevenue.max;
     result = result.filter(
-      (d) => revenueValue(d) >= annualRevenue[0] && revenueValue(d) <= annualRevenue[1]
+      (d) => revenueValue(d) >= annualRevenue[0] && (isMaxRevenue || revenueValue(d) <= annualRevenue[1])
     );
 
     // Business age filter — convert deal age to months for filtering

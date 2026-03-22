@@ -22,8 +22,8 @@ export const dealsHeroConfig = {
 export const dealsFiltersConfig = {
   refineTitle: "Refine Results",
   refineCollapsedLabel: "Refine Filter",
-  priceRange: { label: "Price Range", min: 10000, max: 5000000, step: 10000 },
-  annualProfit: { label: "Annual Profit (TTM)", min: 5000, max: 1500000, step: 1000 },
+  priceRange: { label: "Price Range", min: 10000, max: 1500000, step: 10000 },
+  annualProfit: { label: "Annual Profit (TTM)", min: 5000, max: 2000000, step: 1000 },
   annualRevenue: { label: "Annual Revenue (TTM)", min: 50000, max: 10000000, step: 50000 },
   businessAge: { label: "Business Age", min: 0, max: 36, step: 1, suffix: "" },
   industryLabel: "Industry/Niche",
