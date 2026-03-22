@@ -61,7 +61,7 @@ export default function InvestSuccessPage() {
         </AnimateOnView> */}
       </section>
 
-      {/* Booking calendar - centered design */}
+      {/* Booking calendar  - centered design */}
       <InvestSuccessBookingSection />
 
       {/* Buyers testimonials */}
