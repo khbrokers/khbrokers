@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { addToMailchimp } from "@/lib/mailchimp";
+import { siteConfig } from "@/config/site.config";
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,12 +18,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Create user in Supabase Auth
+    // 1. Create user in Supabase Auth (email_confirm: false so a confirmation email is sent)
     const { data: authData, error: authError } =
       await getSupabaseAdmin().auth.admin.createUser({
         email,
         password,
-        email_confirm: true,
+        email_confirm: false,
         user_metadata: { name },
       });
 
@@ -57,7 +58,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 3. Add to Mailchimp (non-blocking — don't fail signup if this errors)
+    // 3. Send confirmation email via Supabase (uses the built-in email template)
+    const { error: inviteError } =
+      await getSupabaseAdmin().auth.admin.generateLink({
+        type: "signup",
+        email,
+        password,
+        options: {
+          redirectTo: `${siteConfig.url}/auth/confirm`,
+        },
+      });
+
+    if (inviteError) {
+      console.error("Failed to send confirmation email:", inviteError);
+    }
+
+    // 4. Add to Mailchimp (non-blocking — don't fail signup if this errors)
     addToMailchimp({
       email, name, phone, budget, ownership, lookingFor,
       utm_source, utm_medium, utm_campaign, utm_content, utm_term,
@@ -66,46 +82,14 @@ export async function POST(req: NextRequest) {
       (err) => console.error("Mailchimp subscribe failed:", err)
     );
 
-    // 4. Sign in the user to get tokens
-    const { data: signInData, error: signInError } =
-      await getSupabaseAdmin().auth.signInWithPassword({ email, password });
-
-    if (signInError) {
-      return NextResponse.json(
-        { error: "Account created but sign-in failed. Please sign in manually." },
-        { status: 201 }
-      );
-    }
-
-    // 5. Set tokens in httpOnly cookies
-    const response = NextResponse.json(
+    // 5. Return success — user must confirm email before signing in
+    return NextResponse.json(
       {
-        user: {
-          id: authData.user.id,
-          email: authData.user.email,
-          name,
-        },
+        message: "Account created. Please check your email to confirm your account.",
+        requiresConfirmation: true,
       },
       { status: 201 }
     );
-
-    response.cookies.set("access_token", signInData.session.access_token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/",
-      maxAge: 60 * 60, // 1 hour
-    });
-
-    response.cookies.set("refresh_token", signInData.session.refresh_token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-    });
-
-    return response;
   } catch {
     return NextResponse.json(
       { error: "Internal server error" },

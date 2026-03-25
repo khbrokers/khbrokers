@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const PROTECTED_PATHS: string[] = [];
-const AUTH_PATHS = ["/signin", "/signup"];
+const AUTH_PATHS = ["/signin", "/signup", "/signup/confirm-email"];
 
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;

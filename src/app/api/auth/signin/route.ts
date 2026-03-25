@@ -18,6 +18,13 @@ export async function POST(req: NextRequest) {
     });
 
     if (error) {
+      // Supabase returns "Email not confirmed" when the user hasn't verified
+      if (error.message === "Email not confirmed") {
+        return NextResponse.json(
+          { error: "Please confirm your email before signing in. Check your inbox for a confirmation link." },
+          { status: 403 }
+        );
+      }
       return NextResponse.json(
         { error: "Invalid email or password" },
         { status: 401 }

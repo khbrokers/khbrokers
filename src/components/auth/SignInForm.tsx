@@ -15,6 +15,14 @@ export function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirect") || "/";
+  const urlError = searchParams.get("error");
+
+  const confirmationMessage =
+    urlError === "invalid_link"
+      ? "Invalid confirmation link. Please try signing up again."
+      : urlError === "confirmation_failed"
+        ? "Email confirmation failed or link expired. Please try signing up again."
+        : null;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -65,6 +73,11 @@ export function SignInForm() {
         <p className="mt-1.5 sm:mt-2 text-[14px] sm:text-[15px] text-zinc-500 w-fit mx-auto">Login to Your Account</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4 sm:mt-8 sm:space-y-5">
+          {confirmationMessage && (
+            <div className="rounded-xl bg-amber-50 px-4 py-3 text-[14px] text-amber-700">
+              {confirmationMessage}
+            </div>
+          )}
           {error && (
             <div className="rounded-xl bg-red-50 px-4 py-3 text-[14px] text-red-600">
               {error}

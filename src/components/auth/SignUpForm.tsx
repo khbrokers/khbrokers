@@ -251,7 +251,7 @@ export function SignUpForm() {
         return;
       }
 
-      router.push("/invest-success");
+      router.push("/signup/confirm-email");
     } catch {
       setError("Network error. Please try again.");
     } finally {
