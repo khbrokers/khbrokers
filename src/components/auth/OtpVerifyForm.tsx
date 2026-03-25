@@ -251,13 +251,13 @@ export function OtpVerifyForm({ email }: { email: string }) {
 
         <p className="mt-5 text-center text-[13px] text-zinc-500 sm:mt-6 sm:text-[14px]">
           Need help?{" "}
-          <Link
-            href="/contact"
+          <a
+            href="mailto:acquire@khbrokers.com"
             className="cursor-pointer font-medium underline"
             style={{ color: "#8C52FF" }}
           >
-            Contact us
-          </Link>
+            acquire@khbrokers.com
+          </a>
         </p>
       </div>
     </div>
