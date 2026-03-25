@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, getSupabaseAdmin } from "@/lib/supabase";
 import { addToMailchimp } from "@/lib/mailchimp";
-import { siteConfig } from "@/config/site.config";
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,14 +17,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Create user via regular signUp — this triggers the confirmation email via SMTP
+    // 1. Create user via regular signUp — Supabase sends a 6-digit OTP code via email
     const { data: authData, error: authError } =
       await getSupabase().auth.signUp({
         email,
         password,
         options: {
           data: { name },
-          emailRedirectTo: `${siteConfig.url}/auth/confirm`,
         },
       });
 
