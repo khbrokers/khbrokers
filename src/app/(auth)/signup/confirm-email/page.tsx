@@ -7,7 +7,12 @@ export const metadata = {
   description: "Check your email to confirm your KH Brokers account",
 };
 
-export default function ConfirmEmailPage() {
+export default async function ConfirmEmailPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ email?: string }>;
+}) {
+  const { email } = await searchParams;
   return (
     <main className="flex min-h-screen w-full overflow-x-hidden">
       <SignInLeftPanel />
@@ -47,7 +52,16 @@ export default function ConfirmEmailPage() {
             Check your email
           </h1>
           <p className="mx-auto mt-3 max-w-[360px] text-center text-[14px] leading-relaxed text-zinc-500 sm:text-[15px]">
-            We&apos;ve sent a confirmation link to your email address. Please click the link to verify your account before signing in.
+            We&apos;ve sent a confirmation link to
+            {email ? (
+              <>
+                {" "}
+                <span className="font-medium text-zinc-900">{email}</span>
+              </>
+            ) : (
+              " your email address"
+            )}
+            . Please click the link to verify your account before signing in.
           </p>
 
           <div className="mt-8 rounded-xl bg-zinc-50 px-5 py-4 text-[13px] leading-relaxed text-zinc-500 sm:text-[14px]">

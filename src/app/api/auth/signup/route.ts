@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { getSupabase, getSupabaseAdmin } from "@/lib/supabase";
 import { addToMailchimp } from "@/lib/mailchimp";
 import { siteConfig } from "@/config/site.config";
 
@@ -18,24 +18,33 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Create user in Supabase Auth (email_confirm: false so a confirmation email is sent)
+    // 1. Create user via regular signUp — this triggers the confirmation email via SMTP
     const { data: authData, error: authError } =
-      await getSupabaseAdmin().auth.admin.createUser({
+      await getSupabase().auth.signUp({
         email,
         password,
-        email_confirm: false,
-        user_metadata: { name },
+        options: {
+          data: { name },
+          emailRedirectTo: `${siteConfig.url}/auth/confirm`,
+        },
       });
 
     if (authError) {
       const message =
-        authError.message === "A user with this email address has already been registered"
+        authError.message === "User already registered"
           ? "An account with this email already exists"
           : authError.message;
       return NextResponse.json({ error: message }, { status: 400 });
     }
 
-    // 2. Store profile data
+    if (!authData.user) {
+      return NextResponse.json(
+        { error: "Failed to create account. Please try again." },
+        { status: 500 }
+      );
+    }
+
+    // 2. Store profile data (use admin client to bypass RLS)
     const { error: profileError } = await getSupabaseAdmin()
       .from("profiles")
       .insert({
@@ -58,22 +67,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 3. Send confirmation email via Supabase (uses the built-in email template)
-    const { error: inviteError } =
-      await getSupabaseAdmin().auth.admin.generateLink({
-        type: "signup",
-        email,
-        password,
-        options: {
-          redirectTo: `${siteConfig.url}/auth/confirm`,
-        },
-      });
-
-    if (inviteError) {
-      console.error("Failed to send confirmation email:", inviteError);
-    }
-
-    // 4. Add to Mailchimp (non-blocking — don't fail signup if this errors)
+    // 3. Add to Mailchimp (non-blocking — don't fail signup if this errors)
     addToMailchimp({
       email, name, phone, budget, ownership, lookingFor,
       utm_source, utm_medium, utm_campaign, utm_content, utm_term,
@@ -82,7 +76,7 @@ export async function POST(req: NextRequest) {
       (err) => console.error("Mailchimp subscribe failed:", err)
     );
 
-    // 5. Return success — user must confirm email before signing in
+    // 4. Return success — user must confirm email before signing in
     return NextResponse.json(
       {
         message: "Account created. Please check your email to confirm your account.",

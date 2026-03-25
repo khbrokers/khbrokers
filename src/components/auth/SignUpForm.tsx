@@ -251,7 +251,7 @@ export function SignUpForm() {
         return;
       }
 
-      router.push("/signup/confirm-email");
+      router.push(`/signup/confirm-email?email=${encodeURIComponent(email)}`);
     } catch {
       setError("Network error. Please try again.");
     } finally {
