@@ -1061,7 +1061,7 @@ export const mockDeals: Deal[] = [
       { month: "Jan 2026", revenue: "$51,027", expenses: "$36,749", netProfit: "$14,278" },
       { month: "Feb 2026", revenue: "$32,809", expenses: "$22,265", netProfit: "$10,544" },
     ],
-    downloadfile: "/assets/deals/32-Jewelry Business - $99,999.xlsx",
+    downloadfile: "/assets/deals/32-JewelryBusiness-$99,999.xlsx",
     heroTitle: "A Scalable UK Jewelry Brand",
     heroSubtitle: " Fashion Jewelry E-Commerce Store",
   },
