@@ -40,11 +40,11 @@ export const investStatsConfig = [
   {
     icon: "handshake",
     stat: "$20M+",
-    description: "Total Brand Sales",
+    description: "Total Acquisitions",
   },
   {
     icon: "tag",
-    stat: "40+",
+    stat: "20+",
     description: "Current Brands for sales",
   },
   {
