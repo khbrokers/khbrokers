@@ -256,7 +256,7 @@ export function OtpVerifyForm({ email }: { email: string }) {
             className="cursor-pointer font-medium underline"
             style={{ color: "#8C52FF" }}
           >
-            acquire@khbrokers.com
+            Contact Us
           </a>
         </p>
       </div>
