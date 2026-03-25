@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect, KeyboardEvent, ClipboardEvent } from "react";
 
-const OTP_LENGTH = 6;
+const OTP_LENGTH = 8;
 
 export function OtpVerifyForm({ email }: { email: string }) {
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
@@ -169,7 +169,7 @@ export function OtpVerifyForm({ email }: { email: string }) {
           Verify your email
         </h1>
         <p className="mx-auto mt-3 max-w-[360px] text-center text-[14px] leading-relaxed text-zinc-500 sm:text-[15px]">
-          We&apos;ve sent a 6-digit code to
+          We&apos;ve sent a verification code to
           {email ? (
             <>
               {" "}
@@ -196,7 +196,7 @@ export function OtpVerifyForm({ email }: { email: string }) {
               onKeyDown={(e) => handleKeyDown(i, e)}
               onPaste={i === 0 ? handlePaste : undefined}
               disabled={isVerifying}
-              className={`h-12 w-12 rounded-xl border-2 bg-zinc-50 text-center text-[20px] font-semibold text-zinc-900 outline-none transition-all sm:h-14 sm:w-14 sm:text-[24px] ${
+              className={`h-11 w-10 rounded-xl border-2 bg-zinc-50 text-center text-[18px] font-semibold text-zinc-900 outline-none transition-all sm:h-13 sm:w-12 sm:text-[22px] ${
                 digit
                   ? "border-[#8C52FF] bg-[#8C52FF]/5"
                   : "border-zinc-200 focus:border-[#8C52FF]"
