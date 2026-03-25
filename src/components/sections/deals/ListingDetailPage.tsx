@@ -722,17 +722,32 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
                         </div>
                       </div>
                       <div className="mt-6 flex justify-center">
-                        <Link
-                          href={deal.speakHref}
-                          className="inline-flex items-center gap-2 rounded-full border-2 font-medium text-white shadow-[inset_0_4px_14px_rgba(255,255,255,0.3)] transition-colors hover:bg-[#6d28d9] px-5 py-2.5 text-sm sm:px-8 sm:py-3 sm:text-[15px]"
-                          style={{
-                            background: `linear-gradient(to right, ${PRIMARY}, #b794f6)`,
-                            borderColor: "rgba(247, 239, 255, 0.5)",
-                          }}
-                        >
-                          Download Full P&L Statement
-                          <span className="text-lg">→</span>
-                        </Link>
+                        {deal.downloadfile ? (
+                          <a
+                            href={deal.downloadfile}
+                            download
+                            className="inline-flex items-center gap-2 rounded-full border-2 font-medium text-white shadow-[inset_0_4px_14px_rgba(255,255,255,0.3)] transition-colors hover:bg-[#6d28d9] px-5 py-2.5 text-sm sm:px-8 sm:py-3 sm:text-[15px]"
+                            style={{
+                              background: `linear-gradient(to right, ${PRIMARY}, #b794f6)`,
+                              borderColor: "rgba(247, 239, 255, 0.5)",
+                            }}
+                          >
+                            Download Full P&L Statement
+                            <span className="text-lg">↓</span>
+                          </a>
+                        ) : (
+                          <Link
+                            href={deal.speakHref}
+                            className="inline-flex items-center gap-2 rounded-full border-2 font-medium text-white shadow-[inset_0_4px_14px_rgba(255,255,255,0.3)] transition-colors hover:bg-[#6d28d9] px-5 py-2.5 text-sm sm:px-8 sm:py-3 sm:text-[15px]"
+                            style={{
+                              background: `linear-gradient(to right, ${PRIMARY}, #b794f6)`,
+                              borderColor: "rgba(247, 239, 255, 0.5)",
+                            }}
+                          >
+                            Download Full P&L Statement
+                            <span className="text-lg">→</span>
+                          </Link>
+                        )}
                       </div>
                     </>
                   ) : (

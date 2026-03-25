@@ -157,6 +157,8 @@ export interface Deal {
   heroSubtitle?: string;
   /** If true, deal was sold recently (for "Recently Sold" filter) */
   recentlySold?: boolean;
+  /** Optional: Path to downloadable file (e.g. P&L statement PDF) in /public */
+  downloadfile?: string;
 }
 
 export const mockDeals: Deal[] = [
@@ -889,6 +891,7 @@ export const mockDeals: Deal[] = [
       { month: "Jan 2026", revenue: "$153,940", expenses: "$113,861", netProfit: "$40,079" },
       { month: "Feb 2026", revenue: "$108,000", expenses: "$88,505", netProfit: "$19,495" },
     ],
+    downloadfile: "/assets/deals/30-PL-Feb-SG.xlsx",
     heroTitle: "A Cash-Flowing Digital Product Business with Proven Demand",
     heroSubtitle: "Performance-Led Growth with Strong Customer Retention",
   },
@@ -973,6 +976,7 @@ export const mockDeals: Deal[] = [
       { month: "Jan 2026", revenue: "$339,509", expenses: "$294,477", netProfit: "$45,032" },
       { month: "Feb 2026", revenue: "$257,737", expenses: "$235,202", netProfit: "$22,535" },
     ],
+    downloadfile: "/assets/deals/31-PL-Feb-AJ.xlsx",
     heroTitle: "A Proven U.S. Jewelry E-Commerce Brand",
     heroSubtitle: "Profitable Women’s Lifestyle Jewelry Business",
   },
@@ -1057,6 +1061,7 @@ export const mockDeals: Deal[] = [
       { month: "Jan 2026", revenue: "$51,027", expenses: "$36,749", netProfit: "$14,278" },
       { month: "Feb 2026", revenue: "$32,809", expenses: "$22,265", netProfit: "$10,544" },
     ],
+    downloadfile: "/assets/deals/32-Jewelry Business - $99,999.xlsx",
     heroTitle: "A Scalable UK Jewelry Brand",
     heroSubtitle: " Fashion Jewelry E-Commerce Store",
   },
@@ -1140,6 +1145,7 @@ export const mockDeals: Deal[] = [
       { month: "Jan 2026", revenue: "$44,201", expenses: "$37,457", netProfit: "$6,744" },
       { month: "Feb 2026", revenue: "$34,687", expenses: "$24,945", netProfit: "$9,742" },
     ],
+    downloadfile: "/assets/deals/33-PL-Feb-ZH.xlsx",
     heroTitle: "A Fast-Growing Wellness Supplement Brand",
     heroSubtitle: "Health & Performance Shilajit Gummies E-Commerce Store",
   },
@@ -1222,6 +1228,7 @@ export const mockDeals: Deal[] = [
       { month: "Jan 2026", revenue: "$11,628", expenses: "$10,185", netProfit: "$1,443" },
       { month: "Feb 2026", revenue: "$8,961", expenses: "$7,049", netProfit: "$1,912" },
     ],
+    downloadfile: "/assets/deals/34-PL-Feb-Ho.xlsx",
     heroTitle: "An Ecommerce Store Turning Home Decor Trends into Profit",
     heroSubtitle: "Products Designed to Convert in a Visual-First Market",
   },
@@ -1305,7 +1312,928 @@ export const mockDeals: Deal[] = [
       { month: "Jan 2026", revenue: "$6,078", expenses: "$2,986", netProfit: "$3,092" },
       { month: "Feb 2026", revenue: "$4,124", expenses: "$1,664", netProfit: "$2,460" },
     ],
+    downloadfile: "/assets/deals/35-PL-Feb-AL.xlsx",
     heroTitle: "A Scalable Supplement Subscription Brand",
     heroSubtitle: "Longevity-Focused NAD+ Gummy Business",
+  },
+ {
+    id: "36",
+    platform: "Shopify",
+    niche: "Design & Style",
+    title: "A Mission-Driven Ocean Lifestyle Brand",
+    coverImage: "/assets/deals/card36.jpg",
+    description:
+      "A 2 Year Old POD Brand Selling Ocean Themed Clothing | Total Revenue Exceeds $2M | Total Net Profit $258k | Ready To Be Scaled Into New Markets",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$1,919,362", icon: "revenue" },
+      { label: "TTM Profit", value: "$257,117", icon: "profit" },
+      { label: "Monthly Profit", value: "$21,426", icon: "monthly" },
+      { label: "Business Age", value: "2+ Years", icon: "age" },
+      { label: "Asking Price", value: "$285,000", icon: "asking" },
+      { label: "Profit Multiple", value: "1.1x", icon: "multiple" },
+    ],
+    askingPrice: 285000,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/36",
+    businessOverview: {
+      content:
+        "A 2-year-old apparel brand centered around ocean-inspired designs and a clear environmental theme. Operating on a print-on-demand model, the business combines strong visual identity with efficient backend systems to deliver products without holding inventory. The brand has generated approximately $1.9M in revenue and $257K in net profit, supported by consistent paid acquisition and a repeatable creative strategy. With no warehousing requirements and streamlined operations, the business is built for scalability and ease of management.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The brand was created with a dual focus: building a recognizable lifestyle apparel brand while aligning with ocean conservation values. A story-led concept designed for long-term growth, centered around visual identity, customer connection, and consistent creative execution to appeal to a purpose-driven audience.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "The business operates under a print-on-demand model, where products are produced only after a customer order is placed. Traffic acquisition is primarily driven through Meta advertising (Facebook & Instagram), focused on testing new designs, scaling winning creatives, and iterating quickly. Google Ads supports retargeting and demand capture.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell is strategic rather than performance-driven. After establishing product-market fit, stable operations, and consistent paid acquisition results, the current owner is reallocating focus toward other ventures. The business is being transitioned to a new owner to maintain growth momentum and avoid divided attention.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Creative Testing & Scaling System",
+        intro: "The marketing system is built around:",
+        bullets: [
+          "Consistently launching new designs and testing what resonates",
+          "Running multiple creative angles to find what converts best",
+          "Increasing spend behind designs that show strong traction",
+          "Cutting underperforming ads quickly to stay efficient",
+        ],
+        quote:
+          "This approach allows the business to scale through repeatable winners rather than relying on one-off products.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Automated Print-On-Demand Setup",
+        intro: "The business runs through established POD suppliers based in China. Order Process:",
+        bullets: [
+          "Customer places an order through the website",
+          "Order is automatically sent to the supplier",
+          "Supplier prints, packs, and ships directly to the customer",
+        ],
+        quote:
+          "This model removes the need for inventory, keeps overhead low, and makes the business easy to operate and transfer.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "March 2025", revenue: "$211,369", expenses: "$174,921", netProfit: "$36,448" },
+      { month: "April 2025", revenue: "$204,362", expenses: "$200,113", netProfit: "$4,249" },
+      { month: "May 2025", revenue: "$71,808", expenses: "$63,754", netProfit: "$8,054" },
+      { month: "Jun 2025", revenue: "$152,067", expenses: "$123,859", netProfit: "$28,208" },
+      { month: "Jul 2025", revenue: "$209,579", expenses: "$180,541", netProfit: "$29,038" },
+      { month: "Aug 2025", revenue: "$161,010", expenses: "$132,540", netProfit: "$28,470" },
+      { month: "Sep 2025", revenue: "$73,443", expenses: "$66,216", netProfit: "$7,227" },
+      { month: "Oct 2025", revenue: "$84,943", expenses: "$74,828", netProfit: "$10,115" },
+      { month: "Nov 2025", revenue: "$134,501", expenses: "$113,752", netProfit: "$20,749" },
+      { month: "Dec 2025", revenue: "$319,268", expenses: "$282,729", netProfit: "$36,539" },
+      { month: "Jan 2026", revenue: "$232,642", expenses: "$194,992", netProfit: "$37,650" },
+      { month: "Feb 2026", revenue: "$64,370", expenses: "$54,000", netProfit: "$10,370" },
+    ],
+    downloadfile: "/assets/deals/36-PL-Feb-OBP.xlsx",
+    heroTitle: "A Mission-Driven Ocean Lifestyle Brand",
+    heroSubtitle: "Thriving Ocean-Themed Fashion Apparel E-Commerce Business",
+  },
+ {
+    id: "37",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "A Proven Pain Relief Brand with Strong Financial Performance",
+    coverImage: "/assets/deals/card37.jpg",
+    description:
+      "A 1.5+ Year Old Pain Neck Pain Relief Business Scaling In A Booming Market. Generating Over $9.6M In Revenue | Net Profit Exceeds $1m | Cash Flowing Monthly",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: " $6,920,959", icon: "revenue" },
+      { label: "TTM Profit", value: "$662,670", icon: "profit" },
+      { label: "Monthly Profit", value: "$55,222", icon: "monthly" },
+      { label: "Business Age", value: "1+ Years", icon: "age" },
+      { label: "Asking Price", value: "$650,000", icon: "asking" },
+      { label: "Profit Multiple", value: "0.1x", icon: "multiple" },
+    ],
+    askingPrice: 650000,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/37",
+    businessOverview: {
+      content:
+        "This is a U.S.-based ecommerce business operating in the health and pain relief space, built around a single high-performing product that has already demonstrated strong demand at scale. After an initial testing phase and repositioning, the brand found a clear product-market fit and has since generated multi-million dollar revenue with consistent monthly performance. The operation is streamlined, with systems in place across marketing, fulfillment, and support, allowing it to run efficiently while still offering significant headroom for growth.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The business began as a product-first project, with the goal of identifying something that could be scaled quickly within a proven market. Rather than committing to a fixed niche from the outset, multiple products were tested across different categories until a clear winner emerged. Once traction was established, the focus shifted toward improving the product itself—refining quality, upgrading components, and strengthening positioning to support long-term scalability. What started as a testing process evolved into a structured and profitable operation.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is primarily driven through paid social advertising, where new creatives are introduced consistently and scaled based on performance data. The strategy centers on rapid iteration—testing multiple angles, identifying winners early, and increasing spend on campaigns that convert. Search campaigns complement this by capturing additional demand and improving efficiency across the funnel. This creates a model that combines ongoing experimentation with stable, repeatable revenue.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The current owner prefers building and launching new projects, and at this stage, the business has reached a level of stability where it requires less experimentation and more focused scaling. Rather than splitting attention across ventures, the decision has been made to transition the business to an operator better suited to take it through its next phase of growth.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Ongoing Creative Iteration & Performance-Based Scaling",
+        intro: "Growth is driven by a disciplined approach to testing and optimization:",
+        bullets: [
+          "New products and angles introduced on a consistent basis",
+          "Multiple creative directions explored for each campaign",
+          "Budget shifted quickly toward ads showing strong returns",
+          "Inefficient spend identified early and removed",
+        ],
+        quote:
+          "This creates a system where performance compounds over time, allowing the business to scale what works while continuously refreshing its acquisition pipeline.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Reliable Supplier-Led Operations with Built-In Scalability",
+        intro: "The business works with an established supplier who manages both inventory and order fulfillment from their warehouse in China. The process is straightforward:",
+        bullets: [
+          "Orders are transmitted directly after purchase",
+          "Fulfillment, packing, and dispatch handled by the supplier",
+          "Products shipped directly to customers with consistent delivery times",
+        ],
+        quote:
+          "Inventory is managed at the supplier level, with flexible payment terms that support cash flow. This structure reduces operational burden, maintains product quality, and allows the business to scale without adding logistical complexity.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "March 2025", revenue: "$559,981", expenses: "$501,153", netProfit: "$58,828" },
+      { month: "April 2025", revenue: "$686,669", expenses: "$603,642", netProfit: "$83,027" },
+      { month: "May 2025", revenue: "$731,175", expenses: "$666,400", netProfit: "$64,775" },
+      { month: "Jun 2025", revenue: "$894,543", expenses: "$783,730", netProfit: "$110,813" },
+      { month: "Jul 2025", revenue: "$738,712", expenses: "$644,172", netProfit: "$94,540" },
+      { month: "Aug 2025", revenue: "$863,411", expenses: "$784,377", netProfit: "$79,034" },
+      { month: "Sep 2025", revenue: "$428,464", expenses: "$395,623", netProfit: "$32,841" },
+      { month: "Oct 2025", revenue: "$368,557", expenses: "$351,863", netProfit: "$16,694" },
+      { month: "Nov 2025", revenue: "$200,701", expenses: "$209,276", netProfit: "-$8,575" },
+      { month: "Dec 2025", revenue: "$341,664", expenses: "$310,234", netProfit: "$31,430" },
+      { month: "Jan 2026", revenue: "$603,061", expenses: "$543,369", netProfit: "$59,692" },
+      { month: "Feb 2026", revenue: "$504,021", expenses: "$464,450", netProfit: "$39,571" },
+    ],
+    downloadfile: "/assets/deals/37-PL-Feb-HT.xlsx",
+    heroTitle: "A Proven Pain Relief Brand with Strong Financial Performance",
+    heroSubtitle: "Profitable Consumer Product Business with Scalable Infrastructure",
+  },
+ {
+    id: "38",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "A Fast-Scaling Beauty Brand",
+    coverImage: "/assets/deals/card38.jpg",
+    description:
+      "A 6 Month Old Spanish Dropshipping Store Selling Beauty & Skincare. Total Revenue Exceeds $471k | Total Profit Exceeds $120k | Perfect To Scale Further",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$552,188", icon: "revenue" },
+      { label: "TTM Profit", value: "$142,031", icon: "profit" },
+      { label: "Monthly Profit", value: "$23,671", icon: "monthly" },
+      { label: "Business Age", value: "6 Months", icon: "age" },
+      { label: "Asking Price", value: "$64,999", icon: "asking" },
+      { label: "Profit Multiple", value: "0.5x", icon: "multiple" },
+    ],
+    askingPrice: 64999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/38",
+    businessOverview: {
+      content:
+        "This is a 6-month-old consumer-focused skincare brand built around high-demand beauty products and strong unit economics. The business has been developed with a clear emphasis on brand identity, product consistency, and scalable acquisition. It has already generated over $550K in revenue and $142K in profit, with a foundation designed to support continued growth without operational complexity.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The business was launched to capitalize on the growing demand for skincare products with strong repeat usage and brand loyalty. Rather than focusing on short-term wins, the approach centered on building a brand customers could return to consistently. This included developing a product range suited for daily use, creating clear messaging, and setting up systems that support retention, upsells, and long-term customer value.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is driven through a combination of paid acquisition and repeat customer behavior. The business uses a structured approach to testing and scaling creatives across social platforms, allowing winning campaigns to be expanded quickly. On the backend, returning customers contribute a meaningful portion of sales, supported by product bundling and a focus on increasing average order value over time.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The business is being sold due to a shift in priorities rather than any limitations within the brand itself. Operating within the current setup has introduced additional friction that limits speed and focus. Instead of continuing under those constraints, the owner has decided to transition the business to someone better positioned to fully commit to scaling it and unlocking the next stage of growth.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Ongoing Creative Testing & Scaling Approach",
+        intro: "The growth strategy is centered on:",
+        bullets: [
+          "Consistent testing of new products and creatives",
+          "Exploring multiple hooks and messaging angles per offer",
+          "Increasing spend on ads that show strong performance",
+          "Quickly cutting underperforming campaigns",
+        ],
+        quote:
+          "This approach allows the business to scale in a controlled way, without relying on short-term spikes from a single winning product.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Streamlined Supplier-Led Operations",
+        intro: "The business works with reliable third-party suppliers based in China. Order flow is simple:",
+        bullets: [
+          "Customer places an order on the store",
+          "Order is automatically forwarded to the supplier",
+          "Supplier handles production and delivery directly",
+        ],
+        quote:
+          "This setup removes the need for inventory storage, reduces upfront costs, and keeps day-to-day operations simple. It’s a straightforward system that can be easily managed and handed over to a new owner.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Sep 2025", revenue: "$66,226", expenses: "$51,283", netProfit: "$14,943" },
+      { month: "Oct 2025", revenue: "$80,490", expenses: "$60,932", netProfit: "$19,558" },
+      { month: "Nov 2025", revenue: "$86,000", expenses: "$62,593", netProfit: "$23,407" },
+      { month: "Dec 2025", revenue: "$113,571", expenses: "$79,568", netProfit: "$34,003" },
+      { month: "Jan 2026", revenue: "$125,000", expenses: "$95,241", netProfit: "$29,759" },
+      { month: "Feb 2026", revenue: "$80,901", expenses: "$60,540", netProfit: "$20,361" },
+    ],
+    downloadfile: "/assets/deals/38-PL-Feb-JG.xlsx",
+    heroTitle: "A Fast-Scaling Beauty Brand",
+    heroSubtitle: "Routine-Based Collagen and Vitamin Cream Product Line",
+  },
+ {
+    id: "39",
+    platform: "Shopify",
+    niche: "Design & Style",
+    title: "A High-Revenue Jewelry Brand with Consistent Cash Flow",
+    coverImage: "/assets/deals/card39.jpg",
+    description:
+      "A 2.7 Year Old Jewelry Store Selling In U.S. Total Revenue $5.8M | Toal Net Profit $1.5M | Cash flowing With Constant Profits",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$1,739,280", icon: "revenue" },
+      { label: "TTM Profit", value: "$291,768", icon: "profit" },
+      { label: "Monthly Profit", value: "$24,314", icon: "monthly" },
+      { label: "Business Age", value: "2+ Years", icon: "age" },
+      { label: "Asking Price", value: "$125,000", icon: "asking" },
+      { label: "Profit Multiple", value: "0.4x", icon: "multiple" },
+    ],
+    askingPrice: 125000,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/39",
+    businessOverview: {
+      content:
+        "This is an established e-commerce  jewelry brand operating in the U.S. market, built around a broad product range rather than a single hero item. The business has scaled to over $5.8M in total revenue with $1.5M in net profit, supported by consistent demand and a repeatable acquisition strategy. Operations are streamlined, allowing the brand to maintain strong performance while remaining relatively simple to manage.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The brand was originally created to build a long-term presence in a category with steady, year-round demand and strong gifting appeal. Jewelry lends itself well to repeat purchases and emotional buying behavior, making it a solid foundation for a scalable consumer brand. From early on, the focus was on creating a store that could support multiple products, test new offers quickly, and grow through paid traffic without being dependent on short-term trends.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is driven primarily through paid acquisition, with Meta platforms acting as the core traffic source. The approach centers on continuously testing creatives, offers, and audiences, then scaling what performs. Google Ads plays a supporting role by capturing high-intent traffic and improving overall conversion efficiency. This combination has allowed the business to generate consistent monthly revenue without relying on a single product or campaign.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell comes down to shifting priorities. As the owners have taken on other projects, their time and focus have become more limited. While the business continues to perform and generate steady profit, pushing it to the next level would require more dedicated attention. Rather than keeping it at its current pace, the choice was made to transition it to someone who can focus on scaling it further.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Disciplined Creative Testing & Performance Scaling System",
+        intro: "The growth model is driven by a structured, data-led acquisition process:",
+        bullets: [
+          "Continuous product and creative testing cadence",
+          "Diverse messaging angles developed for each offer",
+          "Aggressive budget allocation toward validated winners",
+          "Underperforming campaigns quickly identified and cut",
+        ],
+        quote:
+          "This approach builds a repeatable and scalable acquisition engine, reducing volatility and avoiding reliance on one-off winning products.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Automated, Asset-Light Delivery Infrastructure",
+        intro: "Operations are supported by established third-party suppliers with fully integrated systems. Order flow is seamless:",
+        bullets: [
+          "Orders are transmitted instantly after purchase",
+          "Fulfillment is handled directly by the supplier",
+          "Production and shipping are completed without manual input",
+        ],
+        quote:
+          "This setup removes the need for inventory, limits working capital requirements, and keeps operational overhead low. The business is designed to run efficiently and transition cleanly to a new owner without added complexity.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "March 2025", revenue: "$179,227", expenses: "$132,913", netProfit: "$46,314" },
+      { month: "April 2025", revenue: "$181,621", expenses: " $144,695", netProfit: "$36,926" },
+      { month: "May 2025", revenue: "$176,473", expenses: "$139,903", netProfit: "$36,570" },
+      { month: "Jun 2025", revenue: "$160,377", expenses: "$134,444", netProfit: "$25,933" },
+      { month: "Jul 2025", revenue: "$243,318", expenses: "$199,558", netProfit: "$43,760" },
+      { month: "Aug 2025", revenue: "$221,805", expenses: "$185,180", netProfit: "$36,625" },
+      { month: "Sep 2025", revenue: "$239,283", expenses: "$217,319", netProfit: "$21,964 " },
+      { month: "Oct 2025", revenue: "$105,059", expenses: "$95,134", netProfit: "$9,925" },
+      { month: "Nov 2025", revenue: "$80,806", expenses: "$73,256", netProfit: "$7,550" },
+      { month: "Dec 2025", revenue: "$76,803", expenses: "$64,079", netProfit: "$12,724" },
+      { month: "Jan 2026", revenue: "$39,864", expenses: "$32,781", netProfit: "$7,083" },
+      { month: "Feb 2026", revenue: "$34,644", expenses: "$28,250", netProfit: "$6,394" },
+    ],
+    downloadfile: "/assets/deals/39-PL-Feb-TT.xlsx",
+    heroTitle: "A High-Revenue Jewelry Brand with Consistent Cash Flow",
+    heroSubtitle: "Established Profitable U.S. Consumer Business",
+  },
+ {
+    id: "40",
+    platform: "Shopify",
+    niche: "Design & Style",
+    title: "A Trend-Driven Fashion Brand Built for Rapid Scaling",
+    coverImage: "/assets/deals/card40.jpg",
+    description:
+      "A 6 Month Old Dropshipping Store Selling In the Untapped Mexican Market. Over $185k Revenue Generated With A NET Profit Of $48k. Steady & Stable Growth",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$218,595", icon: "revenue" },
+      { label: "TTM Profit", value: "$58,803", icon: "profit" },
+      { label: "Monthly Profit", value: "$9,800", icon: "monthly" },
+      { label: "Business Age", value: "6 Months", icon: "age" },
+      { label: "Asking Price", value: "$44,999", icon: "asking" },
+      { label: "Profit Multiple", value: "0.8x", icon: "multiple" },
+    ],
+    askingPrice:  44999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/40",
+    businessOverview: {
+      content:
+        "This is a 6-month-old fashion store focused on women’s apparel, operating in the Mexican market. The business centers around identifying trending styles and bringing them to market quickly through a flexible, multi-product setup. It has generated over $200K in revenue and close to $60K in profit so far, with a model designed to keep operations simple while allowing for consistent growth and easy scaling.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The idea came from seeing how underdeveloped parts of the Latin American fashion market still are compared to the US and Europe. Demand is there, but competition and advertising costs are lower, which creates a strong opportunity. The store was built to take advantage of this by combining proven ad strategies with a rotating product catalog, making it possible to test, iterate, and scale quickly without being tied to one product or trend.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "The business generates revenue through a mix of paid traffic and continuous product testing. New items are introduced regularly, and those that perform well are pushed further through advertising, while weaker ones are replaced. This keeps the store fresh and reduces reliance on a single winner. Most traffic comes from Meta platforms, with additional opportunities to expand into other channels as the business grows.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The sale comes down to focus rather than performance. With several projects running at the same time, it’s become harder to give this business the attention it deserves. Instead of stretching resources thin, the decision was made to pass it on to someone who can fully focus on scaling it. The fundamentals are in place, and there’s still plenty of room to grow under the right owner.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Performance-Driven Creative Testing & Scaling System",
+        intro: "The acquisition strategy is built around:",
+        bullets: [
+          "Continuous testing of new products and creatives",
+          "Multiple messaging angles deployed per offer",
+          "Aggressive scaling of proven winners",
+          "Rapid elimination of underperforming campaigns",
+        ],
+        quote:
+          "This disciplined approach enables consistent customer acquisition and reduces reliance on single-product volatility, creating a repeatable and scalable growth framework.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Automated, Low-Overhead Supplier Infrastructure",
+        intro: "The business operates through established third-party suppliers based in China. Order flow is fully systemized:",
+        bullets: [
+          "Orders are placed by customers through the store",
+          "Orders are automatically transmitted to the supplier",
+          "Supplier handles production, packing, and delivery",
+        ],
+        quote:
+          "This structure removes the need for inventory holding, minimizes working capital requirements, and keeps operations lean. The supply chain is stable, efficient, and easily transferable to a new owner without disruption.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Sep 2025", revenue: "$5,247", expenses: "$4,786", netProfit: "$461" },
+      { month: "Oct 2025", revenue: "$63,193", expenses: "$51,568", netProfit: "$11,625" },
+      { month: "Nov 2025", revenue: "$55,679", expenses: "$43,884", netProfit: "$11,795" },
+      { month: "Dec 2025", revenue: "$29,513", expenses: "$15,189", netProfit: "$14,324" },
+      { month: "Jan 2026", revenue: "$33,856", expenses: "$23,905", netProfit: "$9,951" },
+      { month: "Feb 2026", revenue: "$31,107", expenses: "$20,460", netProfit: "$10,647" },
+    ],
+    downloadfile: "/assets/deals/40-PL-Feb-EDB.pdf",
+    heroTitle: "A Trend-Driven Fashion Brand Built for Rapid Scaling",
+    heroSubtitle: "Women’s Apparel Store in a Rapidly Expanding Mexican Market",
+  },
+ {
+    id: "41",
+    platform: "Shopify",
+    niche: "Home & Garden Store",
+    title: "A High-Utility Kitchen Brand Built Around Proven Products",
+    coverImage: "/assets/deals/card41.jpg",
+    description:
+      "A 1.5 Year Old Kitchen Accessories Business With Rapid Scale. Over $8.6M In Revenue Generated | Net Profit Exceeds $1.57M | Ready For International Expansion",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$6,750,001", icon: "revenue" },
+      { label: "TTM Profit", value: "$1,070,741", icon: "profit" },
+      { label: "Monthly Profit", value: "$89,228", icon: "monthly" },
+      { label: "Business Age", value: "1+ Years", icon: "age" },
+      { label: "Asking Price", value: "$599,999", icon: "asking" },
+      { label: "Profit Multiple", value: "0.6x", icon: "multiple" },
+    ],
+    askingPrice:  599999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/41",
+    businessOverview: {
+      content:
+        "This is a fast-scaling kitchen accessories business built around highly-practical products that solves a common everyday problem. By simplifying a traditionally complex task into something safe and easy to use, the brand quickly found strong traction with a broad consumer audience. The business has grown rapidly through a clear value proposition, strong conversion rates, and efficient paid acquisition. With consistent sales, healthy margins, and reliable supplier relationships already in place, it operates as a streamlined, product-led e-commerce business.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The idea came from noticing how unnecessarily complicated many kitchen tools had become, especially for everyday users. Existing solutions often required skill, time, or confidence that the average consumer didn’t have, creating a clear gap in the market. The goal was to create a product that removed that friction — something simple, safe, and effective that anyone could use without prior experience. By focusing on ease of use and clear outcomes, the product immediately resonated with customers. Rather than building a brand around trends, the business was built around solving a real problem. That clarity is what allowed it to gain traction quickly and establish a strong foothold in the category.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "The business operates on a direct-to-consumer model, with sales driven primarily through paid advertising across Meta and Google. Each channel plays a distinct role, combining demand capture with scalable customer acquisition. Google Ads targets high-intent users actively searching for solutions, while Meta focuses on creative-driven campaigns to generate new demand and scale volume. Continuous testing of creatives and messaging allows the business to consistently identify and scale winning angles. This approach creates a balanced and repeatable system for acquiring customers, without relying on a single channel or short-term trends.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell is based on a shift in focus rather than any performance issues. The business has reached a stage where further growth will require more attention toward brand expansion, product development, and scaling operations. At the same time, the owner is moving on to new projects and does not want to divide time across multiple ventures. Rather than slowing progress, the intention is to pass the business to someone who can fully focus on taking it to the next level. With strong fundamentals already in place, this presents an opportunity for a new owner to step into a profitable, well-structured business and continue building on its existing momentum.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Creative Testing & Scalable Acquisition",
+        intro: "Growth is driven by a structured but flexible approach to testing and scaling what performs.",
+        bullets: [
+          "Continuous testing of new creatives and messaging",
+          "Multiple variations built around the same core product",
+          "Scaling spend quickly on proven winners",
+          "Cutting underperforming campaigns early",
+        ],
+        quote:
+          "Rather than chasing trends, the focus is on refining a product that already converts well. This creates a more stable and repeatable growth pattern, built around improving performance over time instead of relying on constant product changes.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Established Supplier & Reliable Delivery",
+        intro: "The supply chain is built around a long-term manufacturing partner, with fulfilment designed to stay consistent as volume increases.",
+        bullets: [
+          "Inventory is produced based on demand and forecasts",
+          "Orders are packed and shipped directly to customers",
+          "Supplier manages production, stock levels, and dispatch",
+        ],
+        quote:
+          "This setup keeps operations straightforward while maintaining control over product quality and availability. With clear communication and predictable lead times, the business is able to scale without adding unnecessary operational complexity, making it easy for a new owner to step in and continue running it smoothly.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "March 2025", revenue: "$108,359", expenses: "$97,788", netProfit: "$10,571" },
+      { month: "April 2025", revenue: "$231,563", expenses: "$158,683", netProfit: "$72,880" },
+      { month: "May 2025", revenue: "$305,170", expenses: "$253,958", netProfit: "$51,212" },
+      { month: "Jun 2025", revenue: "$330,935", expenses: "$307,284", netProfit: "$23,651" },
+      { month: "Jul 2025", revenue: "$356,875", expenses: "$310,402", netProfit: "$46,473" },
+      { month: "Aug 2025", revenue: "$536,380", expenses: "$413,578", netProfit: "$122,802" },
+      { month: "Sep 2025", revenue: "$590,848", expenses: "$505,884", netProfit: "$84,964" },
+      { month: "Oct 2025", revenue: "$740,666", expenses: "$600,318", netProfit: "$140,348" },
+      { month: "Nov 2025", revenue: "$164,084", expenses: "$131,703", netProfit: "$32,381" },
+      { month: "Dec 2025", revenue: "$122,225", expenses: "$112,754", netProfit: "$9,470" },
+      { month: "Jan 2026", revenue: "$563,833", expenses: "$475,123", netProfit: "$88,710" },
+    ],
+    downloadfile: "/assets/deals/41-PL-Jan-No.xlsx",
+    heroTitle: "A High-Utility Kitchen Brand Built Around Proven Products",
+    heroSubtitle: "Solving a Clear Consumer Need with Simple, Scalable Design",
+  },
+ {
+    id: "42",
+    platform: "Shopify",
+    niche: "Education",
+    title: "A Scalable Educational Toy Brand with Proven Demand",
+    coverImage: "/assets/deals/card42.jpg",
+    description:
+      "A 1+ Year Old Shopify Brand Selling Kids Educational Toys. Over $1.3M Revenue Generated With $119k NET Profit. Ready To Be Scaled Into New SKUs",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$1,527,889", icon: "revenue" },
+      { label: "TTM Profit", value: "$139,140", icon: "profit" },
+      { label: "Monthly Profit", value: "$11,595", icon: "monthly" },
+      { label: "Business Age", value: "1+ Years", icon: "age" },
+      { label: "Asking Price", value: "$130,000", icon: "asking" },
+      { label: "Profit Multiple", value: "0.9x", icon: "multiple" },
+    ],
+    askingPrice:  599999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/42",
+    businessOverview: {
+      content:
+        "This is a U.S.-focused ecommerce brand operating in the children’s educational toy space, built around a small number of proven products rather than a wide catalog. Over the past year, the business has generated over $1.5M in revenue with consistent monthly sales, supported by a combination of paid acquisition, influencer activity, and repeat customer demand. The operation is already structured with external support across creative, customer service, and fulfillment, making it straightforward to manage while leaving room to expand the product range.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The business started as a way to gain hands-on experience building a consumer brand from the ground up, with a focus on a niche that naturally lends itself to strong demand—parents purchasing educational products for their children. Early on, a standout product was identified and used as the foundation to test the market, validate demand, and build out the brand. Over time, it evolved from a learning project into a fully functioning store with established systems across marketing, operations, and supplier relationships.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Sales are primarily driven through paid social advertising, where creatives and offers are tested continuously and scaled based on performance. Influencer collaborations and organic content also play an important role, particularly in building trust with the target audience. Email marketing supports retention and repeat purchases, while the overall model allows for new products to be introduced and tested without disrupting the core revenue stream.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The sale is driven by a shift in priorities rather than performance. The owner is moving focus toward a new business in a different category that requires full attention and deeper personal alignment. While the brand continues to generate revenue and operate reliably, unlocking its next phase of growth will require more consistent involvement in areas like creative strategy, product expansion, and marketing. This creates an opportunity for a buyer to step in and scale an already validated business.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Performance-Driven Acquisition & Creative Testing System",
+        intro: "The business is built on a structured and repeatable marketing framework:",
+        bullets: [
+          "Ongoing testing of new products and creative concepts",
+          "Multiple creative variations deployed per offer",
+          "Capital efficiently allocated toward validated winners",
+          "Underperforming campaigns quickly identified and cut",
+        ],
+        quote:
+          "This system enables consistent customer acquisition while reducing reliance on any single product or campaign, supporting more stable and scalable revenue generation.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Established Supplier Network with Scalable Infrastructure",
+        intro: "Operations are supported by a dedicated fulfillment partner with a warehouse in China, managing both inventory and order execution. Order flow is streamlined:",
+        bullets: [
+          "Inventory is forecasted and pre-positioned with the supplier",
+          "Orders are processed with same-day pick, pack, and dispatch",
+          "End-to-end shipping handled directly to the customer",
+        ],
+        quote:
+          "This setup ensures reliable delivery timelines, strong operational visibility, and efficient scaling without requiring additional infrastructure. The supply chain is already established, reducing execution risk for a new owner while supporting future growth.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "March 2025", revenue: "$5,414", expenses: "$8,224", netProfit: "-$2,810" },
+      { month: "April 2025", revenue: "$91,759", expenses: "$75,255", netProfit: "$16,504" },
+      { month: "May 2025", revenue: "$76,524", expenses: "$80,007", netProfit: "-$3,483" },
+      { month: "Jun 2025", revenue: "$66,750", expenses: "$65,770", netProfit: "$980" },
+      { month: "Jul 2025", revenue: "$63,214", expenses: "$55,701", netProfit: "$7,513" },
+      { month: "Aug 2025", revenue: "$79,263", expenses: "$65,335", netProfit: "$13,928" },
+      { month: "Sep 2025", revenue: "$155,944", expenses: "$138,783", netProfit: "$17,161" },
+      { month: "Oct 2025", revenue: "$171,797", expenses: "$180,141", netProfit: "-$8,344" },
+      { month: "Nov 2025", revenue: "$383,657", expenses: "$322,122", netProfit: "$61,535" },
+      { month: "Dec 2025", revenue: "$269,242", expenses: "$259,456", netProfit: "$9,786" },
+      { month: "Jan 2026", revenue: "$25,387", expenses: "$27,216", netProfit: "-$1,829" },
+      { month: "Feb 2026", revenue: "$138,938", expenses: "$110,739", netProfit: "$28,199" },
+    ],
+    downloadfile: "/assets/deals/42-PL-Feb-ML.xlsx",
+    heroTitle: "A Scalable Educational Toy Brand with Proven Demand",
+    heroSubtitle: "Established Ecommerce Business Serving U.S. Consumers",
+  },
+ {
+    id: "43",
+    platform: "Shopify",
+    niche: "Automotive",
+    title: "A Niche E-commerce Brand Serving a Dedicated Rider Market",
+    coverImage: "/assets/deals/card43.jpg",
+    description:
+      "A 2.5 Year Old Branded Store Selling Premium Moterbike Headsets. Total Revenue Exceeds $1.9M | Net Profit $196k | Ready To Be Scaled Back Up",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$572,614", icon: "revenue" },
+      { label: "TTM Profit", value: "$61,634", icon: "profit" },
+      { label: "Monthly Profit", value: "$5,136", icon: "monthly" },
+      { label: "Business Age", value: "2+ Years", icon: "age" },
+      { label: "Asking Price", value: "$34,999", icon: "asking" },
+      { label: "Profit Multiple", value: "0.6x", icon: "multiple" },
+    ],
+    askingPrice:  34999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/43",
+    businessOverview: {
+      content:
+        "This is a niche e-commerce brand focused on motorcycle communication systems, built by riders who understood the gaps in the market firsthand. The product offering is centered around intercom headsets that balance functionality, reliability, and price—something that resonates strongly with everyday riders. Over the past 2.5 years, the business has grown into a recognizable brand within its space, generating over $570K in annual revenue and $61K in net profit. The setup remains lean, with no inventory held and a structure that allows the business to run efficiently without heavy operational demands.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The business started from a simple observation: most intercom systems on the market were either too expensive or didn’t deliver on what riders actually needed. Being riders ourselves, we saw the opportunity to create something better positioned—practical, accessible, and built around real use cases. What began as a side project during university quickly turned into a focused effort to build a brand within a niche we genuinely understood. That foundation has shaped everything—from product selection to messaging—and is a big reason why the business has been able to find consistent traction.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is driven primarily through paid acquisition, with Meta Ads acting as the core growth channel. The approach is straightforward: test creatives, identify what resonates with riders, and scale the campaigns that perform. Because the product sits in a clear niche with strong intent, campaigns tend to convert well when positioned correctly. The model allows for ongoing optimization without overcomplicating the process, while still leaving room to expand into additional channels like Google or YouTube.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The brand is stable, operational, and still has clear growth potential, but our focus is now moving toward other ventures that require full attention. At this stage, the business would benefit from someone who can dedicate more time to scaling—whether that’s pushing marketing further, expanding the product range, or strengthening the brand. Rather than holding it back by splitting focus, we’re choosing to pass it on at a point where a new owner can take it further.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Creative-Led Acquisition Built Around Rider Psychology",
+        intro: "Growth comes from understanding how riders actually think and buy, not from overcomplicated systems. The focus has always been on putting the product in front of the right audience with messaging that feels real and relevant.",
+        bullets: [
+          "Consistent testing of new creatives and angles",
+          "Different positioning styles to match rider preferences",
+          "Scaling spend behind ads that clearly convert",
+          "Cutting underperforming campaigns early",
+        ],
+        quote:
+          "Rather than relying on one breakout product or ad, the business improves performance over time by continuously refining what works and doubling down on it.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Agent-Led Sourcing with Flexible, Low-Commitment Operations",
+        intro: "The supply chain is handled through a dedicated sourcing agent who works directly with manufacturers, manages production, and oversees shipping. This removes the need to deal with factories or logistics on a day-to-day basis.",
+        bullets: [
+          "Orders are sent directly to the agent after purchase",
+          "The agent handles sourcing, packaging, and dispatch",
+          "Branded packaging is arranged where needed",
+          "Payment is made after fulfillment, not upfront",
+        ],
+        quote:
+          "This setup keeps things flexible and avoids tying up cash in inventory, while still allowing the brand to maintain a more customized feel than standard dropshipping. It’s simple to manage, easy to understand, and already dialed in.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "March 2025", revenue: "$102,134", expenses: "$93,460", netProfit: "$8,674" },
+      { month: "April 2025", revenue: "$84,694", expenses: "$79,210", netProfit: "$5,484" },
+      { month: "May 2025", revenue: "$72,459", expenses: "$68,647", netProfit: "$3,812" },
+      { month: "Jun 2025", revenue: "$58,516", expenses: "$53,218", netProfit: "$5,298" },
+      { month: "Jul 2025", revenue: "$44,887", expenses: "$39,798", netProfit: "$5,089" },
+      { month: "Aug 2025", revenue: "$48,534", expenses: "$39,469", netProfit: "$9,065" },
+      { month: "Sep 2025", revenue: "$47,143", expenses: "$40,917", netProfit: "$6,226" },
+      { month: "Oct 2025", revenue: "$36,890", expenses: "$34,415", netProfit: "$2,475" },
+      { month: "Nov 2025", revenue: "$33,287", expenses: "$29,445", netProfit: "$3,842" },
+      { month: "Dec 2025", revenue: "$16,398", expenses: "$11,841", netProfit: "$4,557" },
+      { month: "Jan 2026", revenue: "$12,210", expenses: "$9,849", netProfit: "$2,361" },
+      { month: "Feb 2026", revenue: "$15,462", expenses: "$10,711", netProfit: "$4,751" },
+    ],
+    downloadfile: "/assets/deals/43-PL-Feb-RK.xlsx",
+    heroTitle: "A Niche E-commerce Brand Serving a Dedicated Rider Market",
+    heroSubtitle: "Premium Motorcycle Intercom Products with Proven Demand",
+  },
+ {
+    id: "44",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "A Lean Profitable Supplements Brand for the Mexican Market",
+    coverImage: "/assets/deals/card44.jpg",
+    description:
+      "A 7 Month Old Store Selling Supplements In The Mexican Market. Over $370k Revenue | Total Net Profit $54k | Perfect To Scale Via Product Expansion",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$433,605", icon: "revenue" },
+      { label: "TTM Profit", value: "$64,489", icon: "profit" },
+      { label: "Monthly Profit", value: "$7,165", icon: "monthly" },
+      { label: "Business Age", value: "9 Months", icon: "age" },
+      { label: "Asking Price", value: "$29,999", icon: "asking" },
+      { label: "Profit Multiple", value: "0.5x", icon: "multiple" },
+    ],
+    askingPrice:  29999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/44",
+    businessOverview: {
+      content:
+        "This is a growing supplements brand focused on the Mexican market, where demand for accessible health products continues to increase. The business has been built around straightforward, high-converting offers rather than overcomplicated branding, allowing it to scale efficiently in a relatively underdeveloped ecommerce space. From early on, the focus has been on clarity — simple messaging, competitive pricing, and products that are easy for customers to understand and trust. This approach has allowed the business to generate consistent sales while keeping operations lean and manageable.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The business started from recognizing how underserved the supplements market is in Mexico compared to more mature regions. While demand is clearly there, many existing brands either price themselves too high or fail to communicate their value effectively. The goal was to create something more direct — products positioned in a way that feels approachable, trustworthy, and aligned with what customers are already searching for. Instead of reinventing the category, the focus was on executing better within it.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is primarily driven through paid acquisition, with Meta Ads and Google Ads working together to capture both demand and intent. Meta is used for creative testing and scaling winning angles, while Google focuses on high-intent traffic that converts more predictably. The strategy has been less about chasing one winning product and more about maintaining consistent performance through ongoing testing and optimization. This creates a steadier revenue base and reduces reliance on short-term spikes.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell comes down to focus rather than performance. The business is stable, profitable, and running smoothly, but managing multiple projects at once limits how far each one can be pushed. At this stage, it makes more sense for the business to transition to someone who can dedicate full attention to scaling it further, rather than keeping it under a split focus where growth may slow over time.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Performance-Driven Acquisition Built for an Underserved Market",
+        intro: "The growth strategy is centered around simple offers and fast creative iteration:",
+        bullets: [
+          "Continuous testing of new angles tailored to local buying behavior",
+          "Multiple creatives launched per product to identify winning messaging",
+          "Rapid scaling of profitable campaigns once performance stabilizes",
+          "Quick removal of underperforming ads to maintain efficiency",
+        ],
+        quote:
+          "Because the market is less saturated than the U.S., strong creatives tend to hold performance longer, allowing campaigns to scale more predictably once a winning angle is found. This creates a more stable acquisition model with room to push spend without immediate creative fatigue.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Lean, Flexible Dropshipping Setup",
+        intro: "The business operates through a streamlined supplier network built for consistency:",
+        bullets: [
+          "Orders are automatically routed to suppliers after checkout",
+          "Suppliers handle packing and shipping directly to customers",
+          "Tracking is generated and shared without manual involvement",
+        ],
+        quote:
+          "Overall, the supply chain is designed for flexibility — making it easy to scale volume without increasing operational complexity.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Jun 2025", revenue: "$7,330", expenses: "$5,606", netProfit: "$1,724" },
+      { month: "Jul 2025", revenue: "$65,661", expenses: "$53,644", netProfit: "$12,017" },
+      { month: "Aug 2025", revenue: "$70,588", expenses: "$61,880", netProfit: "$8,708" },
+      { month: "Sep 2025", revenue: "$100,887", expenses: "$92,133", netProfit: "$8,754" },
+      { month: "Oct 2025", revenue: "$75,355", expenses: "$65,497", netProfit: "$9,858" },
+      { month: "Nov 2025", revenue: "$55,028", expenses: "$3,341", netProfit: "$10,308" },
+      { month: "Dec 2025", revenue: "$24,426", expenses: "$20,925", netProfit: "$3,501" },
+      { month: "Jan 2026", revenue: "$20,609", expenses: "$16,589", netProfit: "$4,020" },
+      { month: "Feb 2026", revenue: "$13,721", expenses: "$11,121", netProfit: "$2,600" },
+    ],
+    downloadfile: "/assets/deals/44-PL-Feb-VM.xlsx",
+    heroTitle: "A Lean Profitable Supplements Brand for the Mexican Market",
+    heroSubtitle: "Positioned Where Demand Is Rising and Competition Is Still Inefficient",
+  },
+ {
+    id: "45",
+    platform: "Shopify",
+    niche: "Design & Style",
+    title: "A Profitable Fashion Brand with Clear Expansion Opportunities",
+    coverImage: "/assets/deals/card45.jpg",
+    description:
+      "An 11 Month Old Fashion Store Selling In An Untapped Market. Total Revenue Exceeds $615k Whilst Netting $100K | Stable & Consistent Profits",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$1,012,668", icon: "revenue" },
+      { label: "TTM Profit", value: "$146,455", icon: "profit" },
+      { label: "Monthly Profit", value: "$12,204", icon: "monthly" },
+      { label: "Business Age", value: "1+ Years", icon: "age" },
+      { label: "Asking Price", value: "$85,000", icon: "asking" },
+      { label: "Profit Multiple", value: "0.6x", icon: "multiple" },
+    ],
+    askingPrice:  85000,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/45",
+    businessOverview: {
+      content:
+        "This is a strong fashion-focused ecommerce store operating in the European market, built around a simple but effective direct-to-consumer model. The brand has been developed with a clear focus on product selection, customer appeal, and efficient execution rather than unnecessary complexity. Over its first year, the business has generated just over $1M in revenue and $146K in net profit. The structure is intentionally lean, allowing it to operate smoothly while still leaving plenty of room for further growth and refinement.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The store was created out of a genuine interest in building a fashion brand that could balance creativity with performance. From the beginning, the goal was to test products quickly, understand what resonates with customers, and build something that could scale without becoming operationally heavy. It wasn’t about chasing a single winning product, but about creating a system that consistently identifies demand and turns it into revenue. That approach has shaped how the business operates today and why it has been able to grow steadily within its niche.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is driven primarily through paid acquisition, with a focus on testing and scaling products based on real performance data. Campaigns are structured to identify what works quickly, then allocate budget toward the strongest performers. Google Ads complements this by capturing high-intent traffic, while Meta remains the main driver for discovery and scaling. This combination creates a reliable flow of customers and allows the business to maintain consistent performance without relying on a single channel.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "While the business is running well and generating consistent profit, the owner is moving toward new projects and doesn’t want to divide attention across multiple ventures. At its current stage, the store is stable and proven, but there is still a clear upside for someone willing to invest more time into scaling it. Passing it on now allows a new owner to take over a functioning business and push it further, rather than starting from scratch.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Performance-Driven Acquisition & Product Testing System",
+        intro: "Growth is driven by a simple but effective approach: test quickly, scale what works, and cut what doesn’t. The business consistently introduces new products and creatives, using real performance data to guide decisions rather than assumptions.",
+        bullets: [
+          "Ongoing product and creative testing",
+          "Multiple variations per offer to find winners",
+          "Budget shifted aggressively toward top performers",
+          "Underperforming campaigns removed early",
+        ],
+        quote:
+          "This keeps the business moving forward without relying on a single product, creating a more stable and repeatable growth pattern over time.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Lean Dropshipping Model with Minimal Overhead",
+        intro: "The store operates on a streamlined dropshipping setup, meaning products are only sourced and shipped after a customer places an order. There is no need to manage inventory or handle logistics directly.",
+        bullets: [
+          "Orders are automatically routed to suppliers",
+          "Suppliers handle packing and shipping",
+          "Tracking is synced back to the store in real time",
+        ],
+        quote:
+          "This setup keeps operations simple, reduces upfront costs, and allows the business to stay flexible when testing new products or scaling demand. It’s a structure that’s easy to manage and straightforward for a new owner to step into.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Mar 2025", revenue: "$24,310", expenses: "$19,881", netProfit: "$4,429" },
+      { month: "Apr 2025", revenue: "$42,621", expenses: "$36,406", netProfit: "$6,215" },
+      { month: "May 2025", revenue: "$89,727", expenses: "$74,232", netProfit: "$15,495" },
+      { month: "Jun 2025", revenue: "$33,892", expenses: "$30,800", netProfit: "$3,092" },
+      { month: "Jul 2025", revenue: "$85,272", expenses: "$65,305", netProfit: "$19,967" },
+      { month: "Aug 2025", revenue: "$109,186", expenses: "$89,130", netProfit: "$20,056" },
+      { month: "Sep 2025", revenue: "$86,271", expenses: "$77,523", netProfit: "$8,748" },
+      { month: "Oct 2025", revenue: "$57,650", expenses: "$52,892", netProfit: "$4,758" },
+      { month: "Nov 2025", revenue: "$84,271", expenses: "$67,522", netProfit: "$16,749" },
+      { month: "Dec 2025", revenue: "$171,835", expenses: "$151,528", netProfit: "$20,307" },
+      { month: "Jan 2026", revenue: "$142,131", expenses: "$122,152", netProfit: "$19,979" },
+      { month: "Feb 2026", revenue: "$85,502", expenses: "$78,842", netProfit: "$6,660" },
+    ],
+    downloadfile: "/assets/deals/45-PL-Feb-DL.xlsx",
+    heroTitle: "A Lean Profitable Supplements Brand for the Mexican Market",
+    heroSubtitle: "Positioned Where Demand Is Rising and Competition Is Still Inefficient",
+  },
+ {
+    id: "46",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "High-Margin Wellness Brand with Built-In Recurring Revenue",
+    coverImage: "/assets/deals/card46.jpg",
+    description:
+      "Explosive 1+ Year Old Vaginal Health Supplement Brand. Generating Over $400,000 Net Profit And $685k+ Total Revenue. With $10k+ Monthly Subscription",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$322,311", icon: "revenue" },
+      { label: "TTM Profit", value: "$210,338", icon: "profit" },
+      { label: "Monthly Profit", value: "$17,528", icon: "monthly" },
+      { label: "Business Age", value: "1+ Years", icon: "age" },
+      { label: "Asking Price", value: "$65,000", icon: "asking" },
+      { label: "Profit Multiple", value: "0.3x", icon: "multiple" },
+    ],
+    askingPrice:  65000,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/46",
+    businessOverview: {
+      content:
+        "This is a fast-growing direct-to-consumer women’s wellness brand focused on high-demand, repeat-use products within a highly engaged niche. The business has been built around strong product-market fit, combining emotional resonance with performance-driven marketing to consistently convert and retain customers. With over $320K in revenue and $210K+ in profit, the brand operates at an exceptional 65% margin. A growing subscription base and strong reorder behavior create reliable cash flow, while the lean structure keeps operations efficient and highly scalable.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The brand was created to serve a market that is both deeply personal and often underserved—women actively looking for better, more effective wellness solutions. Rather than following existing competitors, the approach was to refine the product and position it in a way that felt more compelling, trustworthy, and results-driven. That shift in angle quickly validated itself through strong early traction. Customers connected with both the product and the messaging, allowing the business to scale while building genuine demand rather than relying purely on short-term trends.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is generated through a mix of direct-response advertising, subscription-based purchases, and multi-channel distribution. Shopify acts as the core funnel, where traffic is converted through optimized creatives and high-performing landing pages. TikTok Shop and Amazon add additional layers of distribution, capturing both impulse-driven and intent-based buyers. The subscription component plays a key role in increasing lifetime value, creating a more predictable and compounding revenue stream over time.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The business is performing strongly, but scaling it to the next level requires focused execution across new channels, product expansion, and infrastructure improvements. Rather than splitting time across multiple opportunities, the decision has been made to transition the business while it’s in a healthy and profitable position. There is clear upside—particularly through TikTok Shop, creator partnerships, and marketplace growth—that has not yet been fully exploited. For a buyer looking to step into a high-margin business with proven demand and multiple growth levers, this represents a strong opportunity.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Creative-Driven Acquisition with Strong Repeat Revenue",
+        intro: "Growth is driven by a consistent flow of high-performing creatives across Meta and TikTok. The focus is on testing new angles, identifying what resonates, and quickly scaling what works. The system is built around:",
+        bullets: [
+          "Ongoing creative testing and iteration",
+          "Leveraging native, UGC-style content",
+          "Scaling proven ads across platforms",
+          "Supporting retention through subscriptions",
+        ],
+        quote:
+          "This approach allows the business to continuously acquire customers while increasing lifetime value through repeat purchases.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Lean Inventory Model with U.S. Fulfilment",
+        intro: "The business operates with inventory sourced from China and shipped to the U.S., where orders are fulfilled directly to customers. This allows for faster delivery while maintaining control over stock levels. Order Process:",
+        bullets: [
+          "Customer places order",
+          "Product is shipped from U.S.-held inventory",
+          "Inventory is restocked based on demand",
+        ],
+        quote:
+          "This structure improves delivery speed, keeps operations simple, and avoids the limitations of traditional dropshipping.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Mar 2025", revenue: "$30,618", expenses: "$13,666", netProfit: "$16,952" },
+      { month: "Apr 2025", revenue: "$32,033", expenses: "$15,364", netProfit: "$16,669" },
+      { month: "May 2025", revenue: "$73,503", expenses: "$18,859", netProfit: "$54,644" },
+      { month: "Jun 2025", revenue: "$54,032", expenses: "$17,441", netProfit: "$36,591" },
+      { month: "Jul 2025", revenue: "$29,733", expenses: "$7,790", netProfit: "$21,943" },
+      { month: "Aug 2025", revenue: "$20,451", expenses: "$9,242", netProfit: "$11,209" },
+      { month: "Sep 2025", revenue: "$20,136", expenses: "$7,476", netProfit: "$12,660" },
+      { month: "Oct 2025", revenue: "$18,399", expenses: "$13,266", netProfit: "$5,133" },
+      { month: "Nov 2025", revenue: "$13,649", expenses: "$3,341", netProfit: "$10,308" },
+      { month: "Dec 2025", revenue: "$11,898", expenses: "$2,388", netProfit: "$9,510" },
+      { month: "Jan 2026", revenue: "$9,526", expenses: "$232", netProfit: "$9,294" },
+      { month: "Feb 2026", revenue: "$8,333", expenses: "$2,908", netProfit: "$5,425" },
+    ],
+    downloadfile: "/assets/deals/46-PL-Feb-PY.xlsx",
+    heroTitle: "High-Margin Wellness Brand with Built-In Recurring Revenue",
+    heroSubtitle: "Modern Women’s Wellness Business with Strong Customer Loyalty",
   },
 ];
