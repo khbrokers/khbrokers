@@ -255,7 +255,7 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
           className="pointer-events-none absolute inset-0 z-[1]"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(245, 238, 253, 0.55) 0%, rgba(245, 238, 253, 0.8) 40%, rgba(245, 238, 253, 0.97) 100%)",
+              "linear-gradient(to bottom, rgba(245, 238, 253, 0.11) 0%, rgba(245, 238, 253, 0.8) 40%, rgba(245, 238, 253, 0.97) 100%)",
           }}
         />
         {/* Bottom fade */}
