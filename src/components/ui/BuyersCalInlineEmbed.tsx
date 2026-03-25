@@ -3,13 +3,12 @@
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect, useRef } from "react";
 
-const BUYERS_CAL_BRAND = "#c8a5f9";
+const BUYERS_CAL_BRAND = "#ebdefc";
 const DEFAULT_HEIGHT = 630;
 
 /**
  * Cal.com inline embed for buyers home page.
- * Uses namespace "intro", calLink "khbrokers/intro" (tracked separately).
- * White + purple theme with cal-brand #c8a5f9.
+ * Uses namespace "brand-reveal", calLink "khbrokers/brand-reveal".
  */
 export function BuyersCalInlineEmbed({ className = "", height = DEFAULT_HEIGHT }: { className?: string; height?: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,7 +18,7 @@ export function BuyersCalInlineEmbed({ className = "", height = DEFAULT_HEIGHT }
     let mounted = true;
 
     (async () => {
-      const Cal = await getCalApi({ namespace: "intro" });
+      const Cal = await getCalApi({ namespace: "brand-reveal" });
       if (!Cal || !container || !mounted) return;
 
       Cal("ui", {
@@ -49,7 +48,7 @@ export function BuyersCalInlineEmbed({ className = "", height = DEFAULT_HEIGHT }
 
       Cal("inline", {
         elementOrSelector: container,
-        calLink: "khbrokers/intro",
+        calLink: "khbrokers/brand-reveal",
         config: {
           layout: "month_view",
           useSlotsViewOnSmallScreen: "true",
@@ -67,7 +66,7 @@ export function BuyersCalInlineEmbed({ className = "", height = DEFAULT_HEIGHT }
   return (
     <div
       ref={containerRef}
-      id="my-cal-inline-intro"
+      id="my-cal-inline-brand-reveal"
       className={`cal-embed overflow-auto rounded-lg ${className}`.trim()}
       style={{
         width: "100%",

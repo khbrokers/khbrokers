@@ -5,8 +5,8 @@ export const dealsBookCallConfig = {
   },
   subheading:
     "The business URL, backend overview, and deeper operational insights are disclosed during a private investor call.",
-  calEmbedSlug: "khbrokers/welcome",
-  calPrimaryColor: "#a36af6",
+  calEmbedSlug: "khbrokers/brand-reveal",
+  calPrimaryColor: "#ebdefc",
 };
 
 export const dealsHeroConfig = {

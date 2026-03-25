@@ -66,7 +66,8 @@ export function DealCard({ deal }: DealCardProps) {
               alt=""
               fill
               className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 176px"
+              quality={85}
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 400px"
             />
           ) : (
             <div aria-hidden />

@@ -11,7 +11,7 @@ interface CalInlineEmbedProps {
   height?: number;
 }
 
-const PRIMARY_PURPLE = "#a36af6";
+const PRIMARY_PURPLE = "#ebdefc";
 const DEFAULT_HEIGHT = 630;
 
 /**
@@ -41,6 +41,7 @@ export function CalInlineEmbed({
 
       cal("ui", {
         theme: "light",
+        hideEventTypeDetails: false,
         styles: {
           branding: {
             brandColor: primaryColor,
@@ -73,6 +74,7 @@ export function CalInlineEmbed({
         config: {
           theme: "light",
           layout: "month_view",
+          useSlotsViewOnSmallScreen: "true",
         },
       });
     })();
