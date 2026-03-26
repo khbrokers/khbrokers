@@ -4,7 +4,7 @@ import { DealsHero } from "@/components/sections/deals/DealsHero";
 import { DealsListing } from "@/components/sections/deals/DealsListing";
 import { PrivateDealAccess } from "@/components/sections/deals/PrivateDealAccess";
 import { DealsFaqSection } from "@/components/sections/deals/DealsFaqSection";
-import { DealSpeakModal } from "@/components/modals/DealSpeakModal";
+import { CalBrandRevealInit } from "@/components/ui/CalBrandRevealInit";
 
 export function DealsPageClient() {
   return (
@@ -29,7 +29,7 @@ export function DealsPageClient() {
         <PrivateDealAccess />
         <DealsFaqSection />
       </main>
-      <DealSpeakModal />
+      <CalBrandRevealInit />
     </>
   );
 }

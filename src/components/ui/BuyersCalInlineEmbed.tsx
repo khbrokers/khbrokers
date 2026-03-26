@@ -3,7 +3,7 @@
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect, useRef } from "react";
 
-const BUYERS_CAL_BRAND = "#c8a5f9";
+const BUYERS_CAL_BRAND = "#ebdefc";
 const DEFAULT_HEIGHT = 630;
 
 /**

@@ -186,7 +186,9 @@ export function DealCard({ deal }: DealCardProps) {
         <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
         <button
           type="button"
-          onClick={() => window.dispatchEvent(new CustomEvent("open-deal-speak-modal", { detail: { headline: `Speak with us about ${deal.title}` } }))}
+          data-cal-link="khbrokers/brand-reveal"
+          data-cal-namespace="brand-reveal"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
           className="inline-flex cursor-pointer items-center justify-center rounded-full border-2 border-zinc-200 bg-white px-4 py-3 text-[13px] font-medium text-zinc-900 transition-colors hover:border-zinc-300 hover:bg-zinc-50 sm:py-2.5 sm:text-[14px]"
         >
           Speak with us

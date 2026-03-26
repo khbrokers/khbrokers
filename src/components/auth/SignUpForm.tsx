@@ -124,7 +124,7 @@ export function SignUpForm() {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect") || "/";
+  const redirectTo = searchParams.get("redirect") || "/invest-success";
 
   // Detect referrer info for UTM defaults and page location
   const getReferrerInfo = () => {

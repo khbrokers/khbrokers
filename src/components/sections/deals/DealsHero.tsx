@@ -78,7 +78,9 @@ export function DealsHero() {
           <div className="stagger-child mt-8 flex justify-center">
             <button
               type="button"
-              onClick={() => window.dispatchEvent(new CustomEvent("open-deal-speak-modal", { detail: { headline: ctaLabel } }))}
+              data-cal-link="khbrokers/brand-reveal"
+              data-cal-namespace="brand-reveal"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
               className="inline-flex cursor-pointer items-center justify-center rounded-full bg-white px-6 py-3 text-[15px] font-medium text-zinc-900 transition-colors hover:bg-zinc-50 sm:px-8 sm:py-4 sm:text-[16px]"
               style={{
                 border: "2px solid transparent",
