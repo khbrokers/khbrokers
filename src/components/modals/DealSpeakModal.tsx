@@ -64,9 +64,9 @@ export function DealSpeakModal() {
         </div>
         <div className="min-h-0 flex-1 overflow-auto p-6">
           <CalInlineEmbed
-            calLink="khbrokers/brand-reveal"
-            namespace="brand-reveal"
-            primaryColor="#ebdefc"
+            calLink="khbrokers/intro"
+            namespace="intro"
+            primaryColor="#a36af6"
             height={580}
             className="rounded-xl"
           />

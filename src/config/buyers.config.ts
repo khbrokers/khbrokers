@@ -305,8 +305,8 @@ export const buyersBookCallConfig = {
     ],
   },
   callTitle: "Introductory call",
-  calLink: "https://cal.com/khbrokers/brand-reveal",
-  calEmbedSlug: "khbrokers/brand-reveal",
+  calLink: "https://cal.com/khbrokers/welcome",
+  calEmbedSlug: "khbrokers/welcome",
   calPrimaryColor: "#a36af6", // Project primary purple - also set in Cal.com Settings > Appearance > Custom Brand Colors
 };
 

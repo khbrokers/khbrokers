@@ -333,9 +333,9 @@ export const sellersBookCallConfig = {
     ],
   },
   callTitle: "Seller introductory call",
-  calLink: "https://cal.com/khbrokers/brand-reveal",
-  calEmbedSlug: "khbrokers/brand-reveal",
-  calPrimaryColor: "#ebdefc",
+  calLink: "https://cal.com/khbrokers/welcome",
+  calEmbedSlug: "khbrokers/sellers",
+  calPrimaryColor: "#16a34a",
 };
 
 export const sellersFaqConfig = {

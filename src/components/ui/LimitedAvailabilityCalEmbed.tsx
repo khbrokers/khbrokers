@@ -3,12 +3,12 @@
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect, useRef } from "react";
 
-const BRAND_REVEAL_CAL_BRAND = "#ebdefc";
+const LIMITED_AVAILABILITY_CAL_BRAND = "#dac0fc";
 const DEFAULT_HEIGHT = 630;
 
 /**
- * Cal.com inline embed for brand-reveal booking.
- * calLink: khbrokers/brand-reveal
+ * Cal.com inline embed for limited-availability booking.
+ * calLink: khbrokers/limited-availability
  */
 export function LimitedAvailabilityCalEmbed({
   className = "",
@@ -24,7 +24,7 @@ export function LimitedAvailabilityCalEmbed({
     let mounted = true;
 
     (async () => {
-      const Cal = await getCalApi({ namespace: "brand-reveal" });
+      const Cal = await getCalApi({ namespace: "limited-availability" });
       if (!Cal || !container || !mounted) return;
 
       Cal("ui", {
@@ -33,17 +33,17 @@ export function LimitedAvailabilityCalEmbed({
         layout: "month_view",
         cssVarsPerTheme: {
           light: {
-            "cal-brand": BRAND_REVEAL_CAL_BRAND,
+            "cal-brand": LIMITED_AVAILABILITY_CAL_BRAND,
           },
           dark: {
-            "cal-brand": BRAND_REVEAL_CAL_BRAND,
+            "cal-brand": LIMITED_AVAILABILITY_CAL_BRAND,
           },
         },
       });
 
       Cal("inline", {
         elementOrSelector: container,
-        calLink: "khbrokers/brand-reveal",
+        calLink: "khbrokers/limited-availability",
         config: {
           layout: "month_view",
           useSlotsViewOnSmallScreen: "true",
@@ -60,7 +60,7 @@ export function LimitedAvailabilityCalEmbed({
   return (
     <div
       ref={containerRef}
-      id="my-cal-inline-brand-reveal"
+      id="my-cal-inline-limited-availability"
       className={`cal-embed overflow-auto rounded-lg ${className}`.trim()}
       style={{
         width: "100%",
