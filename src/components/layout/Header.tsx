@@ -144,7 +144,7 @@ export function Header() {
 
 function DefaultHeaderContent() {
   return (
-    <header className="relative fixed top-0 left-0 right-0 z-50 animate-slide-in-from-top bg-white/80 backdrop-blur-[6px] before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:bg-gradient-to-b before:from-white before:to-white/0 before:content-['']">
+    <header className="relative fixed top-0 left-0 right-0 z-50 animate-slide-in-from-top bg-white/80 backdrop-blur-[6px]">
       <Container>
         <nav className="flex h-12 items-center justify-between md:h-16">
           <Link href="/" className="flex items-center shrink-0">
@@ -270,9 +270,14 @@ function MarketplaceHeaderContent({
   activePath: "/buyers" | "/sellers" | "/value-my-store" | "/deals" | "/invest" | "/terms" | "/privacy";
   legalTheme?: "buyers" | "sellers" | null;
 }) {
+  const pathname = usePathname();
   const { user, loading } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+
+  const redirectAfterAuth = pathname;
+  const signInHref = `${marketplaceCtaConfig.signInHref}?redirect=${encodeURIComponent(redirectAfterAuth)}`;
+  const applyHref = `${marketplaceCtaConfig.applyHref}?redirect=${encodeURIComponent(redirectAfterAuth)}`;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const themeKey =
     legalTheme === "sellers"
@@ -314,7 +319,7 @@ function MarketplaceHeaderContent({
     >
       <div
         className={cn(
-          "relative mx-auto flex h-12 rounded-full items-center justify-between px-2 sm:px-3 md:h-16 md:px-4 lg:px-4 bg-white/70 backdrop-blur-[6px] before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:rounded-t-full before:bg-gradient-to-b before:from-white before:to-white/0 before:content-['']",
+          "relative mx-auto flex h-12 rounded-full items-center justify-between px-2 sm:px-3 md:h-16 md:px-4 lg:px-4 bg-white/70 backdrop-blur-[6px]",
           "transition-[width] duration-300 ease-out"
         )}
         style={{ width: isDesktop && isScrolled ? "65%" : "80%" }}
@@ -365,13 +370,13 @@ function MarketplaceHeaderContent({
           ) : (
             <>
               <Link
-                href={marketplaceCtaConfig.signInHref}
+                href={signInHref}
                 className="hidden text-xs font-medium text-zinc-900 transition-colors hover:text-zinc-900/50 md:block md:text-sm"
               >
                 {marketplaceCtaConfig.signInLabel}
               </Link>
               <Link
-                href={marketplaceCtaConfig.applyHref}
+                href={applyHref}
                 className={theme.applyButton.desktopClassName}
                 style={theme.applyButton.style}
               >
@@ -415,7 +420,7 @@ function MarketplaceHeaderContent({
           ) : (
             <>
               <Link
-                href={marketplaceCtaConfig.signInHref}
+                href={signInHref}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex-1 min-w-0 rounded-xl px-4 py-3 text-center text-[14px] font-medium text-zinc-900 transition-colors hover:bg-zinc-200/60"
               >
@@ -423,7 +428,7 @@ function MarketplaceHeaderContent({
               </Link>
 
               <Link
-                href={marketplaceCtaConfig.applyHref}
+                href={applyHref}
                 onClick={() => setMobileMenuOpen(false)}
                 className={theme.applyButton.mobileClassName}
                 style={theme.applyButton.style}

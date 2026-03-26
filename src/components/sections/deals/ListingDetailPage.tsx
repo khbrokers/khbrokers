@@ -250,12 +250,12 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
             }}
           />
         )}
-        {/* Overlay gradient for readability */}
+        {/* Dark overlay for contrast */}
         <div
           className="pointer-events-none absolute inset-0 z-[1]"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(245, 238, 253, 0) 0%, rgba(245, 238, 253, 0.2) 30%, rgba(245, 238, 253, 0.7) 100%)",
+              "linear-gradient(to bottom, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.58) 50%, rgba(245, 238, 253, 0.85) 100%)",
           }}
         />
         {/* Bottom fade */}
@@ -276,13 +276,13 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
                 background: `linear-gradient(to bottom, ${PRIMARY}30 10%, transparent 100%)`,
               }}
             >
-              <FaList className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" style={{ color: PRIMARY }} />
-              <span className="text-xs font-medium text-zinc-700 sm:text-sm">Listings</span>
+              <FaList className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4 text-white" />
+              <span className="text-xs font-medium text-white sm:text-sm">Listings</span>
             </div>
           </div>
 
           {/* Title - custom hero or niche/platform */}
-          <h1 className="text-center text-[24px] font-bold leading-[1.15] tracking-[-2px] text-zinc-900 sm:text-[28px] md:text-[36px] lg:text-[52px]">
+          <h1 className="text-center text-[24px] font-bold leading-[1.15] tracking-[-2px] text-white sm:text-[28px] md:text-[36px] lg:text-[52px]">
             {deal.heroTitle ?? deal.niche}
           </h1>
           <p
@@ -293,7 +293,7 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
           </p>
 
           {/* Subtitle / description */}
-          <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-zinc-900/60 sm:text-[16px] md:text-[18px]">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-[16px] leading-relaxed text-white/80 sm:text-[16px] md:text-[18px]">
             {deal.description}
           </p>
 
@@ -312,7 +312,7 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
               </span>
             </div>
             <div
-              className="grid w-full max-w-full grid-cols-2 gap-2 rounded-2xl border-2 border-[#a36af6]/20 bg-white/20 backdrop-blur-[6px] sm:grid-cols-3 sm:gap-3 sm:rounded-3xl md:grid-cols-6 md:gap-2 md:rounded-full lg:gap-3"
+              className="grid w-full max-w-full grid-cols-2 gap-2 rounded-2xl border-2 border-white/30 bg-white/80 backdrop-blur-[6px] sm:grid-cols-3 sm:gap-3 sm:rounded-3xl md:grid-cols-6 md:gap-2 md:rounded-full lg:gap-3"
               style={{ borderBottom: "3px solid white" }}
             >
               {INVESTMENT_SNAPSHOT_ORDER.map((iconKey, idx) => {

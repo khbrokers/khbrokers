@@ -14,7 +14,7 @@ export function SignInForm() {
   const [error, setError] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect") || "/invest-success";
+  const redirectTo = searchParams.get("redirect") || "/";
   const urlError = searchParams.get("error");
 
   const confirmationMessage =
@@ -122,7 +122,7 @@ export function SignInForm() {
         <p className="mt-5 text-center text-[13px] sm:mt-6 sm:text-[14px] text-zinc-500">
           Don&apos;t have an account{" "}
           <Link
-            href={redirectTo !== "/invest-success" ? `/signup?redirect=${encodeURIComponent(redirectTo)}` : "/signup"}
+            href={redirectTo !== "/" ? `/signup?redirect=${encodeURIComponent(redirectTo)}` : "/signup"}
             className="cursor-pointer font-medium underline"
             style={{ color: PURPLE }}
           >

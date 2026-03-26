@@ -10,14 +10,16 @@ interface ListingPageClientProps {
 }
 
 export function ListingPageClient({ deal }: ListingPageClientProps) {
-  const [authed, setAuthed] = useState<boolean | null>(null);
+  const isDev = process.env.NODE_ENV === "development";
+  const [authed, setAuthed] = useState<boolean | null>(isDev ? true : null);
 
   useEffect(() => {
+    if (isDev) return;
     fetch("/api/auth/me")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => setAuthed(!!data?.user))
       .catch(() => setAuthed(false));
-  }, []);
+  }, [isDev]);
 
   if (authed === null) {
     return (

@@ -15,7 +15,7 @@ export default async function ConfirmEmailPage({
   return (
     <main className="flex min-h-screen w-full overflow-x-hidden">
       <SignInLeftPanel />
-      <OtpVerifyForm email={email || ""} redirectTo={redirect || "/invest-success"} />
+      <OtpVerifyForm email={email || ""} redirectTo={redirect || "/"} />
     </main>
   );
 }
