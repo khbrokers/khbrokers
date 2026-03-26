@@ -275,9 +275,28 @@ function MarketplaceHeaderContent({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // Detect if running on a subdomain (e.g. invest.khbrokers.com)
+  const [isSubdomain, setIsSubdomain] = useState(false);
+  const [mainDomain, setMainDomain] = useState("");
+  useEffect(() => {
+    const host = window.location.hostname;
+    // Check if on a subdomain like invest.khbrokers.com (not www)
+    const parts = host.split(".");
+    const isSub = parts.length >= 3 && parts[0] !== "www";
+    setIsSubdomain(isSub);
+    if (isSub) {
+      // Build main domain URL: e.g. https://khbrokers.com
+      const domain = parts.slice(1).join(".");
+      setMainDomain(`${window.location.protocol}//${domain}`);
+    }
+  }, []);
+
+  // When on subdomain, prefix links with main domain so they navigate back
+  const resolveHref = (href: string) => isSubdomain ? `${mainDomain}${href}` : href;
+
   const redirectAfterAuth = pathname;
-  const signInHref = `${marketplaceCtaConfig.signInHref}?redirect=${encodeURIComponent(redirectAfterAuth)}`;
-  const applyHref = `${marketplaceCtaConfig.applyHref}?redirect=${encodeURIComponent(redirectAfterAuth)}`;
+  const signInHref = resolveHref(`${marketplaceCtaConfig.signInHref}?redirect=${encodeURIComponent(redirectAfterAuth)}`);
+  const applyHref = resolveHref(`${marketplaceCtaConfig.applyHref}?redirect=${encodeURIComponent(redirectAfterAuth)}`);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const themeKey =
     legalTheme === "sellers"
@@ -324,7 +343,7 @@ function MarketplaceHeaderContent({
         )}
         style={{ width: isDesktop && isScrolled ? "65%" : "80%" }}
       >
-        <Link href="/" className="flex shrink-0 items-center">
+        <a href={resolveHref("/")} className="flex shrink-0 items-center">
           <div className="relative h-7 w-[98px] md:h-10 md:w-[140px]">
             <Image
               src={theme.logo}
@@ -336,12 +355,12 @@ function MarketplaceHeaderContent({
               unoptimized
 />
           </div>
-        </Link>
+        </a>
         <nav className="hidden items-center gap-8 md:flex">
           {marketplaceNavConfig.map((item) => (
-            <Link
+            <a
               key={item.href}
-              href={item.href}
+              href={resolveHref(item.href)}
               className={cn(
                 "text-[14px] md:text-[16px] font-medium transition-colors",
                 item.href === activePath
@@ -350,7 +369,7 @@ function MarketplaceHeaderContent({
               )}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
         <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
@@ -369,19 +388,19 @@ function MarketplaceHeaderContent({
             </div>
           ) : (
             <>
-              <Link
+              <a
                 href={signInHref}
                 className="hidden text-xs font-medium text-zinc-900 transition-colors hover:text-zinc-900/50 md:block md:text-sm"
               >
                 {marketplaceCtaConfig.signInLabel}
-              </Link>
-              <Link
+              </a>
+              <a
                 href={applyHref}
                 className={theme.applyButton.desktopClassName}
                 style={theme.applyButton.style}
               >
                 {marketplaceCtaConfig.applyLabel}
-              </Link>
+              </a>
             </>
           )}
         </div>
@@ -397,9 +416,9 @@ function MarketplaceHeaderContent({
         )}
       >
         {marketplaceNavConfig.map((item) => (
-          <Link
+          <a
             key={item.href}
-            href={item.href}
+            href={resolveHref(item.href)}
             onClick={() => setMobileMenuOpen(false)}
             className={cn(
               "rounded-xl px-4 py-3 text-[14px] font-medium transition-colors",
@@ -412,29 +431,29 @@ function MarketplaceHeaderContent({
             }
           >
             {item.label}
-          </Link>
+          </a>
         ))}
         <div className="mt-2 flex flex-row flex-wrap gap-2 border-t border-zinc-200/60 pt-3">
           {!loading && user ? (
             <UserMenu user={user} themeKey={themeKey as "buyers" | "sellers"} />
           ) : (
             <>
-              <Link
+              <a
                 href={signInHref}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex-1 min-w-0 rounded-xl px-4 py-3 text-center text-[14px] font-medium text-zinc-900 transition-colors hover:bg-zinc-200/60"
               >
                 {marketplaceCtaConfig.signInLabel}
-              </Link>
+              </a>
 
-              <Link
+              <a
                 href={applyHref}
                 onClick={() => setMobileMenuOpen(false)}
                 className={theme.applyButton.mobileClassName}
                 style={theme.applyButton.style}
               >
                 {marketplaceCtaConfig.applyLabel}
-              </Link>
+              </a>
             </>
           )}
         </div>

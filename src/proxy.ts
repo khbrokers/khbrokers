@@ -2,9 +2,24 @@ import { NextRequest, NextResponse } from "next/server";
 
 const PROTECTED_PATHS: string[] = [];
 const AUTH_PATHS = ["/signin", "/signup", "/signup/confirm-email"];
+const INVEST_SUBDOMAIN = "invest";
 
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  const hostname = req.headers.get("host") || "";
+
+  // On main domain, redirect /invest and /invest-2 to invest subdomain
+  const isSubdomain = hostname.startsWith(`${INVEST_SUBDOMAIN}.`);
+  if (!isSubdomain && (pathname === "/invest" || pathname === "/invest-2")) {
+    const parts = hostname.split(":");
+    const domain = parts[0];
+    const port = parts[1] ? `:${parts[1]}` : "";
+    const url = req.nextUrl.clone();
+    url.host = `${INVEST_SUBDOMAIN}.${domain}${port}`;
+    url.pathname = pathname;
+    return NextResponse.redirect(url);
+  }
+
   const accessToken = req.cookies.get("access_token")?.value;
   const refreshToken = req.cookies.get("refresh_token")?.value;
   const isLoggedIn = !!(accessToken || refreshToken);
@@ -36,5 +51,5 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/signin", "/signup"],
+  matcher: ["/signin", "/signup", "/invest", "/invest-2"],
 };
