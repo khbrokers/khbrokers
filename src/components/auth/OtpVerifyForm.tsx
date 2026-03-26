@@ -7,7 +7,7 @@ import { useState, useRef, useEffect, KeyboardEvent, ClipboardEvent } from "reac
 
 const OTP_LENGTH = 8;
 
-export function OtpVerifyForm({ email }: { email: string }) {
+export function OtpVerifyForm({ email, redirectTo = "/" }: { email: string; redirectTo?: string }) {
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
   const [error, setError] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
@@ -96,7 +96,7 @@ export function OtpVerifyForm({ email }: { email: string }) {
         return;
       }
 
-      router.replace("/invest-success");
+      router.replace(redirectTo !== "/" ? redirectTo : "/invest-success");
     } catch {
       setError("Network error. Please try again.");
     } finally {
@@ -242,7 +242,7 @@ export function OtpVerifyForm({ email }: { email: string }) {
 
         <div className="mt-8 text-center">
           <Link
-            href="/signin"
+            href={redirectTo !== "/" ? `/signin?redirect=${encodeURIComponent(redirectTo)}` : "/signin"}
             className="inline-block w-full cursor-pointer rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] sm:px-[20px] sm:py-[10px] sm:text-[16px] md:px-[30px] md:py-5 md:text-[18px]"
           >
             Go to Sign In

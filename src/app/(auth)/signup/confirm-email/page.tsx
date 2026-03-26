@@ -9,13 +9,13 @@ export const metadata = {
 export default async function ConfirmEmailPage({
   searchParams,
 }: {
-  searchParams: Promise<{ email?: string }>;
+  searchParams: Promise<{ email?: string; redirect?: string }>;
 }) {
-  const { email } = await searchParams;
+  const { email, redirect } = await searchParams;
   return (
     <main className="flex min-h-screen w-full overflow-x-hidden">
       <SignInLeftPanel />
-      <OtpVerifyForm email={email || ""} />
+      <OtpVerifyForm email={email || ""} redirectTo={redirect || "/"} />
     </main>
   );
 }

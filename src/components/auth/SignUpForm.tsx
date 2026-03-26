@@ -251,7 +251,8 @@ export function SignUpForm() {
         return;
       }
 
-      router.push(`/signup/confirm-email?email=${encodeURIComponent(email)}`);
+      const confirmUrl = `/signup/confirm-email?email=${encodeURIComponent(email)}${redirectTo !== "/" ? `&redirect=${encodeURIComponent(redirectTo)}` : ""}`;
+      router.push(confirmUrl);
     } catch {
       setError("Network error. Please try again.");
     } finally {
@@ -470,7 +471,7 @@ export function SignUpForm() {
         <p className="mt-5 text-center text-[13px] text-zinc-500 sm:mt-6 sm:text-[14px]">
           Already have an account{" "}
           <Link
-            href="/signin"
+            href={redirectTo !== "/" ? `/signin?redirect=${encodeURIComponent(redirectTo)}` : "/signin"}
             className="cursor-pointer font-medium underline"
             style={{ color: PURPLE }}
           >

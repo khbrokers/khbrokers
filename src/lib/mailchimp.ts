@@ -1,3 +1,5 @@
+import { createHash } from "crypto";
+
 const API_KEY = process.env.MAILCHIMP_API_KEY!;
 const SERVER = process.env.MAILCHIMP_SERVER_PREFIX!;
 const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID!;
@@ -17,6 +19,10 @@ interface MailchimpSubscriber {
   signup_page?: string;
 }
 
+function subscriberHash(email: string) {
+  return createHash("md5").update(email.toLowerCase()).digest("hex");
+}
+
 export async function addToMailchimp(subscriber: MailchimpSubscriber) {
   const [firstName, ...rest] = (subscriber.name || "").split(" ");
   const lastName = rest.join(" ");
@@ -25,6 +31,7 @@ export async function addToMailchimp(subscriber: MailchimpSubscriber) {
   // so tags that don't exist in Mailchimp yet won't break the request
   const merge_fields: Record<string, string> = {};
   merge_fields.FNAME = firstName || "Subscriber";
+  if (lastName) merge_fields.LNAME = lastName;
   if (subscriber.phone) merge_fields.PHONE = subscriber.phone;
   if (subscriber.budget) merge_fields.MMERGE12 = subscriber.budget;
   if (subscriber.utm_source) merge_fields.UTM_SOURCE = subscriber.utm_source;
@@ -36,17 +43,20 @@ export async function addToMailchimp(subscriber: MailchimpSubscriber) {
   if (subscriber.lookingFor) merge_fields.MMERGE13 = subscriber.lookingFor;
   if (subscriber.ownership) merge_fields.MMERGE14 = subscriber.ownership;
 
+  const hash = subscriberHash(subscriber.email);
+
+  // Use PUT (upsert) — creates new subscriber or updates existing one
   const res = await fetch(
-    `https://${SERVER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members`,
+    `https://${SERVER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members/${hash}`,
     {
-      method: "POST",
+      method: "PUT",
       headers: {
         Authorization: `Basic ${btoa(`anystring:${API_KEY}`)}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email_address: subscriber.email,
-        status: "subscribed",
+        status_if_new: "subscribed",
         merge_fields,
       }),
     }
@@ -54,8 +64,6 @@ export async function addToMailchimp(subscriber: MailchimpSubscriber) {
 
   if (!res.ok) {
     const data = await res.json();
-    // Don't fail signup if user is already subscribed
-    if (data.title === "Member Exists") return { success: true, alreadyExists: true };
     console.error("Mailchimp error:", JSON.stringify(data, null, 2));
     return { success: false, error: data.detail || data.title };
   }
