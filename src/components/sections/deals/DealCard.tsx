@@ -43,6 +43,7 @@ interface DealCardProps {
 
 export function DealCard({ deal }: DealCardProps) {
   const hasCover = Boolean(deal.coverImage);
+  const hasMobileImage = Boolean(deal.mobileImage);
 
   return (
     <article
@@ -57,20 +58,30 @@ export function DealCard({ deal }: DealCardProps) {
       <div className="relative w-full shrink-0 p-2 sm:w-[40%] sm:self-stretch sm:p-4 md:p-5">
         <div
           className={`relative flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-xl sm:aspect-auto sm:min-h-[120px] sm:h-full ${
-            hasCover ? "" : "bg-white"
+            hasCover || hasMobileImage ? "" : "bg-white"
           }`}
         >
+          {hasMobileImage && (
+            <Image
+              src={deal.mobileImage!}
+              alt=""
+              fill
+              className="object-cover sm:hidden"
+              quality={100}
+              sizes="100vw"
+            />
+          )}
           {hasCover ? (
             <Image
               src={deal.coverImage!}
               alt=""
               fill
-              className="object-cover"
+              className={`object-cover ${hasMobileImage ? "hidden sm:block" : ""}`}
               quality={100}
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 400px"
             />
           ) : (
-            <div aria-hidden />
+            !hasMobileImage && <div aria-hidden />
           )}
           {deal.recentlySold && (
             <>

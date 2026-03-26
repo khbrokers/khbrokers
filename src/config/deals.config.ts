@@ -129,6 +129,7 @@ export interface Deal {
   title: string;
   description: string;
   coverImage?: string;
+  mobileImage?: string;
   verified: boolean;
   metrics: DealMetric[];
   askingPrice: number;
@@ -610,6 +611,7 @@ export const mockDeals: Deal[] = [
     niche: "Design & Style",
     title: "A Cash-Flowing Digital Product Business with Proven Demand",
     coverImage: "/assets/deals/card30.jpg",
+    mobileImage: "/assets/deals/test.png",
     description:
       "An Approaching 3 Year Old Digital Product Store Selling In the Spiritual Niche. Total Revenue $3.3M | Total Net Profit $790k+ | Over 75k Customers.",
     verified: true,
