@@ -66,7 +66,7 @@ export function DealCard({ deal }: DealCardProps) {
               alt=""
               fill
               className="object-cover"
-              quality={85}
+              quality={100}
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 400px"
             />
           ) : (
