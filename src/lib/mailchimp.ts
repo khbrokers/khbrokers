@@ -65,8 +65,8 @@ export async function addToMailchimp(subscriber: MailchimpSubscriber) {
   if (!res.ok) {
     const data = await res.json();
     console.error("Mailchimp error:", JSON.stringify(data, null, 2));
-    return { success: false, error: data.detail || data.title };
+    return { success: false as const, error: data.detail || data.title };
   }
 
-  return { success: true };
+  return { success: true as const, alreadyExists: false };
 }
