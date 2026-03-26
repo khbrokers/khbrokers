@@ -14,6 +14,7 @@ export function CalBrandRevealInit() {
         layout: "month_view",
         cssVarsPerTheme: {
           light: { "cal-brand": "#ebdefc" },
+          dark: { "cal-brand": "#ebdefc" },
         },
       });
     })();
