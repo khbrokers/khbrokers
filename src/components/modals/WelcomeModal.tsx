@@ -51,6 +51,11 @@ export function WelcomeModal() {
     const choice = localStorage.getItem(WELCOME_CHOICE_KEY);
     if (choice) return;
 
+    // Don't show on invest subdomain or invest pages
+    const host = window.location.hostname;
+    if (host.startsWith("invest.")) return;
+    if (pathname === "/invest" || pathname === "/invest-2") return;
+
     // No choice yet — show on landing pages only
     const showOnPath =
       !pathname ||
