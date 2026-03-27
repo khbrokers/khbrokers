@@ -146,6 +146,10 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
           utm_campaign: params.get("utm_campaign") || "",
           utm_content: params.get("utm_content") || "",
           utm_term: params.get("utm_term") || "",
+          gclid: params.get("gclid") || "",
+          utm_adgroup: params.get("utm_adgroup") || "",
+          utm_device: params.get("utm_device") || "",
+          utm_loc_physical: params.get("utm_loc_physical") || "",
         }),
       });
     } catch (err) {

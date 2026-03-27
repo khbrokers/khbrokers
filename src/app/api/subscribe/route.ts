@@ -6,6 +6,7 @@ export async function POST(req: NextRequest) {
     const {
       email, name, phone, budget, signup_page,
       utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+      gclid, utm_adgroup, utm_device, utm_loc_physical,
     } = await req.json();
 
     if (!email) {
@@ -18,6 +19,7 @@ export async function POST(req: NextRequest) {
     const result = await addToMailchimp({
       email, name, phone, budget, signup_page,
       utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+      gclid, utm_adgroup, utm_device, utm_loc_physical,
     });
 
     if (!result.success) {

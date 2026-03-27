@@ -41,6 +41,10 @@ export function PrivateDealAccess() {
           utm_campaign: params.get("utm_campaign") || "none",
           utm_content: params.get("utm_content") || "none",
           utm_term: params.get("utm_term") || "none",
+          gclid: params.get("gclid") || "",
+          utm_adgroup: params.get("utm_adgroup") || "",
+          utm_device: params.get("utm_device") || "",
+          utm_loc_physical: params.get("utm_loc_physical") || "",
         }),
       });
 

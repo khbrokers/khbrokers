@@ -16,6 +16,10 @@ interface MailchimpSubscriber {
   utm_campaign?: string;
   utm_content?: string;
   utm_term?: string;
+  gclid?: string;
+  utm_adgroup?: string;
+  utm_device?: string;
+  utm_loc_physical?: string;
   signup_page?: string;
 }
 
@@ -39,6 +43,10 @@ export async function addToMailchimp(subscriber: MailchimpSubscriber) {
   if (subscriber.utm_campaign) merge_fields.UTM_CAMP = subscriber.utm_campaign;
   if (subscriber.utm_content) merge_fields.UTM_CONTEN = subscriber.utm_content;
   if (subscriber.utm_term) merge_fields.UTM_TERM = subscriber.utm_term;
+  if (subscriber.gclid) merge_fields.GCLID = subscriber.gclid;
+  if (subscriber.utm_adgroup) merge_fields.UTM_ADGRP = subscriber.utm_adgroup;
+  if (subscriber.utm_device) merge_fields.UTM_DEVICE = subscriber.utm_device;
+  if (subscriber.utm_loc_physical) merge_fields.UTM_LOC_PH = subscriber.utm_loc_physical;
   if (subscriber.signup_page) merge_fields.MMERGE2 = subscriber.signup_page;
   if (subscriber.lookingFor) merge_fields.MMERGE13 = subscriber.lookingFor;
   if (subscriber.ownership) merge_fields.MMERGE14 = subscriber.ownership;
