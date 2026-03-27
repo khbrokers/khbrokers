@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { investFaqConfig } from "@/config/invest.config";
 import { AnimateOnView } from "@/components/ui/AnimateOnView";
 
@@ -42,12 +41,12 @@ export function InvestFaqSection() {
                 threshold={0.05}
                 delayMs={300}
               >
-                <Link
+                <a
                   href={cta.href}
                   className="mt-6 inline-flex items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-6 py-3.5 text-[15px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] sm:px-8 sm:py-4 sm:text-[16px]"
                 >
                   {cta.label}
-                </Link>
+                </a>
               </AnimateOnView>
             )}
           </AnimateOnView>

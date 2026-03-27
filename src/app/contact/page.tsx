@@ -1,8 +1,8 @@
 import { Container } from "@/components/ui/Container";
 
 export const metadata = {
-  title: "Contact",
-  description: "Get in touch with our team.",
+  title: "Contact Us",
+  description: "Get in touch with KH Brokers to discuss buying or selling a Shopify e-commerce business. Reach our M&A advisory team today.",
 };
 
 export default function ContactPage() {

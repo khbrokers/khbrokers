@@ -11,7 +11,7 @@ import { SellersCtaSection } from "@/components/sections/sellers/SellersCtaSecti
 
 export const metadata = {
   title: "For Sellers",
-  description: sellersHeroConfig.subtitle,
+  description: "Sell your Shopify e-commerce business with KH Brokers. Get a fair valuation, qualified buyers, and a smooth exit process.",
 };
 
 export default function SellersPage() {

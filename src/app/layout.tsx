@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Script from "next/script";
 import { defaultMetadata } from "./metadata";
 import { fontVariables } from "@/lib/fonts";
+import { siteConfig } from "@/config/site.config";
 import { ThemeTracker } from "@/components/layout/ThemeTracker";
 import { ConditionalHeader } from "@/components/layout/ConditionalHeader";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
@@ -13,6 +14,56 @@ import "./animations.css";
 
 export const metadata: Metadata = defaultMetadata;
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}/logo.png`,
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      url: siteConfig.url,
+      name: siteConfig.name,
+      description: siteConfig.description,
+      publisher: { "@id": `${siteConfig.url}/#organization` },
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "For Buyers",
+      url: `${siteConfig.url}/buyers`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "Available Deals",
+      url: `${siteConfig.url}/deals`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "For Sellers",
+      url: `${siteConfig.url}/sellers`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "Value My Store",
+      url: `${siteConfig.url}/value-my-store`,
+    },
+    {
+      "@type": "SiteNavigationElement",
+      name: "About KH Brokers",
+      url: `${siteConfig.url}/about`,
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,6 +71,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontVariables}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <Script id="gtm" strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

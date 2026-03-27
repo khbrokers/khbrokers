@@ -46,5 +46,17 @@ export default function sitemap() {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/invest`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/signin`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    },
   ];
 }

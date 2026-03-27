@@ -2,8 +2,8 @@ import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/config/site.config";
 
 export const metadata = {
-  title: "About",
-  description: `Learn more about ${siteConfig.name} and our brokerage solutions.`,
+  title: "About KH Brokers",
+  description: "KH Brokers is a private Shopify M&A advisory helping qualified buyers acquire cash-flowing e-commerce brands and motivated sellers exit with confidence.",
 };
 
 export default function AboutPage() {
