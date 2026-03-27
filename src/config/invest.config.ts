@@ -81,7 +81,7 @@ export const investBenefitsConfig = {
   ],
   cta: {
     label: "Receive List – starting at $25K",
-    href: "#book-a-call",
+    href: "#invest-form",
   },
 };
 
@@ -93,7 +93,7 @@ export const investFaqConfig = {
   subheading: "Direct answers. No ambiguity.",
   cta: {
     label: "Receive List – starting at $25K",
-    href: "#book-a-call",
+    href: "#invest-form",
   },
   items: [
     {

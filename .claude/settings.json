@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls \"e:/work-new/khbrokers/src/app/\\(auth\\)/\")"
+      "Bash(ls \"e:/work-new/khbrokers/src/app/\\(auth\\)/\")",
+      "Bash(ls e:/work-new/khbrokers/public/favicon*)"
     ]
   }
 }

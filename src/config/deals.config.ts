@@ -794,7 +794,7 @@ export const mockDeals: Deal[] = [
       { label: "Asking Price", value: "$124,999", icon: "asking" },
       { label: "Profit Multiple", value: "0.69x", icon: "multiple" },
     ],
-    askingPrice: 124999,
+    askingPrice: 99999,
     speakHref: "#book-a-call",
     viewHref: "/deals/32",
     businessOverview: {
