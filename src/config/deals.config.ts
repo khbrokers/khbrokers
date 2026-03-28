@@ -1624,10 +1624,10 @@ export const mockDeals: Deal[] = [
       { label: "TTM Profit", value: "$139,140", icon: "profit" },
       { label: "Monthly Profit", value: "$11,595", icon: "monthly" },
       { label: "Business Age", value: "1+ Years", icon: "age" },
-      { label: "Asking Price", value: "$105,000", icon: "asking" },
+      { label: "Asking Price", value: "$129,999", icon: "asking" },
       { label: "Profit Multiple", value: "0.9x", icon: "multiple" },
     ],
-    askingPrice:  105000,
+    askingPrice:  129999,
     speakHref: "#book-a-call",
     viewHref: "/deals/42",
     businessOverview: {

@@ -88,49 +88,16 @@ const STATS_BLOCK = (
 );
 
 export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolean }) {
-  const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
   const { profitBadge, headline, benefits, socialProof, trustBadgeAvatars } =
     investHeroConfig;
   const { headline: downloadHeadline, downloadButton, form } = investDownloadConfig;
+  const router = useRouter();
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", budget: "" });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formError, setFormError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [budgetOpen, setBudgetOpen] = useState(false);
   const budgetTriggerRef = useRef<HTMLDivElement>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
-
-  const handleFormSubmit = async () => {
-    if (!formData.email || !formData.name) {
-      setFormError("Please fill in your name and email.");
-      return;
-    }
-    setFormError("");
-    setIsSubmitting(true);
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          name: formData.name,
-          phone: formData.phone,
-          budget: formData.budget,
-          signup_page: window.location.pathname === "/invest-2" ? "Invest 2 - Khbrokers" : "Invest - Khbrokers",
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setFormError(data.error || "Something went wrong.");
-        return;
-      }
-      router.push("/invest-success");
-    } catch {
-      setFormError("Network error. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   useEffect(() => {
     if (!budgetOpen || !budgetTriggerRef.current) return;
@@ -155,6 +122,40 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
 
   const handleFormChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = async () => {
+    if (!formData.email.trim()) return;
+    setSubmitting(true);
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const referrer = document.referrer || "";
+      const isGoogleOrganic = /google\./i.test(referrer) && !params.get("gclid");
+
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name,
+          phone: formData.phone,
+          budget: formData.budget,
+          signup_page: window.location.pathname === "/invest-2" ? "Invest 2 - Khbrokers" : "Invest - Khbrokers",
+          utm_source: params.get("utm_source") || (isGoogleOrganic ? "google" : "direct"),
+          utm_medium: params.get("utm_medium") || (isGoogleOrganic ? "organic" : "none"),
+          utm_campaign: params.get("utm_campaign") || "",
+          utm_content: params.get("utm_content") || "",
+          utm_term: params.get("utm_term") || "",
+          gclid: params.get("gclid") || "",
+          utm_adgroup: params.get("utm_adgroup") || "",
+          utm_device: params.get("utm_device") || "",
+          utm_loc_physical: params.get("utm_loc_physical") || "",
+        }),
+      });
+    } catch (err) {
+      console.error("Mailchimp subscribe failed:", err);
+    }
+    router.push(downloadButton.href);
   };
 
   useEffect(() => {
@@ -257,7 +258,6 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
 
         {/* Download section - inside hero */}
         <div
-          id="invest-form"
           className="stagger-child mt-6 overflow-hidden rounded-xl sm:mt-10 sm:rounded-2xl md:mt-12 md:rounded-3xl mx-auto max-w-5xl"
           style={{
             border: "2px solid transparent",
@@ -278,16 +278,17 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
                 </span>
                 {downloadHeadline.after}
               </h2>
-              <a
-                href="#invest-form"
-                className="mt-6 hidden w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] sm:mt-8 sm:px-[20px] sm:py-[10px] sm:text-[16px] md:inline-flex md:px-[30px] md:py-[20px] md:text-[18px]"
+              <button
+                type="button"
+                onClick={handleFormSubmit}
+                disabled={submitting}
+                className="mt-6 hidden w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:opacity-70 sm:mt-8 sm:px-[20px] sm:py-[10px] sm:text-[16px] md:inline-flex md:px-[30px] md:py-[20px] md:text-[18px]"
               >
-                {downloadButton.label}
-              </a>
+                {submitting ? "Submitting..." : downloadButton.label}
+              </button>
             </div>
             <div className="relative flex flex-col items-center w-full md:flex-[0_0_60%] md:min-w-0">
               <div
-                id="invest-form-fields"
                 className="rounded-xl bg-white/90 p-4 shadow-sm backdrop-blur-sm sm:rounded-2xl sm:p-6 md:p-6 lg:p-8 w-full max-w-[420px] md:max-w-none"
                 style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.04)" }}
               >
@@ -377,19 +378,16 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
                       </div>
                     </div>
                   ))}
-                  {formError && (
-                    <p className="mt-1 text-center text-[13px] text-red-500">{formError}</p>
-                  )}
-                  <button
-                    type="button"
-                    onClick={handleFormSubmit}
-                    disabled={isSubmitting}
-                    className="mt-2 w-full cursor-pointer rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-3 text-[14px] font-semibold text-white shadow-[inset_0_4px_14px_white] transition-all hover:bg-[#6d28d9] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70 sm:py-3.5 sm:text-[16px]"
-                  >
-                    {isSubmitting ? "Submitting..." : downloadButton.label}
-                  </button>
                 </div>
               </div>
+              <button
+                type="button"
+                onClick={handleFormSubmit}
+                disabled={submitting}
+                className="mt-4 flex w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:opacity-70 sm:mt-6 sm:px-5 sm:py-2.5 sm:text-[16px] md:hidden"
+              >
+                {submitting ? "Submitting..." : downloadButton.label}
+              </button>
             </div>
           </div>
         </div>

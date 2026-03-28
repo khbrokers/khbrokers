@@ -196,6 +196,8 @@ export function DealCard({ deal }: DealCardProps) {
         {!deal.recentlySold && (
         <Link
           href={deal.viewHref}
+          scroll={true}
+          onClick={() => window.scrollTo(0, 0)}
           className="inline-flex items-center justify-center rounded-full border-2 font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:!bg-[#6d28d9] px-4 py-3 text-[13px] sm:py-2.5 sm:text-[14px]"
           style={{
             borderColor: "rgba(247, 239, 255, 0.5)",
