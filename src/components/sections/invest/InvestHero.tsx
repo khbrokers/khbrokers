@@ -95,6 +95,7 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
   const router = useRouter();
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", budget: "" });
   const [submitting, setSubmitting] = useState(false);
+  const isFormValid = formData.name.trim() !== "" && formData.phone.trim() !== "" && formData.email.trim() !== "" && formData.budget !== "";
   const [budgetOpen, setBudgetOpen] = useState(false);
   const budgetTriggerRef = useRef<HTMLDivElement>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
@@ -125,7 +126,7 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
   };
 
   const handleFormSubmit = async () => {
-    if (!formData.email.trim()) return;
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.email.trim() || !formData.budget) return;
     setSubmitting(true);
     try {
       const params = new URLSearchParams(window.location.search);
@@ -281,8 +282,8 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
               <button
                 type="button"
                 onClick={handleFormSubmit}
-                disabled={submitting}
-                className="mt-6 hidden w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:opacity-70 sm:mt-8 sm:px-[20px] sm:py-[10px] sm:text-[16px] md:inline-flex md:px-[30px] md:py-[20px] md:text-[18px]"
+                disabled={!isFormValid || submitting}
+                className="mt-6 hidden w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:cursor-not-allowed disabled:opacity-50 sm:mt-8 sm:px-[20px] sm:py-[10px] sm:text-[16px] md:inline-flex md:px-[30px] md:py-[20px] md:text-[18px]"
               >
                 {submitting ? "Submitting..." : downloadButton.label}
               </button>
@@ -383,8 +384,8 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
               <button
                 type="button"
                 onClick={handleFormSubmit}
-                disabled={submitting}
-                className="mt-4 flex w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:opacity-70 sm:mt-6 sm:px-5 sm:py-2.5 sm:text-[16px] md:hidden"
+                disabled={!isFormValid || submitting}
+                className="mt-4 flex w-fit items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:cursor-not-allowed disabled:opacity-50 sm:mt-6 sm:px-5 sm:py-2.5 sm:text-[16px] md:hidden"
               >
                 {submitting ? "Submitting..." : downloadButton.label}
               </button>
