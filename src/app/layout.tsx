@@ -84,6 +84,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MTMXH7KR');`,
           }}
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNLRBTQQ64" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XNLRBTQQ64');`,
+          }}
+        />
       </head>
       <body className="font-sans antialiased"
         style={{
