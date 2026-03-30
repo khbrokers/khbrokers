@@ -163,7 +163,163 @@ export interface Deal {
 }
 
 export const mockDeals: Deal[] = [
- 
+ {
+    id: "47",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "An 8 Month Old Health & Wellness Brand To Boost Immunity",
+    coverImage: "/assets/deals/nutrively.jpg",
+    description:
+      "An 8 Month Old Health & Wellness Brand To Boost Immunity | Total Net Profit Exceeds $390k | With Over $150k Revenue P/M From Monthly Subscribers Alone",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$1,564,873", icon: "revenue" },
+      { label: "TTM Profit", value: "$390,984", icon: "profit" },
+      { label: "Monthly Profit", value: "$55,854", icon: "monthly" },
+      { label: "Business Age", value: "7 Months", icon: "age" },
+      { label: "Asking Price", value: "$285,000", icon: "asking" },
+      { label: "Profit Multiple", value: "0.73x", icon: "multiple" },
+    ],
+    askingPrice: 285000,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/47",
+    businessOverview: {
+      content:
+        "A rapidly scaling direct-to-consumer supplement brand built around a subscription-first model. The business focuses on liquid-format products designed for ease of use, daily consumption, and strong repeat purchase behavior. In just 7 months, it has generated over $1.5M in revenue and nearly $400K in profit, demonstrating clear product-market fit and efficient customer acquisition. The operation is lean, with no inventory held and fulfillment handled entirely by a private supplier, allowing for high margins and scalable growth without operational complexity.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The brand was built to simplify how people approach daily health supplementation. Instead of complicated routines or hard-to-follow regimens, the focus was on creating products that are easy to use and easy to stick with. Liquid supplements were chosen intentionally for their convenience and higher adherence compared to traditional formats. From the beginning, the goal was to build a business around retention — not just acquiring customers, but keeping them through a product that naturally fits into their daily habits.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is driven primarily through a subscription-based structure, where customers are billed on a recurring basis. Paid advertising, particularly through Facebook, is used to acquire customers at scale, with funnels optimized to convert first-time buyers into long-term subscribers. This creates consistent monthly revenue and strong visibility on cash flow. Because customers continue purchasing over time, the model allows for efficient scaling by reinvesting into acquisition while increasing overall lifetime value.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell is based on shifting priorities rather than business performance. The brand is profitable, stable, and growing, but the owner is moving focus toward other ventures that require full attention. Rather than dividing time across multiple projects, the business is being transitioned to a new owner who can fully capitalize on its current momentum. With systems already in place and a strong subscription base, the business is well positioned for continued growth under dedicated ownership.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Subscription-Focused Acquisition & Retention System",
+        intro: "The marketing system is built around:",
+        bullets: [
+          "High-volume creative testing on Facebook",
+          "Subscription-first funnels designed for retention",
+          "Scaling campaigns based on CAC vs LTV performance",
+          "Fast iteration on offers, hooks, and creatives",
+        ],
+        quote:
+          "The focus is not just on acquiring customers, but on acquiring the right customers — those likely to stay subscribed and generate long-term value. This creates a compounding revenue model driven by retention, rather than relying purely on one-time purchases.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Automated, Branded Direct Fulfilment",
+        intro: "The business operates through a private supplier based in China. Order process:",
+        bullets: [
+          "Customer places an order",
+          "Order syncs automatically to the supplier",
+          "Supplier handles production, packaging, and shipping",
+        ],
+        quote:
+          "All products are fully branded, ensuring a consistent customer experience without requiring in-house logistics. This structure removes operational overhead, keeps the business capital-light, and allows a new owner to scale without managing inventory or fulfillment complexity.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Aug 2025", revenue: "$9,935", expenses: "$9,281", netProfit: "$654" },
+      { month: "Sep 2025", revenue: "$178,216", expenses: "$160,916", netProfit: "$17,300" },
+      { month: "Oct 2025", revenue: "$364,288", expenses: "$322,807", netProfit: "$41,481" },
+      { month: "Nov 2025", revenue: "$288,526", expenses: "$175,937", netProfit: "$112,589" },
+      { month: "Dec 2025", revenue: "$286,339", expenses: "$210,440", netProfit: "$75,899" },
+      { month: "Jan 2026", revenue: "$226,897", expenses: "$144,762", netProfit: "$82,135" },
+      { month: "Feb 2026", revenue: "$210,672", expenses: "$149,746", netProfit: "$60,926" },
+    ],
+    downloadfile: "/assets/deals/PL-Feb-Nutrively.xlsx",
+    heroTitle: "A Recurring Revenue Brand in the Growing Wellness Market",
+    heroSubtitle: "Subscription-based engine driven by liquid-format products and strong customer retention",
+  },
+ {
+    id: "48",
+    platform: "Shopify",
+    niche: "Design & Style",
+    title: "A 5+ Month Old Automated Fashion Dropshipping Store",
+    coverImage: "/assets/deals/luremon.jpg",
+    description:
+      "A 5+ Month Old Automated Fashion Dropshipping Store Running In USA. Total Revenue $71,950 | Total Net Profit $14k+ | Ready To Scale For Spring",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$47,450", icon: "revenue" },
+      { label: "TTM Profit", value: "$11,042", icon: "profit" },
+      { label: "Monthly Profit", value: "$2,760", icon: "monthly" },
+      { label: "Business Age", value: "4 Months", icon: "age" },
+      { label: "Asking Price", value: "$14,999", icon: "asking" },
+      { label: "Profit Multiple", value: "1.35x", icon: "multiple" },
+    ],
+    askingPrice: 14999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/48",
+    businessOverview: {
+      content:
+        "This is an early-stage fashion store built around the \"old money\" / minimalist luxury aesthetic — a style that continues to perform strongly across social platforms. Instead of chasing short-lived trends, the focus is on clean, timeless pieces that consistently appeal to a broad audience. The business has been kept intentionally simple: strong product selection, clear positioning, and offers that convert without relying on heavy branding. Despite being only a few months old, it has already generated steady revenue and profit, showing clear signs of a repeatable model.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The store was created after seeing how consistently this aesthetic was gaining traction online. It's a niche where the appeal is immediate — customers understand the look, the lifestyle, and the value without needing much explanation. Rather than overcomplicating the brand, the goal was to build something that could move quickly — products that feel premium, are easy to market visually, and can plug directly into existing demand across platforms like Instagram and TikTok.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is driven primarily through paid social, with Meta used for both testing and scaling. The approach is straightforward — launch multiple creatives, identify what resonates, and increase spend on the campaigns that perform. Email marketing supports this by capturing additional value from existing customers and improving overall margins. The focus has been on consistency rather than one-off wins, building a system that can be repeated and scaled.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell comes down to focus. With multiple projects running at once, it's difficult to allocate the time needed to fully scale each one. The business is already profitable and operating smoothly, but still early in its lifecycle. It would benefit from an owner who can give it full attention and push it further, rather than keeping it as one of several competing priorities.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Creative-Led Testing & Scaling System",
+        intro: "The marketing approach is built around:",
+        bullets: [
+          "Continuous product and creative testing",
+          "Multiple angles per product (lifestyle, aspirational, minimal)",
+          "Scaling only proven winners with clear data",
+          "Cutting spend quickly on anything that underperforms",
+        ],
+        quote:
+          "The focus is less on chasing trends and more on finding visuals that consistently resonate with the \"old money\" aesthetic — clean, premium, and instantly recognizable. This creates a steady, repeatable growth cycle instead of relying on short-lived viral products.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Lean, Flexible Supplier Model",
+        intro: "The business operates through established suppliers based in China. Order process:",
+        bullets: [
+          "Customer places an order",
+          "Order is automatically routed to the supplier",
+          "Supplier handles fulfillment and delivery",
+        ],
+        quote:
+          "For stronger-performing products, suppliers can support faster processing or reserved stock if needed, without forcing large upfront commitments. This structure keeps operations lightweight, reduces risk, and makes it easy for a new owner to scale without operational friction.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Nov 2025", revenue: "$3,500", expenses: "$2,891", netProfit: "$609" },
+      { month: "Dec 2025", revenue: "$10,400", expenses: "$7,161", netProfit: "$3,239" },
+      { month: "Jan 2026", revenue: "$12,150", expenses: "$9,566", netProfit: "$2,584" },
+      { month: "Feb 2026", revenue: "$21,400", expenses: "$16,790", netProfit: "$4,610" },
+    ],
+    downloadfile: "/assets/deals/PL-Feb-Luremon.xlsx",
+    heroTitle: "A Fast-Validating Fashion Brand Built on Timeless Demand",
+    heroSubtitle: "Built on Proven Creative Performance and Scalable Unit Economics",
+  },
  
   {
     id: "7",
@@ -2032,162 +2188,5 @@ export const mockDeals: Deal[] = [
     downloadfile: "/assets/deals/46-PL-Feb-PY.xlsx",
     heroTitle: "High-Margin Wellness Brand with Built-In Recurring Revenue",
     heroSubtitle: "Modern Women’s Wellness Business with Strong Customer Loyalty",
-  },
- {
-    id: "47",
-    platform: "Shopify",
-    niche: "Health & Beauty",
-    title: "An 8 Month Old Health & Wellness Brand To Boost Immunity",
-    coverImage: "/assets/deals/nutrively.jpg",
-    description:
-      "An 8 Month Old Health & Wellness Brand To Boost Immunity | Total Net Profit Exceeds $390k | With Over $150k Revenue P/M From Monthly Subscribers Alone",
-    verified: true,
-    metrics: [
-      { label: "TTM Revenue", value: "$1,564,873", icon: "revenue" },
-      { label: "TTM Profit", value: "$390,984", icon: "profit" },
-      { label: "Monthly Profit", value: "$55,854", icon: "monthly" },
-      { label: "Business Age", value: "7 Months", icon: "age" },
-      { label: "Asking Price", value: "$285,000", icon: "asking" },
-      { label: "Profit Multiple", value: "0.73x", icon: "multiple" },
-    ],
-    askingPrice: 285000,
-    speakHref: "#book-a-call",
-    viewHref: "/deals/47",
-    businessOverview: {
-      content:
-        "A rapidly scaling direct-to-consumer supplement brand built around a subscription-first model. The business focuses on liquid-format products designed for ease of use, daily consumption, and strong repeat purchase behavior. In just 7 months, it has generated over $1.5M in revenue and nearly $400K in profit, demonstrating clear product-market fit and efficient customer acquisition. The operation is lean, with no inventory held and fulfillment handled entirely by a private supplier, allowing for high margins and scalable growth without operational complexity.",
-      hasMore: true,
-    },
-    whyBuilt: {
-      content:
-        "The brand was built to simplify how people approach daily health supplementation. Instead of complicated routines or hard-to-follow regimens, the focus was on creating products that are easy to use and easy to stick with. Liquid supplements were chosen intentionally for their convenience and higher adherence compared to traditional formats. From the beginning, the goal was to build a business around retention — not just acquiring customers, but keeping them through a product that naturally fits into their daily habits.",
-      hasMore: false,
-    },
-    revenueModel: {
-      content:
-        "Revenue is driven primarily through a subscription-based structure, where customers are billed on a recurring basis. Paid advertising, particularly through Facebook, is used to acquire customers at scale, with funnels optimized to convert first-time buyers into long-term subscribers. This creates consistent monthly revenue and strong visibility on cash flow. Because customers continue purchasing over time, the model allows for efficient scaling by reinvesting into acquisition while increasing overall lifetime value.",
-      hasMore: true,
-    },
-    whySelling: {
-      content:
-        "The decision to sell is based on shifting priorities rather than business performance. The brand is profitable, stable, and growing, but the owner is moving focus toward other ventures that require full attention. Rather than dividing time across multiple projects, the business is being transitioned to a new owner who can fully capitalize on its current momentum. With systems already in place and a strong subscription base, the business is well positioned for continued growth under dedicated ownership.",
-      hasMore: true,
-    },
-    howOperatesColumns: {
-      marketingEngine: {
-        title: "Marketing Engine",
-        subtitle: "Subscription-Focused Acquisition & Retention System",
-        intro: "The marketing system is built around:",
-        bullets: [
-          "High-volume creative testing on Facebook",
-          "Subscription-first funnels designed for retention",
-          "Scaling campaigns based on CAC vs LTV performance",
-          "Fast iteration on offers, hooks, and creatives",
-        ],
-        quote:
-          "The focus is not just on acquiring customers, but on acquiring the right customers — those likely to stay subscribed and generate long-term value. This creates a compounding revenue model driven by retention, rather than relying purely on one-time purchases.",
-      },
-      fulfilmentSupplyChain: {
-        title: "Fulfilment & Supply Chain",
-        subtitle: "Automated, Branded Direct Fulfilment",
-        intro: "The business operates through a private supplier based in China. Order process:",
-        bullets: [
-          "Customer places an order",
-          "Order syncs automatically to the supplier",
-          "Supplier handles production, packaging, and shipping",
-        ],
-        quote:
-          "All products are fully branded, ensuring a consistent customer experience without requiring in-house logistics. This structure removes operational overhead, keeps the business capital-light, and allows a new owner to scale without managing inventory or fulfillment complexity.",
-      },
-    },
-    keyFinancialMetrics: [
-      { month: "Aug 2025", revenue: "$9,935", expenses: "$9,281", netProfit: "$654" },
-      { month: "Sep 2025", revenue: "$178,216", expenses: "$160,916", netProfit: "$17,300" },
-      { month: "Oct 2025", revenue: "$364,288", expenses: "$322,807", netProfit: "$41,481" },
-      { month: "Nov 2025", revenue: "$288,526", expenses: "$175,937", netProfit: "$112,589" },
-      { month: "Dec 2025", revenue: "$286,339", expenses: "$210,440", netProfit: "$75,899" },
-      { month: "Jan 2026", revenue: "$226,897", expenses: "$144,762", netProfit: "$82,135" },
-      { month: "Feb 2026", revenue: "$210,672", expenses: "$149,746", netProfit: "$60,926" },
-    ],
-    downloadfile: "/assets/deals/PL-Feb-Nutrively.xlsx",
-    heroTitle: "A Recurring Revenue Brand in the Growing Wellness Market",
-    heroSubtitle: "Subscription-based engine driven by liquid-format products and strong customer retention",
-  },
- {
-    id: "48",
-    platform: "Shopify",
-    niche: "Design & Style",
-    title: "A 5+ Month Old Automated Fashion Dropshipping Store",
-    coverImage: "/assets/deals/luremon.jpg",
-    description:
-      "A 5+ Month Old Automated Fashion Dropshipping Store Running In USA. Total Revenue $71,950 | Total Net Profit $14k+ | Ready To Scale For Spring",
-    verified: true,
-    metrics: [
-      { label: "TTM Revenue", value: "$47,450", icon: "revenue" },
-      { label: "TTM Profit", value: "$11,042", icon: "profit" },
-      { label: "Monthly Profit", value: "$2,760", icon: "monthly" },
-      { label: "Business Age", value: "4 Months", icon: "age" },
-      { label: "Asking Price", value: "$14,999", icon: "asking" },
-      { label: "Profit Multiple", value: "1.35x", icon: "multiple" },
-    ],
-    askingPrice: 14999,
-    speakHref: "#book-a-call",
-    viewHref: "/deals/48",
-    businessOverview: {
-      content:
-        "This is an early-stage fashion store built around the \"old money\" / minimalist luxury aesthetic — a style that continues to perform strongly across social platforms. Instead of chasing short-lived trends, the focus is on clean, timeless pieces that consistently appeal to a broad audience. The business has been kept intentionally simple: strong product selection, clear positioning, and offers that convert without relying on heavy branding. Despite being only a few months old, it has already generated steady revenue and profit, showing clear signs of a repeatable model.",
-      hasMore: true,
-    },
-    whyBuilt: {
-      content:
-        "The store was created after seeing how consistently this aesthetic was gaining traction online. It's a niche where the appeal is immediate — customers understand the look, the lifestyle, and the value without needing much explanation. Rather than overcomplicating the brand, the goal was to build something that could move quickly — products that feel premium, are easy to market visually, and can plug directly into existing demand across platforms like Instagram and TikTok.",
-      hasMore: false,
-    },
-    revenueModel: {
-      content:
-        "Revenue is driven primarily through paid social, with Meta used for both testing and scaling. The approach is straightforward — launch multiple creatives, identify what resonates, and increase spend on the campaigns that perform. Email marketing supports this by capturing additional value from existing customers and improving overall margins. The focus has been on consistency rather than one-off wins, building a system that can be repeated and scaled.",
-      hasMore: true,
-    },
-    whySelling: {
-      content:
-        "The decision to sell comes down to focus. With multiple projects running at once, it's difficult to allocate the time needed to fully scale each one. The business is already profitable and operating smoothly, but still early in its lifecycle. It would benefit from an owner who can give it full attention and push it further, rather than keeping it as one of several competing priorities.",
-      hasMore: true,
-    },
-    howOperatesColumns: {
-      marketingEngine: {
-        title: "Marketing Engine",
-        subtitle: "Creative-Led Testing & Scaling System",
-        intro: "The marketing approach is built around:",
-        bullets: [
-          "Continuous product and creative testing",
-          "Multiple angles per product (lifestyle, aspirational, minimal)",
-          "Scaling only proven winners with clear data",
-          "Cutting spend quickly on anything that underperforms",
-        ],
-        quote:
-          "The focus is less on chasing trends and more on finding visuals that consistently resonate with the \"old money\" aesthetic — clean, premium, and instantly recognizable. This creates a steady, repeatable growth cycle instead of relying on short-lived viral products.",
-      },
-      fulfilmentSupplyChain: {
-        title: "Fulfilment & Supply Chain",
-        subtitle: "Lean, Flexible Supplier Model",
-        intro: "The business operates through established suppliers based in China. Order process:",
-        bullets: [
-          "Customer places an order",
-          "Order is automatically routed to the supplier",
-          "Supplier handles fulfillment and delivery",
-        ],
-        quote:
-          "For stronger-performing products, suppliers can support faster processing or reserved stock if needed, without forcing large upfront commitments. This structure keeps operations lightweight, reduces risk, and makes it easy for a new owner to scale without operational friction.",
-      },
-    },
-    keyFinancialMetrics: [
-      { month: "Nov 2025", revenue: "$3,500", expenses: "$2,891", netProfit: "$609" },
-      { month: "Dec 2025", revenue: "$10,400", expenses: "$7,161", netProfit: "$3,239" },
-      { month: "Jan 2026", revenue: "$12,150", expenses: "$9,566", netProfit: "$2,584" },
-      { month: "Feb 2026", revenue: "$21,400", expenses: "$16,790", netProfit: "$4,610" },
-    ],
-    downloadfile: "/assets/deals/PL-Feb-Luremon.xlsx",
-    heroTitle: "A Fast-Validating Fashion Brand Built on Timeless Demand",
-    heroSubtitle: "Built on Proven Creative Performance and Scalable Unit Economics",
-  },
+  }
 ];
