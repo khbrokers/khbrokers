@@ -26,4 +26,5 @@ export const defaultMetadata: Metadata = {
     index: true,
     follow: true,
   },
+  lastModified: new Date().toISOString(),
 };
