@@ -14,7 +14,7 @@ import { BuyersNeverSection } from "@/components/sections/buyers/BuyersNeverSect
 import { BuyersDifferenceSection } from "@/components/sections/buyers/BuyersDifferenceSection";
 
 export const metadata = {
-  title: "KH Brokers | Buy Verified E-commerce Businesses",
+  title: "KH Brokers | Acquire & Sell Vetted Shopify E-commerce Brands",
   description: buyersHeroConfig.description,
 };
 
