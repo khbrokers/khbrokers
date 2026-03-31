@@ -6,5 +6,5 @@ export const siteConfig: SiteConfig = {
   description:
     "KH Brokers is a private Shopify M&A advisory facilitating acquisitions of cash-flowing e-commerce businesses for qualified buyers and motivated sellers.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://khbrokers.com",
-  ogImage: "/og-image.png",
+  ogImage: "/assets/og-image.png",
 };
