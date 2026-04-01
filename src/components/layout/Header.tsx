@@ -14,7 +14,7 @@ import { siteConfig } from "@/config/site.config";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
-const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest", "/invest-success", "/terms", "/privacy"];
+const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest", "/invest-success", "/terms", "/privacy", "/launchvector"];
 
 interface AuthUser {
   id: string;
@@ -119,7 +119,9 @@ export function Header() {
               ? ("/terms" as const)
               : pathname.startsWith("/privacy")
                 ? ("/privacy" as const)
-                : ("/buyers" as const);
+                : pathname.startsWith("/launchvector")
+                  ? ("/buyers" as const)
+                  : ("/buyers" as const);
     const paramTheme = searchParams.get("theme");
     const legalTheme =
       activePath === "/terms" || activePath === "/privacy"

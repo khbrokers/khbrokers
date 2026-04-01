@@ -13,7 +13,8 @@ export function ThemeTracker() {
     if (
       pathname.startsWith("/buyers") ||
       pathname.startsWith("/deals") ||
-      pathname.startsWith("/invest-success")
+      pathname.startsWith("/invest-success") ||
+      pathname.startsWith("/launchvector")
     ) {
       typeof window !== "undefined" && sessionStorage.setItem(LEGAL_THEME_KEY, "buyers");
     } else if (
