@@ -164,6 +164,91 @@ export interface Deal {
 
 export const mockDeals: Deal[] = [
  {
+    id: "49",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "A 1 Year Old Beauty & Cosmetics Store Scaling In The U.S Market",
+    coverImage: "/assets/deals/multicosmetics.jpg",
+    description:
+      "A 1 Year Old Beauty & Cosmetics Store Scaling In The U.S Market. Total Revenue $710k+ | Total Net Profit $152K | Recent Month On Month Profit Growth",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$781,564", icon: "revenue" },
+      { label: "TTM Profit", value: "$174,998", icon: "profit" },
+      { label: "Monthly Profit", value: "$14,583", icon: "monthly" },
+      { label: "Business Age", value: "12 Months", icon: "age" },
+      { label: "Asking Price", value: "$129,999", icon: "asking" },
+      { label: "Profit Multiple", value: "0.74x", icon: "multiple" },
+    ],
+    askingPrice: 129999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/49",
+    businessOverview: {
+      content:
+        "This is a beauty brand built around simplifying everyday routines through multi-functional, easy-to-use products. Rather than competing on complexity, the brand focuses on convenience-driven solutions that deliver results without requiring time-intensive processes. Over the past 11 months, the business has scaled to over $700K in revenue and $150K+ in net profit, supported by strong product-market fit and consistent paid acquisition performance. The model is lean, with no inventory held, and built to scale efficiently without operational friction.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The brand was created after identifying a clear gap in the market for beauty products that prioritize simplicity and efficiency. Many existing solutions required multiple steps or long routines, which created friction for everyday users. The goal was to develop products that combine functionality into a single, streamlined experience. This positioning resonated quickly with customers, particularly those looking for practical, time-saving solutions. From the beginning, the business was designed to validate demand quickly, iterate based on performance, and scale what works.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "The business operates on a direct-to-consumer model, with products fulfilled on demand through supplier partnerships. This allows for efficient scaling without the need for upfront inventory or complex logistics. Customer acquisition is driven primarily through paid social advertising, where ongoing creative testing identifies winning hooks and angles. Once validated, campaigns are scaled to drive consistent revenue. Supporting channels such as email marketing and retargeting help maximize conversion rates and increase overall customer value.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell is based on a change of focus toward other ventures rather than any issues with the business itself. While the brand continues to perform well, scaling it further would require more dedicated time and attention. At its current stage, the business is stable, systemized, and well-positioned for growth. Transitioning ownership allows a new operator to step in and fully capitalize on the existing foundation, rather than the business being limited by divided focus.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Performance-Driven Creative Testing & Scaling System",
+        intro: "The growth model is built around continuous iteration and fast feedback loops rather than relying on one-off winning products. The system focuses on:",
+        bullets: [
+          "Consistent testing of new creatives and product angles",
+          "Iterating on proven concepts rather than starting from scratch",
+          "Scaling spend aggressively once performance stabilizes",
+          "Cutting underperforming campaigns early to protect margins",
+        ],
+        quote:
+          "This approach creates a more stable and repeatable acquisition engine, allowing the business to grow through refinement rather than depending on unpredictable spikes.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Lean, Automated Dropshipping Infrastructure",
+        intro: "The business operates through a streamlined supplier setup, with fulfillment handled entirely by a trusted partner in China. Order flow:",
+        bullets: [
+          "Customer places an order",
+          "Order is automatically transmitted to the supplier",
+          "Supplier handles production, packing, and delivery",
+        ],
+        quote:
+          "The relationship with the supplier is established and reliable, with consistent delivery times and clear communication. This model keeps operations simple, minimizes upfront capital requirements, and allows the business to scale without adding operational complexity or fixed overhead.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Apr 2025", revenue: "$144,516", expenses: "$112,680", netProfit: "$31,836" },
+      { month: "May 2025", revenue: "$123,897", expenses: "$108,155", netProfit: "$15,742" },
+      { month: "Jun 2025", revenue: "$99,345", expenses: "$76,873", netProfit: "$22,472" },
+      { month: "Jul 2025", revenue: "$51,756", expenses: "$36,603", netProfit: "$15,153" },
+      { month: "Aug 2025", revenue: "$21,424", expenses: "$16,322", netProfit: "$5,102" },
+      { month: "Sep 2025", revenue: "$16,568", expenses: "$12,480", netProfit: "$4,088" },
+      { month: "Oct 2025", revenue: "$30,702", expenses: "$24,074", netProfit: "$6,628" },
+      { month: "Nov 2025", revenue: "$51,848", expenses: "$38,638", netProfit: "$13,210" },
+      { month: "Dec 2025", revenue: "$60,203", expenses: "$54,590", netProfit: "$5,613" },
+      { month: "Jan 2026", revenue: "$44,928", expenses: "$32,788", netProfit: "$12,140" },
+      { month: "Feb 2026", revenue: "$68,765", expenses: "$47,914", netProfit: "$20,851" },
+      { month: "Mar 2026", revenue: "$67,612", expenses: "$45,449", netProfit: "$22,163" },
+    ],
+    downloadfile: "/assets/deals/PL-Mar-Multicosmetics.xlsx",
+    heroTitle: "A Brand Built Around Simplifying Everyday Beauty",
+    heroSubtitle: "Turning time-saving makeup products into scalable, repeatable revenue",
+  },
+ {
     id: "47",
     platform: "Shopify",
     niche: "Health & Beauty",
