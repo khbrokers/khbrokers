@@ -16,7 +16,7 @@ const BUDGET_OPTIONS = [
 ];
 
 export function LaunchvectorCtaSection() {
-  const { heading, description, cta } = launchvectorCtaConfig;
+  const { heading, description, formHeading, cta } = launchvectorCtaConfig;
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -117,8 +117,16 @@ export function LaunchvectorCtaSection() {
           rootMargin="0px 0px -60px 0px"
           threshold={0.05}
         >
+          {/* Form heading — above the card */}
+          <h3 className="mb-4 text-center text-[28px] font-medium leading-[1.1] tracking-[-1.5px] text-zinc-900 sm:mb-6 sm:text-[36px] md:text-[44px] md:tracking-[-2.5px]">
+            {formHeading.before}
+            <span className="font-serif font-medium italic text-[#a36af6]">
+              {formHeading.highlight}
+            </span>
+          </h3>
+
           {/* Main card */}
-          <div className="overflow-hidden rounded-[30px] border-2 border-[#cda6ff] bg-white px-6 py-8 shadow-[0_6px_20px_rgba(0,0,0,0.1)] sm:rounded-[40px] sm:px-[50px] sm:py-[40px]">
+          <div className="rounded-[30px] border-2 border-[#cda6ff] bg-white px-6 py-8 shadow-[0_6px_20px_rgba(0,0,0,0.1)] sm:rounded-[40px] sm:px-[50px] sm:py-[40px]">
             <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-[50px]">
               {/* Left — heading + description */}
               <div className="flex flex-col md:max-w-[551px]">
@@ -149,7 +157,9 @@ export function LaunchvectorCtaSection() {
                 {launchvectorCtaConfig.fields.map((field, i) => (
                   <div
                     key={i}
-                    className="stagger-child flex items-center gap-[10px] rounded-[50px] border border-[#efe2ff] bg-white p-[10px] shadow-[0_2px_0_0_#e6d2ff]"
+                    className={`stagger-child flex items-center gap-[10px] rounded-[50px] border border-[#efe2ff] bg-white p-[10px] shadow-[0_2px_0_0_#e6d2ff] ${
+                      field.type === "select" ? "relative z-10" : ""
+                    }`}
                   >
                     <div className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[35px] border border-[rgba(163,99,244,0.15)] bg-[#f5e6ff] sm:h-[49px] sm:w-[49px]">
                       {iconMap[field.icon]}
@@ -176,7 +186,7 @@ export function LaunchvectorCtaSection() {
                             />
                           </button>
                           {budgetOpen && (
-                            <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-2xl border border-[#efe2ff] bg-white shadow-xl">
+                            <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border border-[#efe2ff] bg-white shadow-xl">
                               {BUDGET_OPTIONS.slice(1).map((opt) => (
                                 <button
                                   key={opt}

@@ -127,6 +127,7 @@ function VideoCarousel({
   const videoRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isScrollingRef = useRef(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(1);
   const viewportH = PEEK + VIDEO_H + PEEK;
 
   useEffect(() => {
@@ -143,7 +144,7 @@ function VideoCarousel({
 
     if (isMobile) {
       const viewportCenter = el.scrollLeft + el.offsetWidth / 2;
-      let activeIdx = 0;
+      let closest = 0;
       let minDist = Infinity;
       for (let i = 0; i < videoRefs.current.length; i++) {
         const ref = videoRefs.current[i];
@@ -153,13 +154,14 @@ function VideoCarousel({
         const dist = Math.abs(center - viewportCenter);
         if (dist < minDist) {
           minDist = dist;
-          activeIdx = i;
+          closest = i;
         }
       }
-      onActiveChange(activeIdx);
+      setActiveIdx(closest);
+      onActiveChange(closest);
     } else {
       const viewportCenter = el.scrollTop + el.offsetHeight / 2;
-      let activeIdx = 0;
+      let closest = 0;
       let minDist = Infinity;
       for (let i = 0; i < videoRefs.current.length; i++) {
         const ref = videoRefs.current[i];
@@ -169,10 +171,11 @@ function VideoCarousel({
         const dist = Math.abs(center - viewportCenter);
         if (dist < minDist) {
           minDist = dist;
-          activeIdx = i;
+          closest = i;
         }
       }
-      onActiveChange(activeIdx);
+      setActiveIdx(closest);
+      onActiveChange(closest);
     }
   }, [onActiveChange, isMobile]);
 
@@ -237,6 +240,19 @@ function VideoCarousel({
     }, 600);
   };
 
+  const scrollToIdx = (idx: number) => {
+    const el = scrollRef.current;
+    const target = videoRefs.current[idx];
+    if (!el || !target) return;
+    if (isMobile) {
+      const scrollLeft = target.offsetLeft - el.offsetWidth / 2 + target.offsetWidth / 2;
+      el.scrollTo({ left: Math.max(0, scrollLeft), behavior: "smooth" });
+    } else {
+      const scrollTop = target.offsetTop - el.offsetHeight / 2 + target.offsetHeight / 2;
+      el.scrollTo({ top: Math.max(0, scrollTop), behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="stagger-child relative overflow-hidden rounded-xl bg-[#F5EEFD] sm:rounded-2xl">
       {/* Mobile: faded left/right (videos in row) */}
@@ -257,6 +273,28 @@ function VideoCarousel({
         className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 hidden h-[112px] bg-gradient-to-t from-[#F5EEFD] via-[#F5EEFD]/80 to-transparent sm:block"
         aria-hidden
       />
+      {/* Navigation arrows — desktop only */}
+      <button
+        type="button"
+        onClick={() => scrollToIdx(activeIdx > 0 ? activeIdx - 1 : TESTIMONIAL_ITEMS.length - 1)}
+        className="absolute left-1/2 top-22 z-30 hidden -translate-x-1/2 items-center justify-center rounded-full bg-[#a363f4] text-white shadow-lg transition-all hover:bg-[#8b4dd8] sm:flex sm:h-10 sm:w-10"
+        aria-label="Previous testimonial"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 15l-6-6-6 6" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        onClick={() => scrollToIdx(activeIdx < TESTIMONIAL_ITEMS.length - 1 ? activeIdx + 1 : 0)}
+        className="absolute bottom-22 left-1/2 z-30 hidden -translate-x-1/2 items-center justify-center rounded-full bg-[#a363f4] text-white shadow-lg transition-all hover:bg-[#8b4dd8] sm:flex sm:h-10 sm:w-10"
+        aria-label="Next testimonial"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </button>
+
       {/* Scroll container */}
       <div
         ref={scrollRef}

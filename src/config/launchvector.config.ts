@@ -240,6 +240,10 @@ export const launchvectorCtaConfig = {
   },
   description:
     "Everyday you wait is another day someone else acquire the brand you should own - at 100% equity, lower multiples and with a team ready on day one",
+  formHeading: {
+    before: "Get List of ",
+    highlight: "Current Brands",
+  },
   cta: {
     label: "Download Now - starting at $25K",
     href: "/signup",
@@ -257,7 +261,7 @@ export const launchvectorFaqConfig = {
     before: "Frequently Asked ",
     highlight: "Questions",
   },
-  subheading: "Direct answers. No ambiguity.",
+  subheading: "",
   cta: {
     label: "Download a List of 5 Cash Flowing Brands",
     href: "#cta-form",
@@ -267,7 +271,7 @@ export const launchvectorFaqConfig = {
       question:
         "What sets KH Brokers apart from other E-commerce brokerages?",
       answer: [
-        "→ One word says it all – TRUST. We're not just brokers only caring about how many deals we can sell. We've got our own E-commerce brands running within our company. That means when our clients want to sell their business, we can easily sniff out if it's a gem or not.",
+        "One word says it all – TRUST. We're not just brokers only caring about how many deals we can sell. We've got our own E-commerce brands running within our company. That means when our clients want to sell their business, we can easily sniff out if it's a gem or not.",
         "We're currently one of the fast-growing business brokers on some public marketplaces. We've got 100% verified positive feedback from buyers that have acquired a brand from KH Brokers.",
       ],
     },

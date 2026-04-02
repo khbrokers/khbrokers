@@ -196,9 +196,44 @@ export function LaunchvectorTestimonialsSection() {
                   </button>
                 ))}
               </div>
+
               {/* Fade overlays on desktop */}
-              <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[120px] bg-gradient-to-b from-[#F5EEFD] to-transparent md:block" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-[120px] bg-gradient-to-t from-[#F5EEFD] to-transparent md:block" />
+              <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden h-[120px] bg-gradient-to-b from-[#F5EEFD] to-transparent md:block" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden h-[120px] bg-gradient-to-t from-[#F5EEFD] to-transparent md:block" />
+
+              {/* Navigation arrows — centered, above fade overlays */}
+              <div className="hidden md:flex absolute inset-x-0 top-3 z-30 justify-center">
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleThumbClick(
+                      activeIndex > 0 ? activeIndex - 1 : testimonials.length - 1
+                    )
+                  }
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-[#a363f4] text-white shadow-lg transition-all hover:bg-[#8b4dd8]"
+                  aria-label="Previous testimonial"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 15l-6-6-6 6" />
+                  </svg>
+                </button>
+              </div>
+              <div className="hidden md:flex absolute inset-x-0 bottom-3 z-30 justify-center">
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleThumbClick(
+                      activeIndex < testimonials.length - 1 ? activeIndex + 1 : 0
+                    )
+                  }
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-[#a363f4] text-white shadow-lg transition-all hover:bg-[#8b4dd8]"
+                  aria-label="Next testimonial"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             {/* Right — Active testimonial card */}
