@@ -362,10 +362,10 @@ export function ListingDetailPage({ deal }: ListingDetailPageProps) {
           </div>
 
           {/* Disclosure */}
-          <p className="mt-6 text-center text-[13px] font-medium text-white sm:text-[14px]">
+          <p className={`mt-6 text-center text-[13px] font-medium sm:text-[14px] ${deal.id === "49" ? "text-white" : "text-zinc-700"}`}>
             Full financials available below.
           </p>
-          <p className="mt-1 text-center text-[13px] font-medium text-white sm:text-[14px]">
+          <p className={`mt-1 text-center text-[13px] font-medium sm:text-[14px] ${deal.id === "49" ? "text-white" : "text-zinc-700"}`}>
             Brand identity disclosed via investor call.
           </p>
         </div>

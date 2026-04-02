@@ -245,7 +245,7 @@ export const mockDeals: Deal[] = [
       { month: "Mar 2026", revenue: "$67,612", expenses: "$45,449", netProfit: "$22,163" },
     ],
     downloadfile: "/assets/deals/PL-Mar-Multicosmetics.xlsx",
-    heroTitle: "A Brand Built Around Simplifying Everyday Beauty",
+    heroTitle: "A 1 Year Old Beauty & Cosmetics Store Scaling In The U.S Market",
     heroSubtitle: "Turning time-saving makeup products into scalable, repeatable revenue",
   },
  {
