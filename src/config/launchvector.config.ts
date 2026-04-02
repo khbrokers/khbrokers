@@ -14,11 +14,11 @@ export const launchvectorHeroConfig = {
   cta: {
     primary: {
       label: "Receive Our List of Cash-Flowing Brands",
-      href: "/signup",
+      href: "#cta-form",
     },
     secondary: {
       label: "Book a Free Consultation",
-      href: "#book-a-call",
+      href: "#cta-form",
     },
   },
   stats: [
@@ -90,8 +90,8 @@ export const launchvectorComparisonConfig = {
     },
   ],
   cta: {
-    primary: { label: "Book a Call", href: "#book-a-call" },
-    secondary: { label: "See Our Available Brands", href: "/deals" },
+    primary: { label: "Book a Call", href: "#cta-form" },
+    secondary: { label: "See Our Available Brands", href: "#cta-form" },
   },
   savings: {
     amount: "$264,000",
@@ -99,7 +99,7 @@ export const launchvectorComparisonConfig = {
       "That's how much more you keep over 5 years with full ownership versus a 50% equity model, on the exact same business, same profit, same hands-off experience.",
     cta: {
       label: "Get Access to 100% Ownership Deals",
-      href: "/signup",
+      href: "#cta-form",
     },
   },
 };
@@ -115,9 +115,9 @@ export const launchvectorStepsConfig = {
   cta: {
     primary: {
       label: "Receive Our Current Brand List",
-      href: "/signup",
+      href: "#cta-form",
     },
-    secondary: { label: "Talk to team", href: "#book-a-call" },
+    secondary: { label: "Talk to team", href: "#cta-form" },
   },
   steps: [
     {
@@ -167,7 +167,7 @@ export const launchvectorDataConfig = {
   ],
   cta: {
     label: "Get Our Full Brand List — Starting at $25K",
-    href: "/signup",
+    href: "#cta-form",
   },
 };
 
@@ -260,7 +260,7 @@ export const launchvectorFaqConfig = {
   subheading: "Direct answers. No ambiguity.",
   cta: {
     label: "Download a List of 5 Cash Flowing Brands",
-    href: "/signup",
+    href: "#cta-form",
   },
   items: [
     {

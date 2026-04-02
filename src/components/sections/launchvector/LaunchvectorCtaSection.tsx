@@ -100,7 +100,7 @@ export function LaunchvectorCtaSection() {
   };
 
   return (
-    <section className="relative bg-white px-4 py-12 sm:py-16 md:py-24">
+    <section id="cta-form" className="relative bg-white px-4 py-12 sm:py-16 md:py-24">
       {/* Top gradient — fades from purple page bg into white */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-[377px]"
@@ -121,7 +121,7 @@ export function LaunchvectorCtaSection() {
           <div className="overflow-hidden rounded-[30px] border-2 border-[#cda6ff] bg-white px-6 py-8 shadow-[0_6px_20px_rgba(0,0,0,0.1)] sm:rounded-[40px] sm:px-[50px] sm:py-[40px]">
             <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-[50px]">
               {/* Left — heading + description */}
-              <div className="flex h-full flex-col justify-between md:max-w-[551px]">
+              <div className="flex flex-col md:max-w-[551px]">
                 <h2 className="text-[28px] font-medium leading-[1.1] tracking-[-2px] text-black sm:text-[40px] sm:tracking-[-3px] md:text-[56px] md:tracking-[-4.08px] lg:text-[68px]">
                   {heading.before}
                   <br className="hidden sm:block" />
@@ -129,7 +129,7 @@ export function LaunchvectorCtaSection() {
                     {heading.highlight}
                   </span>
                 </h2>
-                <p className="mt-6 text-[16px] font-normal leading-[1.1] tracking-[-1.32px] text-black/80 sm:text-[18px] md:mt-auto md:pt-[100px] md:text-[22px] lg:pt-[180px]">
+                <p className="mt-6 text-[16px] font-normal leading-[1.1] tracking-[-1.32px] text-black/80 sm:text-[18px] md:mt-auto md:text-[22px]">
                   Everyday you wait is another day someone else acquire
                   the brand you should own - at{" "}
                   <span className="font-medium text-black/50">

@@ -103,6 +103,12 @@ function ComparisonCard({
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-stretch sm:gap-6 md:gap-[30px]">
       {/* Left - 50% Equity */}
+      <AnimateOnView
+        animation="slide-in-from-left"
+        rootMargin="0px 0px -80px 0px"
+        threshold={0.1}
+        className="flex flex-1"
+      >
       <div className="flex flex-1 flex-col overflow-hidden rounded-[20px] bg-[#d3b3fa] p-px sm:rounded-[30px]">
         <div className="flex items-center justify-center">
           <span className="rounded-b-[15px] px-3 py-2.5 text-[14px] font-medium tracking-[-1.44px] text-[#393939] sm:text-[18px]">
@@ -133,8 +139,16 @@ function ComparisonCard({
           </div>
         </div>
       </div>
+      </AnimateOnView>
 
       {/* Right - KH Brokers */}
+      <AnimateOnView
+        animation="slide-in-from-right"
+        rootMargin="0px 0px -80px 0px"
+        threshold={0.1}
+        delayMs={150}
+        className="flex flex-1"
+      >
       <div className="flex flex-1 flex-col overflow-hidden rounded-[20px] bg-[#a363f4] p-px sm:rounded-[30px]">
         <div className="flex items-center justify-center">
           <span className="rounded-b-[15px] px-3 py-2.5 text-[14px] font-medium tracking-[-1.44px] text-white sm:text-[18px]">
@@ -187,6 +201,7 @@ function ComparisonCard({
           </div>
         </div>
       </div>
+      </AnimateOnView>
     </div>
   );
 }

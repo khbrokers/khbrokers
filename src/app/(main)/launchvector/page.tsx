@@ -7,6 +7,7 @@ import { LaunchvectorTestimonialsSection } from "@/components/sections/launchvec
 import { LaunchvectorBookCallSection } from "@/components/sections/launchvector/LaunchvectorBookCallSection";
 import { LaunchvectorCtaSection } from "@/components/sections/launchvector/LaunchvectorCtaSection";
 import { LaunchvectorFaqSection } from "@/components/sections/launchvector/LaunchvectorFaqSection";
+import { BuyersTestimonialsSection } from "@/components/sections/buyers/BuyersTestimonialsSection";
 
 export const metadata = {
   title: "LaunchVector vs KH Brokers",
@@ -17,12 +18,12 @@ export default function LaunchvectorPage() {
   return (
     <main className="min-h-screen bg-[#F5EEFD]">
       <LaunchvectorHero />
+      <BuyersTestimonialsSection />
+      <LaunchvectorCtaSection />
       <LaunchvectorComparisonSection />
       <LaunchvectorStepsSection />
       <LaunchvectorDataSection />
-      <LaunchvectorTestimonialsSection />
       <LaunchvectorBookCallSection />
-      <LaunchvectorCtaSection />
       <LaunchvectorFaqSection />
     </main>
   );

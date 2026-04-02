@@ -170,7 +170,7 @@ export const mockDeals: Deal[] = [
     title: "A 1 Year Old Beauty & Cosmetics Store Scaling In The U.S Market",
     coverImage: "/assets/deals/multicosmetics.jpg",
     description:
-      "A 1 Year Old Beauty & Cosmetics Store Scaling In The U.S Market. Total Revenue $710k+ | Total Net Profit $152K | Recent Month On Month Profit Growth",
+      "A 1 Year Old Beauty & Cosmetics Store Scaling In The U.S Market. Total Revenue $780k+ | Total Net Profit $170K | Recent Month On Month Profit Growth",
     verified: true,
     metrics: [
       { label: "TTM Revenue", value: "$781,564", icon: "revenue" },

@@ -85,7 +85,7 @@ export function LaunchvectorHero() {
           <h1 className="stagger-child mx-auto max-w-[850px] text-center text-[32px] font-medium leading-[1.35] tracking-[-2px] text-black sm:text-[42px] sm:tracking-[-3px] md:text-[55px] md:leading-[1.25] md:tracking-[-3.3px]">
             {headline.before}
             {/* 4x badge — cross top-right */}
-            <span className="relative mx-0.5 inline-block -rotate-3 align-middle sm:mx-1">
+            <span className="relative mx-0.5 inline-block -rotate-3 align-middle sm:mx-1" style={{ animation: "badgeFloat1 4s cubic-bezier(0.45,0,0.55,1) infinite" }}>
               <span className="inline-flex items-center justify-center rounded-[12px] border-2 border-[#9e52ff] bg-gradient-to-b from-[rgba(158,82,255,0.3)] to-[rgba(158,82,255,0.15)] px-2 py-0.5 shadow-[0px_7px_20px_0px_rgba(0,0,0,0.18)] sm:rounded-[17px] sm:px-3 sm:py-1">
                 <span className="bg-gradient-to-b from-[#8728ff] to-[rgba(158,82,255,0.4)] bg-clip-text text-[22px] font-medium text-transparent sm:text-[30px] md:text-[38px]">
                   {headline.highlight4x}
@@ -99,7 +99,7 @@ export function LaunchvectorHero() {
             </span>
             {" "}Multiples for{" "} <br/>
             {/* 50% badge — cross top-right */}
-            <span className="relative mx-0.5 inline-block -rotate-3 align-middle sm:mx-1">
+            <span className="relative mx-0.5 inline-block -rotate-3 align-middle sm:mx-1" style={{ animation: "badgeFloat2 4.8s cubic-bezier(0.45,0,0.55,1) infinite", animationDelay: "0.6s" }}>
               <span className="inline-flex items-center justify-center rounded-[12px] border-2 border-[#9e52ff] bg-gradient-to-b from-[rgba(158,82,255,0.3)] to-[rgba(158,82,255,0.15)] px-2 py-0.5 shadow-[0px_7px_20px_0px_rgba(0,0,0,0.18)] sm:rounded-[17px] sm:px-3 sm:py-1">
                 <span className="bg-gradient-to-b from-[#8728ff] to-[rgba(158,82,255,0.4)] bg-clip-text text-[22px] font-semibold text-transparent sm:text-[30px] md:text-[38px]">
                   50%
@@ -113,7 +113,7 @@ export function LaunchvectorHero() {
             </span>
             {" "}Ownership. Get{" "}
             {/* 100% badge — checkmark top-right */}
-            <span className="relative mx-0.5 inline-block rotate-3 align-middle sm:mx-1">
+            <span className="relative mx-0.5 inline-block rotate-3 align-middle sm:mx-1" style={{ animation: "badgeFloat3 5.2s cubic-bezier(0.45,0,0.55,1) infinite", animationDelay: "1.2s" }}>
               <span className="inline-flex items-center justify-center rounded-[12px] border-2 border-[#9e52ff] bg-gradient-to-b from-[#9e52ff] to-[rgba(158,82,255,0.5)] px-2 py-1 shadow-[0px_7px_20px_0px_rgba(163,99,244,0.2)] sm:rounded-[17px] sm:px-3 sm:py-2">
                 <span className="bg-gradient-to-b from-white to-[rgba(255,255,255,0.5)] bg-clip-text text-[20px] font-semibold text-transparent sm:text-[28px] md:text-[35px]">
                   {headline.highlight100}
@@ -207,7 +207,7 @@ export function LaunchvectorHero() {
         </AnimateOnView>
       </div>
 
-      {/* Cloud drift keyframes */}
+      {/* Cloud drift + badge float keyframes */}
       <style jsx>{`
         @keyframes cloudDrift {
           0% {
@@ -221,6 +221,57 @@ export function LaunchvectorHero() {
           }
           100% {
             transform: translateX(-20px) translateY(10px) scale(1.1);
+          }
+        }
+        @keyframes badgeFloat1 {
+          0% {
+            transform: rotate(-3deg) translateY(0) scale(1);
+          }
+          25% {
+            transform: rotate(-1deg) translateY(-10px) scale(1.03);
+          }
+          50% {
+            transform: rotate(-4deg) translateY(-4px) scale(1.01);
+          }
+          75% {
+            transform: rotate(-2deg) translateY(-12px) scale(1.04);
+          }
+          100% {
+            transform: rotate(-3deg) translateY(0) scale(1);
+          }
+        }
+        @keyframes badgeFloat2 {
+          0% {
+            transform: rotate(-3deg) translateY(0) scale(1);
+          }
+          30% {
+            transform: rotate(-5deg) translateY(-14px) scale(1.04);
+          }
+          60% {
+            transform: rotate(-1deg) translateY(-6px) scale(1.01);
+          }
+          80% {
+            transform: rotate(-4deg) translateY(-11px) scale(1.03);
+          }
+          100% {
+            transform: rotate(-3deg) translateY(0) scale(1);
+          }
+        }
+        @keyframes badgeFloat3 {
+          0% {
+            transform: rotate(3deg) translateY(0) scale(1);
+          }
+          20% {
+            transform: rotate(5deg) translateY(-8px) scale(1.03);
+          }
+          50% {
+            transform: rotate(1deg) translateY(-15px) scale(1.05);
+          }
+          70% {
+            transform: rotate(4deg) translateY(-5px) scale(1.01);
+          }
+          100% {
+            transform: rotate(3deg) translateY(0) scale(1);
           }
         }
       `}</style>
