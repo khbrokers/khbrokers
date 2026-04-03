@@ -2,7 +2,7 @@
 
 import { launchvectorBookCallConfig } from "@/config/launchvector.config";
 import { LazyBlock } from "@/components/ui/LazyBlock";
-import { BuyersCalInlineEmbed } from "@/components/ui/BuyersCalInlineEmbed";
+import { LaunchvectorCalInlineEmbed } from "@/components/ui/LaunchvectorCalInlineEmbed";
 
 export function LaunchvectorBookCallSection() {
   const { heading, description } = launchvectorBookCallConfig;
@@ -37,7 +37,7 @@ export function LaunchvectorBookCallSection() {
           >
             <div className="p-4 sm:p-8 md:p-[60px]">
               <div className="relative w-full overflow-hidden rounded-[20px] border border-[#a363f4] bg-white">
-                <BuyersCalInlineEmbed className="rounded-lg" />
+                <LaunchvectorCalInlineEmbed className="rounded-lg" />
               </div>
             </div>
           </div>
