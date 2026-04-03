@@ -231,12 +231,6 @@ export function LaunchvectorComparisonSection() {
             >
               {cta.primary.label}
             </Link>
-            <Link
-              href={cta.secondary.href}
-              className="rounded-full border border-[#b2b2b2] bg-white px-6 py-4 text-[16px] font-medium text-[#454545] shadow-[inset_0_4px_14px_rgba(255,255,255,0.5)] transition-colors hover:bg-zinc-50 sm:px-7.5 sm:py-5 sm:text-[18px]"
-            >
-              {cta.secondary.label}
-            </Link>
           </div>
         </AnimateOnView>
 

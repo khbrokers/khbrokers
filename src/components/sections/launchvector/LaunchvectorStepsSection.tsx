@@ -144,16 +144,6 @@ export function LaunchvectorStepsSection() {
                   <span className="pointer-events-none absolute inset-[-2px] rounded-[inherit] shadow-[inset_0_0_20px_0_white]" aria-hidden />
                   <span className="relative">{cta.primary.label}</span>
                 </Link>
-                {/* Secondary CTA */}
-                <Link
-                  href={cta.secondary.href}
-                  className="relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 border-[#d5d5d5] px-[20px] py-[14px] text-[16px] font-medium text-black transition-colors hover:bg-zinc-50 sm:px-[30px] sm:py-[20px] sm:text-[18px]"
-                >
-                  <span className="pointer-events-none absolute inset-0 rounded-full bg-white" aria-hidden />
-                  <span className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_4px_8px_0_rgba(255,255,255,0.6)]" aria-hidden />
-                  <span className="pointer-events-none absolute inset-[-2px] rounded-[inherit] shadow-[inset_0_0_20px_0_white]" aria-hidden />
-                  <span className="relative">{cta.secondary.label}</span>
-                </Link>
               </div>
             </div>
           </AnimateOnView>

@@ -146,12 +146,6 @@ export function LaunchvectorHero() {
             >
               {cta.primary.label}
             </Link>
-            <Link
-              href={cta.secondary.href}
-              className="rounded-full border-2 border-[#131313]/20 bg-white px-5 py-3 text-[14px] font-medium text-black/70 transition-colors hover:bg-zinc-100 sm:px-[20px] sm:py-[20px] sm:text-[18px]"
-            >
-              {cta.secondary.label}
-            </Link>
           </div>
 
         </AnimateOnView>
