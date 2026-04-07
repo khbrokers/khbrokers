@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,12 +14,12 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-    const { error } = await getSupabase().auth.resetPasswordForEmail(email, {
+    const { error } = await getSupabaseAdmin().auth.resetPasswordForEmail(email, {
       redirectTo: `${origin}/reset-password/update`,
     });
 
     if (error) {
-      console.error("Reset password error:", error.message);
+      console.error("Reset password error:", error.message, error);
       return NextResponse.json(
         { error: error.message },
         { status: 400 }
