@@ -20,8 +20,10 @@ export async function POST(req: NextRequest) {
 
     if (error) {
       console.error("Reset password error:", error.message);
-      // Don't reveal whether the email exists
-      return NextResponse.json({ success: true });
+      return NextResponse.json(
+        { error: error.message },
+        { status: 400 }
+      );
     }
 
     return NextResponse.json({ success: true });
