@@ -14,12 +14,25 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-    const { error } = await getSupabaseAdmin().auth.resetPasswordForEmail(email, {
+    console.log("Reset password attempt for:", email);
+    console.log("Redirect URL:", `${origin}/reset-password/update`);
+    console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+
+    const admin = getSupabaseAdmin();
+
+    // First check if user exists
+    const { data: userData, error: listError } = await admin.auth.admin.listUsers();
+    const user = userData?.users?.find(u => u.email === email);
+    console.log("User found:", !!user, user?.id, user?.email_confirmed_at);
+
+    const { data, error } = await admin.auth.resetPasswordForEmail(email, {
       redirectTo: `${origin}/reset-password/update`,
     });
 
+    console.log("Reset result - data:", JSON.stringify(data));
+    console.log("Reset result - error:", error ? JSON.stringify(error) : "none");
+
     if (error) {
-      console.error("Reset password error:", error.message, error);
       return NextResponse.json(
         { error: error.message },
         { status: 400 }
