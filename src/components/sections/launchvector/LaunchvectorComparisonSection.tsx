@@ -218,21 +218,6 @@ export function LaunchvectorComparisonSection() {
           </div>
         </AnimateOnView>
 
-        {/* CTA buttons */}
-        <AnimateOnView
-          animation="fade-up-slow"
-          rootMargin="0px 0px -60px 0px"
-          threshold={0.05}
-        >
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-12 sm:gap-5">
-            <Link
-              href={cta.primary.href}
-              className="rounded-full border border-[#7100ff] bg-[#a363f4] px-6 py-4 text-[16px] font-medium text-white shadow-[inset_0_4px_8px_rgba(255,255,255,0.8)] transition-colors hover:bg-[#6d28d9] sm:px-10 sm:py-5 sm:text-[18px]"
-            >
-              {cta.primary.label}
-            </Link>
-          </div>
-        </AnimateOnView>
 
         {/* Savings banner */}
         <AnimateOnView
