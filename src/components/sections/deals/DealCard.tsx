@@ -3,34 +3,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  FaChartLine,
   FaDollarSign,
   FaCalendarAlt,
-  FaClock,
   FaHandshake,
-  FaBriefcase,
+  FaClock,
+  FaTag,
 } from "react-icons/fa";
 import { SiShopify } from "react-icons/si";
 import type { Deal, DealMetric } from "@/config/deals.config";
 
 const PRIMARY = "#a36af6";
 
-const METRIC_ICONS: Record<DealMetric["icon"], React.ReactNode> = {
+const METRIC_ICONS: Record<string, React.ReactNode> = {
   revenue: <FaDollarSign className="h-4 w-4" />,
   profit: <FaCalendarAlt className="h-4 w-4" />,
   monthly: <FaHandshake className="h-4 w-4" />,
   age: <FaClock className="h-4 w-4" />,
-  asking: <FaBriefcase className="h-4 w-4" />,
-  multiple: <FaChartLine className="h-4 w-4" />,
+  category: <FaTag className="h-4 w-4" />,
+  platform: <SiShopify className="h-4 w-4" />,
 };
 
 const METRIC_ORDER: DealMetric["icon"][] = [
   "revenue",
-  "age",
   "profit",
-  "asking",
   "monthly",
-  "multiple",
+  "age",
 ];
 
 function formatPrice(value: number): string {
@@ -135,42 +132,52 @@ export function DealCard({ deal }: DealCardProps) {
         className="mt-3 grid grid-cols-2 gap-0 overflow-hidden rounded-xl sm:mt-4 sm:grid-cols-3"
         style={{ backgroundColor: "rgba(163, 106, 246, 0)" }}
       >
-        {METRIC_ORDER.map((iconKey, idx) => {
-          const metric = deal.metrics.find((m) => m.icon === iconKey);
-          if (!metric) return null;
-          const isColEndMobile = (idx + 1) % 2 === 0;
-          const isColEndDesktop = (idx + 1) % 3 === 0;
-          return (
-            <div
-              key={`${metric.label}-${metric.value}`}
-              className={`flex items-start gap-1.5 p-2 sm:gap-2 sm:p-3 md:p-4 ${
-                isColEndMobile ? "max-sm:border-r-0" : "max-sm:border-r border-[#a36af6]/10"
-              } ${!isColEndDesktop ? "sm:border-r sm:border-[#a36af6]/10" : ""}`}
-            >
-              <span
-                className="mt-0.5 inline-flex shrink-0"
-                style={{
-                  color: "#A363F4",
-                  maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-                  maskSize: "100% 100%",
-                  WebkitMaskSize: "100% 100%",
-                }}
-                aria-hidden
+        {(() => {
+          const items: { label: string; value: string; iconKey: string }[] = [
+            { label: "Category", value: deal.niche, iconKey: "category" },
+            { label: "Platform", value: deal.platform, iconKey: "platform" },
+            ...METRIC_ORDER.map((iconKey) => {
+              const metric = deal.metrics.find((m) => m.icon === iconKey);
+              return metric
+                ? { label: metric.label, value: metric.value, iconKey: metric.icon }
+                : null;
+            }).filter(Boolean) as { label: string; value: string; iconKey: string }[],
+          ];
+          return items.map((item, idx) => {
+            const isColEndMobile = (idx + 1) % 2 === 0;
+            const isColEndDesktop = (idx + 1) % 3 === 0;
+            return (
+              <div
+                key={`${item.label}-${item.value}`}
+                className={`flex items-start gap-1.5 p-2 sm:gap-2 sm:p-3 md:p-4 ${
+                  isColEndMobile ? "max-sm:border-r-0" : "max-sm:border-r border-[#a36af6]/10"
+                } ${!isColEndDesktop ? "sm:border-r sm:border-[#a36af6]/10" : ""}`}
               >
-                {METRIC_ICONS[metric.icon]}
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-[10px] font-medium text-zinc-500 sm:text-[11px] md:text-[12px]">
-                  {metric.label}
-                </p>
-                <p className="truncate text-[12px] font-bold text-zinc-900 sm:text-[13px] md:text-[14px]">
-                  {metric.value}
-                </p>
+                <span
+                  className="mt-0.5 inline-flex shrink-0"
+                  style={{
+                    color: "#A363F4",
+                    maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+                    maskSize: "100% 100%",
+                    WebkitMaskSize: "100% 100%",
+                  }}
+                  aria-hidden
+                >
+                  {METRIC_ICONS[item.iconKey]}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-[10px] font-medium text-zinc-500 sm:text-[11px] md:text-[12px]">
+                    {item.label}
+                  </p>
+                  <p className="truncate text-[12px] font-bold text-zinc-900 sm:text-[13px] md:text-[14px]">
+                    {item.value}
+                  </p>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          });
+        })()}
       </div>
 
       {/* Asking price + CTAs */}
