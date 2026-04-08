@@ -164,6 +164,259 @@ export interface Deal {
 
 export const mockDeals: Deal[] = [
  {
+    id: "52",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "A High-Quality Beauty & Wellness Brand",
+    coverImage: "/assets/deals/card52.jpg",
+    description:
+      "Proven Skincare Market Fit With Significant Room to Expand Channels Further. $465K+ Revenue. $66K+ Profit. 14% Margin. Proven Paid Acquisition Engine.",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$465,204", icon: "revenue" },
+      { label: "TTM Profit", value: "$66,874", icon: "profit" },
+      { label: "Monthly Profit", value: "$6,687", icon: "monthly" },
+      { label: "Business Age", value: "10 Months", icon: "age" },
+      { label: "Asking Price", value: "$64,999", icon: "asking" },
+      { label: "Profit Multiple", value: "1x", icon: "multiple" },
+    ],
+    askingPrice: 64999,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/52",
+    businessOverview: {
+      content:
+        "This is a new but already proven direct-to-consumer brand operating in the beauty and wellness space, built around a focused product that converts consistently and scales efficiently. In under a year, the business has generated over $465K in revenue while maintaining stable profitability, validating both demand and execution. Rather than relying on a broad catalog, the model is intentionally concentrated—allowing for tighter control over margins, clearer positioning, and faster decision-making. With a working acquisition engine and supplier infrastructure already in place, the business is set up to grow without adding unnecessary complexity.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The idea behind the brand came from a simple observation: most products in this category either overpromise or overcomplicate. There was an opportunity to do the opposite—offer something straightforward, effective, and easy to integrate into everyday routines. Early testing confirmed that simplicity itself was the advantage. Customers responded to clear messaging, visible results, and a product that didn't require explanation. From there, the brand was shaped around that principle—keeping the offer tight, the positioning clear, and the experience frictionless. What started as a single concept evolved into a repeatable system for identifying and scaling what actually resonates.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is driven through a performance-focused approach, where creative testing sits at the center of growth. Instead of relying on static campaigns, the business continuously rotates new angles, hooks, and formats to stay ahead of fatigue and maintain efficiency. This allows winning creatives to be identified quickly and scaled with confidence. Combined with strong product margins and opportunities for bundling, the model supports both steady cash flow and scalable upside. Growth is not dependent on one-off trends, but on a process that can be repeated and expanded.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "While it continues to perform and operate smoothly, it has reached a point where further growth would benefit from more dedicated attention. With time being allocated across multiple ventures, the decision has been made to step back rather than operate at partial capacity. This creates a clean handover opportunity for a new owner to take over a functioning, profitable system and push it further with full focus. The foundation is already built—the next phase is simply execution.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Creative-Led Growth & Iterative Scaling System",
+        intro: "Growth is driven by a hands-on, test-and-learn approach rather than static campaigns. The focus is on consistently introducing new creatives, quickly identifying what resonates, and leaning into what works. At its core, the system revolves around:",
+        bullets: [
+          "Ongoing product and angle testing",
+          "Multiple creative directions per concept",
+          "Scaling spend behind clear winners",
+          "Cutting underperforming campaigns early",
+        ],
+        quote:
+          "This approach keeps performance stable while allowing for continuous improvement, avoiding reliance on one-off winning products or short-lived trends.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Streamlined, Supplier-Managed Infrastructure",
+        intro: "The operational side of the business is intentionally simple. Orders are routed directly to established suppliers, who handle production, packing, and shipping without manual input. The process follows a straightforward flow:",
+        bullets: [
+          "Orders are placed through the store",
+          "Fulfilment is automatically triggered",
+          "Suppliers handle production and delivery",
+        ],
+        quote:
+          "Because logistics are handled externally, there's no need for warehousing or inventory management on a day-to-day basis. The result is a lean setup that reduces operational overhead while remaining flexible enough to support growth.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Jun 2025", revenue: "$17,105", expenses: "$21,300", netProfit: "-$4,195" },
+      { month: "Jul 2025", revenue: "$28,342", expenses: "$31,434", netProfit: "-$3,092" },
+      { month: "Aug 2025", revenue: "$49,140", expenses: "$39,668", netProfit: "$9,472" },
+      { month: "Sep 2025", revenue: "$72,718", expenses: "$60,454", netProfit: "$12,264" },
+      { month: "Oct 2025", revenue: "$63,266", expenses: "$51,396", netProfit: "$11,870" },
+      { month: "Nov 2025", revenue: "$49,060", expenses: "$45,342", netProfit: "$3,718" },
+      { month: "Dec 2025", revenue: "$47,919", expenses: "$46,571", netProfit: "$1,348" },
+      { month: "Jan 2026", revenue: "$54,176", expenses: "$42,729", netProfit: "$11,447" },
+      { month: "Feb 2026", revenue: "$48,537", expenses: "$36,806", netProfit: "$11,731" },
+      { month: "Mar 2026", revenue: "$34,941", expenses: "$22,630", netProfit: "$12,311" },
+    ],
+    downloadfile: "/assets/deals/52PL-Mar-Auv.xlsx",
+    heroTitle: "A High-Quality Beauty & Wellness Brand",
+    heroSubtitle: "Proven Skincare Market Fit With Significant Room to Expand Channels Further",
+  },
+ {
+    id: "51",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "A Market-Validated Skincare Brand With Scalable Economics",
+    coverImage: "/assets/deals/card51.jpg",
+    description:
+      "Validated Product, Repeatable Acquisition, and Strong Market Demand. $1.6M+ Revenue. $200K+ Profit. Consistent Performance With Clear Upside.",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$1,608,796", icon: "revenue" },
+      { label: "TTM Profit", value: "$202,280", icon: "profit" },
+      { label: "Monthly Profit", value: "$16,856", icon: "monthly" },
+      { label: "Business Age", value: "1+ Year", icon: "age" },
+      { label: "Asking Price", value: "$285,000", icon: "asking" },
+      { label: "Profit Multiple", value: "1.4x", icon: "multiple" },
+    ],
+    askingPrice: 285000,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/51",
+    businessOverview: {
+      content:
+        "This is a direct-to-consumer skincare brand built around a single clear promise: delivering visible results without unnecessary complexity. The business focuses on high-demand anti-aging solutions, positioned to appeal to a broad audience seeking simple, effective alternatives to traditional multi-step routines. Over the past year, the brand has demonstrated consistent performance, supported by strong unit economics and a lean operating model. Revenue has scaled through paid acquisition while maintaining healthy margins, with minimal operational overhead due to a streamlined fulfillment setup. The business is structured to remain efficient while supporting continued growth.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The brand was created in response to a clear gap between what customers want and what most skincare products deliver. Many consumers are overwhelmed by overly complicated routines that require time, consistency, and multiple products to see results. At the same time, there is strong demand for solutions that are both effective and easy to integrate into everyday life. This insight shaped the direction of the business. Rather than competing on breadth, the focus was on clarity—offering a product that solves a specific problem in a straightforward way. By aligning product design, messaging, and marketing around this simplicity, the brand was able to resonate quickly with its target audience and build traction early.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "The business operates on a direct-response model, with paid media driving the majority of customer acquisition. Campaigns are structured around continuous creative testing, allowing the brand to identify high-performing angles and scale them efficiently. This approach enables consistent revenue generation without relying on seasonal spikes or one-off trends. On the backend, the model is designed to maximize value per customer through strong product positioning and upsell opportunities. While acquisition is the primary driver, there is additional upside through retention channels such as email and repeat purchasing behavior, which remain under-optimized and present clear growth potential.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell is based on prioritization rather than performance. The business is stable, profitable, and operating efficiently, but scaling it further requires a higher level of focus and execution than can currently be allocated. Rather than maintaining it at its current level, the intention is to transition ownership to someone positioned to fully capitalize on its potential. With proven demand, established systems, and clear expansion opportunities, the business is well-suited for an operator looking to step into a functioning asset and drive the next phase of growth.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Performance-Led Acquisition System",
+        intro: "Customer acquisition is driven by a disciplined, data-first testing framework rather than guesswork or trend dependency. The business is built around identifying and scaling winning creatives quickly, allowing for consistent performance even as market conditions shift. At its core, the system focuses on:",
+        bullets: [
+          "Continuous creative iteration and testing cycles",
+          "Multiple positioning angles per core offer",
+          "Fast capital allocation into proven performers",
+          "Immediate removal of underperforming campaigns",
+        ],
+        quote:
+          "This approach creates a repeatable acquisition engine where growth is driven by process, not single-product volatility. As a result, the business has been able to maintain stable performance while still unlocking new scaling opportunities through creative expansion.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Lean, Scalable, Operator-Friendly Infrastructure",
+        intro: "The operational side of the business is intentionally lightweight, designed to support scale without introducing complexity. A dedicated third-party partner manages sourcing, order processing, and global fulfillment, allowing the business to operate without internal logistics overhead. The order flow is fully streamlined:",
+        bullets: [
+          "Orders are captured and automatically routed to the fulfillment partner",
+          "Products are prepared, packed, and dispatched directly to customers",
+          "Tracking and delivery updates are handled within the system",
+        ],
+        quote:
+          "This structure keeps working capital requirements low while maintaining flexibility to scale volume quickly. It also provides a clear pathway for optimization—whether through faster shipping solutions or transitioning to localized fulfillment as the business grows.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Apr 2025", revenue: "$195,696", expenses: "$194,170", netProfit: "$1,526" },
+      { month: "May 2025", revenue: "$133,345", expenses: "$136,475", netProfit: "-$3,130" },
+      { month: "Jun 2025", revenue: "$97,792", expenses: "$89,186", netProfit: "$8,606" },
+      { month: "Jul 2025", revenue: "$156,555", expenses: "$141,097", netProfit: "$15,458" },
+      { month: "Aug 2025", revenue: "$143,919", expenses: "$110,722", netProfit: "$33,197" },
+      { month: "Sep 2025", revenue: "$135,635", expenses: "$106,378", netProfit: "$29,257" },
+      { month: "Oct 2025", revenue: "$137,261", expenses: "$116,620", netProfit: "$20,641" },
+      { month: "Nov 2025", revenue: "$131,966", expenses: "$105,400", netProfit: "$26,566" },
+      { month: "Dec 2025", revenue: "$140,099", expenses: "$115,642", netProfit: "$24,457" },
+      { month: "Jan 2026", revenue: "$129,922", expenses: "$114,870", netProfit: "$15,052" },
+      { month: "Feb 2026", revenue: "$106,556", expenses: "$84,654", netProfit: "$21,902" },
+      { month: "Mar 2026", revenue: "$100,050", expenses: "$91,302", netProfit: "$8,748" },
+    ],
+    downloadfile: "/assets/deals/51PL-Mar-Los.xlsx",
+    heroTitle: "A Market-Validated Skincare Brand With Scalable Economics",
+    heroSubtitle: "Validated Product, Repeatable Acquisition, and Strong Market Demand",
+  },
+ {
+    id: "50",
+    platform: "Shopify",
+    niche: "Health & Beauty",
+    title: "A High-Demand Beauty Product With Proven Demand",
+    coverImage: "/assets/deals/card50.jpg",
+    description:
+      "Simple, High-Converting Product Backed by Repeatable Paid Acquisition. $896K Revenue. $89K Profit. Lean Model With Clear Scaling Opportunities.",
+    verified: true,
+    metrics: [
+      { label: "TTM Revenue", value: "$896,833", icon: "revenue" },
+      { label: "TTM Profit", value: "$89,915", icon: "profit" },
+      { label: "Monthly Profit", value: "$7,492", icon: "monthly" },
+      { label: "Business Age", value: "1+ Year", icon: "age" },
+      { label: "Asking Price", value: "$30,000", icon: "asking" },
+      { label: "Profit Multiple", value: "0.3x", icon: "multiple" },
+    ],
+    askingPrice: 30000,
+    speakHref: "#book-a-call",
+    viewHref: "/deals/50",
+    businessOverview: {
+      content:
+        "This is a direct-to-consumer beauty business built around a focused, high-demand product designed to deliver visible results without unnecessary complexity. Positioned within the broader self-care market, it targets a wide audience looking for simple, non-invasive solutions that can be easily integrated into daily routines. Over the past 12 months, the business has generated consistent revenue while maintaining a lean operational structure. Growth has been driven through paid acquisition and strong product-market alignment, allowing for scale without operational friction. With automated fulfillment and minimal overhead, the business is efficient by design and well-positioned for further expansion.",
+      hasMore: true,
+    },
+    whyBuilt: {
+      content:
+        "The business was created based on a clear consumer insight: most people want effective results, but are discouraged by expensive treatments or complicated routines that require time and consistency. Instead of competing with complexity, the product was designed around ease and practicality—something customers can realistically use and maintain. By removing friction and aligning with everyday behavior, the offering quickly resonated with a broad audience. This simplicity became the core advantage. A clear problem, a straightforward solution, and messaging that directly connects with the end user—allowing the business to validate demand early and scale through focused execution.",
+      hasMore: false,
+    },
+    revenueModel: {
+      content:
+        "Revenue is driven primarily through paid social advertising, using a structured, creative-led approach to customer acquisition. Campaigns are built around testing multiple angles, hooks, and formats, then scaling the highest-performing creatives. The model is based on iteration rather than reliance on a single winning asset. New creatives are continuously introduced, performance is tracked closely, and budget is allocated dynamically. This creates a more predictable and controllable growth engine. Additional upside exists through backend improvements. Opportunities such as funnel optimization, upsells, and retention channels (email/SMS) are not fully leveraged, providing clear pathways to increase both conversion rates and overall profitability.",
+      hasMore: true,
+    },
+    whySelling: {
+      content:
+        "The decision to sell is driven by focus rather than necessity. The business continues to perform consistently, with a validated product and a functioning acquisition system already in place. However, unlocking the next stage of growth requires more dedicated attention across marketing, creative scaling, and expansion initiatives. With time and resources currently allocated elsewhere, it makes more sense to transition ownership. This creates an opportunity for a new operator to step into an established, revenue-generating business with strong fundamentals and clear, actionable growth levers.",
+      hasMore: true,
+    },
+    howOperatesColumns: {
+      marketingEngine: {
+        title: "Marketing Engine",
+        subtitle: "Performance-Led Creative System Built for Scalable Growth",
+        intro: "Customer acquisition is driven by a disciplined, data-first approach to creative testing and iteration. Rather than relying on single winning ads, the system is designed to consistently produce, validate, and scale new concepts across multiple angles and audience segments. At its core, the process focuses on:",
+        bullets: [
+          "Continuous introduction of new creatives and hooks",
+          "Testing variations to identify high-converting messaging",
+          "Rapid budget allocation toward proven performers",
+          "Immediate optimization or removal of underperforming assets",
+        ],
+        quote:
+          "This structured approach creates a repeatable acquisition engine that can be scaled with confidence. As creative volume increases, so does the ability to unlock new audiences and extend campaign longevity—reducing volatility and enabling more predictable revenue growth.",
+      },
+      fulfilmentSupplyChain: {
+        title: "Fulfilment & Supply Chain",
+        subtitle: "Lean, Reliable Infrastructure Designed for Scale",
+        intro: "The operational backbone is built around a trusted network of fulfillment partners, enabling a streamlined, hands-off order process from purchase through delivery. Orders are automatically routed, processed, and shipped without manual intervention, allowing the business to operate efficiently at scale. The current setup prioritizes:",
+        bullets: [
+          "Consistent product quality through established supplier relationships",
+          "Reliable processing and shipping timelines",
+          "Low operational overhead with minimal day-to-day management",
+        ],
+        quote:
+          "Importantly, the infrastructure is designed to evolve alongside growth. As volume increases, there is clear optionality to transition into faster shipping methods or localized fulfillment solutions, further improving customer experience and margins. Overall, the supply chain is stable, flexible, and built to support higher throughput without requiring operational reinvention—making it highly transferable and immediately scalable for a new owner.",
+      },
+    },
+    keyFinancialMetrics: [
+      { month: "Apr 2025", revenue: "$49,501", expenses: "$44,854", netProfit: "$4,647" },
+      { month: "May 2025", revenue: "$79,305", expenses: "$71,841", netProfit: "$7,464" },
+      { month: "Jun 2025", revenue: "$74,215", expenses: "$65,107", netProfit: "$9,108" },
+      { month: "Jul 2025", revenue: "$100,152", expenses: "$90,445", netProfit: "$9,707" },
+      { month: "Aug 2025", revenue: "$119,115", expenses: "$103,882", netProfit: "$15,233" },
+      { month: "Sep 2025", revenue: "$96,835", expenses: "$89,880", netProfit: "$6,955" },
+      { month: "Oct 2025", revenue: "$107,360", expenses: "$99,555", netProfit: "$7,805" },
+      { month: "Nov 2025", revenue: "$89,857", expenses: "$76,789", netProfit: "$13,068" },
+      { month: "Dec 2025", revenue: "$82,388", expenses: "$74,802", netProfit: "$7,586" },
+      { month: "Jan 2026", revenue: "$76,215", expenses: "$70,356", netProfit: "$5,859" },
+      { month: "Feb 2026", revenue: "$20,418", expenses: "$19,085", netProfit: "$1,333" },
+      { month: "Mar 2026", revenue: "$1,472", expenses: "$322", netProfit: "$1,150" },
+    ],
+    downloadfile: "/assets/deals/50PL-Mar-EB.xlsx",
+    heroTitle: "A High-Demand Beauty Product With Proven Demand",
+    heroSubtitle: "Simple, High-Converting Product Backed by Repeatable Paid Acquisition",
+  },
+ {
     id: "49",
     platform: "Shopify",
     niche: "Health & Beauty",
@@ -405,7 +658,6 @@ export const mockDeals: Deal[] = [
     heroTitle: "A Fast-Validating Fashion Brand Built on Timeless Demand",
     heroSubtitle: "Built on Proven Creative Performance and Scalable Unit Economics",
   },
- 
   {
     id: "7",
     recentlySold: true,
