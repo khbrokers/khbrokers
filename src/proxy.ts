@@ -10,6 +10,20 @@ function getMainDomainUrl(hostname: string, protocol: string) {
   return `${protocol}//${domain}`;
 }
 
+/** Check if a JWT token is still valid (not expired) without verifying the signature. */
+function isTokenValid(token: string): boolean {
+  try {
+    const parts = token.split(".");
+    if (parts.length !== 3) return false;
+    const payload = JSON.parse(atob(parts[1]));
+    if (!payload.exp) return false;
+    // Token is valid if expiry is in the future (with 30s buffer)
+    return payload.exp * 1000 > Date.now() + 30_000;
+  } catch {
+    return false;
+  }
+}
+
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const hostname = req.headers.get("host") || "";
@@ -54,7 +68,7 @@ export function proxy(req: NextRequest) {
 
   const accessToken = req.cookies.get("access_token")?.value;
   const refreshToken = req.cookies.get("refresh_token")?.value;
-  const isLoggedIn = !!(accessToken || refreshToken);
+  const isLoggedIn = !!(accessToken && isTokenValid(accessToken));
 
   // Redirect logged-in users away from auth pages
   if (isLoggedIn && AUTH_PATHS.includes(pathname)) {
