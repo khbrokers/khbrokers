@@ -11,14 +11,16 @@ export function ResetPasswordForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [emailSent, setEmailSent] = useState(false);
-  const [signInHref, setSignInHref] = useState("/signin");
+  const [redirectTo, setRedirectTo] = useState<string | null>(null);
 
   useEffect(() => {
     const stored = sessionStorage.getItem("postAuthRedirect");
-    if (stored && stored !== "/") {
-      setSignInHref(`/signin?redirect=${encodeURIComponent(stored)}`);
-    }
+    if (stored && stored !== "/") setRedirectTo(stored);
   }, []);
+
+  const signInHref = redirectTo
+    ? `/signin?redirect=${encodeURIComponent(redirectTo)}`
+    : "/signin";
 
   const inputClass =
     "w-full rounded-2xl border-0 bg-zinc-100 px-4 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:px-5 sm:py-4";
@@ -33,7 +35,7 @@ export function ResetPasswordForm() {
       const res = await fetch("/api/auth/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, redirect: redirectTo }),
       });
 
       const data = await res.json();

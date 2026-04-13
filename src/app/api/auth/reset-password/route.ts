@@ -3,7 +3,7 @@ import { getSupabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const { email, redirect } = await req.json();
 
     if (!email) {
       return NextResponse.json(
@@ -14,23 +14,15 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-    console.log("Reset password attempt for:", email);
-    console.log("Redirect URL:", `${origin}/reset-password/update`);
-    console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+    const updateUrl = redirect && typeof redirect === "string" && redirect.startsWith("/") && redirect !== "/"
+      ? `${origin}/reset-password/update?redirect=${encodeURIComponent(redirect)}`
+      : `${origin}/reset-password/update`;
 
     const admin = getSupabaseAdmin();
 
-    // First check if user exists
-    const { data: userData, error: listError } = await admin.auth.admin.listUsers();
-    const user = userData?.users?.find(u => u.email === email);
-    console.log("User found:", !!user, user?.id, user?.email_confirmed_at);
-
-    const { data, error } = await admin.auth.resetPasswordForEmail(email, {
-      redirectTo: `${origin}/reset-password/update`,
+    const { error } = await admin.auth.resetPasswordForEmail(email, {
+      redirectTo: updateUrl,
     });
-
-    console.log("Reset result - data:", JSON.stringify(data));
-    console.log("Reset result - error:", error ? JSON.stringify(error) : "none");
 
     if (error) {
       return NextResponse.json(

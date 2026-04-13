@@ -17,8 +17,12 @@ export function UpdatePasswordForm() {
   const [postAuthRedirect, setPostAuthRedirect] = useState<string | null>(null);
 
   useEffect(() => {
+    const fromQuery = new URLSearchParams(window.location.search).get("redirect");
     const stored = sessionStorage.getItem("postAuthRedirect");
-    if (stored && stored !== "/") setPostAuthRedirect(stored);
+    const redirect = fromQuery || stored;
+    if (redirect && redirect !== "/" && redirect.startsWith("/")) {
+      setPostAuthRedirect(redirect);
+    }
   }, []);
 
   const signInHref = postAuthRedirect
