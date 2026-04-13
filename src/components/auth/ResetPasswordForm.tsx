@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PURPLE = "#8C52FF";
 
@@ -11,6 +11,14 @@ export function ResetPasswordForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [emailSent, setEmailSent] = useState(false);
+  const [signInHref, setSignInHref] = useState("/signin");
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem("postAuthRedirect");
+    if (stored && stored !== "/") {
+      setSignInHref(`/signin?redirect=${encodeURIComponent(stored)}`);
+    }
+  }, []);
 
   const inputClass =
     "w-full rounded-2xl border-0 bg-zinc-100 px-4 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:px-5 sm:py-4";
@@ -143,7 +151,7 @@ export function ResetPasswordForm() {
         <p className="mt-5 text-center text-[13px] sm:mt-6 sm:text-[14px] text-zinc-500">
           Remember your password?{" "}
           <Link
-            href="/signin"
+            href={signInHref}
             className="cursor-pointer font-medium underline"
             style={{ color: PURPLE }}
           >

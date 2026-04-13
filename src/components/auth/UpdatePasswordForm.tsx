@@ -14,6 +14,16 @@ export function UpdatePasswordForm() {
   const [success, setSuccess] = useState(false);
   const [tokens, setTokens] = useState<{ access_token: string; refresh_token: string } | null>(null);
   const [expired, setExpired] = useState(false);
+  const [postAuthRedirect, setPostAuthRedirect] = useState<string | null>(null);
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem("postAuthRedirect");
+    if (stored && stored !== "/") setPostAuthRedirect(stored);
+  }, []);
+
+  const signInHref = postAuthRedirect
+    ? `/signin?redirect=${encodeURIComponent(postAuthRedirect)}`
+    : "/signin";
 
   const inputClass =
     "w-full rounded-2xl border-0 bg-zinc-100 px-4 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#8C52FF]/30 sm:px-5 sm:py-4";
@@ -124,7 +134,8 @@ export function UpdatePasswordForm() {
               </p>
             </div>
             <Link
-              href="/signin"
+              href={signInHref}
+              onClick={() => sessionStorage.removeItem("postAuthRedirect")}
               className="mt-5 block w-full cursor-pointer rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-3 text-center text-[14px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] sm:px-5 sm:py-2.5 sm:text-[16px] md:px-7.5 md:py-5 md:text-[18px]"
             >
               Sign In
@@ -194,7 +205,7 @@ export function UpdatePasswordForm() {
         <p className="mt-5 text-center text-[13px] sm:mt-6 sm:text-[14px] text-zinc-500">
           Remember your password?{" "}
           <Link
-            href="/signin"
+            href={signInHref}
             className="cursor-pointer font-medium underline"
             style={{ color: PURPLE }}
           >

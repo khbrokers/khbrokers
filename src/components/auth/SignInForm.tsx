@@ -103,6 +103,11 @@ export function SignInForm() {
           <div className="flex justify-end">
             <Link
               href="/reset-password"
+              onClick={() => {
+                if (redirectTo && redirectTo !== "/") {
+                  sessionStorage.setItem("postAuthRedirect", redirectTo);
+                }
+              }}
               className="text-[13px] font-medium sm:text-[14px]"
               style={{ color: PURPLE }}
             >
