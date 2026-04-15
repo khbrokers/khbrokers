@@ -180,7 +180,7 @@ export const mockDeals: Deal[] = [
       { label: "Asking Price", value: "$35,000", icon: "asking" },
       { label: "Profit Multiple", value: "1.5x", icon: "multiple" },
     ],
-    askingPrice: 30000,
+    askingPrice: 35000,
     speakHref: "#book-a-call",
     viewHref: "/deals/54",
     businessOverview: {
