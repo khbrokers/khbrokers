@@ -26,9 +26,13 @@
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+<<<<<<< HEAD
   },
   "description": "Enterprise-grade Next.js (App Router + TypeScript) brokerage platform. Config-driven, SEO-ready, future-proof for auth/API/CMS.",
   "main": "index.js",
   "author": "",
   "license": "ISC"
+=======
+  }
+>>>>>>> 5f9dac6ffb2b9d6836915b0cc451aa47d06dac0a
 }
