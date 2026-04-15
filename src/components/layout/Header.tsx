@@ -1,0 +1,466 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { getStoredLegalTheme } from "@/components/layout/ThemeTracker";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { navConfig, ctaConfig } from "@/config/nav.config";
+import {
+  marketplaceNavConfig,
+  marketplaceCtaConfig,
+} from "@/config/marketplace.config";
+import { siteConfig } from "@/config/site.config";
+import { Container } from "@/components/ui/Container";
+import { cn } from "@/lib/utils";
+
+const marketplacePaths = ["/", "/buyers", "/sellers", "/value-my-store", "/deals", "/invest", "/invest-success", "/terms", "/privacy", "/launchvector"];
+
+interface AuthUser {
+  id: string;
+  email: string;
+  name: string | null;
+}
+
+function useAuth() {
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => setUser(data?.user ?? null))
+      .catch(() => setUser(null))
+      .finally(() => setLoading(false));
+  }, []);
+
+  return { user, loading };
+}
+
+function UserMenu({ user, themeKey }: { user: AuthUser; themeKey: "buyers" | "sellers" }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSignOut = useCallback(async () => {
+    await fetch("/api/auth/signout", { method: "POST" });
+    setOpen(false);
+    router.refresh();
+    window.location.href = "/";
+  }, [router]);
+
+  const initial = (user.name?.[0] || user.email[0]).toUpperCase();
+  const bgColor = themeKey === "sellers" ? "#00965F" : "#a36af6";
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="flex items-center gap-2 rounded-full px-1.5 py-1 transition-colors hover:bg-zinc-100 md:px-2.5 md:py-1.5"
+      >
+        <span
+          className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold text-white md:h-8 md:w-8 md:text-sm"
+          style={{ backgroundColor: bgColor }}
+        >
+          {initial}
+        </span>
+        <span className="hidden text-sm font-medium text-zinc-900 md:block">
+          {user.name || "Account"}
+        </span>
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-full z-50 mt-2 min-w-[180px] rounded-xl border border-zinc-200/80 bg-white p-1.5 shadow-xl">
+          <div className="border-b border-zinc-100 px-3 py-2.5">
+            <p className="text-sm font-medium text-zinc-900 truncate">{user.name || "User"}</p>
+            <p className="text-xs text-zinc-500 truncate">{user.email}</p>
+          </div>
+          <button
+            type="button"
+            onClick={handleSignOut}
+            className="mt-1 w-full rounded-lg px-3 py-2 text-left text-sm text-red-600 transition-colors hover:bg-red-50"
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function Header() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const isMarketplace = marketplacePaths.some((p) => p === "/" ? pathname === "/" : pathname.startsWith(p));
+
+  if (isMarketplace) {
+    const activePath = pathname === "/" || pathname.startsWith("/buyers")
+      ? ("/buyers" as const)
+      : pathname.startsWith("/sellers")
+      ? ("/sellers" as const)
+      : pathname.startsWith("/value-my-store")
+        ? ("/value-my-store" as const)
+        : pathname.startsWith("/deals")
+          ? ("/deals" as const)
+          : pathname.startsWith("/invest-success")
+            ? ("/invest" as const)
+            : pathname.startsWith("/invest")
+              ? ("/invest" as const)
+            : pathname.startsWith("/terms")
+              ? ("/terms" as const)
+              : pathname.startsWith("/privacy")
+                ? ("/privacy" as const)
+                : pathname.startsWith("/launchvector")
+                  ? ("/buyers" as const)
+                  : ("/buyers" as const);
+    const paramTheme = searchParams.get("theme");
+    const legalTheme =
+      activePath === "/terms" || activePath === "/privacy"
+        ? paramTheme === "sellers"
+          ? "sellers"
+          : paramTheme === "buyers"
+            ? "buyers"
+            : typeof window !== "undefined"
+              ? getStoredLegalTheme()
+              : "buyers"
+        : null;
+    return (
+      <MarketplaceHeaderContent
+        activePath={activePath}
+        legalTheme={legalTheme}
+      />
+    );
+  }
+
+  return <DefaultHeaderContent />;
+}
+
+function DefaultHeaderContent() {
+  return (
+    <header className="relative fixed top-0 left-0 right-0 z-50 animate-slide-in-from-top bg-white/80 backdrop-blur-[6px]">
+      <Container>
+        <nav className="flex h-12 items-center justify-between md:h-16">
+          <Link href="/" className="flex items-center shrink-0">
+            <Image
+              src="/assets/hero/logo.png"
+              alt={siteConfig.name}
+              width={140}
+              height={40}
+              className="h-7 w-auto md:h-10"
+              priority
+            />
+          </Link>
+          <div className="flex items-center gap-3 md:gap-6">
+            {navConfig.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-xs font-medium text-foreground/70 transition-colors hover:text-foreground md:text-sm"
+                {...(item.external && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href={ctaConfig.href}
+              className="inline-flex h-8 items-center justify-center rounded-full bg-foreground px-3 text-xs font-medium text-background transition-colors hover:bg-foreground/90 md:h-9 md:px-4 md:text-sm"
+            >
+              {ctaConfig.label}
+            </Link>
+          </div>
+        </nav>
+      </Container>
+    </header>
+  );
+}
+
+function HamburgerIcon({ open }: { open: boolean }) {
+  return (
+    <div className="flex h-4 w-4 flex-col justify-center gap-0.5" aria-hidden>
+      <span
+        className={cn(
+          "h-0.5 w-full rounded-full bg-zinc-900 transition-all duration-200",
+          open && "translate-y-1 rotate-45"
+        )}
+      />
+      <span
+        className={cn(
+          "h-0.5 w-full rounded-full bg-zinc-900 transition-all duration-200",
+          open && "opacity-0"
+        )}
+      />
+      <span
+        className={cn(
+          "h-0.5 w-full rounded-full bg-zinc-900 transition-all duration-200",
+          open && "-translate-y-1 -rotate-45"
+        )}
+      />
+    </div>
+  );
+}
+
+const APPLY_BUTTON_BASE =
+  "rounded-full border-2 font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors";
+
+const APPLY_BUTTON_SIZES_HERO = "px-3 py-2 text-xs md:px-5 md:py-2.5 md:text-sm";
+
+const MARKETPLACE_THEMES = {
+  sellers: {
+    logo: "/assets/brand_assets/logo_sellers.png",
+    activeBg: "rgba(0, 150, 95, 0.15)",
+    activeText: "#007a4d",
+    applyButton: {
+      desktopClassName: cn(
+        "hidden md:block",
+        APPLY_BUTTON_BASE,
+        APPLY_BUTTON_SIZES_HERO,
+        "hover:opacity-90"
+      ),
+      mobileClassName: cn(
+        "flex-1 min-w-0 text-center",
+        APPLY_BUTTON_BASE,
+        APPLY_BUTTON_SIZES_HERO,
+        "hover:opacity-90"
+      ),
+      style: {
+        borderColor: "00965F/40",
+        backgroundColor: "#00965F",
+      },
+    },
+  },
+  buyers: {
+    logo: "/assets/brand_assets/logo.png",
+    activeBg: "rgba(163, 106, 246, 0.15)",
+    activeText: "#6824BF",
+    applyButton: {
+      desktopClassName: cn(
+        "hidden md:block",
+        APPLY_BUTTON_BASE,
+        "px-3 py-2 text-xs md:px-5 md:py-2.5 md:text-sm",
+        "hover:!bg-[#6d28d9]"
+      ),
+      mobileClassName: cn(
+        "flex-1 min-w-0 text-center",
+        APPLY_BUTTON_BASE,
+        APPLY_BUTTON_SIZES_HERO,
+        "hover:!bg-[#6d28d9]"
+      ),
+      style: {
+        borderColor: "rgba(247, 239, 255, 0.5)",
+        backgroundColor: "#a36af6",
+      },
+    },
+  },
+} as const;
+
+function MarketplaceHeaderContent({
+  activePath,
+  legalTheme,
+}: {
+  activePath: "/buyers" | "/sellers" | "/value-my-store" | "/deals" | "/invest" | "/terms" | "/privacy";
+  legalTheme?: "buyers" | "sellers" | null;
+}) {
+  const pathname = usePathname();
+  const { user, loading } = useAuth();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Detect if running on a subdomain (e.g. invest.khbrokers.com)
+  const [isSubdomain, setIsSubdomain] = useState(false);
+  const [mainDomain, setMainDomain] = useState("");
+  useEffect(() => {
+    const host = window.location.hostname;
+    // Check if on a subdomain like invest.khbrokers.com (not www)
+    const parts = host.split(".");
+    const isSub = parts.length >= 3 && parts[0] !== "www";
+    setIsSubdomain(isSub);
+    if (isSub) {
+      // Build main domain URL: e.g. https://khbrokers.com
+      const domain = parts.slice(1).join(".");
+      setMainDomain(`${window.location.protocol}//${domain}`);
+    }
+  }, []);
+
+  // When on subdomain, prefix links with main domain so they navigate back
+  const resolveHref = (href: string) => isSubdomain ? `${mainDomain}${href}` : href;
+
+  const redirectAfterAuth = pathname;
+  const signInHref = resolveHref(`${marketplaceCtaConfig.signInHref}?redirect=${encodeURIComponent(redirectAfterAuth)}`);
+  const applyHref = resolveHref(`${marketplaceCtaConfig.applyHref}?redirect=${encodeURIComponent(redirectAfterAuth)}`);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const themeKey =
+    legalTheme === "sellers"
+      ? "sellers"
+      : legalTheme === "buyers"
+        ? "buyers"
+        : activePath === "/value-my-store"
+          ? "sellers"
+          : activePath === "/deals" || activePath === "/invest" || activePath === "/terms" || activePath === "/privacy"
+            ? "buyers"
+            : activePath.slice(1);
+  const theme = MARKETPLACE_THEMES[themeKey as keyof typeof MARKETPLACE_THEMES];
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    checkDesktop();
+    handleScroll();
+    window.addEventListener("resize", checkDesktop);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("resize", checkDesktop);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  return (
+    <header
+      className="relative !fixed top-5 left-0 right-0 z-50 animate-slide-in-from-top z-[10000]"
+      style={{ background: "transparent" }}
+    >
+      <div
+        className={cn(
+          "relative mx-auto flex h-12 rounded-full items-center justify-between px-2 sm:px-3 md:h-16 md:px-4 lg:px-4 bg-white/70 backdrop-blur-[6px]",
+          "transition-[width] duration-300 ease-out"
+        )}
+        style={{ width: isDesktop && isScrolled ? "65%" : "80%" }}
+      >
+        <a href={resolveHref("/")} className="flex shrink-0 items-center">
+          <div className="relative h-7 w-[98px] md:h-10 md:w-[140px]">
+            <Image
+              src={theme.logo}
+              alt={siteConfig.name}
+              fill
+              className="object-contain object-left"
+              sizes="(max-width: 768px) 98px, 140px"
+              priority
+              unoptimized
+/>
+          </div>
+        </a>
+        <nav className="hidden items-center gap-8 md:flex">
+          {marketplaceNavConfig.map((item) => (
+            <a
+              key={item.href}
+              href={resolveHref(item.href)}
+              className={cn(
+                "text-[14px] md:text-[16px] font-medium transition-colors",
+                item.href === activePath
+                  ? "text-zinc-900 font-semibold"
+                  : "text-zinc-900/50 hover:text-zinc-900"
+              )}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((o) => !o)}
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-zinc-900 transition-colors hover:bg-zinc-200/80 md:hidden"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            <HamburgerIcon open={mobileMenuOpen} />
+          </button>
+          {!loading && user ? (
+            <div className="hidden md:block">
+              <UserMenu user={user} themeKey={themeKey as "buyers" | "sellers"} />
+            </div>
+          ) : (
+            <>
+              <a
+                href={signInHref}
+                className="hidden text-xs font-medium text-zinc-900 transition-colors hover:text-zinc-900/50 md:block md:text-sm"
+              >
+                {marketplaceCtaConfig.signInLabel}
+              </a>
+              <a
+                href={applyHref}
+                className={theme.applyButton.desktopClassName}
+                style={theme.applyButton.style}
+              >
+                {marketplaceCtaConfig.applyLabel}
+              </a>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile menu panel */}
+      <div
+        className={cn(
+          "fixed left-4 right-4 top-20 z-40 flex flex-col gap-1 rounded-2xl border border-zinc-200/80 bg-white/80 backdrop-blur-[6px] p-3 shadow-xl transition-all duration-200 md:hidden",
+          mobileMenuOpen
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-2 opacity-0"
+        )}
+      >
+        {marketplaceNavConfig.map((item) => (
+          <a
+            key={item.href}
+            href={resolveHref(item.href)}
+            onClick={() => setMobileMenuOpen(false)}
+            className={cn(
+              "rounded-xl px-4 py-3 text-[14px] font-medium transition-colors",
+              item.href !== activePath && "text-zinc-900 hover:bg-zinc-200/60"
+            )}
+            style={
+              item.href === activePath
+                ? { backgroundColor: theme.activeBg, color: theme.activeText }
+                : undefined
+            }
+          >
+            {item.label}
+          </a>
+        ))}
+        <div className="mt-2 flex flex-row flex-wrap gap-2 border-t border-zinc-200/60 pt-3">
+          {!loading && user ? (
+            <UserMenu user={user} themeKey={themeKey as "buyers" | "sellers"} />
+          ) : (
+            <>
+              <a
+                href={signInHref}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex-1 min-w-0 rounded-xl px-4 py-3 text-center text-[14px] font-medium text-zinc-900 transition-colors hover:bg-zinc-200/60"
+              >
+                {marketplaceCtaConfig.signInLabel}
+              </a>
+
+              <a
+                href={applyHref}
+                onClick={() => setMobileMenuOpen(false)}
+                className={theme.applyButton.mobileClassName}
+                style={theme.applyButton.style}
+              >
+                {marketplaceCtaConfig.applyLabel}
+              </a>
+            </>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+}
+

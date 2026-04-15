@@ -1,0 +1,153 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { footerConfig } from "@/config/footer.config";
+import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { AnimateOnView } from "@/components/ui/AnimateOnView";
+
+const SELLERS_PRIMARY = "#00965F";
+
+export function Footer({ theme = "buyers" }: { theme?: "buyers" | "sellers" }) {
+  const {
+    branding,
+    brandingSellers,
+    columns,
+    columnsSellers,
+    social,
+    socialSellers,
+    copyright,
+    legal,
+  } = footerConfig;
+
+  const isSellers = theme === "sellers";
+  const brandingData = isSellers ? brandingSellers : branding;
+  const columnsData = isSellers ? columnsSellers : columns;
+  const socialData = isSellers ? socialSellers : social;
+
+  return (
+    <footer
+      className="relative overflow-hidden pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-32 md:pb-16"
+      style={{ backgroundColor: isSellers ? "#f0fdf4" : "white" }}
+    >
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Main content - columns */}
+        <AnimateOnView
+          animation="stagger-slower"
+          rootMargin="0px 0px -80px 0px"
+          threshold={0.05}
+        >
+        <div className="relative z-10 grid gap-8 sm:grid-cols-2 sm:gap-10 md:grid-cols-[1.2fr_repeat(3,1fr)_auto] md:gap-8">
+          {/* Column 1 - Branding */}
+          <div className="stagger-child max-w-xs">
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src={brandingData.logo}
+                alt={brandingData.name}
+                width={140}
+                height={40}
+                className="h-10 w-auto"
+              />
+            </Link>
+            <p className="mt-4 text-sm font-normal leading-relaxed text-zinc-900/60 md:text-[18px]">
+              {branding.description}
+            </p>
+          </div>
+
+          {/* Columns 2-4 - Navigation */}
+          {columnsData.map((col) => (
+            <div key={col.heading} className="stagger-child">
+              <h3 className="text-[16px] md:text-[18px] font-semibold text-zinc-900">
+                {col.heading}
+              </h3>
+              <ul className="mt-3 space-y-2">
+                {col.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-[16px] md:text-[18px] text-zinc-900/60 transition-colors hover:text-zinc-900"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Column 5 - Social */}
+          <div className="stagger-child flex items-start gap-3">
+            {socialData.map((item) => (
+              <Link
+                key={item.icon}
+                href={item.href}
+                aria-label={item.label}
+                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[10px] shadow-sm transition-opacity hover:opacity-90"
+                style={{
+                  backgroundColor: isSellers ? `${SELLERS_PRIMARY}22` : "rgba(163, 106, 246, 0.22)",
+                  color: isSellers ? SELLERS_PRIMARY : "#a36af6",
+                }}
+              >
+                {item.icon === "x" ? (
+                  <FaXTwitter className="h-4 w-4" />
+                ) : item.icon === "facebook" ? (
+                  <FaFacebookF className="h-4 w-4" />
+                ) : (
+                  <FaYoutube className="h-5 w-5" />
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
+        </AnimateOnView>
+
+        {/* Footer brand watermark - KH BROKERS text - slides up from bottom */}
+        <AnimateOnView
+          animation="fade-up-slow"
+          rootMargin="0px 0px -80px 0px"
+          threshold={0.05}
+        >
+        <div className="relative z-0 mt-16 w-screen sm:mt-20 md:mt-28" style={{ marginLeft: "calc(-50vw + 50%)" }}>
+          <Image
+            src={isSellers ? "/assets/sellers_landing/footer_sellers.png" : "/assets/footer_brand.png"}
+            alt=""
+            width={1200}
+            height={200}
+            className="h-auto w-full object-contain"
+            aria-hidden
+          />
+        </div>
+        </AnimateOnView>
+
+        {/* Bottom bar - copyright and legal */}
+        <AnimateOnView
+          animation="fade-up-slow"
+          rootMargin="0px 0px -60px 0px"
+          threshold={0.05}
+          delayMs={300}
+          className="relative z-10 mt-4 flex flex-col items-center justify-between gap-4 pt-6 text-center sm:flex-row sm:pt-8 sm:text-left md:mt-8"
+        >
+          <p className="text-[16px] md:text-[18px] text-zinc-900/20">{copyright}</p>
+          <nav className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            {legal.map((link) => {
+              const href =
+                link.href === "/terms" || link.href === "/privacy"
+                  ? `${link.href}${isSellers ? "?theme=sellers" : ""}`
+                  : link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={href}
+                  className="text-[16px] md:text-[18px] text-zinc-900/20 transition-colors hover:text-zinc-900/80"
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </AnimateOnView>
+      </div>
+    </footer>
+  );
+}
