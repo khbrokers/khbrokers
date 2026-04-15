@@ -254,7 +254,7 @@ export const mockDeals: Deal[] = [
       { label: "TTM Profit", value: "$89,915", icon: "profit" },
       { label: "Monthly Profit", value: "$7,492", icon: "monthly" },
       { label: "Site Age", value: "1+ Year", icon: "age" },
-      { label: "Asking Price", value: "$30,000", icon: "asking" },
+      { label: "Asking Price", value: "$35,000", icon: "asking" },
       { label: "Profit Multiple", value: "0.3x", icon: "multiple" },
     ],
     askingPrice: 30000,
