@@ -27,10 +27,6 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "description": "Enterprise-grade Next.js (App Router + TypeScript) brokerage platform",
+  "description": "Enterprise-grade Next.js (App Router + TypeScript) brokerage platform. Config-driven, SEO-ready, future-proof for auth/API/CMS.",
   "license": "ISC"
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 23add2b46111cd26610ebea0b93df197d827e5df
