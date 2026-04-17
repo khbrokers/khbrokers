@@ -17,6 +17,7 @@ import {
   FaBriefcase,
   FaChevronDown,
   FaHandshake,
+  FaCheck,
   FaTag,
 } from "react-icons/fa";
 
@@ -24,9 +25,9 @@ const PRIMARY = "#A363F4";
 const VIDEO_PLAYBACK_RATE = 0.5;
 
 const BENEFIT_ICONS: Record<string, React.ReactNode> = {
-  equity: <FaPercent className="h-5 w-5 sm:h-6 sm:w-6" />,
-  price: <FaDollarSign className="h-5 w-5 sm:h-6 sm:w-6" />,
-  growth: <FaChartLine className="h-5 w-5 sm:h-6 sm:w-6" />,
+  equity: <FaCheck className="h-3 w-4 sm:h-4 sm:w-4" />,
+  price: <FaCheck className="h-3 w-4 sm:h-4 sm:w-4" />,
+  growth: <FaCheck className="h-3 w-4 sm:h-4 sm:w-4" />,
 };
 
 const FIELD_ICONS: Record<string, React.ReactNode> = {
@@ -44,7 +45,7 @@ const STATS_ICONS: Record<string, React.ReactNode> = {
 };
 
 const STATS_BLOCK = (
-  <div className="stagger-child mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:mt-10 sm:gap-4 md:mt-12 md:grid-cols-4 md:gap-6">
+  <div className="stagger-child mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-3 sm:mt-10 sm:gap-4 md:mt-12 md:grid-cols-4 md:gap-6">
     {investStatsConfig.map((item) => (
       <div
         key={item.icon}
@@ -185,81 +186,87 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
         threshold={0.15}
         className="relative mx-auto max-w-6xl px-4 pb-12 pt-[100px] sm:px-6 sm:pb-16 sm:pt-24 md:px-8 md:pb-24 md:pt-[150px]"
       >
-        {/* Profit badge */}
-        <div className="stagger-child flex justify-center">
-          <div className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-[#A364F4]/10 bg-[linear-gradient(to_bottom,#d6b6ff_10%,transparent_100%)] px-2 py-1.5 backdrop-blur-sm sm:mb-8 sm:gap-2 sm:px-3 sm:py-2">
-            <FaDollarSign className="h-4 w-4 shrink-0 bg-[#A364F4]/70 p-1 md:p-1 rounded-full text-[#D3CAFD] sm:h-4 sm:w-4 md:w-5 md:h-5" />
-            <span className="text-[10px] font-medium text-zinc-600 sm:text-[12px] md:text-[15px]">
-              {profitBadge}
-            </span>
-          </div>
-        </div>
-
-        {/* Main headline */}
-        <h1 className="stagger-child mx-auto mt-6 max-w-4xl text-center text-[28px] font-medium leading-[1.15] tracking-[-2px] text-zinc-900 sm:mt-8 sm:text-[36px] sm:tracking-[-3px] md:text-[44px] md:leading-[1.12] lg:text-[52px]">
-          {headline.before}
-          <span className="font-serif font-medium italic" style={{ color: PRIMARY }}>
-            {headline.highlight}
-          </span>
-          {headline.after}
-        </h1>
-
-        {/* Three benefits: flex on mobile (icon left, copy right); grid on md+ */}
-        <div className="stagger-child mx-auto mt-10 flex max-w-4xl flex-row flex-wrap justify-center gap-4 sm:mt-12 md:mt-14 md:gap-6">
-          {benefits.map((benefit) => (
-            <div
-              key={benefit.icon}
-              className="flex flex-row items-center gap-3 text-left md:flex-col md:items-center md:text-center"
-            >
-              <div
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg sm:h-10 sm:w-10"
-                style={{
-                  background: "linear-gradient(to bottom, rgba(234, 217, 255, 0.2), rgba(163, 99, 244, 0.2))",
-                  border: "1px solid rgba(163, 99, 244, 0.5)",
-                  color: PRIMARY,
-                }}
-              >
-                {BENEFIT_ICONS[benefit.icon]}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center mt-8 sm:mt-10 md:mt-12">
+          {/* Left Side */}
+            <div className="flex flex-col items-center justify-center text-center sm:items-start sm:text-left">
+              {/* Profit badge */}
+              <div className="mb-3 flex justify-center sm:justify-start">
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-[#A364F4]/10 bg-[linear-gradient(to_bottom,#d6b6ff_10%,transparent_100%)] px-2 py-1.5 backdrop-blur-sm sm:gap-2 sm:px-3 sm:py-2">
+                  <FaDollarSign className="h-4 w-4 shrink-0 bg-[#A364F4]/70 p-1 md:p-1 rounded-full text-[#D3CAFD] sm:h-4 sm:w-4 md:w-5 md:h-5" />
+                  <span className="text-[10px] font-medium text-zinc-600 sm:text-[12px] md:text-[15px]">
+                    {profitBadge}
+                  </span>
+                </div>
               </div>
-              <p className="min-w-0 max-w-[120px] shrink text-[12px] font-ragular leading-snug text-zinc-900/60 sm:max-w-none sm:text-[15px] md:text-[16px]">
-                {benefit.text}
-              </p>
+
+              {/* Main headline */}
+              <h1 className="stagger-child mx-auto mt-6 max-w-4xl text-[28px] font-medium leading-[1.15] tracking-[-2px] text-zinc-900 sm:mt-8 sm:text-[36px] sm:tracking-[-3px] md:text-[px] md:leading-[1.12] lg:text-[52px]">
+                {headline.before}
+                <span className="font-serif font-medium italic" style={{ color: PRIMARY }}>
+                  {headline.highlight}
+                </span>
+                {headline.after}
+              </h1>
+
+              {/* Three benefits: flex on mobile (icon left, copy right); grid on md+ */}
+              <div className="stagger-child mt-10 flex max-w-4xl flex-row sm:flex-col justify-center gap-2 sm:mt-12 md:mt-14 md:gap-4">
+                {benefits.map((benefit) => (
+                 <div
+                    key={benefit.icon}
+                    className="flex w-full flex-row items-center gap-2 sm:gap-3 text-left md:flex-row"
+                    >
+                    <div
+                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg sm:h-7 sm:w-7"
+                      style={{
+                        background: "linear-gradient(to bottom, rgba(234, 217, 255, 0.2), rgba(163, 99, 244, 0.2))",
+                        border: "1px solid rgba(163, 99, 244, 0.5)",
+                        color: PRIMARY,
+                      }}
+                    >
+                      {BENEFIT_ICONS[benefit.icon]}
+                    </div>
+                    <p className="min-w-0 max-w-[120px] shrink text-[12px] font-ragular leading-snug text-zinc-900/60 sm:max-w-none sm:text-[15px] md:text-[16px]">
+                      {benefit.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Social proof */}
+              <div className="stagger-child mt-10 flex flex-col items-center gap-4 sm:mt-12 sm:flex-row sm:gap-5">
+                <div className="flex -space-x-2 sm:-space-x-2.5">
+                  {trustBadgeAvatars.map((src, i) => (
+                    <div
+                      key={src}
+                      className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-white sm:h-10 sm:w-10 md:h-11 md:w-11"
+                    >
+                      <Image
+                        src={src}
+                        alt={`Investor ${i + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="44px"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <p className="text-center text-[15px] text-zinc-700 sm:text-left sm:text-[16px] md:text-[17px]">
+                  {socialProof.text}{" "}
+                  <span className="font-semibold text-zinc-900">
+                    {socialProof.highlight}
+                  </span>
+                  {socialProof.suffix}
+                </p>
+              </div>
             </div>
-          ))}
-        </div>
 
-        {/* Social proof */}
-        <div className="stagger-child mt-10 flex flex-col items-center gap-4 sm:mt-12 sm:flex-row sm:justify-center sm:gap-5">
-          <div className="flex -space-x-2 sm:-space-x-2.5">
-            {trustBadgeAvatars.map((src, i) => (
-              <div
-                key={src}
-                className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-white sm:h-10 sm:w-10 md:h-11 md:w-11"
-              >
-                <Image
-                  src={src}
-                  alt={`Investor ${i + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="44px"
-                />
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-[15px] text-zinc-700 sm:text-left sm:text-[16px] md:text-[17px]">
-            {socialProof.text}{" "}
-            <span className="font-semibold text-zinc-900">
-              {socialProof.highlight}
-            </span>
-            {socialProof.suffix}
-          </p>
-        </div>
-
-        {!statsBelowForm && STATS_BLOCK}
+            {/* Right Side */}
+            <div>
+            {!statsBelowForm && STATS_BLOCK}
 
         {/* Download section - inside hero */}
         <div
-          className="stagger-child mt-6 overflow-hidden rounded-xl sm:mt-10 sm:rounded-2xl md:mt-12 md:rounded-3xl mx-auto max-w-5xl"
+          className="stagger-child overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl mx-auto max-w-5xl"
           style={{
             border: "2px solid transparent",
             background:
@@ -267,9 +274,9 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
             backgroundClip: "padding-box, border-box",
           }}
         >
-          <div className="bg-white flex flex-col gap-6 p-4 sm:gap-8 sm:p-6 md:flex-row md:items-center md:gap-10 md:p-8 lg:gap-12 lg:p-10">
+          <div className="bg-white flex flex-col gap-3 p-4 sm:gap-3 sm:p-6 md:flex-col md:items-center md:gap-3 md:p-8 md:px-5 lg:gap-0 lg:p-10">
             <div className="flex flex-col items-center justify-center text-center md:flex-[0_0_40%] md:items-start md:text-left md:min-w-0">
-              <h2 className="w-[80%] text-[20px] font-medium leading-[1.2] tracking-[-2px] text-zinc-900 sm:w-auto sm:text-[24px] md:text-[32px] lg:text-[36px]">
+              <h2 className="w-[80%] text-[20px] text-center font-medium leading-[1.2] tracking-[-2px] text-zinc-900 sm:w-auto sm:text-[24px] md:text-[24px] lg:text-[36px]">
                 {downloadHeadline.before}
                 <span
                   className="font-serif font-medium italic"
@@ -282,12 +289,12 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
             </div>
             <div className="relative flex flex-col items-center w-full md:flex-[0_0_60%] md:min-w-0">
               <div
-                className="rounded-xl bg-white/90 p-4 shadow-sm backdrop-blur-sm sm:rounded-2xl sm:p-6 md:p-6 lg:p-8 w-full max-w-[420px] md:max-w-none"
+                className="rounded-xl bg-white/90 p-4 shadow-sm backdrop-blur-sm sm:rounded-2xl sm:p-6 md:p-6 md:px-4 lg:p-8 w-full max-w-[420px] md:max-w-none"
                 style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.04)" }}
               >
                 <div className="space-y-3 sm:space-y-4">
                   {form.fields.map((field) => (
-                    <div key={field.name} className="relative flex items-center gap-2 p-1 sm:gap-3 sm:p-2 md:gap-3 md:p-2 border border-[#D3B1FF]/50 rounded-full">
+                    <div key={field.name} className="relative flex items-center gap-2 p-1 sm:gap-3 md:gap-2 sm:p-2 md:gap-3 md:p-2 border border-[#D3B1FF]/50 rounded-full">
                       <div
                         className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors sm:h-10 sm:w-10"
                         style={{
@@ -376,7 +383,7 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
                   type="button"
                   onClick={handleFormSubmit}
                   disabled={!isFormValid || submitting}
-                  className="mt-4 flex w-full items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:cursor-not-allowed disabled:opacity-50 sm:mt-6 sm:px-5 sm:py-2.5 sm:text-[16px] md:px-7 md:py-4 md:text-[18px]"
+                  className="mt-4 flex w-full items-center justify-center rounded-full border-2 border-[#f7efff80] bg-[#a36af6] px-4 py-2.5 text-[13px] font-medium text-white shadow-[inset_0_4px_14px_white] transition-colors hover:bg-[#6d28d9] disabled:cursor-not-allowed disabled:opacity-50 sm:mt-6 sm:px-5 sm:py-2.5 sm:text-[16px] md:px-7 md:py-4 md:text-[15px]"
                 >
                   {submitting ? "Submitting..." : downloadButton.label}
                 </button>
@@ -384,6 +391,9 @@ export function InvestHero({ statsBelowForm = false }: { statsBelowForm?: boolea
             </div>
           </div>
         </div>
+            </div>
+        </div>
+      
 
         {statsBelowForm && STATS_BLOCK}
 

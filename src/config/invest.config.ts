@@ -8,7 +8,7 @@ export const investHeroConfig = {
   benefits: [
     {
       icon: "equity",
-      text: "Keep 100% of Your Equity",
+      text: "No Experience Needed",
     },
     {
       icon: "price",
