@@ -28,6 +28,13 @@ function subscriberHash(email: string) {
 }
 
 export async function addToMailchimp(subscriber: MailchimpSubscriber) {
+  // Debug 
+  console.log("🟡 MAILCHIMP CALLED WITH:", subscriber.email); // ADD THIS
+  console.log("🟡 API KEY:", API_KEY ? "EXISTS" : "MISSING");  // ADD THIS
+  console.log("🟡 SERVER:", SERVER);                            // ADD THIS
+  console.log("🟡 AUDIENCE ID:", AUDIENCE_ID);                  // ADD THIS
+
+
   const [firstName, ...rest] = (subscriber.name || "").split(" ");
   const lastName = rest.join(" ");
 
@@ -72,7 +79,9 @@ export async function addToMailchimp(subscriber: MailchimpSubscriber) {
 
   if (!res.ok) {
     const data = await res.json();
-    console.error("Mailchimp error:", JSON.stringify(data, null, 2));
+console.log("🟡 MAILCHIMP RAW RESPONSE:", JSON.stringify(data, null, 2));
+    // const data = await res.json();
+    // console.error("Mailchimp error:", JSON.stringify(data, null, 2));
     return { success: false as const, error: data.detail || data.title };
   }
 

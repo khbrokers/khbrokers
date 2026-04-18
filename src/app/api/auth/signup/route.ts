@@ -4,6 +4,30 @@ import { addToMailchimp } from "@/lib/mailchimp";
 
 export async function POST(req: NextRequest) {
   try {
+    // const {
+    //   name,
+    //   email,
+    //   phone,
+    //   password,
+    //   budget,
+    //   ownership,
+    //   lookingFor,
+    //   utm_source,
+    //   utm_medium,
+    //   utm_campaign,
+    //   utm_content,
+    //   utm_term,
+    //   gclid,
+    //   utm_adgroup,
+    //   utm_device,
+    //   utm_loc_physical,
+    //   signup_page,
+    //   user_type,
+    // } = await req.json();
+
+    const body = await req.json();
+    console.log("🔵 REQUEST BODY:", body);
+    
     const {
       name,
       email,
@@ -23,7 +47,7 @@ export async function POST(req: NextRequest) {
       utm_loc_physical,
       signup_page,
       user_type,
-    } = await req.json();
+    } = body; 
 
     if (!name || !email || !password) {
       return NextResponse.json(
