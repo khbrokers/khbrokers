@@ -73,9 +73,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 3. DETECT EXISTING USER (Supabase returns identities: [] for duplicate emails)
+    if (authData.user.identities && authData.user.identities.length === 0) {
+      return NextResponse.json(
+        {
+          error: "Account already exists. Please sign in.",
+          code: "ACCOUNT_EXISTS",
+        },
+        { status: 409 }
+      );
+    }
+
     const userId = authData.user.id;
 
-    // 3. CREATE PROFILE
+    // 4. CREATE PROFILE
     const { error: profileError } = await getSupabaseAdmin()
       .from("profiles")
       .insert({
@@ -92,6 +103,17 @@ export async function POST(req: NextRequest) {
     if (profileError) {
       console.error("PROFILE INSERT FAILED:", profileError);
 
+      // Fallback: duplicate profile = user already exists
+      if (profileError.code === "23505") {
+        return NextResponse.json(
+          {
+            error: "Account already exists. Please sign in.",
+            code: "ACCOUNT_EXISTS",
+          },
+          { status: 409 }
+        );
+      }
+
       return NextResponse.json(
         {
           error: "Profile creation failed",
@@ -101,7 +123,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 4. MAILCHIMP (NON-BLOCKING)
+    // 5. MAILCHIMP (NON-BLOCKING)
     addToMailchimp({
       email,
       name,
@@ -123,7 +145,7 @@ export async function POST(req: NextRequest) {
       console.error("Mailchimp subscribe failed:", err);
     });
 
-    // 5. SUCCESS RESPONSE
+    // 6. SUCCESS RESPONSE
     return NextResponse.json(
       {
         message: "Account created. Please check your email to confirm.",
