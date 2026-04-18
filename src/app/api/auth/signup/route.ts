@@ -5,10 +5,24 @@ import { addToMailchimp } from "@/lib/mailchimp";
 export async function POST(req: NextRequest) {
   try {
     const {
-      name, email, phone, password, budget, ownership, lookingFor,
-      utm_source, utm_medium, utm_campaign, utm_content, utm_term,
-      gclid, utm_adgroup, utm_device, utm_loc_physical,
-      signup_page, user_type,
+      name,
+      email,
+      phone,
+      password,
+      budget,
+      ownership,
+      lookingFor,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_content,
+      utm_term,
+      gclid,
+      utm_adgroup,
+      utm_device,
+      utm_loc_physical,
+      signup_page,
+      user_type,
     } = await req.json();
 
     if (!name || !email || !password) {
@@ -18,7 +32,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Create user via regular signUp — Supabase sends a 6-digit OTP code via email
+    // 1. SIGN UP USER
     const { data: authData, error: authError } =
       await getSupabase().auth.signUp({
         email,
@@ -28,117 +42,98 @@ export async function POST(req: NextRequest) {
         },
       });
 
+    // 2. HANDLE AUTH ERROR
     if (authError) {
-      const message =
-        authError.message === "User already registered"
-          ? "An account with this email already exists"
-          : authError.message;
-      return NextResponse.json({ error: message }, { status: 400 });
+      const msg = authError.message?.toLowerCase() || "";
+
+      if (
+        msg.includes("already") ||
+        msg.includes("registered") ||
+        msg.includes("exists")
+      ) {
+        return NextResponse.json(
+          {
+            error: "Account already exists. Please sign in.",
+            code: "ACCOUNT_EXISTS",
+          },
+          { status: 409 }
+        );
+      }
+
+      return NextResponse.json(
+        { error: authError.message },
+        { status: 400 }
+      );
     }
 
-    if (!authData.user) {
+    if (!authData?.user) {
       return NextResponse.json(
-        { error: "Failed to create account. Please try again." },
+        { error: "Signup failed. Please try again." },
         { status: 500 }
       );
     }
 
-    // 2. Store profile data (use admin client to bypass RLS)
-    // const { error: profileError } = await getSupabaseAdmin()
-    //   .from("profiles")
-    //   .insert({
-    //     id: authData.user.id,
-    //     name,
-    //     email,
-    //     phone: phone || null,
-    //     budget: budget || null,
-    //     ownership: ownership || null,
-    //     looking_for: lookingFor || null,
-    //     user_type: user_type || null,
-    //   });
-
-    // if (profileError) {
-    //   // Rollback: delete the auth user if profile insert fails
-    //   try {
-    //     await getSupabaseAdmin().auth.admin.deleteUser(authData.user.id);
-    //   } catch (deleteError) {
-    //     // Log but don't fail - user may not exist or already deleted
-    //     console.error('Failed to delete auth user during rollback:', deleteError);
-    //   }
-    //   return NextResponse.json(
-    //     { error: "Failed to create profile. Please try again." },
-    //     { status: 500 }
-    //   );
-    // }
-    
     const userId = authData.user.id;
 
-// 1. Check if profile exists
-const { data: existingProfile, error: checkError } = await getSupabaseAdmin()
-  .from("profiles")
-  .select("id")
-  .eq("id", userId)
-  .maybeSingle();
+    // 3. CREATE PROFILE
+    const { error: profileError } = await getSupabaseAdmin()
+      .from("profiles")
+      .insert({
+        id: userId,
+        name,
+        email,
+        phone: phone || null,
+        budget: budget || null,
+        ownership: ownership || null,
+        looking_for: lookingFor || null,
+        user_type: user_type || null,
+      });
 
-if (checkError) {
-  console.error("Profile check error:", checkError);
-}
+    if (profileError) {
+      console.error("PROFILE INSERT FAILED:", profileError);
 
-if (existingProfile) {
-  return NextResponse.json(
-    {
-      message: "Account already exists. Please sign in.",
-      code: "PROFILE_EXISTS",
-    },
-    { status: 200 }
-  );
-}
+      return NextResponse.json(
+        {
+          error: "Profile creation failed",
+          debug: profileError,
+        },
+        { status: 500 }
+      );
+    }
 
-      // 2. Insert profile
-      const { error: profileError } = await getSupabaseAdmin()
-        .from("profiles")
-        .insert({
-          id: userId,
-          name,
-          email,
-          phone: phone || null,
-          budget: budget || null,
-          ownership: ownership || null,
-          looking_for: lookingFor || null,
-          user_type: user_type || null,
-        });
-
-      if (profileError) {
-        console.error("PROFILE INSERT FAILED:", profileError);
-
-        return NextResponse.json(
-          {
-            error: "Failed to create profile. Please try again.",
-            debug: profileError,
-          },
-          { status: 500 }
-        );
-      }
-
-    // 3. Add to Mailchimp (non-blocking — don't fail signup if this errors)
+    // 4. MAILCHIMP (NON-BLOCKING)
     addToMailchimp({
-      email, name, phone, budget, ownership, lookingFor,
-      utm_source, utm_medium, utm_campaign, utm_content, utm_term,
-      gclid, utm_adgroup, utm_device, utm_loc_physical,
+      email,
+      name,
+      phone,
+      budget,
+      ownership,
+      lookingFor,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_content,
+      utm_term,
+      gclid,
+      utm_adgroup,
+      utm_device,
+      utm_loc_physical,
       signup_page,
-    }).catch(
-      (err) => console.error("Mailchimp subscribe failed:", err)
-    );
+    }).catch((err) => {
+      console.error("Mailchimp subscribe failed:", err);
+    });
 
-    // 4. Return success — user must confirm email before signing in
+    // 5. SUCCESS RESPONSE
     return NextResponse.json(
       {
-        message: "Account created. Please check your email to confirm your account.",
-        requiresConfirmation: true,
+        message: "Account created. Please check your email to confirm.",
+        userId,
       },
       { status: 201 }
     );
-  } catch {
+  } catch (err) {
+    console.error("SIGNUP ERROR:", err);
+
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
