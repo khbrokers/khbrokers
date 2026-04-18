@@ -250,6 +250,10 @@ export function SignUpForm() {
 
       const data = await res.json();
 
+      // DEBUG: 
+      console.log("📡 Signup response:", data);
+      console.log("📊 Status:", res.status);
+
       if (!res.ok) {
         setError(data.error || "Something went wrong");
         return;

@@ -59,7 +59,12 @@ export async function POST(req: NextRequest) {
 
     if (profileError) {
       // Rollback: delete the auth user if profile insert fails
-      await getSupabaseAdmin().auth.admin.deleteUser(authData.user.id);
+      try {
+        await getSupabaseAdmin().auth.admin.deleteUser(authData.user.id);
+      } catch (deleteError) {
+        // Log but don't fail - user may not exist or already deleted
+        console.error('Failed to delete auth user during rollback:', deleteError);
+      }
       return NextResponse.json(
         { error: "Failed to create profile. Please try again." },
         { status: 500 }

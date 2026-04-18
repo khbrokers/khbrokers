@@ -340,7 +340,7 @@ export const mockDeals: Deal[] = [
       { label: "Monthly Profit", value: "$16,856", icon: "monthly" },
       { label: "Site Age", value: "1+ Year", icon: "age" },
       { label: "Asking Price", value: "$199,999", icon: "asking" },
-      { label: "Profit Multiple", value: "1", icon: "multiple" },
+      { label: "Profit Multiple", value: "1x", icon: "multiple" },
     ],
     askingPrice: 199999,
     speakHref: "#book-a-call",
