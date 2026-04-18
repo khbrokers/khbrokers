@@ -70,31 +70,55 @@ export async function POST(req: NextRequest) {
     //     { status: 500 }
     //   );
     // }
-    const { data, error: profileError } = await getSupabaseAdmin()
+    
+    const userId = authData.user.id;
+
+// 1. Check if profile exists
+const { data: existingProfile, error: checkError } = await getSupabaseAdmin()
   .from("profiles")
-  .insert({
-    id: authData.user.id,
-    name,
-    email,
-    phone: phone || null,
-    budget: budget || null,
-    ownership: ownership || null,
-    looking_for: lookingFor || null,
-    user_type: user_type || null,
-  })
-  .select();
+  .select("id")
+  .eq("id", userId)
+  .maybeSingle();
 
-if (profileError) {
-  console.error("❌ PROFILE INSERT FAILED:", profileError);
+if (checkError) {
+  console.error("Profile check error:", checkError);
+}
 
+if (existingProfile) {
   return NextResponse.json(
     {
-      error: "Failed to create profile. Please try again.",
-      debug: profileError, // 👈 this shows real reason
+      message: "Account already exists. Please sign in.",
+      code: "PROFILE_EXISTS",
     },
-    { status: 500 }
+    { status: 200 }
   );
 }
+
+      // 2. Insert profile
+      const { error: profileError } = await getSupabaseAdmin()
+        .from("profiles")
+        .insert({
+          id: userId,
+          name,
+          email,
+          phone: phone || null,
+          budget: budget || null,
+          ownership: ownership || null,
+          looking_for: lookingFor || null,
+          user_type: user_type || null,
+        });
+
+      if (profileError) {
+        console.error("PROFILE INSERT FAILED:", profileError);
+
+        return NextResponse.json(
+          {
+            error: "Failed to create profile. Please try again.",
+            debug: profileError,
+          },
+          { status: 500 }
+        );
+      }
 
     // 3. Add to Mailchimp (non-blocking — don't fail signup if this errors)
     addToMailchimp({
