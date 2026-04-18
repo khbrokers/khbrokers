@@ -44,32 +44,57 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Store profile data (use admin client to bypass RLS)
-    const { error: profileError } = await getSupabaseAdmin()
-      .from("profiles")
-      .insert({
-        id: authData.user.id,
-        name,
-        email,
-        phone: phone || null,
-        budget: budget || null,
-        ownership: ownership || null,
-        looking_for: lookingFor || null,
-        user_type: user_type || null,
-      });
+    // const { error: profileError } = await getSupabaseAdmin()
+    //   .from("profiles")
+    //   .insert({
+    //     id: authData.user.id,
+    //     name,
+    //     email,
+    //     phone: phone || null,
+    //     budget: budget || null,
+    //     ownership: ownership || null,
+    //     looking_for: lookingFor || null,
+    //     user_type: user_type || null,
+    //   });
 
-    if (profileError) {
-      // Rollback: delete the auth user if profile insert fails
-      try {
-        await getSupabaseAdmin().auth.admin.deleteUser(authData.user.id);
-      } catch (deleteError) {
-        // Log but don't fail - user may not exist or already deleted
-        console.error('Failed to delete auth user during rollback:', deleteError);
-      }
-      return NextResponse.json(
-        { error: "Failed to create profile. Please try again." },
-        { status: 500 }
-      );
-    }
+    // if (profileError) {
+    //   // Rollback: delete the auth user if profile insert fails
+    //   try {
+    //     await getSupabaseAdmin().auth.admin.deleteUser(authData.user.id);
+    //   } catch (deleteError) {
+    //     // Log but don't fail - user may not exist or already deleted
+    //     console.error('Failed to delete auth user during rollback:', deleteError);
+    //   }
+    //   return NextResponse.json(
+    //     { error: "Failed to create profile. Please try again." },
+    //     { status: 500 }
+    //   );
+    // }
+    const { data, error: profileError } = await getSupabaseAdmin()
+  .from("profiles")
+  .insert({
+    id: authData.user.id,
+    name,
+    email,
+    phone: phone || null,
+    budget: budget || null,
+    ownership: ownership || null,
+    looking_for: lookingFor || null,
+    user_type: user_type || null,
+  })
+  .select();
+
+if (profileError) {
+  console.error("❌ PROFILE INSERT FAILED:", profileError);
+
+  return NextResponse.json(
+    {
+      error: "Failed to create profile. Please try again.",
+      debug: profileError, // 👈 this shows real reason
+    },
+    { status: 500 }
+  );
+}
 
     // 3. Add to Mailchimp (non-blocking — don't fail signup if this errors)
     addToMailchimp({
