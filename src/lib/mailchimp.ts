@@ -1,8 +1,8 @@
 import { createHash } from "crypto";
 
-const API_KEY = process.env.MAILCHIMP_API_KEY!;
-const SERVER = process.env.MAILCHIMP_SERVER_PREFIX!;
-const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID!;
+// const API_KEY = process.env.MAILCHIMP_API_KEY!;
+// const SERVER = process.env.MAILCHIMP_SERVER_PREFIX!;
+// const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID!;
 
 interface MailchimpSubscriber {
   email: string;
