@@ -4,6 +4,12 @@ const API_KEY = process.env.MAILCHIMP_API_KEY!;
 const SERVER = process.env.MAILCHIMP_SERVER_PREFIX!;
 const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID!;
 
+console.log("🟡 Mailchimp config:", {
+  API_KEY: API_KEY,
+  SERVER,
+  AUDIENCE_ID
+});
+
 interface MailchimpSubscriber {
   email: string;
   name?: string;
@@ -28,10 +34,6 @@ function subscriberHash(email: string) {
 }
 
 export async function addToMailchimp(subscriber: MailchimpSubscriber) {
-  // Read env var INSIDE function to avoid module-level caching
-  // const API_KEY = process.env.MAILCHIMP_API_KEY!;
-  // const SERVER = process.env.MAILCHIMP_SERVER_PREFIX!;
-  // const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID!;
 
   console.log("🟡 API KEY BEING USED:", API_KEY);
   console.log("🟡 MAILCHIMP CALLED WITH:", subscriber.email);
