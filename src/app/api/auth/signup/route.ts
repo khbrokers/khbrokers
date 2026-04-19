@@ -4,30 +4,6 @@ import { addToMailchimp } from "@/lib/mailchimp";
 
 export async function POST(req: NextRequest) {
   try {
-    // const {
-    //   name,
-    //   email,
-    //   phone,
-    //   password,
-    //   budget,
-    //   ownership,
-    //   lookingFor,
-    //   utm_source,
-    //   utm_medium,
-    //   utm_campaign,
-    //   utm_content,
-    //   utm_term,
-    //   gclid,
-    //   utm_adgroup,
-    //   utm_device,
-    //   utm_loc_physical,
-    //   signup_page,
-    //   user_type,
-    // } = await req.json();
-
-    const body = await req.json();
-    console.log("🔵 REQUEST BODY:", body);
-    
     const {
       name,
       email,
@@ -47,7 +23,7 @@ export async function POST(req: NextRequest) {
       utm_loc_physical,
       signup_page,
       user_type,
-    } = body; 
+    } = await req.json();
 
     if (!name || !email || !password) {
       return NextResponse.json(
@@ -148,29 +124,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 5. MAILCHIMP (NON-BLOCKING)
-    // addToMailchimp({
-    //   email,
-    //   name,
-    //   phone,
-    //   budget,
-    //   ownership,
-    //   lookingFor,
-    //   utm_source,
-    //   utm_medium,
-    //   utm_campaign,
-    //   utm_content,
-    //   utm_term,
-    //   gclid,
-    //   utm_adgroup,
-    //   utm_device,
-    //   utm_loc_physical,
-    //   signup_page,
-    // }).catch((err) => {
-    //   console.error("Mailchimp subscribe failed:", err);
-    // });
-// 5. MAILCHIMP (TEMPORARY - BLOCKING FOR DEBUG)
-try {
-  const mailchimpResult = await addToMailchimp({
+    addToMailchimp({
     email,
     name,
     phone,
@@ -188,10 +142,7 @@ try {
     utm_loc_physical,
     signup_page,
   });
-  console.log("✅ Mailchimp result:", mailchimpResult);
-} catch (err) {
-  console.error("❌ Mailchimp failed:", err);
-}
+  
     // 6. SUCCESS RESPONSE
     return NextResponse.json(
       {
