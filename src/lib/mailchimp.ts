@@ -28,6 +28,7 @@ function subscriberHash(email: string) {
 }
 
 export async function addToMailchimp(subscriber: MailchimpSubscriber) {
+  console.log("🟡 FULL API KEY BEING USED:", API_KEY);
   console.log("🟡 MAILCHIMP CALLED WITH:", subscriber.email);
 
   const [firstName, ...rest] = (subscriber.name || "").split(" ");
